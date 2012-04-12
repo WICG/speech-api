@@ -1,0 +1,1010 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang=en>
+  <head>
+    <title>Speech JavaScript API Specification</title>
+    <meta content="text/html;charset=utf-8" http-equiv=Content-Type>
+
+    <style type="text/css">
+      dt, dfn { font-weight: bold; font-style: normal; }
+      img.extra { float: right; }
+      body ins, body del { display: block; }
+      body * ins, body * del { display: inline; }
+      pre, code { color: black; background: transparent; font-size: inherit; font-family: monospace; }
+      pre strong { color: black; font: inherit; font-weight: bold; background: yellow; }
+      pre em { font-weight: bolder; font-style: normal; }
+      pre.idl :link, pre.idl :visited { color: inherit; background: transparent; }
+      pre.idl { border: solid thin; background: #EEEEEE; color: black; padding: 0.5em; }
+      table { border-collapse: collapse; border-style: hidden hidden none hidden; }
+      table thead { border-bottom: solid; }
+      table tbody th:first-child { border-left: solid; }
+      table td, table th { border-left: solid; border-right: solid; border-bottom: solid thin; vertical-align: top; padding: 0.2em; }
+      ul.toc dfn, h1 dfn, h2 dfn, h3 dfn, h4 dfn, h5 dfn, h6 dfn { font: inherit; }
+      ul.toc li ul { margin-bottom: 0.75em; }
+      ul.toc li ul li ul { margin-bottom: 0.25em; }
+      var sub { vertical-align: bottom; font-size: smaller; position: relative; top: 0.1em; }
+      @media screen { code { color: rgb(255, 69, 0); background: transparent; } }
+      .example { display: block; color: #222222; background: #FCFCFC; border-left: double; margin-left: 1em; padding-left: 1em; }
+      .issue, .big-issue { color: #E50000; background: white; border: solid red; padding: 0.5em; margin: 1em 0; }
+      .issue > :first-child, .big-issue > :first-child { margin-top: 0; }
+      p .big-issue { line-height: 3em; }
+      .note { color: green; background: transparent; }
+      .note { font-family: sans-serif; }
+      p.note:before { content: 'Note: '; }
+      .warning { color: red; background: transparent; }
+      .warning:before { font-style: normal; }
+      p.warning:before { content: '\26A0 Warning! '; }
+      .note, .warning { font-weight: bolder; font-style: italic; padding: 0.5em 2em; }
+      .copyright { margin: 0.25em 0; }
+      img { max-width: 100%; }
+      h4 + .element { margin-top: -2.5em; padding-top: 2em; }
+      h4 + p + .element { margin-top: -5em; padding-top: 4em; }
+      .element { background: #EEEEFF; color: black; margin: 0 0 1em -1em; padding: 0 1em 0.25em 0.75em; border-left: solid #9999FF 0.25em; }
+      table.matrix, table.matrix td { border: none; text-align: right; }
+      table.matrix { margin-left: 2em; }
+    </style>
+    <style type="text/css">
+      .nt, pre, .terminal, code, .prop, .esstring, .javavalue, .idlident, .idlstring, .xattr, .regex, .prod-number, .prod-lines, .prod-mid {
+        font-size: 14px;
+      }
+      pre code, .prod-lines .nt {
+        font-size: 14px !important;
+      }
+      .terminal, idl-code, html-code, .prop, .esstring, .javavalue, .idlident, .idlstring, .example, .note, blockquote {
+        background: #d9e8ff;
+      }
+      td code {
+        background: inherit;
+      }
+      .example blockquote {
+        background: #f0f6ff;
+      }
+      table.grammar {
+        background: #eee;
+      }
+      .ednote {
+        border-top: 3px solid red;
+        border-bottom: 3px solid red;
+        margin: 1em 2em;
+        padding: 0 1em 0 1em;
+        background: #f8eeee;
+      }
+      .ednoteHeader {
+        font-weight: bold;
+        display: block;
+        padding-top: 0.5em;
+      }
+      .terminal, code, .prop, .esstring, .javavalue, .idlident, .idlstring, .input {
+        font-family: /*Consolas, Monaco,*/ monospace !important;
+      }
+      pre.code code {
+        background: inherit;
+      }
+      .propattrset {
+      }
+      /*.prop {
+        font-family: Consolas, Monaco, monospace;
+      }*/
+      .xattr {
+        font-family: /*Consolas, Monaco,*/ monospace;
+      }
+
+      table { border-collapse:collapse; border-style:hidden hidden none hidden }
+      table thead { border-bottom:solid }
+      table tbody th:first-child { border-left:solid }
+      table td, table th { border-left:solid; border-right:solid; border-bottom:solid thin; vertical-align:top; padding:0.2em }
+
+      .nt, .prod-lines {
+        font-family: /*Consolas, Monaco,*/ monospace;
+        white-space: nowrap;
+      }
+      .idltype, .idlvalue {
+        font-weight: bold;
+      }
+      .idlop {
+        font-weight: bold;
+      }
+      .esvalue, .estype {
+        font-weight: bold;
+      }
+      .javatype, .javapkg {
+        font-weight: bold;
+      }
+      .regex {
+        font-family: /*Consolas, Monaco,*/ monospace;
+        white-space: nowrap;
+      }
+      .typevar {
+        font-style: italic;
+      }
+      .example, .note {
+        border-top: 3px solid #005a9c;
+        border-bottom: 3px solid #005a9c;
+        margin: 1em 2em;
+        padding: 0 1em 0 1em;
+      }
+      .exampleHeader, .noteHeader {
+        font-weight: bold;
+        display: block;
+        color: #005a9c;
+        color: black;
+        padding-top: 0.5em;
+      }
+      pre {
+        overflow: auto;
+        margin: 0;
+        font-family: /*Consolas, Monaco,*/ monospace;
+      }
+      pre.code {
+        padding: 0 1em;
+        margin: 0;
+        margin-bottom: 1em;
+      }
+      .block {
+        border: 1px solid #90b8de;
+        border-left: 3px double #90b8de;
+        border-left: none;
+        border-right: none;
+        background: #f0f6ff;
+        margin: 2em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        padding: 0 0.5em;
+        padding-bottom: 0.5em;
+      }
+      .blockTitleDiv {
+        text-align: left;
+      }
+      .blockTitle {
+        position: relative;
+        top: -0.75em;
+        left: -1.5em;
+        /*border: 1px solid #90b8de;
+        border-left: none;
+        border-right: none;*/
+        background: #90b8de;
+        color: white;
+        padding: 0.25em 1em 0.25em 1em;
+        font-weight: bold;
+        font-size: 80%;
+      }
+      dfn {
+        font-weight: bold;
+        font-style: italic;
+      }
+      .dfnref {
+      }
+      .norm {
+        font-style: italic;
+      }
+      .rfc2119 {
+        text-transform: lowercase;
+        font-variant: small-caps;
+      }
+      dfn var {
+        font-style: normal;
+      }
+      blockquote {
+        padding: 1px 1em;
+        margin-left: 2em;
+        margin-right: 2em;
+      }
+      a.placeholder {
+        color: #00e;
+      }
+      dl.changes > dd {
+        margin-left: 0;
+      }
+      dd > :first-child {
+        margin-top: 0;
+      }
+      caption {
+        caption-side: bottom;
+        margin-top: 1em;
+        font-weight: bold;
+      }
+      body {
+        line-height: 1.3;
+      }
+      @media print {
+        .section-link {
+          display: none;
+        }
+      }
+      .section-link {
+        visibility: hidden;
+        width: 1px;
+        height: 1px;
+        overflow: visible;
+        font-size: 10pt;
+        font-style: normal;
+      }
+      .section-link a {
+        color: #666;
+        font-weight: bold;
+        text-decoration: none;
+      }
+      .section-link a:hover {
+        color: #c00;
+      }
+      .section > *:hover > .section-link {
+        visibility: visible;
+      }
+      div.set {
+        margin-left: 3em;
+        text-indent: -1em;
+      }
+      ol.algorithm ol {
+        border-left: 1px solid #90b8de;
+        margin-left: 1em;
+      }
+      dl.switch > dd > ol.only {
+        margin-left: 0;
+      }
+      dl.switch {
+        padding-left: 2em;
+      }
+      dl.switch > dt {
+        text-indent: -1.5em;
+        margin-top: 1em;
+      }
+      dl.switch > dt + dt {
+        margin-top: 0;
+      }
+      dl.switch > dt:before {
+        content: '\21AA';
+        padding: 0 0.5em 0 0;
+        display: inline-block;
+        width: 1em;
+        text-align: right;
+        line-height: 0.5em;
+      }
+      .diagram {
+        text-align: center;
+      }
+      iframe {
+        border: 0;
+      }
+      /*.ignore {
+        opacity: 0.5;
+      }*/
+      .comment {
+        color: #005a9c;
+      }
+
+      .matrix {
+        border-collapse: collapse;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .matrix th {
+        background: #d9e8ff;
+        text-align: right;
+      }
+      .matrix td, .matrix th {
+        border: 1px solid #90b8de;
+        padding: 4px;
+      }
+      .matrix th.corner {
+        border: 0;
+        background: none;
+      }
+      .matrix td {
+        text-align: center;
+        background: #f0f6ff;
+      }
+      .matrix .belowdiagonal {
+        background: #ddd;
+      }
+
+      ul.notes { font-size: 90%; padding-left: 0 }
+      ul.notes li { list-style-type: none }
+      ul.notes .note-link { vertical-align: super }
+      .note-link { font-size: 90% }
+
+      .code var { color: #f44; }
+
+      /* For dfn.js */
+      body.dfnEnabled dfn { cursor: pointer; }
+      .dfnPanel {
+        display: inline;
+        position: absolute;
+        height: auto;
+        width: auto;
+        padding: 0.5em 0.75em;
+        font: small sans-serif;
+        background: #DDDDDD;
+        color: black;
+        border: outset 0.2em;
+        cursor: default;
+      }
+      .dfnPanel * { margin: 0; padding: 0; font: inherit; text-indent: 0; }
+      .dfnPanel :link, .dfnPanel :visited { color: black; }
+      .dfnPanel p { font-weight: bolder; }
+      .dfnPanel li { list-style-position: inside; }
+
+      .brief { margin-top: 1em; margin-bottom: 1em; line-height: 1.1; }
+      .brief li { margin: 0; padding: 0; }
+      .brief li p { margin: 0; padding: 0; }
+
+      .category-list { margin-top: -0.75em; margin-bottom: 1em; line-height: 1.5; }
+      /*   .category-list::before { content: '\21D2\A0'; font-size: 1.2em; font-weight: 900; }*/
+      .category-list li { display: inline; }
+      /*   .category-list li:not(:last-child)::after { content: ', '; }*/
+      .category-list li > span, .category-list li > a { text-transform: lowercase; }
+      .category-list li * { text-transform: none; } /* don't affect <code> nested in <a> */
+    </style>
+    <link href="http://www.w3.org/StyleSheets/TR/w3c-unofficial.css" rel=stylesheet type="text/css">
+  </head>
+
+  <body>
+    <div class=head>
+      <!--begin-logo-->
+      <p><a href="http://www.w3.org/"><img alt=W3C height=48 src="http://www.w3.org/Icons/w3c_home" width=72></a></p>
+      <!--end-logo-->
+      <h1 id="title_heading">Speech JavaScript API Specification</h1>
+      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 12 April 2012</h2>
+      <dl>
+        <dt>Editors:</dt>
+        <dd>Glen Shires, Google Inc.</dd>
+        <dd>Hans Wennborg, Google Inc.</dd>
+      </dl>
+      <hr>
+    </div>
+
+    <h2 class="no-num no-toc" id=abstract>Abstract</h2>
+
+    <p>This specification defines a JavaScript API to enable web developers to incorporate speech recognition and synthesis into their web pages.
+    It enables developers to use scripting to generate text-to-speech output and to use speech recognition as an input for forms, continuous dictation and control.
+    The JavaScript API allows web pages to control activation and timing and to handle results and alternatives.</p>
+
+    <p>It is a fully-functional subset of the specification proposed in the <a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">HTML Speech Incubator Group Final Report</a> <a href="#ref-1">[1]</a>.
+    Specifically, this subset excludes the underlying transport protocol, the proposed additions to HTML markup, and it defines a simplified subset of the JavaScript API.
+    This subset supports the majority of use-cases and sample code in the Incubator Group Final Report.
+    This subset does not preclude future standardization of additions to the markup, API or underlying transport protocols, and indeed the Incubator Report defines a potential roadmap for such future work.</p>
+
+    <h2 class="no-num no-toc" id=status>Status of This Document</h2>
+
+    <p>This document is an API proposal from Google Inc. to the <a href="http://www.w3.org/2008/webapps/">Web Applications (WEBAPPS) Working Group</a>.</p>
+
+    <p>All feedback is welcome.</p>
+
+    <p>No working group is yet responsible for this specification. <strong>This is just an informal proposal at this time.</strong></p>
+
+    <h2 class="no-num no-toc" id=contents>Table of Contents</h2>
+
+    <!--begin-toc-->
+    <ul class=toc>
+      <li><a href="#conformance"><span class=secno>1 </span>Conformance requirements</a></li>
+      <li><a href="#introduction"><span class=secno>2 </span>Introduction</a></li>
+      <li><a href="#use_cases"><span class=secno>3 </span>Use Cases</a></li>
+      <li><a href="#security"><span class=secno>4 </span>Security and privacy considerations</a></li>
+      <li><a href="#api_description"><span class=secno>5 </span>API Description</a></li>
+      <li><a href="#speechreco-section"><span class=secno>5.1 </span>The Speech Recognition Interface</a></li>
+      <li><a href="#speechreco-attributes"><span class=secno>5.1.1 </span>Speech Recognition Attributes</a></li>
+      <li><a href="#speechreco-methods"><span class=secno>5.1.2 </span>Speech Recognition Methods</a></li>
+      <li><a href="#speechreco-events"><span class=secno>5.1.3 </span>Speech Recognition Events</a></li>
+      <li><a href="#speechreco-error"><span class=secno>5.1.4 </span>Speech Recognition Error</a></li>
+      <li><a href="#speechreco-alternative"><span class=secno>5.1.5 </span>Speech Recognition Alternative</a></li>
+      <li><a href="#speechreco-result"><span class=secno>5.1.6 </span>Speech Recognition Result</a></li>
+      <li><a href="#speechreco-resultlist"><span class=secno>5.1.7 </span>Speech Recognition Result List</a></li>
+      <li><a href="#speechreco-event"><span class=secno>5.1.8 </span>Speech Recognition Event</a></li>
+      <li><a href="#speechreco-speechgrammar"><span class=secno>5.1.9 </span>Speech Grammar</a></li>
+      <li><a href="#speechreco-speechgrammarlist"><span class=secno>5.1.10 </span>Speech Grammar List</a></li>
+      <li><a href="#tts-section"><span class=secno>5.2 </span>The TTS Interface</a></li>
+      <li><a href="#examples"><span class=secno>6 </span>Examples</a></li>
+      <li class=no-num><a href="#acknowledgments">Acknowledgments</a></li>
+      <li class=no-num><a href="#references">References</a></li>
+    </ul>
+    <!--end-toc-->
+
+    <h2 id=conformance><span class=secno>1 </span>Conformance requirements</h2>
+
+    <p>All diagrams, examples, and notes in this specification are non-normative, as are all sections explicitly marked non-normative.
+    Everything else in this specification is normative.</p>
+
+    <p>The key words "MUST", "MUST NOT", "REQUIRED", <!--"SHALL", "SHALL NOT",--> "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in the normative parts of this document are to be interpreted as described in RFC2119.
+    For readability, these words do not appear in all uppercase letters in this specification.
+    <a href="#ref-rfc2119">[RFC2119]</a></p>
+
+    <p>Requirements phrased in the imperative as part of algorithms (such as "strip any leading space characters" or "return false and abort these steps") are to be interpreted with the meaning of the key word ("must", "should", "may", etc) used in introducing the algorithm.</p>
+
+    <p>Conformance requirements phrased as algorithms or specific steps may be implemented in any manner, so long as the end result is equivalent.
+    (In particular, the algorithms defined in this specification are intended to be easy to follow, and not intended to be performant.)</p>
+
+    <p id=hardwareLimitations>User agents may impose implementation-specific limits on otherwise unconstrained inputs, e.g. to prevent denial of service attacks, to guard against running out of memory, or to work around platform-specific limitations.</p>
+
+    <p>Implementations that use ECMAScript to implement the APIs defined in this specification must implement them in a manner consistent with the ECMAScript Bindings defined in the Web IDL specification, as this specification uses that specification's terminology.
+    <a href="#ref-webidl">[WEBIDL]</a></p>
+
+    <h2 id=introduction><span class=secno>2 </span>Introduction</h2>
+
+    <p><em>This section is non-normative.</em></p>
+
+    <p>The JavaScript Speech API aims to enable web developers to provide, in a web browser, speech-input and text-to-speech output features that are typically not available when using standard speech-recognition or screen-reader software.
+    The API itself is agnostic of the underlying speech recognition and synthesis implementation and can support both server-based and client-based/embedded recognition and synthesis.
+    The API is designed to enable both brief (one-shot) speech input and continuous speech input.
+    Speech recognition results are provided to the web page as a list of hypotheses, along with other relevant information for each hypothesis.</p>
+
+    <p>This specification is a subset of the API defined in the <a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">HTML Speech Incubator Group Final Report</a>.
+    That report is entirely informative since it is not a standards track document.
+    This document is intended to be the basis of a standards track document, and therefore defines portions of that report to be normative.
+    All other portions of that report may be considered informative with regards to this document, and provide an informative background to this document.</p>
+
+    <h2 id=use_cases><span class=secno>3 </span>Use Cases</h2>
+
+    <p><em>This section is non-normative.</em></p>
+
+    <p>This specification supports the following use cases, as defined in <a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech-20111206/#use-cases">Section 4 of the Incubator Report</a>.</p>
+
+    <ul>
+      <li>Voice Web Search</li>
+      <li>Speech Command Interface</li>
+      <li>Domain Specific Grammars Contingent on Earlier Inputs</li>
+      <li>Continuous Recognition of Open Dialog</li>
+      <li>Domain Specific Grammars Filling Multiple Input Fields</li>
+      <li>Speech UI present when no visible UI need be present</li>
+      <li>Voice Activity Detection</li>
+      <li>Hello World</li>
+      <li>Speech Translation</li>
+      <li>Speech Enabled Email Client</li>
+      <li>Dialog Systems</li>
+      <li>Multimodal Interaction</li>
+      <li>Speech Driving Directions</li>
+      <li>Multimodal Video Game</li>
+      <li>Multimodal Search</li>
+    </ul>
+
+    <p>To keep the API to a minimum, this specification does not directly support the following use cases.
+    This does not preclude adding support for these as future API enhancements, and indeed the Incubator report provides a roadmap for doing so.</p>
+
+    <ul>
+      <li>Rerecognition</li>
+      <li>Temporal Structure of Synthesis to Provide Visual Feedback</li>
+    </ul>
+
+    <p>Note that for many usages and implementations, it is possible to avoid the need for Rerecognition by using a larger grammar, or by combining multiple grammars &mdash; both of these techniques are supported in this specification.</p>
+
+    <h2 id=security><span class=secno>4 </span>Security and privacy considerations</h2>
+
+    <ol>
+      <li>User agents must only start speech input sessions with explicit, informed user consent.
+      User consent can include, for example:
+      <ul>
+       <li>User click on a visible speech input element which has an obvious graphical representation showing that it will start speech input.</li>
+       <li>Accepting a permission prompt shown as the result of a call to <code>SpeechRecognition.start</code>.</li>
+       <li>Consent previously granted to always allow speech input for this web page.</li>
+      </ul>
+      </li>
+
+      <li>User agents must give the user an obvious indication when audio is being recorded.
+      <ul>
+        <li>In a graphical user agent, this could be a mandatory notification displayed by the UA as part of its chrome and not accessible by the web page.
+        This could for example be a pulsating/blinking record icon as part of the browser chrome/address bar, an indication in the status bar, an audible notification, or anything else relevant and accessible to the user.
+        This UI element must also allow the user to stop recording.<br>
+        <img src="ui-example.png" alt="Example UI recording notification."></li>
+
+        <li>In a speech-only user agent, the indication may for example take the form of the system speaking the label of the speech input element, followed by a short beep.</li>
+      </ul>
+      </li>
+
+      <li>The user agent may also give the user a longer explanation the first time speech input is used, to let the user now what it is and how they can tune their privacy settings to disable speech recording if required.</li>
+
+      <li>To minimize the chance of users unwittingly allowing web pages to record speech without their knowledge, implementations must abort an active speech input session if the web page lost input focus to another window or to another tab within the same user agent.</li>
+    </ol>
+
+    <h3>Implementation considerations</h3>
+
+    <p><em>This section is non-normative.</em></p>
+
+    <ol>
+      <li>Spoken password inputs can be problematic from a security perspective, but it is up to the user to decide if they want to speak their password.</li>
+
+      <li>Speech input could potentially be used to eavesdrop on users.
+      Malicious webpages could use tricks such as hiding the input element or otherwise making the user believe that it has stopped recording speech while continuing to do so.
+      They could also potentially style the input element to appear as something else and trick the user into clicking them.
+      An example of styling the file input element can be seen at <a href="http://www.quirksmode.org/dom/inputfile.html">http://www.quirksmode.org/dom/inputfile.html</a>.
+      The above recommendations are intended to reduce this risk of such attacks.</li>
+    </ol>
+
+    <h2 id="api_description"><span class=secno>5 </span>API Description</h2>
+
+    <p><em>This section is normative.</em></p>
+
+    <h3 id="speechreco-section"><span class=secno>5.1 </span>The Speech Recognition Interface</h3>
+
+    <p>The speech recognition interface is the scripted web <acronym title="Application Programming Interface">API</acronym> for controlling a given recognition.</p>
+
+    <div class="block">
+      <div class="blockTitleDiv">
+        <span class="blockTitle">IDL</span>
+      </div>
+      <div class="blockContent">
+        <pre class="code">
+          <code class="idl-code">
+    [Constructor]
+    interface <dfn id="dfn-speechreco">SpeechRecognition</dfn> : EventTarget {
+        <span class="comment">// recognition parameters</span>
+        attribute <a href="#dfn-speechgrammarlist">SpeechGrammarList</a> <a href="#dfn-grammars">grammars</a>;
+        attribute DOMString <a href="#dfn-lang">lang</a>;
+        attribute boolean <a href="#dfn-continuous">continuous</a>;
+
+        <span class="comment">// methods to drive the speech interaction</span>
+        void <a href="#dfn-start">start</a>();
+        void <a href="#dfn-stop">stop</a>();
+        void <a href="#dfn-abort">abort</a>();
+
+        <span class="comment">// event methods</span>
+        attribute Function <a href="#dfn-onaudiostart">onaudiostart</a>;
+        attribute Function <a href="#dfn-onsoundstart">onsoundstart</a>;
+        attribute Function <a href="#dfn-onspeechstart">onspeechstart</a>;
+        attribute Function <a href="#dfn-onspeechend">onspeechend</a>;
+        attribute Function <a href="#dfn-onsoundend">onsoundend</a>;
+        attribute Function <a href="#dfn-onaudioend">onaudioend</a>;
+        attribute Function <a href="#dfn-onresult">onresult</a>;
+        attribute Function <a href="#dfn-onnomatch">onnomatch</a>;
+        attribute Function <a href="#dfn-onresultdeleted">onresultdeleted</a>;
+        attribute Function <a href="#dfn-onerror">onerror</a>;
+        attribute Function <a href="#dfn-onstart">onstart</a>;
+        attribute Function <a href="#dfn-onend">onend</a>;
+    };
+
+    interface <dfn id="speechrecognitionerror">SpeechRecognitionError</dfn> {
+        const unsigned short <a href="#dfn-sre.other">OTHER</a> = 0;
+        const unsigned short <a href="#dfn-sre.nospeech">NO_SPEECH</a> = 1;
+        const unsigned short <a href="#dfn-sre.aborted">ABORTED</a> = 2;
+        const unsigned short <a href="#dfn-sre.audiocapture">AUDIO_CAPTURE</a> = 3;
+        const unsigned short <a href="#dfn-sre.network">NETWORK</a> = 4;
+        const unsigned short <a href="#dfn-sre.notallowed">NOT_ALLOWED</a> = 5;
+        const unsigned short <a href="#dfn-sre.servicenotallowed">SERVICE_NOT_ALLOWED</a> = 6;
+        const unsigned short <a href="#dfn-sre.badgrammar">BAD_GRAMMAR</a> = 7;
+        const unsigned short <a href="#dfn-sre.languagenotsupported">LANGUAGE_NOT_SUPPORTED</a> = 8;
+
+        readonly attribute unsigned short <a href="#dfn-code">code</a>;
+        readonly attribute DOMString <a href="#dfn-message">message</a>;
+    };
+
+    <span class="comment">// Item in N-best list</span>
+    interface <dfn id="speechrecognitionalternative">SpeechRecognitionAlternative</dfn> {
+        readonly attribute DOMString <a href="#dfn-transcript">transcript</a>;
+        readonly attribute float <a href="#dfn-confidence">confidence</a>;
+        readonly attribute any <a href="#dfn-interpretation">interpretation</a>;
+    };
+
+    <span class="comment">// A complete one-shot simple response</span>
+    interface <dfn id="speechrecognitionresult">SpeechRecognitionResult</dfn> {
+        readonly attribute unsigned long <a href="#dfn-length">length</a>;
+        getter <a href="#speechrecognitionalternative">SpeechRecognitionAlternative</a> <a href="#dfn-item">item</a>(in unsigned long index);
+        readonly attribute boolean <a href="#dfn-final">final</a>;
+    };
+
+    <span class="comment">// A collection of responses (used in continuous mode)</span>
+    interface <dfn id="speechrecognitionresultlist">SpeechRecognitionResultList</dfn> {
+        readonly attribute unsigned long <a href="#dfn-speechrecognitionresultlistlength">length</a>;
+        getter <a href="#speechrecognitionresult">SpeechRecognitionResult</a> <a href="#dfn-speechrecognitionresultlistitem">item</a>(in unsigned long index);
+    };
+
+    <span class="comment">// A full response, which could be interim or final, part of a continuous response or not</span>
+    interface <dfn id="speechrecognitionevent">SpeechRecognitionEvent</dfn> : Event {
+        readonly attribute <a href="#speechrecognitionresult">SpeechRecognitionResult</a> <a href="#dfn-result">result</a>;
+        readonly attribute <a href="#speechrecognitionerror">SpeechRecognitionError</a> error;
+        readonly attribute short <a href="#dfn-resultIndex">resultIndex</a>;
+        readonly attribute <a href="#speechrecognitionresultlist">SpeechRecognitionResultList</a> <a href="#dfn-resulthistory">resultHistory</a>;
+    };
+
+    <span class="comment">// The object representing a speech grammar</span>
+    [Constructor]
+    interface <dfn id="dfn-speechgrammar">SpeechGrammar</dfn> {
+        attribute DOMString <a href="#dfn-grammarSrc">src</a>;
+        attribute float <a href="#dfn-grammarWeight">weight</a>;
+    };
+
+    <span class="comment">// The object representing a speech grammar collection</span>
+    [Constructor]
+    interface <dfn id="dfn-speechgrammarlist">SpeechGrammarList</dfn> {
+        readonly attribute unsigned long <a href="#dfn-speechgrammarlistlength">length</a>;
+        getter <a href="#dfn-speechgrammar">SpeechGrammar</a> <a href="#dfn-speechgrammarlistitem">item</a>(in unsigned long index);
+        void <a href="#dfn-addGrammar">addFromUri</a>(in DOMString <a href="#dfn-grammarSrc">src</a>,
+                        optional float <a href="#dfn-grammarWeight">weight</a>);
+        void <a href="#dfn-addGrammarstring">addFromString</a>(in DOMString <a href="#dfn-grammarString">string</a>,
+                        optional float <a href="#dfn-grammarWeight">weight</a>);
+    };
+          </code>
+        </pre>
+      </div>
+    </div>
+
+    <h4 id="speechreco-attributes"><span class=secno>5.1.1 </span>Speech Recognition Attributes</h4>
+
+    <dl>
+      <dt><dfn id="dfn-grammars">grammars</dfn> attribute</dt>
+      <dd>The grammars attribute stores the collection of SpeechGrammar objects which represent the grammars that are active for this recognition.</dd>
+
+      <dt><dfn id="dfn-lang">lang</dfn> attribute</dt>
+      <dd>This attribute will set the language of the recognition for the request, using a valid <a href="http://www.ietf.org/rfc/bcp/bcp47.txt">BCP 47</a> language tag.
+      If unset it remains unset for getting in script, but will default to use the <a href="http://www.w3.org/TR/html5/elements.html#the-lang-and-xml:lang-attributes">lang</a> of the html document root element and associated hierachy.
+      This default value is computed and used when the input request opens a connection to the recognition service.</dd>
+
+      <dt><dfn id="dfn-continuous">continuous</dfn> attribute</dt>
+      <dd>When the continuous attribute is set to false the service <em class="rfc2119" title="must">must</em> only return a single simple recognition response as a result of starting recognition.
+      This represents a request/response single turn pattern of interaction.
+      When the continuous attribute is set to true the service <em class="rfc2119" title="must">must</em> return a set of recognitions representing more a dictation of multiple recognitions in response to a single starting of recognition.
+      The user agent default value <em class="rfc2119" title="should">should</em> be false.</dd>
+    </dl>
+
+    <h4 id="speechreco-methods"><span class=secno>5.1.2 </span>Speech Recognition Methods</h4>
+
+    <dl>
+      <dt>The <dfn id="dfn-start">start</dfn> method</dt>
+      <dd>When the start method is called it represents the moment in time the web application wishes to begin recognition.
+      When the speech input is streaming live through the input media stream, then this start call represents the moment in time that the service <em class="rfc2119" title="must">must</em> begin to listen and try to match the grammars associated with this request.
+      If the SpeechRecognition has not yet called open before the start call is made, a call to open is made by the start call (complete with the open event being raised).
+      Once the system is successfully listening to the recognition the user agent <em class="rfc2119" title="must">must</em> raise a start event.</dd>
+
+      <dt>The <dfn id="dfn-stop">stop</dfn> method</dt>
+      <dd>The stop method represents an instruction to the recognition service to stop listening to more audio, and to try and return a result using just the audio that it has received to date.
+      A typical use of the stop method might be for a web application where the end user is doing the end pointing, similar to a walkie-talkie.
+      The end user might press and hold the space bar to talk to the system and on the space down press the start call would have occurred and when the space bar is released the stop method is called to ensure that the system is no longer listening to the user.
+      Once the stop method is called the speech service <em class="rfc2119" title="must not">must not</em> collect additional audio and <em class="rfc2119" title="must not">must not</em> continue to listen to the user.
+      The speech service <em class="rfc2119" title="must">must</em> attempt to return a recognition result (or a nomatch) based on the audio that it has collected to date.</dd>
+
+      <dt>The <dfn id="dfn-abort">abort</dfn> method</dt>
+      <dd>The abort method is a request to immediately stop listening and stop recognizing and do not return any information but that the system is done.
+      When the stop method is called the speech service <em class="rfc2119" title="must">must</em> stop recognizing.
+      The user agent <em class="rfc2119" title="must">must</em> raise a end event once the speech service is no longer connected.</dd>
+    </dl>
+
+    <h4 id="speechreco-events"><span class=secno>5.1.3 </span>Speech Recognition Events</h4>
+
+    <p>The DOM Level 2 Event Model is used for speech recognition events.
+    The methods in the EventTarget interface should be used for registering event listeners.
+    The SpeechRecognition interface also contains convenience attributes for registering a single event handler for each event type.</p>
+
+    <p>For all these events, the timeStamp attribute defined in the DOM Level 2 Event interface must be set to the best possible estimate of when the real-world event which the event object represents occurred.
+    This timestamp must be represented in the User Agent's view of time, even for events where the timestamps in question could be raised on a different machine like a remote recognition service (i.e., in a speechend event with a remote speech endpointer).</p>
+
+    <p>Unless specified below, the ordering of the different events is undefined.
+    For example, some implementations may fire audioend before speechstart or speechend if the audio detector is client-side and the speech detector is server-side.</p>
+
+    <dl>
+      <dt><dfn id="dfn-onaudiostart">audiostart</dfn> event</dt>
+      <dd>Fired when the user agent has started to capture audio.</dd>
+
+      <dt><dfn id="dfn-onsoundstart">soundstart</dfn> event</dt>
+      <dd>Some sound, possibly speech, has been detected.
+      This <em class="rfc2119" title="must">must</em> be fired with low latency, e.g. by using a client-side energy detector.</dd>
+
+      <dt><dfn id="dfn-onspeechstart">speechstart</dfn> event</dt>
+      <dd>The speech that will be used for speech recognition has started.</dd>
+
+      <dt><dfn id="dfn-onspeechend">speechend</dfn> event</dt>
+      <dd>The speech that will be used for speech recognition has ended.
+      speechstart <em class="rfc2119" title="must">must</em> always have been fire before speechend.</dd>
+
+      <dt><dfn id="dfn-onsoundend">soundend</dfn> event</dt>
+      <dd>Some sound is no longer detected.
+      This <em class="rfc2119" title="must">must</em> be fired with low latency, e.g. by using a client-side energy detector.
+      soundstart <em class="rfc2119" title="must">must</em> always have been fired before soundend.</dd>
+
+      <dt><dfn id="dfn-onaudioend">audioend</dfn> event</dt>
+      <dd>Fired when the user agent has finished capturing audio.
+      audiostart <em class="rfc2119" title="must">must</em> always have been fired before audioend.</dd>
+
+      <dt><dfn id="dfn-onresult">result</dfn> event</dt>
+      <dd>Fired when the speech recognizer returns a result.
+      See <a href="#speechreco-resultevent">here</a> for more information.</dd>
+
+      <dt><dfn id="dfn-onnomatch">nomatch</dfn> event</dt>
+      <dd>Fired when the speech recognizer returns a final result with no recognition hypothesis that meet or exceed the confidence threshold.
+      The result field in the event <em class="rfc2119" title="may">may</em> contain speech recognition results that are below the confidence threshold or <em class="rfc2119" title="may">may</em> be null.</dd>
+
+      <dt><dfn id="dfn-onresultdeleted">resultdeleted</dfn> event</dt>
+      <dd>Fired when the recognizer needs to delete one of the previously returned interim results in a continuous recognition.
+      A simplified example of this might be the recognizer gives an interim result for "hot" as the zeroth index of the continuous result and then gives an interim result of "dog" as the first index.
+      Later the recognize wants to give a final result that is just one word "hotdog".
+      In order to do that it needs to change the zeroth index to "hotdog" and delete the first index.
+      When the first element is deleted the response is the raising of a resultdeleted event.
+      The resultIndex of this event will be the element that was deleted and the resultHistory will have the updated value.</dd>
+
+      <dt><dfn id="dfn-onerror">error</dfn> event</dt>
+      <dd>Fired when a speech recognition error occurs.
+      The error attribute <em class="rfc2119" title="must">must</em> be set to a SpeechRecognitionError object.</dd>
+
+      <dt><dfn id="dfn-onstart">start</dfn> event</dt>
+      <dd>Fired when the recognition service has begun to listen to the audio with the intention of recognizing.
+
+      </dd><dt><dfn id="dfn-onend">end</dfn> event</dt>
+      <dd>Fired when the service has disconnected.
+      The event <em class="rfc2119" title="must">must</em> always be generated when the session ends no matter the reason for the end.</dd>
+    </dl>
+
+    <h4 id="speechreco-error"><span class=secno>5.1.4 </span>Speech Recognition Error</h4>
+
+    <p>The speech recognition error object has two attributes <code>code</code> and <code>message</code>.</p>
+    <dl>
+      <dt><dfn id="dfn-code">code</dfn></dt>
+      <dd>The code is a numeric error code for whatever has gone wrong.
+      The values are:
+      <dl>
+        <dt><dfn id="dfn-sre.other">OTHER</dfn> (numeric code 0)</dt>
+        <dd>This is the catch all error code.</dd>
+
+        <dt><dfn id="dfn-sre.nospeech">NO_SPEECH</dfn> (numeric code 1)</dt>
+        <dd>No speech was detected.</dd>
+
+        <dt><dfn id="dfn-sre.aborted">ABORTED</dfn> (numeric code 2)</dt>
+        <dd>Speech input was aborted somehow, maybe by some UA-specific behavior such as UI that lets the user cancel speech input.</dd>
+
+        <dt><dfn id="dfn-sre.audiocapture">AUDIO_CAPTURE</dfn> (numeric code 3)</dt>
+        <dd>Audio capture failed.</dd>
+
+        <dt><dfn id="dfn-sre.network">NETWORK</dfn> (numeric code 4)</dt>
+        <dd>Some network communication that was required to complete the recognition failed.</dd>
+
+        <dt><dfn id="dfn-sre.notallowed">NOT_ALLOWED</dfn> (numeric code 5)</dt>
+        <dd>The user agent is not allowing any speech input to occur for reasons of security, privacy or user preference.</dd>
+
+        <dt><dfn id="dfn-sre.servicenotallowed">SERVICE_NOT_ALLOWED</dfn> (numeric code 6)</dt>
+        <dd>The user agent is not allowing the web application requested speech service, but would allow some speech service, to be used either because the user agent doesn't support the selected one or because of reasons of security, privacy or user preference.</dd>
+
+        <dt><dfn id="dfn-sre.badgrammar">BAD_GRAMMAR</dfn> (numeric code 7)</dt>
+        <dd>There was an error in the speech recognition grammar.</dd>
+
+        <dt><dfn id="dfn-sre.languagenotsupported">LANGUAGE_NOT_SUPPORTED</dfn> (numeric code 8)</dt>
+        <dd>The language was not supported.</dd>
+      </dl>
+      </dd>
+
+      <dt><dfn id="dfn-message">message</dfn></dt>
+      <dd>The message content is implementation specific.
+      This attribute is primarily intended for debugging and developers should not use it directly in their application user interface.</dd>
+    </dl>
+
+    <h4 id="speechreco-alternative"><span class=secno>5.1.5 </span>Speech Recognition Alternative</h4>
+
+    <p>The SpeechRecognitionAlternative represents a simple view of the response that gets used in a n-best list.
+
+    <dl>
+      <dt><dfn id="dfn-transcript">transcript</dfn></dt>
+      <dd>The transcript string represents the raw words that the user spoke.</dd>
+
+      <dt><dfn id="dfn-confidence">confidence</dfn></dt>
+      <dd>The confidence represents a numeric estimate between 0 and 1 of how confident the recognition system is that the recognition is correct.
+      A higher number means the system is more confident.</dd>
+
+      <dt><dfn id="dfn-interpretation">interpretation</dfn></dt>
+      <dd>The interpretation represents the semantic meaning from what the user said.
+      This might be determined, for instance, through the SISR specification of semantics in a grammar.</dd>
+    </dl>
+
+    <h4 id="speechreco-result"><span class=secno>5.1.6 </span>Speech Recognition Result</h4>
+
+    <p>The SpeechRecognitionResult object represents a single one-shot recognition match, either as one small part of a continuous recognition or as the complete return result of a non-continuous recognition.</p>
+
+    <dl>
+      <dt><dfn id="dfn-length">length</dfn></dt>
+      <dd>The long attribute represents how many n-best alternatives are represented in the item array.</dd>
+
+      <dt><dfn id="dfn-item">item</dfn></dt><dt>
+      </dt><dd>The item getter returns a SpeechRecognitionAlternative from the index into an array of n-best values.
+      If index is greater than or equal to length, this returns null.
+      The user agent <em class="rfc2119" title="must">must</em> ensure that the length attribute is set to the number of elements in the array.
+      The user agent <em class="rfc2119" title="must">must</em> ensure that the n-best list is sorted in non-increasing confidence order (each element must be less than or equal to the confidence of the preceding elements).</dd>
+
+      <dt><dfn id="dfn-final">final</dfn></dt>
+      <dd>The final boolean <em class="rfc2119" title="must">must</em> be set to true if this is the final time the speech service will return this particular index value.
+      If the value is false, then this represents an interim result that could still be changed.</dd>
+    </dl>
+
+    <h4 id="speechreco-resultlist"><span class=secno>5.1.7 </span>Speech Recognition Result List</h4>
+
+    <p>The SpeechRecognitionResultList object holds a sequence of recognition results representing the complete return result of a continuous recognition.
+    For a non-continuous recognition it will hold only a single value.</p>
+
+    <dl>
+      <dt><dfn id="dfn-speechrecognitionresultlistlength">length</dfn></dt>
+      <dd>The length attribute indicates how many results are represented in the item array.</dd>
+
+      <dt><dfn id="dfn-speechrecognitionresultlistitem">item</dfn></dt>
+      <dd>The item getter returns a SpeechRecognitionResult from the index into an array of result values.
+      If index is greater than or equal to length, this returns null.
+      The user agent <em class="rfc2119" title="must">must</em> ensure that the length attribute is set to the number of elements in the array.</dd>
+    </dl>
+
+    <h4 id="speechreco-event"><span class=secno>5.1.8 </span>Speech Recognition Event</h4>
+
+    <p>The Speech Recognition Event is the event that is raised each time there is an interim or final result.
+    The event contains both the current most recent recognized bit (in the result object) as well as a history of the complete recognition session so far (in the results object).</p>
+
+    <dl>
+      <dt><dfn id="dfn-result">result</dfn></dt>
+      <dd>The result element is the one single SpeechRecognitionResult that is new as of this request.</dd>
+
+      <dt><dfn id="dfn-resultIndex">resultIndex</dfn></dt>
+      <dd>The resultIndex <em class="rfc2119" title="must">must</em> be set to the place in the results array that this particular new result goes.
+      The resultIndex <em class="rfc2119" title="may">may</em> refer to a previous occupied array index from a previous SpeechRecognitionResultEvent.
+      When this is the case this new result overwrites the earlier result and is a more accurate result; however, when this is the case the previous value <em class="rfc2119" title="must not">must not</em> have been a final result.
+      When continuous was false, the resultIndex <em class="rfc2119" title="must">must</em> always be 0.</dd>
+
+      <dt><dfn id="dfn-resulthistory">resultHistory</dfn></dt>
+      <dd>The array of all of the recognition results that have been returned as part of this session.
+      This array <em class="rfc2119" title="must">must</em> be identical to the array that was present when the last SpeechRecognitionResultEvent was raised, with the exception of the new result value.</dd>
+    </dl>
+
+    <h4 id="speechreco-speechgrammar"><span class=secno>5.1.9 </span>Speech Grammar</h4>
+
+    <p>The SpeechGrammar object represents a container for a grammar. This structure has the following attributes:</p>
+
+    <dl>
+      <dt><dfn id="dfn-grammarSrc">src</dfn> attribute</dt>
+      <dd>The required src attribute is the URI for the grammar.
+      Note some services may support builtin grammars that can be specified using a builtin URI scheme.</dd>
+
+      <dt><dfn id="dfn-grammarWeight">weight</dfn> attribute</dt>
+      <dd>The optional weight attribute controls the weight that the speech recognition service should use with this grammar.
+      By default, a grammar has a weight of 1.
+      Larger weight values positively weight the grammar while smaller weight values make the grammar weighted less strongly.</dd>
+    </dl>
+
+    <h4 id="speechreco-speechgrammarlist"><span class=secno>5.1.10 </span>Speech Grammar List</h4>
+
+    <p>The SpeechGrammarList object represents a collection of SpeechGrammar objects.
+    This structure has the following attributes:</p>
+
+    <dl>
+      <dt><dfn id="dfn-speechgrammarlistlength">length</dfn></dt>
+      <dd>The length attribute represents how many grammars are currently in the array.</dd>
+
+      <dt><dfn id="dfn-speechgrammarlistitem">item</dfn></dt>
+      <dd>The item getter returns a SpeechGrammar from the index into an array of grammars.
+      The user agent <em class="rfc2119" title="must">must</em> ensure that the length attribute is set to the number of elements in the array.
+      The user agent <em class="rfc2119" title="must">must</em> ensure that the index order from smallest to largest matches the order in which grammars were added to the array.</dd>
+
+      <dt>The <dfn id="dfn-addGrammar">addFromURI</dfn> method</dt>
+      <dd>This method appends a grammar to the grammars array parameter based on URI.
+      The URI for the grammar is specified by the <a href="#dfn-grammarSrc">src</a> parameter, which represents the URI for the grammar.
+      Note, some services may support builtin grammars that can be specified by URI.
+      If the <a href="#dfn-grammarWeight">weight</a> parameter is present it represents this grammar's weight relative to the other grammar.
+      If the weight parameter is not present, the default value of 1.0 is used.</dd>
+
+      <dt>The <dfn id="dfn-addGrammarstring">addFromString</dfn> method</dt>
+      <dd>This method appends a grammar to the grammars array parameter based on text.
+      The content of the grammar is specified by the <dfn id="dfn-grammarString">string</dfn> parameter.
+      This content should be encoded into a data: URI when the SpeechGrammar object is created.
+      If the <a href="#dfn-grammarWeight">weight</a> parameter is present it represents this grammar's weight relative to the other grammar.
+      If the weight parameter is not present, the default value of 1.0 is used.</dd>
+    </dl>
+
+    <h3 id="tts-section"><span class=secno>5.2 </span>The TTS Interface</h3>
+
+    <p>The TTS interface is the scripted web <acronym title="Application Programming Interface">API</acronym> for controlling a text-to-speech output.</p>
+
+    <div class="block">
+      <div class="blockTitleDiv">
+        <span class="blockTitle">IDL</span>
+      </div>
+      <div class="blockContent">
+        <pre class="code">
+          <code class="idl-code">
+    [Constructor]
+      interface TTS {
+          attribute DOMString text;
+          attribute DOMString lang;
+          readonly attribute boolean paused;
+          readonly attribute boolean ended;
+
+          // methods to drive the speech interaction
+          void play();
+          void pause();
+          void stop();
+
+          attribute Function onstart;
+          attribute Function onend;
+    };
+          </code>
+        </pre>
+      </div>
+    </div>
+
+    <h2 id="examples"><span class=secno>6 </span>Examples</h2>
+
+    <p><em>This section is non-normative.</em></p>
+
+    <div class="example">
+      <div class="exampleHeader">
+        Examples
+      </div>
+
+      <p>Using speech recognition to perform a web search.</p>
+
+      <div class="block">
+        <div class="blockTitleDiv">
+          <span class="blockTitle">Web search by voice with auto-submit</span>
+        </div>
+
+        <div class="blockContent">
+          <pre class="code">
+            <code class="html-code">
+  &lt;script type="text/javascript"&gt;
+    var sr = new SpeechReco();
+    sr.onresult = function(event) {
+      var q = document.getElementById("q");
+      q.value = event.result[0].transcript;
+      q.form.submit();
+    }
+  &lt;/script&gt;
+
+  &lt;form action="http://www.example.com/search"&gt;
+  &lt;input type="search" id="q" name="q"&gt;
+  &lt;input type="button" value="Speak" onclick="sr.start()"&gt;
+  &lt;/form&gt;
+            </code>
+          </pre>
+        </div>
+      </div>
+
+      <p>Using speech synthesis.</p>
+
+      <div class="block">
+        <div class="blockTitleDiv">
+          <span class="blockTitle">TTS</span>
+        </div>
+
+        <div class="blockContent">
+          <pre class="code">
+            <code class="html-code">
+  &lt;script type="text/javascript"&gt;
+     var tts = new TTS();
+     function speak(text, lang) {
+        tts.text = text;
+        tts.lang = lang;
+        tts.play();
+     }
+     speak("Hello world.", "en-US");
+  &lt;/script&gt;
+            </code>
+          </pre>
+        </div>
+      </div>
+    </div>
+
+    <p>This API supports all of the examples in the <a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">HTML Speech Incubator Group Final Report</a> that are within the scope of the JavaScript API and are relevant to the <a href="#use_cases">Section 3 Use Cases</a>, with minimal or no changes.
+    Specifically, the following are supported from <a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech-20111206/#api_examples">Section 7.1.7</a>.</p>
+
+    <ul>
+      <li>Speech Web Search JS API Only (except for non-essential aspects: serviceURI and speedVsAccuracy)</li>
+      <li>Web search by voice, with auto-submit</li>
+      <li>Web search by voice, with "Did you say..."</li>
+      <li>Speech translator</li>
+      <li>Speech shell</li>
+      <li>Turn-by-turn navigation</li>
+      <li>Domain Specific Grammars Contingent on Earlier Inputs</li>
+      <li>Speech Enabled Email Client (except for non-essential aspects: serviceURI and speedVsAccuracy)</li>
+      <li>Simple Multimodal Example JS API Only</li>
+      <li>Speech XG Translating Example</li>
+    </ul>
+
+    <h2 class="no-num" id="acknowledgments">Acknowledgments</h2>
+
+    <p>The members of the HTML Speech Incubator Group, and the corresponding Final Report, created the basis for this proposal.</p>
+
+    <h2 class="no-num" id="references">References</h2>
+
+    <dl>
+      <!-- FIXME: These should presumably be sorted? -->
+      <dt><a id="ref-rfc2119">[RFC2119]</a></dt>
+      <dd>S. Bradner. <a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels.</cite></a> March 1997.
+      Internet RFC 2119.
+      URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a></dd>
+
+      <dt><a id="ref-1">[1]</a></dt>
+      <dd><cite><a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">HTML Speech Incubator Group Final Report</a></cite>, World Wide Web Consortium, 6 December 2011.
+      URL: <a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/</a></dd>
+
+      <dt><a id="ref-webidl">[WEBIDL]</a></dt>
+      <dd><cite><a href="http://dev.w3.org/2006/webapi/WebIDL/">Web IDL</a></cite>, Cameron McCormack, Editor.
+      World Wide Web Consortium, 19 December 2008.
+      URL: <a href="http://dev.w3.org/2006/webapi/WebIDL">http://dev.w3.org/2006/webapi/WebIDL</a></dd>
+    </dl>
+  </body>
+</html>
