@@ -389,7 +389,12 @@
       <li><a href="#speechreco-event"><span class=secno>5.1.8 </span>Speech Recognition Event</a></li>
       <li><a href="#speechreco-speechgrammar"><span class=secno>5.1.9 </span>Speech Grammar</a></li>
       <li><a href="#speechreco-speechgrammarlist"><span class=secno>5.1.10 </span>Speech Grammar List</a></li>
+      <li><a href="#speechreco-speechparameter"><span class=secno>5.1.11 </span>Speech Parameter</a></li>
+      <li><a href="#speechreco-speechparameterlist"><span class=secno>5.1.12 </span>Speech Parameter List</a></li>
       <li><a href="#tts-section"><span class=secno>5.2 </span>The TTS Interface</a></li>
+      <li><a href="#tts-attributes"><span class=secno>5.1.1 </span>TTS Attributes</a></li>
+      <li><a href="#tts-methods"><span class=secno>5.1.2 </span>TTS Methods</a></li>
+      <li><a href="#tts-events"><span class=secno>5.1.3 </span>TTS Events</a></li>
       <li><a href="#examples"><span class=secno>6 </span>Examples</a></li>
       <li class=no-num><a href="#acknowledgments">Acknowledgments</a></li>
       <li class=no-num><a href="#references">References</a></li>
@@ -526,6 +531,8 @@
         attribute <a href="#dfn-speechgrammarlist">SpeechGrammarList</a> <a href="#dfn-grammars">grammars</a>;
         attribute DOMString <a href="#dfn-lang">lang</a>;
         attribute boolean <a href="#dfn-continuous">continuous</a>;
+        attribute integer <a href="#dfn-maxnbest">maxNBest</a>;
+        attribute DOMString <a href="#dfn-serviceuri">serviceURI</a>;
 
         <span class="comment">// methods to drive the speech interaction</span>
         void <a href="#dfn-start">start</a>();
@@ -545,6 +552,10 @@
         attribute Function <a href="#dfn-onerror">onerror</a>;
         attribute Function <a href="#dfn-onstart">onstart</a>;
         attribute Function <a href="#dfn-onend">onend</a>;
+
+        <span class="comment">// the generic set of parameters</span>
+        void <a href="#dfn-setcustomparameter">setCustomParameter</a>(in DOMString <a href="#dfn-name">name</a>, in DOMString <a href="#dfn-value">value</a>);
+        attribute <a href="#dfn-speechparameterlist">SpeechParameterList</a> <a href="#dfn-parameters">parameters</a>;
     };
 
     interface <dfn id="speechrecognitionerror">SpeechRecognitionError</dfn> {
@@ -607,6 +618,20 @@
         void <a href="#dfn-addGrammarstring">addFromString</a>(in DOMString <a href="#dfn-grammarString">string</a>,
                         optional float <a href="#dfn-grammarWeight">weight</a>);
     };
+
+    <span class="comment">// The object representing a speech parameter</span>
+    [Constructor]
+    interface <dfn id="dfn-speechparameter">SpeechParameter</dfn> {
+        attribute DOMString <a href="#dfn-name">name</a>;
+        attribute DOMString <a href="#dfn-value">value</a>;
+    };
+
+    <span class="comment">// The object representing a speech parameter collection</span>
+    [Constructor]
+    interface <dfn id="dfn-speechparameterlist">SpeechParameterList</dfn> {
+        readonly attribute unsigned long <a href="#dfn-speechparameterlistlength">length</a>;
+        getter <a href="#dfn-speechparameter">SpeechParameter</a> <a href="#dfn-speechparameterlistitem">item</a>(in unsigned long index);
+    };
           </code>
         </pre>
       </div>
@@ -628,6 +653,19 @@
       This represents a request/response single turn pattern of interaction.
       When the continuous attribute is set to true the service <em class="rfc2119" title="must">must</em> return a set of recognitions representing more a dictation of multiple recognitions in response to a single starting of recognition.
       The user agent default value <em class="rfc2119" title="should">should</em> be false.</dd>
+
+      <dt><dfn id="dfn-maxnbest">maxNBest</dfn> attribute</dt>
+      <dd>This attribute will set the maximum number of recognition results that should be returned. The default value is 1.</dd>
+
+      <dt><dfn id="dfn-serviceuri">serviceURI</dfn> attribute</dt>
+      <dd>The serviceURI attribute specifies the location of the speech recognition service that the web application wishes to use.
+      If this attribute is unset at the time of the start method call, then the user agent <em class="rfc2119" title="should">must</em> use the user agent default speech service.
+      Note that the serviceURI is a generic URI and can thus point to local services either through use of a URN with meaning to the User Agent or by specifying a URL that the User Agent recognizes as a local service.
+      Additionally, the User Agent default can be local or remote and can incorporate end user choices via interfaces provided by the User Agent such as browser configuration parameters.</dd>
+
+      <dt><dfn id="dfn-parameters">parameters</dfn> attribute</dt>
+      <dd>This attribute holds an array of arbitrary extension parameters.
+      These parameters could set user specific information (such as profile, gender, or age information) or could be used to set recognition parameters specific to the recognition service in use.</dd>
     </dl>
 
     <h4 id="speechreco-methods"><span class=secno>5.1.2 </span>Speech Recognition Methods</h4>
@@ -650,6 +688,11 @@
       <dd>The abort method is a request to immediately stop listening and stop recognizing and do not return any information but that the system is done.
       When the stop method is called the speech service <em class="rfc2119" title="must">must</em> stop recognizing.
       The user agent <em class="rfc2119" title="must">must</em> raise a end event once the speech service is no longer connected.</dd>
+
+      <dt>The <dfn id="dfn-setcustomparameter">setCustomParameter</dfn> method</dt>
+      <dd>This method appends an arbitrary recognition service parameter to the parameters array.
+      The name of the parameter is given by the <a href="#dfn-name">name</a> parameter and the value by the <a href="#dfn-value">value</a> parameter.
+      This arbitrary parameter mechanism allows services that want to have extensions or to set user specific information (such as profile, gender, or age information) to accomplish the task.</dd>
     </dl>
 
     <h4 id="speechreco-events"><span class=secno>5.1.3 </span>Speech Recognition Events</h4>
@@ -873,6 +916,34 @@
       If the weight parameter is not present, the default value of 1.0 is used.</dd>
     </dl>
 
+    <h4 id="speechreco-speechparameter"><span class=secno>5.1.11 </span>Speech Parameter</h4>
+
+    <p>The SpeechParameter object represents the container for arbitrary name/value parameters.
+    This extensible mechanism allows developers to take advantage of extensions that recognition services may allow.
+    This structure has the following attributes:</p>
+
+    <dl>
+      <dt><dfn id="dfn-name">name</dfn> attribute</dt>
+      <dd>The required name attribute is the name of the custom parameter.</dd>
+
+      <dt><dfn id="dfn-value">value</dfn> attribute</dt>
+      <dd>The required value attribute is the value of the custom parameter.</dd>
+    </dl>
+
+    <h4 id="speechreco-speechparameterlist"><span class=secno>5.1.12 </span>Speech Parameter List</h4>
+
+    <p>The SpeechParameterList object represents a collection of SpeechParameter objects.
+    This structure has the following attributes:</p>
+
+    <dl>
+      <dt><dfn id="dfn-speechparameterlistlength">length</dfn></dt>
+      <dd>The length attribute represents how many parameters are currently in the array.</dd>
+
+      <dt><dfn id="dfn-speechparameterlistitem">item</dfn></dt>
+      <dd>The item getter returns a SpeechParameter from the index into an array of parameters.
+      The user agent <em class="rfc2119" title="must">must</em> ensure that the length attribute is set to the number of elements in the array.</dd>
+    </dl>
+
     <h3 id="tts-section"><span class=secno>5.2 </span>The TTS Interface</h3>
 
     <p>The TTS interface is the scripted web <acronym title="Application Programming Interface">API</acronym> for controlling a text-to-speech output.</p>
@@ -887,7 +958,8 @@
     [Constructor]
       interface TTS {
           attribute DOMString text;
-          attribute DOMString lang;
+          attribute DOMString <a href="#dfn-ttslang">lang</a>;
+          attribute DOMString <a href="#dfn-ttsserviceuri">serviceURI</a>;
           readonly attribute boolean paused;
           readonly attribute boolean ended;
 
@@ -903,6 +975,25 @@
         </pre>
       </div>
     </div>
+
+    <h4 id="tts-attributes"><span class=secno>5.2.1 </span>TTS Attributes</h4>
+
+    <dl>
+      <dt><dfn id="dfn-ttslang">lang</dfn> attribute</dt>
+      <dd>This attribute will set the language of the speech synthesis for the request, using a valid <a href="http://www.ietf.org/rfc/bcp/bcp47.txt">BCP 47</a> language tag.
+      If unset it remains unset for getting in script, but will default to use the <a href="http://www.w3.org/TR/html5/elements.html#the-lang-and-xml:lang-attributes">lang</a> of the html document root element and associated hierachy.
+      This default value is computed and used when the input request opens a connection to the recognition service.</dd>
+
+      <dt><dfn id="dfn-ttsserviceuri">serviceURI</dfn> attribute</dt>
+      <dd>The serviceURI attribute specifies the location of the speech synthesis service that the web application wishes to use.
+      If this attribute is unset at the time of the play method call, then the user agent <em class="rfc2119" title="should">must</em> use the user agent default speech service.
+      Note that the serviceURI is a generic URI and can thus point to local services either through use of a URN with meaning to the User Agent or by specifying a URL that the User Agent recognizes as a local service.
+      Additionally, the User Agent default can be local or remote and can incorporate end user choices via interfaces provided by the User Agent such as browser configuration parameters.</dd>
+    </dl>
+
+    <h4 id="tts-methods"><span class=secno>5.2.2 </span>TTS Methods</h4>
+
+    <h4 id="tts-events"><span class=secno>5.2.3 </span>TTS Events</h4>
 
     <h2 id="examples"><span class=secno>6 </span>Examples</h2>
 
@@ -970,14 +1061,14 @@
     Specifically, the following are supported from <a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech-20111206/#api_examples">Section 7.1.7</a>.</p>
 
     <ul>
-      <li>Speech Web Search JS API Only (except for non-essential aspects: serviceURI and speedVsAccuracy)</li>
+      <li>Speech Web Search JS API Only (except for the non-essential aspect speedVsAccuracy)</li>
       <li>Web search by voice, with auto-submit</li>
       <li>Web search by voice, with "Did you say..."</li>
       <li>Speech translator</li>
       <li>Speech shell</li>
       <li>Turn-by-turn navigation</li>
       <li>Domain Specific Grammars Contingent on Earlier Inputs</li>
-      <li>Speech Enabled Email Client (except for non-essential aspects: serviceURI and speedVsAccuracy)</li>
+      <li>Speech Enabled Email Client (except for the non-essential aspect speedVsAccuracy)</li>
       <li>Simple Multimodal Example JS API Only</li>
       <li>Speech XG Translating Example</li>
     </ul>
