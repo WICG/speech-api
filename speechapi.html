@@ -558,7 +558,7 @@
         attribute <a href="#dfn-speechparameterlist">SpeechParameterList</a> <a href="#dfn-parameters">parameters</a>;
     };
 
-    interface <dfn id="speechrecognitionerror">SpeechRecognitionError</dfn> {
+    interface <dfn id="speechrecognitionerror">SpeechRecognitionError</dfn> : Event {
         const unsigned short <a href="#dfn-sre.other">OTHER</a> = 0;
         const unsigned short <a href="#dfn-sre.nospeech">NO_SPEECH</a> = 1;
         const unsigned short <a href="#dfn-sre.aborted">ABORTED</a> = 2;
@@ -596,7 +596,6 @@
     <span class="comment">// A full response, which could be interim or final, part of a continuous response or not</span>
     interface <dfn id="speechrecognitionevent">SpeechRecognitionEvent</dfn> : Event {
         readonly attribute <a href="#speechrecognitionresult">SpeechRecognitionResult</a> <a href="#dfn-result">result</a>;
-        readonly attribute <a href="#speechrecognitionerror">SpeechRecognitionError</a> <a href="#dfn-error">error</a>;
         readonly attribute short <a href="#dfn-resultIndex">resultIndex</a>;
         readonly attribute <a href="#speechrecognitionresultlist">SpeechRecognitionResultList</a> <a href="#dfn-resulthistory">resultHistory</a>;
     };
@@ -749,7 +748,7 @@
 
       <dt><dfn id="dfn-onerror">error</dfn> event</dt>
       <dd>Fired when a speech recognition error occurs.
-      The error attribute <em class="rfc2119" title="must">must</em> be set to a SpeechRecognitionError object.</dd>
+      The event <em class="rfc2119" title="must">must</em> use the SpeechRecognitionError interface.</dd>
 
       <dt><dfn id="dfn-onstart">start</dfn> event</dt>
       <dd>Fired when the recognition service has begun to listen to the audio with the intention of recognizing.
@@ -854,15 +853,12 @@
 
     <h4 id="speechreco-event"><span class=secno>5.1.8 </span>Speech Recognition Event</h4>
 
-    <p>The Speech Recognition Event is the event that is raised each time there is an interim or final result, or when an error occurs.
+    <p>The Speech Recognition Event is the event that is raised each time there is an interim or final result.
     The event contains both the current most recent recognized bit (in the result object) as well as a history of the complete recognition session so far (in the results object).</p>
 
     <dl>
       <dt><dfn id="dfn-result">result</dfn></dt>
       <dd>The result element is the one single SpeechRecognitionResult that is new as of this request.</dd>
-
-      <dt><dfn id="dfn-error">error</dfn></dt>
-      <dd>For error events, this attribute is set to a SpeechRecognitionError object that describes the error.</dd>
 
       <dt><dfn id="dfn-resultIndex">resultIndex</dfn></dt>
       <dd>The resultIndex <em class="rfc2119" title="must">must</em> be set to the place in the results array that this particular new result goes.
