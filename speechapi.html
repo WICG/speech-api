@@ -673,19 +673,22 @@
       <dt>The <dfn id="dfn-start">start</dfn> method</dt>
       <dd>When the start method is called it represents the moment in time the web application wishes to begin recognition.
       When the speech input is streaming live through the input media stream, then this start call represents the moment in time that the service <em class="rfc2119" title="must">must</em> begin to listen and try to match the grammars associated with this request.
-      Once the system is successfully listening to the recognition the user agent <em class="rfc2119" title="must">must</em> raise a start event.</dd>
+      Once the system is successfully listening to the recognition the user agent <em class="rfc2119" title="must">must</em> raise a start event.
+      If the start method is called on an already started object (that is, start has previously been called, and no error or end event has fired on the object), the user agent <em class="rfc2119" title="must">must</em> throw an <a href="http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#invalidstateerror">invalidstateerror</a> exception and ignore the call.</dd>
 
       <dt>The <dfn id="dfn-stop">stop</dfn> method</dt>
       <dd>The stop method represents an instruction to the recognition service to stop listening to more audio, and to try and return a result using just the audio that it has received to date.
       A typical use of the stop method might be for a web application where the end user is doing the end pointing, similar to a walkie-talkie.
       The end user might press and hold the space bar to talk to the system and on the space down press the start call would have occurred and when the space bar is released the stop method is called to ensure that the system is no longer listening to the user.
       Once the stop method is called the speech service <em class="rfc2119" title="must not">must not</em> collect additional audio and <em class="rfc2119" title="must not">must not</em> continue to listen to the user.
-      The speech service <em class="rfc2119" title="must">must</em> attempt to return a recognition result (or a nomatch) based on the audio that it has collected to date.</dd>
+      The speech service <em class="rfc2119" title="must">must</em> attempt to return a recognition result (or a nomatch) based on the audio that it has collected to date.
+      If the stop method is called on an object which is already stopped or being stopped (that is, start was never called on it, the end or error event has fired on it, or stop was previously called on it), the user agent <em class="rfc2119" title="must">must</em> ignore the call.</dd>
 
       <dt>The <dfn id="dfn-abort">abort</dfn> method</dt>
       <dd>The abort method is a request to immediately stop listening and stop recognizing and do not return any information but that the system is done.
-      When the abort method is called the speech service <em class="rfc2119" title="must">must</em> stop recognizing.
-      The user agent <em class="rfc2119" title="must">must</em> raise a end event once the speech service is no longer connected.</dd>
+      When the abort method is called, the speech service <em class="rfc2119" title="must">must</em> stop recognizing.
+      The user agent <em class="rfc2119" title="must">must</em> raise an end event once the speech service is no longer connected.
+      If the abort method is called on an object which is already stopped or aborting (that is, start was never called on it, the end or error event has fired on it, or abort was previously called on it), the user agent <em class="rfc2119" title="must">must</em> ignore the call.</dd>
 
       <dt>The <dfn id="dfn-setcustomparameter">setCustomParameter</dfn> method</dt>
       <dd>This method appends an arbitrary recognition service parameter to the parameters array.
