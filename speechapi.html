@@ -673,7 +673,6 @@
       <dt>The <dfn id="dfn-start">start</dfn> method</dt>
       <dd>When the start method is called it represents the moment in time the web application wishes to begin recognition.
       When the speech input is streaming live through the input media stream, then this start call represents the moment in time that the service <em class="rfc2119" title="must">must</em> begin to listen and try to match the grammars associated with this request.
-      If the SpeechRecognition has not yet called open before the start call is made, a call to open is made by the start call (complete with the open event being raised).
       Once the system is successfully listening to the recognition the user agent <em class="rfc2119" title="must">must</em> raise a start event.</dd>
 
       <dt>The <dfn id="dfn-stop">stop</dfn> method</dt>
