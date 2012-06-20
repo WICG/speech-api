@@ -532,7 +532,7 @@
         attribute <a href="#dfn-speechgrammarlist">SpeechGrammarList</a> <a href="#dfn-grammars">grammars</a>;
         attribute DOMString <a href="#dfn-lang">lang</a>;
         attribute boolean <a href="#dfn-continuous">continuous</a>;
-        attribute integer <a href="#dfn-maxnbest">maxNBest</a>;
+        attribute unsigned long <a href="#dfn-maxalternatives">maxAlternatives</a>;
         attribute DOMString <a href="#dfn-serviceuri">serviceURI</a>;
 
         <span class="comment">// methods to drive the speech interaction</span>
@@ -638,8 +638,9 @@
       When the continuous attribute is set to true the service <em class="rfc2119" title="must">must</em> return a set of recognitions representing more a dictation of multiple recognitions in response to a single starting of recognition.
       The user agent default value <em class="rfc2119" title="should">should</em> be false.</dd>
 
-      <dt><dfn id="dfn-maxnbest">maxNBest</dfn> attribute</dt>
-      <dd>This attribute will set the maximum number of recognition results that should be returned. The default value is 1.</dd>
+      <dt><dfn id="dfn-maxalternatives">maxAlternatives</dfn> attribute</dt>
+      <dd>This attribute will set the maximum number of <a href="#speechreco-alternative">SpeechRecognitionAlternative</a>s per result.
+      The default value is 1.</dd>
 
       <dt><dfn id="dfn-serviceuri">serviceURI</dfn> attribute</dt>
       <dd>The serviceURI attribute specifies the location of the speech recognition service that the web application wishes to use.
