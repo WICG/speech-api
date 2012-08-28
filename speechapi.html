@@ -343,7 +343,7 @@
       <p><a href="http://www.w3.org/"><img alt=W3C height=48 src="http://www.w3.org/Icons/w3c_home" width=72></a></p>
       <!--end-logo-->
       <h1 id="title_heading">Speech JavaScript API Specification</h1>
-      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 21 June 2012</h2>
+      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 27 August 2012</h2>
       <dl>
         <dt>Editors:</dt>
         <dd>Glen Shires, Google Inc.</dd>
@@ -549,7 +549,6 @@
         attribute Function <a href="#dfn-onaudioend">onaudioend</a>;
         attribute Function <a href="#dfn-onresult">onresult</a>;
         attribute Function <a href="#dfn-onnomatch">onnomatch</a>;
-        attribute Function <a href="#dfn-onresultdeleted">onresultdeleted</a>;
         attribute Function <a href="#dfn-onerror">onerror</a>;
         attribute Function <a href="#dfn-onstart">onstart</a>;
         attribute Function <a href="#dfn-onend">onend</a>;
@@ -593,9 +592,8 @@
 
     <span class="comment">// A full response, which could be interim or final, part of a continuous response or not</span>
     interface <dfn id="speechrecognitionevent">SpeechRecognitionEvent</dfn> : Event {
-        readonly attribute <a href="#speechrecognitionresult">SpeechRecognitionResult</a> <a href="#dfn-result">result</a>;
         readonly attribute short <a href="#dfn-resultIndex">resultIndex</a>;
-        readonly attribute <a href="#speechrecognitionresultlist">SpeechRecognitionResultList</a> <a href="#dfn-resulthistory">resultHistory</a>;
+        readonly attribute <a href="#speechrecognitionresultlist">SpeechRecognitionResultList</a> <a href="#dfn-results">results</a>;
     };
 
     <span class="comment">// The object representing a speech grammar</span>
@@ -718,14 +716,6 @@
       <dd>Fired when the speech recognizer returns a final result with no recognition hypothesis that meet or exceed the confidence threshold.
       The result field in the event <em class="rfc2119" title="may">may</em> contain speech recognition results that are below the confidence threshold or <em class="rfc2119" title="may">may</em> be null.</dd>
 
-      <dt><dfn id="dfn-onresultdeleted">resultdeleted</dfn> event</dt>
-      <dd>Fired when the recognizer needs to delete one of the previously returned interim results in a continuous recognition.
-      A simplified example of this might be the recognizer gives an interim result for "hot" as the zeroth index of the continuous result and then gives an interim result of "dog" as the first index.
-      Later the recognize wants to give a final result that is just one word "hotdog".
-      In order to do that it needs to change the zeroth index to "hotdog" and delete the first index.
-      When the first element is deleted the response is the raising of a resultdeleted event.
-      The resultIndex of this event will be the element that was deleted and the resultHistory will have the updated value.</dd>
-
       <dt><dfn id="dfn-onerror">error</dfn> event</dt>
       <dd>Fired when a speech recognition error occurs.
       The event <em class="rfc2119" title="must">must</em> use the SpeechRecognitionError interface.</dd>
@@ -838,22 +828,23 @@
 
     <h4 id="speechreco-event"><span class=secno>5.1.8 </span>Speech Recognition Event</h4>
 
-    <p>The Speech Recognition Event is the event that is raised each time there is an interim or final result.
-    The event contains both the current most recent recognized bit (in the result object) as well as a history of the complete recognition session so far (in the results object).</p>
+    <p>The Speech Recognition Event is the event that is raised each time there are any changes to interim or final results.</p>
 
     <dl>
-      <dt><dfn id="dfn-result">result</dfn></dt>
-      <dd>The result element is the one single SpeechRecognitionResult that is new as of this request.</dd>
-
       <dt><dfn id="dfn-resultIndex">resultIndex</dfn></dt>
-      <dd>The resultIndex <em class="rfc2119" title="must">must</em> be set to the place in the results array that this particular new result goes.
-      The resultIndex <em class="rfc2119" title="may">may</em> refer to a previous occupied array index from a previous SpeechRecognitionResultEvent.
-      When this is the case this new result overwrites the earlier result and is a more accurate result; however, when this is the case the previous value <em class="rfc2119" title="must not">must not</em> have been a final result.
+      <dd>The resultIndex <em class="rfc2119" title="must">must</em> be set to the lowest index in the "results" array that has changed.
       When continuous was false, the resultIndex <em class="rfc2119" title="must">must</em> always be 0.</dd>
 
-      <dt><dfn id="dfn-resulthistory">resultHistory</dfn></dt>
-      <dd>The array of all of the recognition results that have been returned as part of this session.
-      This array <em class="rfc2119" title="must">must</em> be identical to the array that was present when the last SpeechRecognitionResultEvent was raised, with the exception of the new result value.</dd>
+      <dt><dfn id="dfn-results">results</dfn></dt>
+      <dd>The array of all current recognition results for this session.
+      Specifically all final results that have been returned, followed by the current best hypothesis for all interim results.
+      It <em class="rfc2119" title="must">must</em> consist of zero or more final results followed by zero or more interim results.
+      On subsequent SpeechRecognitionResultEvent events, interim results may be overwritten by a newer interim result or by a final result or may be removed (when at the end of the "results" array and the array length decreases).
+      Final results <em class="rfc2119" title="must">must</em> not be overwritten or removed.
+      All entries for indexes less than resultIndex <em class="rfc2119" title="must">must</em> be identical to the array that was present when the last SpeechRecognitionResultEvent was raised.
+      All array entries (if any) for indexes equal or greater than resultIndex that were present in the array when the last SpeechRecognitionResultEvent was raised are removed and overwritten with new results.
+      The length of the "results" array may increase or decrease, but <em class="rfc2119" title="must">must</em> not be less than resultIndex.
+      Note that when resultIndex equals results.length, no new results are returned, this may occur when the array length decreases to remove one or more interim results.</dd>
     </dl>
 
     <h4 id="speechreco-speechgrammar"><span class=secno>5.1.9 </span>Speech Grammar</h4>
