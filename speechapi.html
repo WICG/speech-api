@@ -343,7 +343,7 @@
       <p><a href="http://www.w3.org/"><img alt=W3C height=48 src="http://www.w3.org/Icons/w3c_home" width=72></a></p>
       <!--end-logo-->
       <h1 id="title_heading">Speech JavaScript API Specification</h1>
-      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 27 August 2012</h2>
+      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 4 September 2012</h2>
       <dl>
         <dt>Editors:</dt>
         <dd>Glen Shires, Google Inc.</dd>
@@ -776,7 +776,8 @@
 
     <dl>
       <dt><dfn id="dfn-transcript">transcript</dfn></dt>
-      <dd>The transcript string represents the raw words that the user spoke.</dd>
+      <dd>The transcript string represents the raw words that the user spoke.
+      For continuous recognition, leading or trailing whitespace MUST be included where necessary such that concatenation of consecutive SpeechRecognitionResults produces a proper transcript of the session.</dd>
 
       <dt><dfn id="dfn-confidence">confidence</dfn></dt>
       <dd>The confidence represents a numeric estimate between 0 and 1 of how confident the recognition system is that the recognition is correct.
