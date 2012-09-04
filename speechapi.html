@@ -654,7 +654,7 @@
       <dd>When the start method is called it represents the moment in time the web application wishes to begin recognition.
       When the speech input is streaming live through the input media stream, then this start call represents the moment in time that the service <em class="rfc2119" title="must">must</em> begin to listen and try to match the grammars associated with this request.
       Once the system is successfully listening to the recognition the user agent <em class="rfc2119" title="must">must</em> raise a start event.
-      If the start method is called on an already started object (that is, start has previously been called, and no error or end event has fired on the object), the user agent <em class="rfc2119" title="must">must</em> throw an <a href="http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#invalidstateerror">invalidstateerror</a> exception and ignore the call.</dd>
+      If the start method is called on an already started object (that is, start has previously been called, and no error or end event has fired on the object), the user agent <em class="rfc2119" title="must">must</em> throw an <a href="http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#invalidstateerror">InvalidStateError</a> exception and ignore the call.</dd>
 
       <dt>The <dfn id="dfn-stop">stop</dfn> method</dt>
       <dd>The stop method represents an instruction to the recognition service to stop listening to more audio, and to try and return a result using just the audio that it has received to date.
