@@ -573,7 +573,6 @@
     interface <dfn id="speechrecognitionalternative">SpeechRecognitionAlternative</dfn> {
         readonly attribute DOMString <a href="#dfn-transcript">transcript</a>;
         readonly attribute float <a href="#dfn-confidence">confidence</a>;
-        readonly attribute any <a href="#dfn-interpretation">interpretation</a>;
     };
 
     <span class="comment">// A complete one-shot simple response</span>
@@ -581,7 +580,6 @@
         readonly attribute unsigned long <a href="#dfn-length">length</a>;
         getter <a href="#speechrecognitionalternative">SpeechRecognitionAlternative</a> <a href="#dfn-item">item</a>(in unsigned long index);
         readonly attribute boolean <a href="#dfn-final">final</a>;
-        readonly attribute Document <a href="#dfn-emma">emma</a>;
     };
 
     <span class="comment">// A collection of responses (used in continuous mode)</span>
@@ -594,6 +592,8 @@
     interface <dfn id="speechrecognitionevent">SpeechRecognitionEvent</dfn> : Event {
         readonly attribute short <a href="#dfn-resultIndex">resultIndex</a>;
         readonly attribute <a href="#speechrecognitionresultlist">SpeechRecognitionResultList</a> <a href="#dfn-results">results</a>;
+        readonly attribute any <a href="#dfn-interpretation">interpretation</a>;
+        readonly attribute Document <a href="#dfn-emma">emma</a>;
     };
 
     <span class="comment">// The object representing a speech grammar</span>
@@ -782,10 +782,6 @@
       <dt><dfn id="dfn-confidence">confidence</dfn></dt>
       <dd>The confidence represents a numeric estimate between 0 and 1 of how confident the recognition system is that the recognition is correct.
       A higher number means the system is more confident.</dd>
-
-      <dt><dfn id="dfn-interpretation">interpretation</dfn></dt>
-      <dd>The interpretation represents the semantic meaning from what the user said.
-      This might be determined, for instance, through the SISR specification of semantics in a grammar.</dd>
     </dl>
 
     <h4 id="speechreco-result"><span class=secno>5.1.6 </span>Speech Recognition Result</h4>
@@ -805,11 +801,6 @@
       <dt><dfn id="dfn-final">final</dfn></dt>
       <dd>The final boolean <em class="rfc2119" title="must">must</em> be set to true if this is the final time the speech service will return this particular index value.
       If the value is false, then this represents an interim result that could still be changed.</dd>
-
-      <dt><dfn id="dfn-emma">emma</dfn></dt>
-      <dd><a href="http://www.w3.org/TR/emma/">EMMA 1.0</a> representation of this result.
-      The contents of this result could vary across UAs and recognition engines, but all implementations <em class="rfc2119" title="must">must</em> expose a valid XML document complete with EMMA namespace.
-      UA implementations for recognizers that supply EMMA <em class="rfc2119" title="must">must</em> pass that EMMA structure directly.</dd>
     </dl>
 
     <h4 id="speechreco-resultlist"><span class=secno>5.1.7 </span>Speech Recognition Result List</h4>
@@ -846,6 +837,15 @@
       All array entries (if any) for indexes equal or greater than resultIndex that were present in the array when the last SpeechRecognitionResultEvent was raised are removed and overwritten with new results.
       The length of the "results" array may increase or decrease, but <em class="rfc2119" title="must">must</em> not be less than resultIndex.
       Note that when resultIndex equals results.length, no new results are returned, this may occur when the array length decreases to remove one or more interim results.</dd>
+
+      <dt><dfn id="dfn-interpretation">interpretation</dfn></dt>
+      <dd>The interpretation represents the semantic meaning from what the user said.
+      This might be determined, for instance, through the SISR specification of semantics in a grammar.</dd>
+
+      <dt><dfn id="dfn-emma">emma</dfn></dt>
+      <dd><a href="http://www.w3.org/TR/emma/">EMMA 1.0</a> representation of this result.
+      The contents of this result could vary across UAs and recognition engines, but all implementations <em class="rfc2119" title="must">must</em> expose a valid XML document complete with EMMA namespace.
+      UA implementations for recognizers that supply EMMA <em class="rfc2119" title="must">must</em> pass that EMMA structure directly.</dd>
     </dl>
 
     <h4 id="speechreco-speechgrammar"><span class=secno>5.1.9 </span>Speech Grammar</h4>
