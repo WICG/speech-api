@@ -534,6 +534,7 @@
         attribute <a href="#dfn-speechgrammarlist">SpeechGrammarList</a> <a href="#dfn-grammars">grammars</a>;
         attribute DOMString <a href="#dfn-lang">lang</a>;
         attribute boolean <a href="#dfn-continuous">continuous</a>;
+        attribute boolean <a href="#dfn-interimresults">interimResults</a>;
         attribute unsigned long <a href="#dfn-maxalternatives">maxAlternatives</a>;
         attribute DOMString <a href="#dfn-serviceuri">serviceURI</a>;
 
@@ -638,6 +639,12 @@
       When the continuous attribute is set to true, the user agent <em class="rfc2119" title="must">must</em> return zero or more final results representing multiple consecutive recognitions in response to starting recognition,
       for example a dictation.
       The default value <em class="rfc2119" title="must">must</em> be false.  Note, this attribute setting does not affect interim results.</dd>
+
+      <dt><dfn id="dfn-interimresults">interimResults</dfn> attribute</dt>
+      <dd>Controls whether interim results are returned.
+      When set to true, interim results <em class="rfc2119" title="should">should</em> be returned.
+      When set to false, interim results <em class="rfc2119" title="must">must</em> NOT be returned.
+      The default value <em class="rfc2119" title="must">must</em> be false. Note, this attribute setting does not affect final results.</dd>
 
       <dt><dfn id="dfn-maxalternatives">maxAlternatives</dfn> attribute</dt>
       <dd>This attribute will set the maximum number of <a href="#speechreco-alternative">SpeechRecognitionAlternative</a>s per result.
