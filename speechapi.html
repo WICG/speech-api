@@ -343,7 +343,7 @@
       <p><a href="http://www.w3.org/"><img alt=W3C height=48 src="http://www.w3.org/Icons/w3c_home" width=72></a></p>
       <!--end-logo-->
       <h1 id="title_heading">Speech JavaScript API Specification</h1>
-      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 4 September 2012</h2>
+      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 10 September 2012</h2>
       <dl>
         <dt>Editors:</dt>
         <dd>Glen Shires, Google Inc.</dd>
@@ -593,7 +593,7 @@
 
     <span class="comment">// A full response, which could be interim or final, part of a continuous response or not</span>
     interface <dfn id="speechrecognitionevent">SpeechRecognitionEvent</dfn> : Event {
-        readonly attribute short <a href="#dfn-resultIndex">resultIndex</a>;
+        readonly attribute unsigned long <a href="#dfn-resultIndex">resultIndex</a>;
         readonly attribute <a href="#speechrecognitionresultlist">SpeechRecognitionResultList</a> <a href="#dfn-results">results</a>;
         readonly attribute any <a href="#dfn-interpretation">interpretation</a>;
         readonly attribute Document <a href="#dfn-emma">emma</a>;
