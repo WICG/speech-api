@@ -392,10 +392,10 @@
       <li><a href="#speechreco-event"><span class=secno>5.1.8 </span>Speech Recognition Event</a></li>
       <li><a href="#speechreco-speechgrammar"><span class=secno>5.1.9 </span>Speech Grammar</a></li>
       <li><a href="#speechreco-speechgrammarlist"><span class=secno>5.1.10 </span>Speech Grammar List</a></li>
-      <li><a href="#tts-section"><span class=secno>5.2 </span>The TTS Interface</a></li>
-      <li><a href="#tts-attributes"><span class=secno>5.1.1 </span>TTS Attributes</a></li>
-      <li><a href="#tts-methods"><span class=secno>5.1.2 </span>TTS Methods</a></li>
-      <li><a href="#tts-events"><span class=secno>5.1.3 </span>TTS Events</a></li>
+      <li><a href="#tts-section"><span class=secno>5.2 </span>The SpeechSynthesis Interface</a></li>
+      <li><a href="#tts-attributes"><span class=secno>5.2.1 </span>SpeechSynthesisUtterance Attributes</a></li>
+      <li><a href="#tts-methods"><span class=secno>5.2.2 </span>SpeechSynthesis Methods</a></li>
+      <li><a href="#tts-events"><span class=secno>5.2.3 </span>SpeechSynthesis Events</a></li>
       <li><a href="#examples"><span class=secno>6 </span>Examples</a></li>
       <li class=no-num><a href="#acknowledgments">Acknowledgments</a></li>
       <li class=no-num><a href="#references">References</a></li>
@@ -901,9 +901,9 @@
       If the weight parameter is not present, the default value of 1.0 is used.</dd>
     </dl>
 
-    <h3 id="tts-section"><span class=secno>5.2 </span>The TTS Interface</h3>
+    <h3 id="tts-section"><span class=secno>5.2 </span>The SpeechSynthesis Interface</h3>
 
-    <p>The TTS interface is the scripted web <acronym title="Application Programming Interface">API</acronym> for controlling a text-to-speech output.</p>
+    <p>The SpeechSynthesis interface is the scripted web <acronym title="Application Programming Interface">API</acronym> for controlling a text-to-speech output.</p>
 
     <div class="block">
       <div class="blockTitleDiv">
@@ -912,28 +912,46 @@
       <div class="blockContent">
         <pre class="code">
           <code class="idl-code">
-    [Constructor]
-      interface TTS {
-          attribute DOMString text;
-          attribute DOMString <a href="#dfn-ttslang">lang</a>;
-          attribute DOMString <a href="#dfn-ttsserviceuri">serviceURI</a>;
-          readonly attribute boolean paused;
-          readonly attribute boolean ended;
+    interface SpeechSynthesis {
+      static readonly attribute boolean pending;
+      static readonly attribute boolean speaking;
+      static readonly attribute boolean paused;
 
-          // methods to drive the speech interaction
-          void play();
-          void pause();
-          void stop();
+      static void speak(SpeechSynthesisUtterance utterance);
+      static void cancel(SpeechSynthesisUtterance utterance);
+      static void pause();
+      static void continue();
+      static void stop();
+    }
 
-          attribute Function onstart;
-          attribute Function onend;
+    [NoInterfaceObject]
+    interface SpeechSynthesisGetter
+    {
+      readonly attribute SpeechSynthesis speechSynthesis;
     };
+
+    Window implements SpeechSynthesisGetter;
+
+    [Constructor,
+     Constructor(DOMString text)]
+    interface SpeechSynthesisUtterance {
+      attribute DOMString text;
+      attribute DOMString <a href="#dfn-ttslang">lang</a>;
+      attribute DOMString <a href="#dfn-ttsserviceuri">serviceURI</a>;
+
+      readonly attribute boolean speaking;
+      readonly attribute boolean paused;
+      readonly attribute boolean ended;
+
+      attribute Function onstart;
+      attribute Function onend;
+    }
           </code>
         </pre>
       </div>
     </div>
 
-    <h4 id="tts-attributes"><span class=secno>5.2.1 </span>TTS Attributes</h4>
+    <h4 id="tts-attributes"><span class=secno>5.2.1 </span>SpeechSynthesisUtterance Attributes</h4>
 
     <dl>
       <dt><dfn id="dfn-ttslang">lang</dfn> attribute</dt>
@@ -948,9 +966,9 @@
       Additionally, the User Agent default can be local or remote and can incorporate end user choices via interfaces provided by the User Agent such as browser configuration parameters.</dd>
     </dl>
 
-    <h4 id="tts-methods"><span class=secno>5.2.2 </span>TTS Methods</h4>
+    <h4 id="tts-methods"><span class=secno>5.2.2 </span>SpeechSynthesis Methods</h4>
 
-    <h4 id="tts-events"><span class=secno>5.2.3 </span>TTS Events</h4>
+    <h4 id="tts-events"><span class=secno>5.2.3 </span>SpeechSynthesis Events</h4>
 
     <h2 id="examples"><span class=secno>6 </span>Examples</h2>
 
@@ -993,20 +1011,33 @@
 
       <div class="block">
         <div class="blockTitleDiv">
-          <span class="blockTitle">TTS</span>
+          <span class="blockTitle">Example 1</span>
         </div>
 
         <div class="blockContent">
           <pre class="code">
             <code class="html-code">
   &lt;script type="text/javascript"&gt;
-     var tts = new TTS();
-     function speak(text, lang) {
-        tts.text = text;
-        tts.lang = lang;
-        tts.play();
-     }
-     speak("Hello world.", "en-US");
+     speechSynthesis.speak(SpeechSynthesisUtterance('Hello World'));
+  &lt;/script&gt;
+            </code>
+          </pre>
+        </div>
+      </div>
+      <div class="block">
+        <div class="blockTitleDiv">
+          <span class="blockTitle">Example 2</span>
+        </div>
+
+        <div class="blockContent">
+          <pre class="code">
+            <code class="html-code">
+  &lt;script type="text/javascript"&gt;
+     var u = new SpeechSynthesisUtterance();
+     u.text = 'Hello World';
+     u.lang = 'en-US';
+     u.onend = function() { alert('Finished!'); }
+     speechSynthesis.speak(u);
   &lt;/script&gt;
             </code>
           </pre>
