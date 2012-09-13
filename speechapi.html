@@ -343,7 +343,7 @@
       <p><a href="http://www.w3.org/"><img alt=W3C height=48 src="http://www.w3.org/Icons/w3c_home" width=72></a></p>
       <!--end-logo-->
       <h1 id="title_heading">Speech JavaScript API Specification</h1>
-      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 11 September 2012</h2>
+      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 13 September 2012</h2>
       <dl>
         <dt>Editors:</dt>
         <dd>Glen Shires, Google Inc.</dd>
@@ -849,7 +849,9 @@
 
       <dt><dfn id="dfn-interpretation">interpretation</dfn></dt>
       <dd>The interpretation represents the semantic meaning from what the user said.
-      This might be determined, for instance, through the SISR specification of semantics in a grammar.</dd>
+      This might be determined, for instance, through the SISR specification of semantics in a grammar.
+      <i>[The group is currently discussing options for the value of the interpretation attribute when no interpretation has been returned by the recognizer.
+      Current options are 'null' or a copy of the transcript.] <a href="#ref-2">[2]</a></i></dd>
 
       <dt><dfn id="dfn-emma">emma</dfn></dt>
       <dd><a href="http://www.w3.org/TR/emma/">EMMA 1.0</a> representation of this result.
@@ -1074,14 +1076,18 @@
       Internet RFC 2119.
       URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a></dd>
 
-      <dt><a id="ref-1">[1]</a></dt>
-      <dd><cite><a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">HTML Speech Incubator Group Final Report</a></cite>, World Wide Web Consortium, 6 December 2011.
-      URL: <a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/</a></dd>
-
       <dt><a id="ref-webidl">[WEBIDL]</a></dt>
       <dd><cite><a href="http://dev.w3.org/2006/webapi/WebIDL/">Web IDL</a></cite>, Cameron McCormack, Editor.
       World Wide Web Consortium, 19 December 2008.
       URL: <a href="http://dev.w3.org/2006/webapi/WebIDL">http://dev.w3.org/2006/webapi/WebIDL</a></dd>
+
+      <dt><a id="ref-1">[1]</a></dt>
+      <dd><cite><a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">HTML Speech Incubator Group Final Report</a></cite>, World Wide Web Consortium, 6 December 2011.
+      URL: <a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/</a></dd>
+
+      <dt><a id="ref-2">[2]</a></dt>
+      <dd><cite><a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html">public-speech-api@w3.org</a></cite>, World Wide Web Consortium Speech API Community Group mailing list.
+      URL: <a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html">http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html</a></dd>
     </dl>
   </body>
 </html>
