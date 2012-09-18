@@ -343,7 +343,7 @@
       <p><a href="http://www.w3.org/"><img alt=W3C height=48 src="http://www.w3.org/Icons/w3c_home" width=72></a></p>
       <!--end-logo-->
       <h1 id="title_heading">Speech JavaScript API Specification</h1>
-      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 17 September 2012</h2>
+      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 18 September 2012</h2>
       <dl>
         <dt>Editors:</dt>
         <dd>Glen Shires, Google Inc.</dd>
@@ -954,42 +954,43 @@
 
     <dl>
       <dt><dfn id="dfn-ttspending">pending</dfn> attribute</dt>
-      <dd>This attribute is true if the queue for this SpeechSynthesis object contains any utterances which have not started speaking.</dd>
+      <dd>This attribute is true if the queue for the global SpeechSynthesis instance contains any utterances which have not started speaking.</dd>
 
       <dt><dfn id="dfn-ttsspeaking">speaking</dfn> attribute</dt>
       <dd>This attribute is true if an utterance is being spoken.
       Specifically if an utterance has begun being spoken and has not completed being spoken.
-      This is independent of whether this SpeechSynthesis object is in the paused state.</dd>
+      This is independent of whether the global SpeechSynthesis instance is in the paused state.</dd>
 
       <dt><dfn id="dfn-ttspaused">paused</dfn> attribute</dt>
-      <dd>This attribute is true when this SpeechSynthesis object is in the paused state.
-      This state is independent of whether anything is in the queue. The default state of a new SpeechSynthesis object is the non-paused state.</dd>
+      <dd>This attribute is true when the global SpeechSynthesis instance is in the paused state.
+      This state is independent of whether anything is in the queue.
+      The default state of a the global SpeechSynthesis instance for a new window is the non-paused state.</dd>
     </dl>
 
     <h4 id="tts-methods"><span class=secno>5.2.2 </span>SpeechSynthesis Methods</h4>
 
     <dl>
       <dt><dfn id="dfn-ttsspeak">speak</dfn> method</dt>
-      <dd>This method appends a copy of the utterance to the end of the queue for this SpeechSynthesis object.
-      It does not change the paused state of the SpeechSynthesis object.
-      If the SpeechSynthesis object is paused, it remains paused.
+      <dd>This method appends a copy of the utterance to the end of the queue for the global SpeechSynthesis instance.
+      It does not change the paused state of the SpeechSynthesis instance.
+      If the SpeechSynthesis instance is paused, it remains paused.
       If it is not paused and no other utterances are in the queue, then this utterance is spoken immediately,
       else this utterance is queued to begin speaking after the other utterances in the queue have been spoken.</dd>
 
       <dt><dfn id="dfn-ttscancel">cancel</dfn> method</dt>
       <dd>This method removes all utterances from the queue.
       If an utterance is being spoken, speaking ceases immediately.
-      This method does not change the paused state of the SpeechSynthesis object.</dd>
+      This method does not change the paused state of the global SpeechSynthesis instance.</dd>
 
       <dt><dfn id="dfn-ttspause">pause</dfn> method</dt>
-      <dd>This method puts the SpeechSynthesis object into the paused state.
+      <dd>This method puts the global SpeechSynthesis instance into the paused state.
       If an utterance was being spoken, it pauses mid-utterance.
-      (If called when the SpeechSynthesis object was already in the paused state, it does nothing.)</dd>
+      (If called when the SpeechSynthesis instance was already in the paused state, it does nothing.)</dd>
 
       <dt><dfn id="dfn-ttscontinue">continue</dfn> method</dt>
-      <dd>This method puts the SpeechSynthesis object into the non-paused state.
+      <dd>This method puts the global SpeechSynthesis instance into the non-paused state.
       If an utterance was speaking, it continues speaking the utterance at the point at which it was paused, else it begins speaking the next utterance in the queue (if any).
-      (If called when the SpeechSynthesis object was already in the non-paused state, it does nothing.)</dd>
+      (If called when the SpeechSynthesis instance was already in the non-paused state, it does nothing.)</dd>
     </dl>
 
     <h4 id="utterance-attributes"><span class=secno>5.2.3 </span>SpeechSynthesisUtterance Attributes</h4>
