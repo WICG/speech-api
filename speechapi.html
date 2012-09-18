@@ -343,7 +343,7 @@
       <p><a href="http://www.w3.org/"><img alt=W3C height=48 src="http://www.w3.org/Icons/w3c_home" width=72></a></p>
       <!--end-logo-->
       <h1 id="title_heading">Speech JavaScript API Specification</h1>
-      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 13 September 2012</h2>
+      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 17 September 2012</h2>
       <dl>
         <dt>Editors:</dt>
         <dd>Glen Shires, Google Inc.</dd>
@@ -393,9 +393,10 @@
       <li><a href="#speechreco-speechgrammar"><span class=secno>5.1.9 </span>Speech Grammar</a></li>
       <li><a href="#speechreco-speechgrammarlist"><span class=secno>5.1.10 </span>Speech Grammar List</a></li>
       <li><a href="#tts-section"><span class=secno>5.2 </span>The SpeechSynthesis Interface</a></li>
-      <li><a href="#tts-attributes"><span class=secno>5.2.1 </span>SpeechSynthesisUtterance Attributes</a></li>
+      <li><a href="#tts-attributes"><span class=secno>5.2.1 </span>SpeechSynthesis Attributes</a></li>
       <li><a href="#tts-methods"><span class=secno>5.2.2 </span>SpeechSynthesis Methods</a></li>
-      <li><a href="#tts-events"><span class=secno>5.2.3 </span>SpeechSynthesis Events</a></li>
+      <li><a href="#utterance-attributes"><span class=secno>5.2.3 </span>SpeechSynthesisUtterance Attributes</a></li>
+      <li><a href="#utterance-events"><span class=secno>5.2.4 </span>SpeechSynthesisUtterance Events</a></li>
       <li><a href="#examples"><span class=secno>6 </span>Examples</a></li>
       <li class=no-num><a href="#acknowledgments">Acknowledgments</a></li>
       <li class=no-num><a href="#references">References</a></li>
@@ -915,15 +916,14 @@
         <pre class="code">
           <code class="idl-code">
     interface SpeechSynthesis {
-      static readonly attribute boolean pending;
-      static readonly attribute boolean speaking;
-      static readonly attribute boolean paused;
+      static readonly attribute boolean <a href="#dfn-ttspending">pending</a>;
+      static readonly attribute boolean <a href="#dfn-ttsspeaking">speaking</a>;
+      static readonly attribute boolean <a href="#dfn-ttspaused">paused</a>;
 
-      static void speak(SpeechSynthesisUtterance utterance);
-      static void cancel(SpeechSynthesisUtterance utterance);
-      static void pause();
-      static void continue();
-      static void stop();
+      static void <a href="#dfn-ttsspeak">speak</a>();
+      static void <a href="#dfn-ttscancel">cancel</a>();
+      static void <a href="#dfn-ttspause">pause</a>();
+      static void <a href="#dfn-ttscontinue">continue</a>();
     }
 
     [NoInterfaceObject]
@@ -937,40 +937,91 @@
     [Constructor,
      Constructor(DOMString text)]
     interface SpeechSynthesisUtterance {
-      attribute DOMString text;
-      attribute DOMString <a href="#dfn-ttslang">lang</a>;
-      attribute DOMString <a href="#dfn-ttsserviceuri">serviceURI</a>;
+      attribute DOMString <a href="#dfn-utterancetext">text</a>;
+      attribute DOMString <a href="#dfn-utterancelang">lang</a>;
+      attribute DOMString <a href="#dfn-utteranceserviceuri">serviceURI</a>;
 
-      readonly attribute boolean speaking;
-      readonly attribute boolean paused;
-      readonly attribute boolean ended;
-
-      attribute Function onstart;
-      attribute Function onend;
+      attribute Function <a href="#dfn-utteranceonstart">onstart</a>;
+      attribute Function <a href="#dfn-utteranceonend">onend</a>;
+      attribute Function <a href="#dfn-utteranceonpause">onpause</a>;
     }
           </code>
         </pre>
       </div>
     </div>
 
-    <h4 id="tts-attributes"><span class=secno>5.2.1 </span>SpeechSynthesisUtterance Attributes</h4>
+    <h4 id="tts-attributes"><span class=secno>5.2.1 </span>SpeechSynthesis Attributes</h4>
 
     <dl>
-      <dt><dfn id="dfn-ttslang">lang</dfn> attribute</dt>
+      <dt><dfn id="dfn-ttspending">pending</dfn> attribute</dt>
+      <dd>This attribute is true if the queue for this SpeechSynthesis object contains any utterances which have not started speaking.</dd>
+
+      <dt><dfn id="dfn-ttsspeaking">speaking</dfn> attribute</dt>
+      <dd>This attribute is true if an utterance is being spoken.
+      Specifically if an utterance has begun being spoken and has not completed being spoken.
+      This is independent of whether this SpeechSynthesis object is in the paused state.</dd>
+
+      <dt><dfn id="dfn-ttspaused">paused</dfn> attribute</dt>
+      <dd>This attribute is true when this SpeechSynthesis object is in the paused state.
+      This state is independent of whether anything is in the queue. The default state of a new SpeechSynthesis object is the non-paused state.</dd>
+    </dl>
+
+    <h4 id="tts-methods"><span class=secno>5.2.2 </span>SpeechSynthesis Methods</h4>
+
+    <dl>
+      <dt><dfn id="dfn-ttsspeak">speak</dfn> method</dt>
+      <dd>This method appends a copy of the utterance to the end of the queue for this SpeechSynthesis object.
+      It does not change the paused state of the SpeechSynthesis object.
+      If the SpeechSynthesis object is paused, it remains paused.
+      If it is not paused and no other utterances are in the queue, then this utterance is spoken immediately,
+      else this utterance is queued to begin speaking after the other utterances in the queue have been spoken.</dd>
+
+      <dt><dfn id="dfn-ttscancel">cancel</dfn> method</dt>
+      <dd>This method removes all utterances from the queue.
+      If an utterance is being spoken, speaking ceases immediately.
+      This method does not change the paused state of the SpeechSynthesis object.</dd>
+
+      <dt><dfn id="dfn-ttspause">pause</dfn> method</dt>
+      <dd>This method puts the SpeechSynthesis object into the paused state.
+      If an utterance was being spoken, it pauses mid-utterance.
+      (If called when the SpeechSynthesis object was already in the paused state, it does nothing.)</dd>
+
+      <dt><dfn id="dfn-ttscontinue">continue</dfn> method</dt>
+      <dd>This method puts the SpeechSynthesis object into the non-paused state.
+      If an utterance was speaking, it continues speaking the utterance at the point at which it was paused, else it begins speaking the next utterance in the queue (if any).
+      (If called when the SpeechSynthesis object was already in the non-paused state, it does nothing.)</dd>
+    </dl>
+
+    <h4 id="utterance-attributes"><span class=secno>5.2.3 </span>SpeechSynthesisUtterance Attributes</h4>
+
+    <dl>
+      <dt><dfn id="dfn-utterancetext">text</dfn> attribute</dt>
+      <dd>The text to be synthesized for this utterance.</dd>
+
+      <dt><dfn id="dfn-utterancelang">lang</dfn> attribute</dt>
       <dd>This attribute will set the language of the speech synthesis for the request, using a valid <a href="http://www.ietf.org/rfc/bcp/bcp47.txt">BCP 47</a> language tag.
       If unset it remains unset for getting in script, but will default to use the <a href="http://www.w3.org/TR/html5/elements.html#the-lang-and-xml:lang-attributes">lang</a> of the html document root element and associated hierachy.
       This default value is computed and used when the input request opens a connection to the recognition service.</dd>
 
-      <dt><dfn id="dfn-ttsserviceuri">serviceURI</dfn> attribute</dt>
+      <dt><dfn id="dfn-utteranceserviceuri">serviceURI</dfn> attribute</dt>
       <dd>The serviceURI attribute specifies the location of the speech synthesis service that the web application wishes to use.
       If this attribute is unset at the time of the play method call, then the user agent <em class="rfc2119" title="should">must</em> use the user agent default speech service.
       Note that the serviceURI is a generic URI and can thus point to local services either through use of a URN with meaning to the User Agent or by specifying a URL that the User Agent recognizes as a local service.
       Additionally, the User Agent default can be local or remote and can incorporate end user choices via interfaces provided by the User Agent such as browser configuration parameters.</dd>
     </dl>
 
-    <h4 id="tts-methods"><span class=secno>5.2.2 </span>SpeechSynthesis Methods</h4>
+    <h4 id="utterance-events"><span class=secno>5.2.4 </span>SpeechSynthesisUtterance Events</h4>
 
-    <h4 id="tts-events"><span class=secno>5.2.3 </span>SpeechSynthesis Events</h4>
+    <dl>
+      <dt><dfn id="dfn-utteranceonstart">start</dfn> event</dt>
+      <dd>Fired when this utterance has begun to be spoken.</dd>
+
+      <dt><dfn id="dfn-utteranceonend">end</dfn> event</dt>
+      <dd>Fired when this utterance has completed being spoken.</dd>
+
+      <dt><dfn id="dfn-utteranceonpause">pause</dfn> event</dt>
+      <dd>Fired when and if this utterance is paused mid-utterance.</dd>
+    </dl>
 
     <h2 id="examples"><span class=secno>6 </span>Examples</h2>
 
