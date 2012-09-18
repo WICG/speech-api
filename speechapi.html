@@ -792,7 +792,8 @@
 
       <dt><dfn id="dfn-confidence">confidence</dfn></dt>
       <dd>The confidence represents a numeric estimate between 0 and 1 of how confident the recognition system is that the recognition is correct.
-      A higher number means the system is more confident.</dd>
+      A higher number means the system is more confident.
+      [Editor note: The group is currently discussing whether confidence can be specified in a speech-recognition-engine-independent manner and whether confidence threshold and nomatch should be included, because this is not a dialog API.] <a href="#ref-4">[4]</a></dd>
     </dl>
 
     <h4 id="speechreco-result"><span class=secno>5.1.6 </span>Speech Recognition Result</h4>
@@ -851,7 +852,7 @@
       <dt><dfn id="dfn-interpretation">interpretation</dfn></dt>
       <dd>The interpretation represents the semantic meaning from what the user said.
       This might be determined, for instance, through the SISR specification of semantics in a grammar.
-      <i>[The group is currently discussing options for the value of the interpretation attribute when no interpretation has been returned by the recognizer.
+      <i>[Editor note: The group is currently discussing options for the value of the interpretation attribute when no interpretation has been returned by the recognizer.
       Current options are 'null' or a copy of the transcript.] <a href="#ref-2">[2]</a></i></dd>
 
       <dt><dfn id="dfn-emma">emma</dfn></dt>
@@ -862,7 +863,9 @@
 
     <h4 id="speechreco-speechgrammar"><span class=secno>5.1.9 </span>Speech Grammar</h4>
 
-    <p>The SpeechGrammar object represents a container for a grammar. This structure has the following attributes:</p>
+    <p>The SpeechGrammar object represents a container for a grammar.
+    [Editor note: The group is currently discussing options for which grammar formats should be supported, how builtin grammar types are specified, and default grammars when not specified.] <a href="#ref-2">[2]</a> <a href="#ref-3">[3]</a>
+    This structure has the following attributes:</p>
 
     <dl>
       <dt><dfn id="dfn-grammarSrc">src</dfn> attribute</dt>
@@ -1008,7 +1011,8 @@
       <dd>The serviceURI attribute specifies the location of the speech synthesis service that the web application wishes to use.
       If this attribute is unset at the time of the play method call, then the user agent <em class="rfc2119" title="should">must</em> use the user agent default speech service.
       Note that the serviceURI is a generic URI and can thus point to local services either through use of a URN with meaning to the User Agent or by specifying a URL that the User Agent recognizes as a local service.
-      Additionally, the User Agent default can be local or remote and can incorporate end user choices via interfaces provided by the User Agent such as browser configuration parameters.</dd>
+      Additionally, the User Agent default can be local or remote and can incorporate end user choices via interfaces provided by the User Agent such as browser configuration parameters.
+      [Editor note: The group is currently discussing whether WebRTC might be used to specify selection of audio sources and remote recognizers.] <a href="#ref-5">[5]</a></dd>
     </dl>
 
     <h4 id="utterance-events"><span class=secno>5.2.4 </span>SpeechSynthesisUtterance Events</h4>
@@ -1138,8 +1142,20 @@
       URL: <a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/</a></dd>
 
       <dt><a id="ref-2">[2]</a></dt>
-      <dd><cite><a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html">public-speech-api@w3.org</a></cite>, World Wide Web Consortium Speech API Community Group mailing list.
+      <dd><cite><a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html">SpeechRecognitionAlternative.interpretation when interpretation can't be provided</a></cite> thread on public-speech-api@w3.org, World Wide Web Consortium Speech API Community Group mailing list.
       URL: <a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html">http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html</a></dd>
+
+      <dt><a id="ref-3">[3]</a></dt>
+      <dd><cite><a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179.html">Default value of SpeechRecognition.grammars</a></cite> thread on public-speech-api@w3.org, World Wide Web Consortium Speech API Community Group mailing list.
+      URL: <a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179.html">http://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179.html</a></dd>
+
+      <dt><a id="ref-4">[4]</a></dt>
+      <dd><cite><a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0143.html">Confidence property</a></cite> thread on public-speech-api@w3.org, World Wide Web Consortium Speech API Community Group mailing list.
+      URL: <a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0143.html">http://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0143.html</a></dd>
+
+      <dt><a id="ref-5">[5]</a></dt>
+      <dd><cite><a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0072.html">Interacting with WebRTC, the Web Audio API and other external sources</a></cite> thread on public-speech-api@w3.org, World Wide Web Consortium Speech API Community Group mailing list.
+      URL: <a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0072.html">http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0072.html</a></dd>
     </dl>
   </body>
 </html>
