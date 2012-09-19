@@ -343,7 +343,7 @@
       <p><a href="http://www.w3.org/"><img alt=W3C height=48 src="http://www.w3.org/Icons/w3c_home" width=72></a></p>
       <!--end-logo-->
       <h1 id="title_heading">Speech JavaScript API Specification</h1>
-      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 18 September 2012</h2>
+      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 19 September 2012</h2>
       <dl>
         <dt>Editors:</dt>
         <dd>Glen Shires, Google Inc.</dd>
@@ -927,7 +927,7 @@
       static void <a href="#dfn-ttsspeak">speak</a>();
       static void <a href="#dfn-ttscancel">cancel</a>();
       static void <a href="#dfn-ttspause">pause</a>();
-      static void <a href="#dfn-ttscontinue">continue</a>();
+      static void <a href="#dfn-ttsresume">resume</a>();
     }
 
     [NoInterfaceObject]
@@ -948,6 +948,7 @@
       attribute Function <a href="#dfn-utteranceonstart">onstart</a>;
       attribute Function <a href="#dfn-utteranceonend">onend</a>;
       attribute Function <a href="#dfn-utteranceonpause">onpause</a>;
+      attribute Function <a href="#dfn-utteranceonresume">onresume</a>;
     }
           </code>
         </pre>
@@ -991,7 +992,7 @@
       If an utterance was being spoken, it pauses mid-utterance.
       (If called when the SpeechSynthesis instance was already in the paused state, it does nothing.)</dd>
 
-      <dt><dfn id="dfn-ttscontinue">continue</dfn> method</dt>
+      <dt><dfn id="dfn-ttsresume">resume</dfn> method</dt>
       <dd>This method puts the global SpeechSynthesis instance into the non-paused state.
       If an utterance was speaking, it continues speaking the utterance at the point at which it was paused, else it begins speaking the next utterance in the queue (if any).
       (If called when the SpeechSynthesis instance was already in the non-paused state, it does nothing.)</dd>
@@ -1027,6 +1028,11 @@
 
       <dt><dfn id="dfn-utteranceonpause">pause</dfn> event</dt>
       <dd>Fired when and if this utterance is paused mid-utterance.</dd>
+
+      <dt><dfn id="dfn-utteranceonresume">resume</dfn> event</dt>
+      <dd>Fired when and if this utterance is resumed after being paused mid-utterance.
+      Adding the utterance to the queue while the global SpeechSynthesis instance is in the paused state, and then calling the resume method
+      does not cause the resume event to be fired, in this case the utterance's start event will be called when the utterance starts.</dd>
     </dl>
 
     <h2 id="examples"><span class=secno>6 </span>Examples</h2>
