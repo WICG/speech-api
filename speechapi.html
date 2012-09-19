@@ -655,7 +655,8 @@
       <dd>The serviceURI attribute specifies the location of the speech recognition service that the web application wishes to use.
       If this attribute is unset at the time of the start method call, then the user agent <em class="rfc2119" title="should">must</em> use the user agent default speech service.
       Note that the serviceURI is a generic URI and can thus point to local services either through use of a URN with meaning to the User Agent or by specifying a URL that the User Agent recognizes as a local service.
-      Additionally, the User Agent default can be local or remote and can incorporate end user choices via interfaces provided by the User Agent such as browser configuration parameters.</dd>
+      Additionally, the User Agent default can be local or remote and can incorporate end user choices via interfaces provided by the User Agent such as browser configuration parameters.
+      <i>[Editor note: The group is currently discussing whether WebRTC might be used to specify selection of audio sources and remote recognizers.] <a href="#ref-5">[5]</a></i></dd>
     </dl>
 
     <h4 id="speechreco-methods"><span class=secno>5.1.2 </span>Speech Recognition Methods</h4>
@@ -1012,7 +1013,7 @@
       If this attribute is unset at the time of the play method call, then the user agent <em class="rfc2119" title="should">must</em> use the user agent default speech service.
       Note that the serviceURI is a generic URI and can thus point to local services either through use of a URN with meaning to the User Agent or by specifying a URL that the User Agent recognizes as a local service.
       Additionally, the User Agent default can be local or remote and can incorporate end user choices via interfaces provided by the User Agent such as browser configuration parameters.
-      <i>[Editor note: The group is currently discussing whether WebRTC might be used to specify selection of audio sources and remote recognizers.] <a href="#ref-5">[5]</a></i></dd>
+      </dd>
     </dl>
 
     <h4 id="utterance-events"><span class=secno>5.2.4 </span>SpeechSynthesisUtterance Events</h4>
