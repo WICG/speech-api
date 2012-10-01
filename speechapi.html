@@ -343,7 +343,7 @@
       <p><a href="http://www.w3.org/"><img alt=W3C height=48 src="http://www.w3.org/Icons/w3c_home" width=72></a></p>
       <!--end-logo-->
       <h1 id="title_heading">Speech JavaScript API Specification</h1>
-      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 19 September 2012</h2>
+      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 1 October 2012</h2>
       <dl>
         <dt>Editors:</dt>
         <dd>Glen Shires, Google Inc.</dd>
@@ -924,7 +924,7 @@
       static readonly attribute boolean <a href="#dfn-ttsspeaking">speaking</a>;
       static readonly attribute boolean <a href="#dfn-ttspaused">paused</a>;
 
-      static void <a href="#dfn-ttsspeak">speak</a>();
+      static void <a href="#dfn-ttsspeak">speak</a>(SpeechSynthesisUtterance utterance);
       static void <a href="#dfn-ttscancel">cancel</a>();
       static void <a href="#dfn-ttspause">pause</a>();
       static void <a href="#dfn-ttsresume">resume</a>();
@@ -938,6 +938,8 @@
 
     Window implements SpeechSynthesisGetter;
 
+    callback SpeechSynthesisMarkerCallback = void(DOMString markerName, unsigned long charIndex, float elapsedTime);
+
     [Constructor,
      Constructor(DOMString <a href="#dfn-utterancetext">text</a>)]
     interface SpeechSynthesisUtterance {
@@ -949,6 +951,7 @@
       attribute Function <a href="#dfn-utteranceonend">onend</a>;
       attribute Function <a href="#dfn-utteranceonpause">onpause</a>;
       attribute Function <a href="#dfn-utteranceonresume">onresume</a>;
+      attribute SpeechSynthesisMarkerCallback <a href="#dfn-utteranceonmarker">onmarker</a>;
     }
           </code>
         </pre>
@@ -1011,7 +1014,7 @@
 
       <dt><dfn id="dfn-utteranceserviceuri">serviceURI</dfn> attribute</dt>
       <dd>The serviceURI attribute specifies the location of the speech synthesis service that the web application wishes to use.
-      If this attribute is unset at the time of the play method call, then the user agent <em class="rfc2119" title="should">must</em> use the user agent default speech service.
+      If this attribute is unset at the time of the play method call, then the user agent <em class="rfc2119" title="must">must</em> use the user agent default speech service.
       Note that the serviceURI is a generic URI and can thus point to local services either through use of a URN with meaning to the User Agent or by specifying a URL that the User Agent recognizes as a local service.
       Additionally, the User Agent default can be local or remote and can incorporate end user choices via interfaces provided by the User Agent such as browser configuration parameters.
       </dd>
@@ -1033,6 +1036,10 @@
       <dd>Fired when and if this utterance is resumed after being paused mid-utterance.
       Adding the utterance to the queue while the global SpeechSynthesis instance is in the paused state, and then calling the resume method
       does not cause the resume event to be fired, in this case the utterance's start event will be called when the utterance starts.</dd>
+
+      <dt><dfn id="dfn-utteranceonmarker">marker</dfn> event</dt>
+      <dd>Fired when the spoken utterance reaches a word or sentence boundary, or a named "marker" (e.g. in SSML).
+      User Agent <em class="rfc2119" title="should">should</em> fire event if the speech synthesis engine provides the event.</dd>
     </dl>
 
     <h2 id="examples"><span class=secno>6 </span>Examples</h2>
