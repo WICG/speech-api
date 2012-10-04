@@ -343,7 +343,7 @@
       <p><a href="http://www.w3.org/"><img alt=W3C height=48 src="http://www.w3.org/Icons/w3c_home" width=72></a></p>
       <!--end-logo-->
       <h1 id="title_heading">Speech JavaScript API Specification</h1>
-      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 1 October 2012</h2>
+      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 4 October 2012</h2>
       <dl>
         <dt>Editors:</dt>
         <dd>Glen Shires, Google Inc.</dd>
@@ -397,6 +397,7 @@
       <li><a href="#tts-methods"><span class=secno>5.2.2 </span>SpeechSynthesis Methods</a></li>
       <li><a href="#utterance-attributes"><span class=secno>5.2.3 </span>SpeechSynthesisUtterance Attributes</a></li>
       <li><a href="#utterance-events"><span class=secno>5.2.4 </span>SpeechSynthesisUtterance Events</a></li>
+      <li><a href="#callback-parameters"><span class=secno>5.2.5 </span>SpeechSynthesisCallback Parameters</a></li>
       <li><a href="#examples"><span class=secno>6 </span>Examples</a></li>
       <li class=no-num><a href="#acknowledgments">Acknowledgments</a></li>
       <li class=no-num><a href="#references">References</a></li>
@@ -928,7 +929,7 @@
       static void <a href="#dfn-ttscancel">cancel</a>();
       static void <a href="#dfn-ttspause">pause</a>();
       static void <a href="#dfn-ttsresume">resume</a>();
-    }
+    };
 
     [NoInterfaceObject]
     interface SpeechSynthesisGetter
@@ -938,7 +939,11 @@
 
     Window implements SpeechSynthesisGetter;
 
-    callback SpeechSynthesisMarkerCallback = void(DOMString markerName, unsigned long charIndex, float elapsedTime);
+    enum <a href="#dfn-callbackupdatetype">UpdateType</a> { "mark", "word" };
+
+    callback SpeechSynthesisCallback = void(double <a href="#dfn-callbackelapsedtime">elapsedTime</a>, unsigned long <a href="#dfn-callbackcharindex">charIndex</a>);
+
+    callback SpeechSynthesisUpdateCallback = void(double <a href="#dfn-callbackelapsedtime">elapsedTime</a>, unsigned long <a href="#dfn-callbackcharindex">charIndex</a>, UpdateType <a href="#dfn-callbackupdatetype">updateType</a>, DOMString <a href="#dfn-callbackname">name</a>);
 
     [Constructor,
      Constructor(DOMString <a href="#dfn-utterancetext">text</a>)]
@@ -948,11 +953,11 @@
       attribute DOMString <a href="#dfn-utteranceserviceuri">serviceURI</a>;
 
       attribute Function <a href="#dfn-utteranceonstart">onstart</a>;
-      attribute Function <a href="#dfn-utteranceonend">onend</a>;
-      attribute Function <a href="#dfn-utteranceonpause">onpause</a>;
+      attribute SpeechSynthesisCallback <a href="#dfn-utteranceonend">onend</a>;
+      attribute SpeechSynthesisCallback <a href="#dfn-utteranceonpause">onpause</a>;
       attribute Function <a href="#dfn-utteranceonresume">onresume</a>;
-      attribute SpeechSynthesisMarkerCallback <a href="#dfn-utteranceonmarker">onmarker</a>;
-    }
+      attribute SpeechSynthesisUpdateCallback <a href="#dfn-utteranceonupdate">onupdate</a>;
+    };
           </code>
         </pre>
       </div>
@@ -1005,7 +1010,10 @@
 
     <dl>
       <dt><dfn id="dfn-utterancetext">text</dfn> attribute</dt>
-      <dd>The text to be synthesized for this utterance.</dd>
+      <dd>The text to be synthesized and spoken for this utterance.
+      This may be either plain text or a complete, well-formed SSML document. <a href="#ref-ssml">[SSML]</a>
+      For speech synthesis engines that do not support SSML, or only support certain tags, the user agent or speech engine must strip away the tags they do not support and speak the text.
+      There may be a maximum length of the text, it may be limited to 32,767 characters.</dd>
 
       <dt><dfn id="dfn-utterancelang">lang</dfn> attribute</dt>
       <dd>This attribute will set the language of the speech synthesis for the request, using a valid <a href="http://www.ietf.org/rfc/bcp/bcp47.txt">BCP 47</a> language tag.
@@ -1037,9 +1045,29 @@
       Adding the utterance to the queue while the global SpeechSynthesis instance is in the paused state, and then calling the resume method
       does not cause the resume event to be fired, in this case the utterance's start event will be called when the utterance starts.</dd>
 
-      <dt><dfn id="dfn-utteranceonmarker">marker</dfn> event</dt>
-      <dd>Fired when the spoken utterance reaches a word or sentence boundary, or a named "marker" (e.g. in SSML).
+      <dt><dfn id="dfn-utteranceonupdate">update</dfn> event</dt>
+      <dd>Fired when the spoken utterance reaches a word boundary, or a named "mark" tag in SSML. <a href="#ref-ssml">[SSML]</a>
       User Agent <em class="rfc2119" title="should">should</em> fire event if the speech synthesis engine provides the event.</dd>
+    </dl>
+
+    <h4 id="callback-parameters"><span class=secno>5.2.5 </span>SpeechSynthesisCallback Parameters</h4>
+
+    <dl>
+      <dt><dfn id="dfn-callbackelapsedtime">elapsedTime</dfn> parameter</dt>
+      <dd>The time, in seconds, that this event triggered, relative to when this utterance has begun to be spoken.
+      The user agent must return this value if the speech synthesis engine supports it, otherwise the user agent must return undefined.</dd>
+
+      <dt><dfn id="dfn-callbackcharindex">charIndex</dfn> parameter</dt>
+      <dd>The zero-based character index into the original utterance string that most closely approximates the current speaking position of the speech engine.
+      No guarantee is given as to where charIndex will be with respect to word boundaries (such as at the end of the previous word or the beginning of the next word), only that all text before charIndex has already been spoken, and all text after charIndex has not yet been spoken.
+      The user agent must return this value if the speech synthesis engine supports it, otherwise the user agent must return undefined.</dd>
+
+      <dt><dfn id="dfn-callbackupdatetype">updateType</dfn> parameter</dt>
+      <dd>An enumeration indicating the condition that triggered the event: "mark" indicates a named marker, "word" indicates a word boundary.</dd>
+
+      <dt><dfn id="dfn-callbackname">name</dfn> parameter</dt>
+      <dd>For events with updateType of "mark", contains the name of the marker, as defined in SSML as the name attribute of a mark element. <a href="#ref-ssml">[SSML]</a>
+      For events with updateType of "word", this value should be undefined.</dd>
     </dl>
 
     <h2 id="examples"><span class=secno>6 </span>Examples</h2>
@@ -1140,11 +1168,15 @@
     <h2 class="no-num" id="references">References</h2>
 
     <dl>
-      <!-- FIXME: These should presumably be sorted? -->
       <dt><a id="ref-rfc2119">[RFC2119]</a></dt>
-      <dd>S. Bradner. <a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels.</cite></a> March 1997.
+      <dd><a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>, S. Bradner. March 1997.
       Internet RFC 2119.
       URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a></dd>
+
+      <dt><a id="ref-ssml">[SSML]</a></dt>
+      <dd><cite><a href="http://www.w3.org/TR/speech-synthesis/">Speech Synthesis Markup Language (SSML)</a></cite>, Daniel C. Burnett, et al., Editors.
+      World Wide Web Consortium, 7 September 2004.
+      URL: <a href="http://www.w3.org/TR/speech-synthesis">http://www.w3.org/TR/speech-synthesis</a></dd>
 
       <dt><a id="ref-webidl">[WEBIDL]</a></dt>
       <dd><cite><a href="http://dev.w3.org/2006/webapi/WebIDL/">Web IDL</a></cite>, Cameron McCormack, Editor.
