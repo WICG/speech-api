@@ -381,17 +381,17 @@
       <li><a href="#use_cases"><span class=secno>3 </span>Use Cases</a></li>
       <li><a href="#security"><span class=secno>4 </span>Security and privacy considerations</a></li>
       <li><a href="#api_description"><span class=secno>5 </span>API Description</a></li>
-      <li><a href="#speechreco-section"><span class=secno>5.1 </span>The Speech Recognition Interface</a></li>
-      <li><a href="#speechreco-attributes"><span class=secno>5.1.1 </span>Speech Recognition Attributes</a></li>
-      <li><a href="#speechreco-methods"><span class=secno>5.1.2 </span>Speech Recognition Methods</a></li>
-      <li><a href="#speechreco-events"><span class=secno>5.1.3 </span>Speech Recognition Events</a></li>
-      <li><a href="#speechreco-error"><span class=secno>5.1.4 </span>Speech Recognition Error</a></li>
-      <li><a href="#speechreco-alternative"><span class=secno>5.1.5 </span>Speech Recognition Alternative</a></li>
-      <li><a href="#speechreco-result"><span class=secno>5.1.6 </span>Speech Recognition Result</a></li>
-      <li><a href="#speechreco-resultlist"><span class=secno>5.1.7 </span>Speech Recognition Result List</a></li>
-      <li><a href="#speechreco-event"><span class=secno>5.1.8 </span>Speech Recognition Event</a></li>
-      <li><a href="#speechreco-speechgrammar"><span class=secno>5.1.9 </span>Speech Grammar</a></li>
-      <li><a href="#speechreco-speechgrammarlist"><span class=secno>5.1.10 </span>Speech Grammar List</a></li>
+      <li><a href="#speechreco-section"><span class=secno>5.1 </span>The SpeechRecognition Interface</a></li>
+      <li><a href="#speechreco-attributes"><span class=secno>5.1.1 </span>SpeechRecognition Attributes</a></li>
+      <li><a href="#speechreco-methods"><span class=secno>5.1.2 </span>SpeechRecognition Methods</a></li>
+      <li><a href="#speechreco-events"><span class=secno>5.1.3 </span>SpeechRecognition Events</a></li>
+      <li><a href="#speechreco-error"><span class=secno>5.1.4 </span>SpeechRecognitionError</a></li>
+      <li><a href="#speechreco-alternative"><span class=secno>5.1.5 </span>SpeechRecognitionAlternative</a></li>
+      <li><a href="#speechreco-result"><span class=secno>5.1.6 </span>SpeechRecognitionResult</a></li>
+      <li><a href="#speechreco-resultlist"><span class=secno>5.1.7 </span>SpeechRecognitionList</a></li>
+      <li><a href="#speechreco-event"><span class=secno>5.1.8 </span>SpeechRecognitionEvent</a></li>
+      <li><a href="#speechreco-speechgrammar"><span class=secno>5.1.9 </span>SpeechGrammar</a></li>
+      <li><a href="#speechreco-speechgrammarlist"><span class=secno>5.1.10 </span>SpeechGrammarList</a></li>
       <li><a href="#tts-section"><span class=secno>5.2 </span>The SpeechSynthesis Interface</a></li>
       <li><a href="#tts-attributes"><span class=secno>5.2.1 </span>SpeechSynthesis Attributes</a></li>
       <li><a href="#tts-methods"><span class=secno>5.2.2 </span>SpeechSynthesis Methods</a></li>
@@ -519,7 +519,7 @@
 
     <p><em>This section is normative.</em></p>
 
-    <h3 id="speechreco-section"><span class=secno>5.1 </span>The Speech Recognition Interface</h3>
+    <h3 id="speechreco-section"><span class=secno>5.1 </span>The SpeechRecognition Interface</h3>
 
     <p>The speech recognition interface is the scripted web <acronym title="Application Programming Interface">API</acronym> for controlling a given recognition.</p>
     The term "final result" indicates a SpeechRecognitionResult in which the final attribute is true.
@@ -626,7 +626,7 @@
       </div>
     </div>
 
-    <h4 id="speechreco-attributes"><span class=secno>5.1.1 </span>Speech Recognition Attributes</h4>
+    <h4 id="speechreco-attributes"><span class=secno>5.1.1 </span>SpeechRecognition Attributes</h4>
 
     <dl>
       <dt><dfn id="dfn-grammars">grammars</dfn> attribute</dt>
@@ -657,12 +657,12 @@
       <dt><dfn id="dfn-serviceuri">serviceURI</dfn> attribute</dt>
       <dd>The serviceURI attribute specifies the location of the speech recognition service that the web application wishes to use.
       If this attribute is unset at the time of the start method call, then the user agent <em class="rfc2119" title="should">must</em> use the user agent default speech service.
-      Note that the serviceURI is a generic URI and can thus point to local services either through use of a URN with meaning to the User Agent or by specifying a URL that the User Agent recognizes as a local service.
-      Additionally, the User Agent default can be local or remote and can incorporate end user choices via interfaces provided by the User Agent such as browser configuration parameters.
+      Note that the serviceURI is a generic URI and can thus point to local services either through use of a URN with meaning to the user agent or by specifying a URL that the user agent recognizes as a local service.
+      Additionally, the user agent default can be local or remote and can incorporate end user choices via interfaces provided by the user agent such as browser configuration parameters.
       <i>[Editor note: The group is currently discussing whether WebRTC might be used to specify selection of audio sources and remote recognizers.] <a href="#ref-5">[5]</a></i></dd>
     </dl>
 
-    <h4 id="speechreco-methods"><span class=secno>5.1.2 </span>Speech Recognition Methods</h4>
+    <h4 id="speechreco-methods"><span class=secno>5.1.2 </span>SpeechRecognition Methods</h4>
 
     <dl>
       <dt>The <dfn id="dfn-start">start</dfn> method</dt>
@@ -686,7 +686,7 @@
       If the abort method is called on an object which is already stopped or aborting (that is, start was never called on it, the end or error event has fired on it, or abort was previously called on it), the user agent <em class="rfc2119" title="must">must</em> ignore the call.</dd>
     </dl>
 
-    <h4 id="speechreco-events"><span class=secno>5.1.3 </span>Speech Recognition Events</h4>
+    <h4 id="speechreco-events"><span class=secno>5.1.3 </span>SpeechRecognition Events</h4>
 
     <p>The DOM Level 2 Event Model is used for speech recognition events.
     The methods in the EventTarget interface should be used for registering event listeners.
@@ -694,7 +694,7 @@
     The events do not bubble and are not cancelable.</p>
 
     <p>For all these events, the timeStamp attribute defined in the DOM Level 2 Event interface must be set to the best possible estimate of when the real-world event which the event object represents occurred.
-    This timestamp must be represented in the User Agent's view of time, even for events where the timestamps in question could be raised on a different machine like a remote recognition service (i.e., in a speechend event with a remote speech endpointer).</p>
+    This timestamp must be represented in the user agent's view of time, even for events where the timestamps in question could be raised on a different machine like a remote recognition service (i.e., in a speechend event with a remote speech endpointer).</p>
 
     <p>Unless specified below, the ordering of the different events is undefined.
     For example, some implementations may fire audioend before speechstart or speechend if the audio detector is client-side and the speech detector is server-side.</p>
@@ -743,7 +743,7 @@
       The event <em class="rfc2119" title="must">must</em> always be generated when the session ends no matter the reason for the end.</dd>
     </dl>
 
-    <h4 id="speechreco-error"><span class=secno>5.1.4 </span>Speech Recognition Error</h4>
+    <h4 id="speechreco-error"><span class=secno>5.1.4 </span>SpeechRecognitionError</h4>
 
     <p>The speech recognition error object has two attributes <code>code</code> and <code>message</code>.</p>
     <dl>
@@ -785,7 +785,7 @@
       This attribute is primarily intended for debugging and developers should not use it directly in their application user interface.</dd>
     </dl>
 
-    <h4 id="speechreco-alternative"><span class=secno>5.1.5 </span>Speech Recognition Alternative</h4>
+    <h4 id="speechreco-alternative"><span class=secno>5.1.5 </span>SpeechRecognitionAlternative</h4>
 
     <p>The SpeechRecognitionAlternative represents a simple view of the response that gets used in a n-best list.
 
@@ -800,7 +800,7 @@
       <i>[Editor note: The group is currently discussing whether confidence can be specified in a speech-recognition-engine-independent manner and whether confidence threshold and nomatch should be included, because this is not a dialog API.] <a href="#ref-4">[4]</a></i></dd>
     </dl>
 
-    <h4 id="speechreco-result"><span class=secno>5.1.6 </span>Speech Recognition Result</h4>
+    <h4 id="speechreco-result"><span class=secno>5.1.6 </span>SpeechRecognitionResult</h4>
 
     <p>The SpeechRecognitionResult object represents a single one-shot recognition match, either as one small part of a continuous recognition or as the complete return result of a non-continuous recognition.</p>
 
@@ -819,7 +819,7 @@
       If the value is false, then this represents an interim result that could still be changed.</dd>
     </dl>
 
-    <h4 id="speechreco-resultlist"><span class=secno>5.1.7 </span>Speech Recognition Result List</h4>
+    <h4 id="speechreco-resultlist"><span class=secno>5.1.7 </span>SpeechRecognitionList</h4>
 
     <p>The SpeechRecognitionResultList object holds a sequence of recognition results representing the complete return result of a continuous recognition.
     For a non-continuous recognition it will hold only a single value.</p>
@@ -834,9 +834,9 @@
       The user agent <em class="rfc2119" title="must">must</em> ensure that the length attribute is set to the number of elements in the array.</dd>
     </dl>
 
-    <h4 id="speechreco-event"><span class=secno>5.1.8 </span>Speech Recognition Event</h4>
+    <h4 id="speechreco-event"><span class=secno>5.1.8 </span>SpeechRecognitionEvent</h4>
 
-    <p>The Speech Recognition Event is the event that is raised each time there are any changes to interim or final results.</p>
+    <p>The SpeechRecognitionEvent is the event that is raised each time there are any changes to interim or final results.</p>
 
     <dl>
       <dt><dfn id="dfn-resultIndex">resultIndex</dfn></dt>
@@ -866,7 +866,7 @@
       The user agent <em class="rfc2119" title="must">may</em> add additional annotations to provide a richer result for the developer.</dd>
     </dl>
 
-    <h4 id="speechreco-speechgrammar"><span class=secno>5.1.9 </span>Speech Grammar</h4>
+    <h4 id="speechreco-speechgrammar"><span class=secno>5.1.9 </span>SpeechGrammar</h4>
 
     <p>The SpeechGrammar object represents a container for a grammar.
     <i>[Editor note: The group is currently discussing options for which grammar formats should be supported, how builtin grammar types are specified, and default grammars when not specified.] <a href="#ref-2">[2]</a> <a href="#ref-3">[3]</a></i>
@@ -883,7 +883,7 @@
       Larger weight values positively weight the grammar while smaller weight values make the grammar weighted less strongly.</dd>
     </dl>
 
-    <h4 id="speechreco-speechgrammarlist"><span class=secno>5.1.10 </span>Speech Grammar List</h4>
+    <h4 id="speechreco-speechgrammarlist"><span class=secno>5.1.10 </span>SpeechGrammarList</h4>
 
     <p>The SpeechGrammarList object represents a collection of SpeechGrammar objects.
     This structure has the following attributes:</p>
@@ -1049,8 +1049,8 @@
       <dt><dfn id="dfn-utterancevoiceuri">voiceURI</dfn> attribute</dt>
       <dd>The voiceURI attribute specifies speech synthesis voice and the location of the speech synthesis service that the web application wishes to use.
       If this attribute is unset at the time of the play method call, then the user agent <em class="rfc2119" title="must">must</em> use the user agent default speech service.
-      Note that the voiceURI is a generic URI and can thus point to local services either through use of a URN with meaning to the User Agent or by specifying a URL that the User Agent recognizes as a local service.
-      Additionally, the User Agent default can be local or remote and can incorporate end user choices via interfaces provided by the User Agent such as browser configuration parameters.
+      Note that the voiceURI is a generic URI and can thus point to local services either through use of a URN with meaning to the user agent or by specifying a URL that the user agent recognizes as a local service.
+      Additionally, the user agent default can be local or remote and can incorporate end user choices via interfaces provided by the user agent such as browser configuration parameters.
       </dd>
 
       <dt><dfn id="dfn-utterancevolume">volume</dfn> attribute</dt>
@@ -1093,7 +1093,7 @@
 
       <dt><dfn id="dfn-utteranceonupdate">update</dfn> event</dt>
       <dd>Fired when the spoken utterance reaches a word boundary, or a named "mark" tag in SSML. <a href="#ref-ssml">[SSML]</a>
-      User Agent <em class="rfc2119" title="should">should</em> fire event if the speech synthesis engine provides the event.</dd>
+      The user agent <em class="rfc2119" title="should">should</em> fire event if the speech synthesis engine provides the event.</dd>
     </dl>
 
     <h4 id="callback-parameters"><span class=secno>5.2.5 </span>SpeechSynthesisCallback Parameters</h4>
@@ -1270,12 +1270,12 @@
       <dt><a id="ref-ssml">[SSML]</a></dt>
       <dd><cite><a href="http://www.w3.org/TR/speech-synthesis/">Speech Synthesis Markup Language (SSML)</a></cite>, Daniel C. Burnett, et al., Editors.
       World Wide Web Consortium, 7 September 2004.
-      URL: <a href="http://www.w3.org/TR/speech-synthesis">http://www.w3.org/TR/speech-synthesis</a></dd>
+      URL: <a href="http://www.w3.org/TR/speech-synthesis/">http://www.w3.org/TR/speech-synthesis/</a></dd>
 
       <dt><a id="ref-webidl">[WEBIDL]</a></dt>
       <dd><cite><a href="http://dev.w3.org/2006/webapi/WebIDL/">Web IDL</a></cite>, Cameron McCormack, Editor.
       World Wide Web Consortium, 19 December 2008.
-      URL: <a href="http://dev.w3.org/2006/webapi/WebIDL">http://dev.w3.org/2006/webapi/WebIDL</a></dd>
+      URL: <a href="http://dev.w3.org/2006/webapi/WebIDL/">http://dev.w3.org/2006/webapi/WebIDL/</a></dd>
 
       <dt><a id="ref-1">[1]</a></dt>
       <dd><cite><a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">HTML Speech Incubator Group Final Report</a></cite>, Michael Bodell, et al., Editors. World Wide Web Consortium, 6 December 2011.
