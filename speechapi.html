@@ -959,7 +959,8 @@
       attribute Function <a href="#dfn-utteranceonend">onend</a>;
       attribute Function <a href="#dfn-utteranceonpause">onpause</a>;
       attribute Function <a href="#dfn-utteranceonresume">onresume</a>;
-      attribute Function <a href="#dfn-utteranceonupdate">onupdate</a>;
+      attribute Function <a href="#dfn-utteranceonmark">onmark</a>;
+      attribute Function <a href="#dfn-utteranceonboundary">onboundary</a>;
     };
 
     interface SpeechSynthesisEvent : Event {
@@ -980,7 +981,6 @@
       readonly attribute unsigned long <a href="#dfn-voicelistlength">length</a>;
       getter SpeechSynthesisVoice <a href="#dfn-voicelistitem">item</a>(in unsigned long index);
     }
-
 
           </code>
         </pre>
@@ -1095,9 +1095,13 @@
       Adding the utterance to the queue while the global SpeechSynthesis instance is in the paused state, and then calling the resume method
       does not cause the resume event to be fired, in this case the utterance's start event will be called when the utterance starts.</dd>
 
-      <dt><dfn id="dfn-utteranceonupdate">update</dfn> event</dt>
-      <dd>Fired when the spoken utterance reaches a word boundary, or a named "mark" tag in SSML. <a href="#ref-ssml">[SSML]</a>
-      The user agent <em class="rfc2119" title="should">should</em> fire event if the speech synthesis engine provides the event.</dd>
+      <dt><dfn id="dfn-utteranceonmark">mark</dfn> event</dt>
+      <dd>Fired when the spoken utterance reaches a named "mark" tag in SSML. <a href="#ref-ssml">[SSML]</a>
+      The user agent <em class="rfc2119" title="must">must</em> fire this event if the speech synthesis engine provides the event.</dd>
+
+      <dt><dfn id="dfn-utteranceonboundary">boundary</dfn> event</dt>
+      <dd>Fired when the spoken utterance reaches a word or sentence boundary.
+      The user agent <em class="rfc2119" title="must">must</em> fire this event if the speech synthesis engine provides the event.</dd>
     </dl>
 
     <h4 id="speechsynthesisevent"><span class=secno>5.2.5 </span>SpeechSynthesisEvent Attributes</h4>
