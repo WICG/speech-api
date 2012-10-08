@@ -343,7 +343,7 @@
       <p><a href="http://www.w3.org/"><img alt=W3C height=48 src="http://www.w3.org/Icons/w3c_home" width=72></a></p>
       <!--end-logo-->
       <h1 id="title_heading">Speech JavaScript API Specification</h1>
-      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 5 October 2012</h2>
+      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 8 October 2012</h2>
       <dl>
         <dt>Editors:</dt>
         <dd>Glen Shires, Google Inc.</dd>
@@ -397,7 +397,7 @@
       <li><a href="#tts-methods"><span class=secno>5.2.2 </span>SpeechSynthesis Methods</a></li>
       <li><a href="#utterance-attributes"><span class=secno>5.2.3 </span>SpeechSynthesisUtterance Attributes</a></li>
       <li><a href="#utterance-events"><span class=secno>5.2.4 </span>SpeechSynthesisUtterance Events</a></li>
-      <li><a href="#callback-parameters"><span class=secno>5.2.5 </span>SpeechSynthesisCallback Parameters</a></li>
+      <li><a href="#speechsynthesisevent"><span class=secno>5.2.5 </span>SpeechSynthesisEvent Attributes</a></li>
       <li><a href="#speechsynthesisvoice"><span class=secno>5.2.6 </span>SpeechSynthesisVoice</a></li>
       <li><a href="#speechsynthesisvoicelist"><span class=secno>5.2.7 </span>SpeechSynthesisVoiceList</a></li>
       <li><a href="#examples"><span class=secno>6 </span>Examples</a></li>
@@ -943,12 +943,6 @@
 
     Window implements SpeechSynthesisGetter;
 
-    enum <a href="#dfn-callbackupdatetype">UpdateType</a> { "mark", "word" };
-
-    callback SpeechSynthesisCallback = void(double <a href="#dfn-callbackelapsedtime">elapsedTime</a>, unsigned long <a href="#dfn-callbackcharindex">charIndex</a>);
-
-    callback SpeechSynthesisUpdateCallback = void(double <a href="#dfn-callbackelapsedtime">elapsedTime</a>, unsigned long <a href="#dfn-callbackcharindex">charIndex</a>, UpdateType <a href="#dfn-callbackupdatetype">updateType</a>, DOMString <a href="#dfn-callbackname">name</a>);
-
     [Constructor,
      Constructor(DOMString <a href="#dfn-utterancetext">text</a>)]
     interface SpeechSynthesisUtterance {
@@ -960,10 +954,16 @@
       attribute float <a href="#dfn-utterancepitch">pitch</a>;
 
       attribute Function <a href="#dfn-utteranceonstart">onstart</a>;
-      attribute SpeechSynthesisCallback <a href="#dfn-utteranceonend">onend</a>;
-      attribute SpeechSynthesisCallback <a href="#dfn-utteranceonpause">onpause</a>;
+      attribute Function <a href="#dfn-utteranceonend">onend</a>;
+      attribute Function <a href="#dfn-utteranceonpause">onpause</a>;
       attribute Function <a href="#dfn-utteranceonresume">onresume</a>;
-      attribute SpeechSynthesisUpdateCallback <a href="#dfn-utteranceonupdate">onupdate</a>;
+      attribute Function <a href="#dfn-utteranceonupdate">onupdate</a>;
+    };
+
+    interface SpeechSynthesisEvent : Event {
+        readonly attribute unsigned long <a href="#dfn-callbackcharindex">charIndex</a>;
+        readonly attribute float <a href="#dfn-callbackelapsedtime">elapsedTime</a>;
+        readonly attribute DOMString <a href="#dfn-callbackname">name</a>;
     };
 
     interface SpeechSynthesisVoice {
@@ -1076,6 +1076,8 @@
 
     <h4 id="utterance-events"><span class=secno>5.2.4 </span>SpeechSynthesisUtterance Events</h4>
 
+    The <a href="#speechsynthesisevent">SpeechSynthesisEvent</a> event parameter is supplied for each of these events.
+
     <dl>
       <dt><dfn id="dfn-utteranceonstart">start</dfn> event</dt>
       <dd>Fired when this utterance has begun to be spoken.</dd>
@@ -1096,24 +1098,22 @@
       The user agent <em class="rfc2119" title="should">should</em> fire event if the speech synthesis engine provides the event.</dd>
     </dl>
 
-    <h4 id="callback-parameters"><span class=secno>5.2.5 </span>SpeechSynthesisCallback Parameters</h4>
+    <h4 id="speechsynthesisevent"><span class=secno>5.2.5 </span>SpeechSynthesisEvent Attributes</h4>
 
     <dl>
-      <dt><dfn id="dfn-callbackelapsedtime">elapsedTime</dfn> parameter</dt>
-      <dd>The time, in seconds, that this event triggered, relative to when this utterance has begun to be spoken.
-      The user agent must return this value if the speech synthesis engine supports it, otherwise the user agent must return undefined.</dd>
-
-      <dt><dfn id="dfn-callbackcharindex">charIndex</dfn> parameter</dt>
-      <dd>The zero-based character index into the original utterance string that most closely approximates the current speaking position of the speech engine.
+      <dt><dfn id="dfn-callbackcharindex">charIndex</dfn> attribute</dt>
+      <dd>This attribute indicates the zero-based character index into the original utterance string that most closely approximates the current speaking position of the speech engine.
       No guarantee is given as to where charIndex will be with respect to word boundaries (such as at the end of the previous word or the beginning of the next word), only that all text before charIndex has already been spoken, and all text after charIndex has not yet been spoken.
       The user agent must return this value if the speech synthesis engine supports it, otherwise the user agent must return undefined.</dd>
 
-      <dt><dfn id="dfn-callbackupdatetype">updateType</dfn> parameter</dt>
-      <dd>An enumeration indicating the condition that triggered the event: "mark" indicates a named marker, "word" indicates a word boundary.</dd>
+      <dt><dfn id="dfn-callbackelapsedtime">elapsedTime</dfn> attribute</dt>
+      <dd>This attribute indicates the time, in seconds, that this event triggered, relative to when this utterance has begun to be spoken.
+      The user agent must return this value if the speech synthesis engine supports it or the user agent can otherwise determine it, otherwise the user agent must return undefined.</dd>
 
-      <dt><dfn id="dfn-callbackname">name</dfn> parameter</dt>
-      <dd>For events with updateType of "mark", contains the name of the marker, as defined in SSML as the name attribute of a mark element. <a href="#ref-ssml">[SSML]</a>
-      For events with updateType of "word", this value should be undefined.</dd>
+      <dt><dfn id="dfn-callbackname">name</dfn> attribute</dt>
+      <dd>For onmark events, this attribute indicates the name of the marker, as defined in SSML as the name attribute of a mark element. <a href="#ref-ssml">[SSML]</a>
+      For onboundary events, this attribute indicates the type of boundary that caused the event: "word" or "sentence".
+      For all other events, this value should return undefined.</dd>
     </dl>
 
     <h4 id="speechsynthesisvoice"><span class=secno>5.2.6 </span>SpeechSynthesisVoice</h4>
@@ -1217,10 +1217,11 @@
           <pre class="code">
             <code class="html-code">
   &lt;script type="text/javascript"&gt;
-     var u = new SpeechSynthesisUtterance();
+     SpeechSynthesisUtterance u;
      u.text = 'Hello World';
      u.lang = 'en-US';
-     u.onend = function() { alert('Finished!'); }
+     u.rate = 1.2;
+     u.onend = function(event) { alert('Finished in ' + event.elapsedTime + ' seconds.'); }
      speechSynthesis.speak(u);
   &lt;/script&gt;
             </code>
