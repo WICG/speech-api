@@ -562,17 +562,19 @@
     };
 
     interface <dfn id="speechrecognitionerror">SpeechRecognitionError</dfn> : Event {
-        const unsigned short <a href="#dfn-sre.other">OTHER</a> = 0;
-        const unsigned short <a href="#dfn-sre.nospeech">NO_SPEECH</a> = 1;
-        const unsigned short <a href="#dfn-sre.aborted">ABORTED</a> = 2;
-        const unsigned short <a href="#dfn-sre.audiocapture">AUDIO_CAPTURE</a> = 3;
-        const unsigned short <a href="#dfn-sre.network">NETWORK</a> = 4;
-        const unsigned short <a href="#dfn-sre.notallowed">NOT_ALLOWED</a> = 5;
-        const unsigned short <a href="#dfn-sre.servicenotallowed">SERVICE_NOT_ALLOWED</a> = 6;
-        const unsigned short <a href="#dfn-sre.badgrammar">BAD_GRAMMAR</a> = 7;
-        const unsigned short <a href="#dfn-sre.languagenotsupported">LANGUAGE_NOT_SUPPORTED</a> = 8;
+        enum ErrorCode {
+          "<a href="#dfn-sre.other">other</a>",
+          "<a href="#dfn-sre.nospeech">no-speech</a>",
+          "<a href="#dfn-sre.aborted">aborted</a>",
+          "<a href="#dfn-sre.audiocapture">audio-capture</a>",
+          "<a href="#dfn-sre.network">network</a>",
+          "<a href="#dfn-sre.notallowed">not-allowed</a>",
+          "<a href="#dfn-sre.servicenotallowed">service-not-allowed</a>",
+          "<a href="#dfn-sre.badgrammar">bad-grammar</a>",
+          "<a href="#dfn-sre.languagenotsupported">language-not-supported</a>"
+        };
 
-        readonly attribute unsigned short <a href="#dfn-code">code</a>;
+        readonly attribute ErrorCode <a href="#dfn-error">error</a>;
         readonly attribute DOMString <a href="#dfn-message">message</a>;
     };
 
@@ -747,35 +749,35 @@
 
     <p>The speech recognition error object has two attributes <code>code</code> and <code>message</code>.</p>
     <dl>
-      <dt><dfn id="dfn-code">code</dfn></dt>
-      <dd>The code is a numeric error code for whatever has gone wrong.
+      <dt><dfn id="dfn-error">error</dfn></dt>
+      <dd>The errorCode is an enumeration indicating what has gone wrong.
       The values are:
       <dl>
-        <dt><dfn id="dfn-sre.other">OTHER</dfn> (numeric code 0)</dt>
+        <dt><dfn id="dfn-sre.other">"other"</dfn></dt>
         <dd>This is the catch all error code.</dd>
 
-        <dt><dfn id="dfn-sre.nospeech">NO_SPEECH</dfn> (numeric code 1)</dt>
+        <dt><dfn id="dfn-sre.nospeech">"no-speech"</dfn></dt>
         <dd>No speech was detected.</dd>
 
-        <dt><dfn id="dfn-sre.aborted">ABORTED</dfn> (numeric code 2)</dt>
+        <dt><dfn id="dfn-sre.aborted">"aborted"</dfn></dt>
         <dd>Speech input was aborted somehow, maybe by some user-agent-specific behavior such as UI that lets the user cancel speech input.</dd>
 
-        <dt><dfn id="dfn-sre.audiocapture">AUDIO_CAPTURE</dfn> (numeric code 3)</dt>
+        <dt><dfn id="dfn-sre.audiocapture">"audio-capture"</dfn></dt>
         <dd>Audio capture failed.</dd>
 
-        <dt><dfn id="dfn-sre.network">NETWORK</dfn> (numeric code 4)</dt>
+        <dt><dfn id="dfn-sre.network">"network"</dfn></dt>
         <dd>Some network communication that was required to complete the recognition failed.</dd>
 
-        <dt><dfn id="dfn-sre.notallowed">NOT_ALLOWED</dfn> (numeric code 5)</dt>
+        <dt><dfn id="dfn-sre.notallowed">"not-allowed"</dfn></dt>
         <dd>The user agent is not allowing any speech input to occur for reasons of security, privacy or user preference.</dd>
 
-        <dt><dfn id="dfn-sre.servicenotallowed">SERVICE_NOT_ALLOWED</dfn> (numeric code 6)</dt>
+        <dt><dfn id="dfn-sre.servicenotallowed">"service-not-allowed"</dfn></dt>
         <dd>The user agent is not allowing the web application requested speech service, but would allow some speech service, to be used either because the user agent doesn't support the selected one or because of reasons of security, privacy or user preference.</dd>
 
-        <dt><dfn id="dfn-sre.badgrammar">BAD_GRAMMAR</dfn> (numeric code 7)</dt>
+        <dt><dfn id="dfn-sre.badgrammar">"bad-grammar"</dfn></dt>
         <dd>There was an error in the speech recognition grammar or semantic tags, or the grammar format or semantic tag format is unsupported.</dd>
 
-        <dt><dfn id="dfn-sre.languagenotsupported">LANGUAGE_NOT_SUPPORTED</dfn> (numeric code 8)</dt>
+        <dt><dfn id="dfn-sre.languagenotsupported">"language-not-supported"</dfn></dt>
         <dd>The language was not supported.</dd>
       </dl>
       </dd>
