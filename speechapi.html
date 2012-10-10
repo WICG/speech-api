@@ -343,7 +343,7 @@
       <p><a href="http://www.w3.org/"><img alt=W3C height=48 src="http://www.w3.org/Icons/w3c_home" width=72></a></p>
       <!--end-logo-->
       <h1 id="title_heading">Speech JavaScript API Specification</h1>
-      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 8 October 2012</h2>
+      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 9 October 2012</h2>
       <dl>
         <dt>Editors:</dt>
         <dd>Glen Shires, Google Inc.</dd>
@@ -563,7 +563,6 @@
 
     interface <dfn id="speechrecognitionerror">SpeechRecognitionError</dfn> : Event {
         enum ErrorCode {
-          "<a href="#dfn-sre.other">other</a>",
           "<a href="#dfn-sre.nospeech">no-speech</a>",
           "<a href="#dfn-sre.aborted">aborted</a>",
           "<a href="#dfn-sre.audiocapture">audio-capture</a>",
@@ -753,9 +752,6 @@
       <dd>The errorCode is an enumeration indicating what has gone wrong.
       The values are:
       <dl>
-        <dt><dfn id="dfn-sre.other">"other"</dfn></dt>
-        <dd>This is the catch all error code.</dd>
-
         <dt><dfn id="dfn-sre.nospeech">"no-speech"</dfn></dt>
         <dd>No speech was detected.</dd>
 
