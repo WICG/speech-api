@@ -956,6 +956,7 @@
 
       attribute Function <a href="#dfn-utteranceonstart">onstart</a>;
       attribute Function <a href="#dfn-utteranceonend">onend</a>;
+      attribute Function <a href="#dfn-utteranceonerror">onerror</a>;
       attribute Function <a href="#dfn-utteranceonpause">onpause</a>;
       attribute Function <a href="#dfn-utteranceonresume">onresume</a>;
       attribute Function <a href="#dfn-utteranceonmark">onmark</a>;
@@ -1084,8 +1085,13 @@
       <dd>Fired when this utterance has begun to be spoken.</dd>
 
       <dt><dfn id="dfn-utteranceonend">end</dfn> event</dt>
-      <dd>Fired when this utterance has completed being spoken.</dd>
+      <dd>Fired when this utterance has completed being spoken.
+      If this event fires, the <a href="#dfn-utteranceonerror">error</a> event <em class="rfc2119" title="must">must</em> not be fired for this utterance.</dd>
 
+      <dt><dfn id="dfn-utteranceonerror">error</dfn> event</dt>
+      <dd>Fired if there was an error that prevented successful speaking of this utterance.
+      If this event fires, the <a href="#dfn-utteranceonend">end</a> event <em class="rfc2119" title="must">must</em> not be fired for this utterance.</dd>
+ 
       <dt><dfn id="dfn-utteranceonpause">pause</dfn> event</dt>
       <dd>Fired when and if this utterance is paused mid-utterance.</dd>
 
