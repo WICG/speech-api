@@ -343,7 +343,7 @@
       <p><a href="http://www.w3.org/"><img alt=W3C height=48 src="http://www.w3.org/Icons/w3c_home" width=72></a></p>
       <!--end-logo-->
       <h1 id="title_heading">Speech JavaScript API Specification</h1>
-      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 12 October 2012</h2>
+      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 16 October 2012</h2>
       <dl>
         <dt>Editors:</dt>
         <dd>Glen Shires, Google Inc.</dd>
@@ -550,17 +550,17 @@
         void <a href="#dfn-abort">abort</a>();
 
         <span class="comment">// event methods</span>
-        attribute Function <a href="#dfn-onaudiostart">onaudiostart</a>;
-        attribute Function <a href="#dfn-onsoundstart">onsoundstart</a>;
-        attribute Function <a href="#dfn-onspeechstart">onspeechstart</a>;
-        attribute Function <a href="#dfn-onspeechend">onspeechend</a>;
-        attribute Function <a href="#dfn-onsoundend">onsoundend</a>;
-        attribute Function <a href="#dfn-onaudioend">onaudioend</a>;
-        attribute Function <a href="#dfn-onresult">onresult</a>;
-        attribute Function <a href="#dfn-onnomatch">onnomatch</a>;
-        attribute Function <a href="#dfn-onerror">onerror</a>;
-        attribute Function <a href="#dfn-onstart">onstart</a>;
-        attribute Function <a href="#dfn-onend">onend</a>;
+        attribute EventHandler <a href="#dfn-onaudiostart">onaudiostart</a>;
+        attribute EventHandler <a href="#dfn-onsoundstart">onsoundstart</a>;
+        attribute EventHandler <a href="#dfn-onspeechstart">onspeechstart</a>;
+        attribute EventHandler <a href="#dfn-onspeechend">onspeechend</a>;
+        attribute EventHandler <a href="#dfn-onsoundend">onsoundend</a>;
+        attribute EventHandler <a href="#dfn-onaudioend">onaudioend</a>;
+        attribute EventHandler <a href="#dfn-onresult">onresult</a>;
+        attribute EventHandler <a href="#dfn-onnomatch">onnomatch</a>;
+        attribute EventHandler <a href="#dfn-onerror">onerror</a>;
+        attribute EventHandler <a href="#dfn-onstart">onstart</a>;
+        attribute EventHandler <a href="#dfn-onend">onend</a>;
     };
 
     interface <dfn id="speechrecognitionerror">SpeechRecognitionError</dfn> : Event {
@@ -672,7 +672,7 @@
       <dd>When the start method is called it represents the moment in time the web application wishes to begin recognition.
       When the speech input is streaming live through the input media stream, then this start call represents the moment in time that the service <em class="rfc2119" title="must">must</em> begin to listen and try to match the grammars associated with this request.
       Once the system is successfully listening to the recognition the user agent <em class="rfc2119" title="must">must</em> raise a start event.
-      If the start method is called on an already started object (that is, start has previously been called, and no error or end event has fired on the object), the user agent <em class="rfc2119" title="must">must</em> throw an <a href="http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#invalidstateerror">InvalidStateError</a> exception and ignore the call.</dd>
+      If the start method is called on an already started object (that is, start has previously been called, and no <a href="#dfn-onerror">error</a> or <a href="#dfn-onend">end</a> event has fired on the object), the user agent <em class="rfc2119" title="must">must</em> throw an <a href="http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#invalidstateerror">InvalidStateError</a> exception and ignore the call.</dd>
 
       <dt><dfn id="dfn-stop">stop</dfn> method</dt>
       <dd>The stop method represents an instruction to the recognition service to stop listening to more audio, and to try and return a result using just the audio that it has already received for this recognition.
@@ -680,13 +680,13 @@
       The end user might press and hold the space bar to talk to the system and on the space down press the start call would have occurred and when the space bar is released the stop method is called to ensure that the system is no longer listening to the user.
       Once the stop method is called the speech service <em class="rfc2119" title="must not">must not</em> collect additional audio and <em class="rfc2119" title="must not">must not</em> continue to listen to the user.
       The speech service <em class="rfc2119" title="must">must</em> attempt to return a recognition result (or a nomatch) based on the audio that it has already collected for this recognition.
-      If the stop method is called on an object which is already stopped or being stopped (that is, start was never called on it, the end or error event has fired on it, or stop was previously called on it), the user agent <em class="rfc2119" title="must">must</em> ignore the call.</dd>
+      If the stop method is called on an object which is already stopped or being stopped (that is, start was never called on it, the <a href="#dfn-utteranceonend">end</a> or <a href="#dfn-utteranceonerror">error</a> event has fired on it, or stop was previously called on it), the user agent <em class="rfc2119" title="must">must</em> ignore the call.</dd>
 
       <dt><dfn id="dfn-abort">abort</dfn> method</dt>
       <dd>The abort method is a request to immediately stop listening and stop recognizing and do not return any information but that the system is done.
       When the abort method is called, the speech service <em class="rfc2119" title="must">must</em> stop recognizing.
-      The user agent <em class="rfc2119" title="must">must</em> raise an end event once the speech service is no longer connected.
-      If the abort method is called on an object which is already stopped or aborting (that is, start was never called on it, the end or error event has fired on it, or abort was previously called on it), the user agent <em class="rfc2119" title="must">must</em> ignore the call.</dd>
+      The user agent <em class="rfc2119" title="must">must</em> raise an <a href="#dfn-onend">end</a> event once the speech service is no longer connected.
+      If the abort method is called on an object which is already stopped or aborting (that is, start was never called on it, the <a href="#dfn-onend">end</a> or <a href="#dfn-onerror">error</a> event has fired on it, or abort was previously called on it), the user agent <em class="rfc2119" title="must">must</em> ignore the call.</dd>
     </dl>
 
     <h4 id="speechreco-events"><span class=secno>5.1.3 </span>SpeechRecognition Events</h4>
@@ -697,10 +697,10 @@
     The events do not bubble and are not cancelable.</p>
 
     <p>For all these events, the timeStamp attribute defined in the DOM Level 2 Event interface must be set to the best possible estimate of when the real-world event which the event object represents occurred.
-    This timestamp must be represented in the user agent's view of time, even for events where the timestamps in question could be raised on a different machine like a remote recognition service (i.e., in a speechend event with a remote speech endpointer).</p>
+    This timestamp must be represented in the user agent's view of time, even for events where the timestamps in question could be raised on a different machine like a remote recognition service (i.e., in a <a href="#dfn-onspeechend">speechend</a> event with a remote speech endpointer).</p>
 
     <p>Unless specified below, the ordering of the different events is undefined.
-    For example, some implementations may fire audioend before speechstart or speechend if the audio detector is client-side and the speech detector is server-side.</p>
+    For example, some implementations may fire <a href="#dfn-onaudioend">audioend</a> before <a href="#dfn-onspeechstart">speechstart</a> or <a href="#dfn-onspeechend">speechend</a> if the audio detector is client-side and the speech detector is server-side.</p>
 
     <dl>
       <dt><dfn id="dfn-onaudiostart">audiostart</dfn> event</dt>
@@ -715,16 +715,16 @@
 
       <dt><dfn id="dfn-onspeechend">speechend</dfn> event</dt>
       <dd>Fired when the speech that will be used for speech recognition has ended.
-      speechstart <em class="rfc2119" title="must">must</em> always have been fire before speechend.</dd>
+      The <a href="#dfn-onspeechstart">speechstart</a> event <em class="rfc2119" title="must">must</em> always have been fire before speechend.</dd>
 
       <dt><dfn id="dfn-onsoundend">soundend</dfn> event</dt>
       <dd>Fired when some sound is no longer detected.
       This <em class="rfc2119" title="must">must</em> be fired with low latency, e.g. by using a client-side energy detector.
-      soundstart <em class="rfc2119" title="must">must</em> always have been fired before soundend.</dd>
+      The <a href="#dfn-onsoundstart">soundstart</a> event <em class="rfc2119" title="must">must</em> always have been fired before soundend.</dd>
 
       <dt><dfn id="dfn-onaudioend">audioend</dfn> event</dt>
       <dd>Fired when the user agent has finished capturing audio.
-      audiostart <em class="rfc2119" title="must">must</em> always have been fired before audioend.</dd>
+      The <a href="#dfn-onaudiostart">audiostart</a> event <em class="rfc2119" title="must">must</em> always have been fired before audioend.</dd>
 
       <dt><dfn id="dfn-onresult">result</dfn> event</dt>
       <dd>Fired when the speech recognizer returns a result.
@@ -946,7 +946,7 @@
 
     [Constructor,
      Constructor(DOMString <a href="#dfn-utterancetext">text</a>)]
-    interface SpeechSynthesisUtterance {
+    interface SpeechSynthesisUtterance : EventTarget {
       attribute DOMString <a href="#dfn-utterancetext">text</a>;
       attribute DOMString <a href="#dfn-utterancelang">lang</a>;
       attribute DOMString <a href="#dfn-utterancevoiceuri">voiceURI</a>;
@@ -954,13 +954,13 @@
       attribute float <a href="#dfn-utterancerate">rate</a>;
       attribute float <a href="#dfn-utterancepitch">pitch</a>;
 
-      attribute Function <a href="#dfn-utteranceonstart">onstart</a>;
-      attribute Function <a href="#dfn-utteranceonend">onend</a>;
-      attribute Function <a href="#dfn-utteranceonerror">onerror</a>;
-      attribute Function <a href="#dfn-utteranceonpause">onpause</a>;
-      attribute Function <a href="#dfn-utteranceonresume">onresume</a>;
-      attribute Function <a href="#dfn-utteranceonmark">onmark</a>;
-      attribute Function <a href="#dfn-utteranceonboundary">onboundary</a>;
+      attribute EventHandler <a href="#dfn-utteranceonstart">onstart</a>;
+      attribute EventHandler <a href="#dfn-utteranceonend">onend</a>;
+      attribute EventHandler <a href="#dfn-utteranceonerror">onerror</a>;
+      attribute EventHandler <a href="#dfn-utteranceonpause">onpause</a>;
+      attribute EventHandler <a href="#dfn-utteranceonresume">onresume</a>;
+      attribute EventHandler <a href="#dfn-utteranceonmark">onmark</a>;
+      attribute EventHandler <a href="#dfn-utteranceonboundary">onboundary</a>;
     };
 
     interface SpeechSynthesisEvent : Event {
@@ -1013,7 +1013,7 @@
       If the SpeechSynthesis instance is paused, it remains paused.
       If it is not paused and no other utterances are in the queue, then this utterance is spoken immediately,
       else this utterance is queued to begin speaking after the other utterances in the queue have been spoken.
-      If changes are made to the SpeechSynthesisUtterance object after calling this method and prior to the corresponding <a href="#dfn-utteranceonend">onend</a> or <a href="#dfn-utteranceonerror">onerror</a> event,
+      If changes are made to the SpeechSynthesisUtterance object after calling this method and prior to the corresponding <a href="#dfn-utteranceonend">end</a> or <a href="#dfn-utteranceonerror">error</a> event,
       it is not defined whether those changes will affect what is spoken, and those changes <em class="rfc2119" title="may">may</em> cause an error to be returned.</dd>
 
       <dt><dfn id="dfn-ttscancel">cancel</dfn> method</dt>
@@ -1080,7 +1080,7 @@
 
     <h4 id="utterance-events"><span class=secno>5.2.4 </span>SpeechSynthesisUtterance Events</h4>
 
-    The <a href="#speechsynthesisevent">SpeechSynthesisEvent</a> event parameter is supplied for each of these events.
+    Each of these events <em class="rfc2119" title="must">must</em> use the <a href="#speechsynthesisevent">SpeechSynthesisEvent</a> interface.
 
     <dl>
       <dt><dfn id="dfn-utteranceonstart">start</dfn> event</dt>
@@ -1100,7 +1100,7 @@
       <dt><dfn id="dfn-utteranceonresume">resume</dfn> event</dt>
       <dd>Fired when and if this utterance is resumed after being paused mid-utterance.
       Adding the utterance to the queue while the global SpeechSynthesis instance is in the paused state, and then calling the resume method
-      does not cause the resume event to be fired, in this case the utterance's start event will be called when the utterance starts.</dd>
+      does not cause the resume event to be fired, in this case the utterance's <a href="#dfn-utteranceonstart">start</a> event will be called when the utterance starts.</dd>
 
       <dt><dfn id="dfn-utteranceonmark">mark</dfn> event</dt>
       <dd>Fired when the spoken utterance reaches a named "mark" tag in SSML. <a href="#ref-ssml">[SSML]</a>
@@ -1124,8 +1124,8 @@
       The user agent must return this value if the speech synthesis engine supports it or the user agent can otherwise determine it, otherwise the user agent must return undefined.</dd>
 
       <dt><dfn id="dfn-callbackname">name</dfn> attribute</dt>
-      <dd>For onmark events, this attribute indicates the name of the marker, as defined in SSML as the name attribute of a mark element. <a href="#ref-ssml">[SSML]</a>
-      For onboundary events, this attribute indicates the type of boundary that caused the event: "word" or "sentence".
+      <dd>For <a href="#dfn-utteranceonmark">mark</a> events, this attribute indicates the name of the marker, as defined in SSML as the name attribute of a mark element. <a href="#ref-ssml">[SSML]</a>
+      For <a href="#dfn-utteranceonboundary">boundary</a> events, this attribute indicates the type of boundary that caused the event: "word" or "sentence".
       For all other events, this value should return undefined.</dd>
     </dl>
 
