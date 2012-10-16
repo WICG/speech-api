@@ -925,15 +925,15 @@
         <pre class="code">
           <code class="idl-code">
     interface SpeechSynthesis {
-      static readonly attribute boolean <a href="#dfn-ttspending">pending</a>;
-      static readonly attribute boolean <a href="#dfn-ttsspeaking">speaking</a>;
-      static readonly attribute boolean <a href="#dfn-ttspaused">paused</a>;
+      readonly attribute boolean <a href="#dfn-ttspending">pending</a>;
+      readonly attribute boolean <a href="#dfn-ttsspeaking">speaking</a>;
+      readonly attribute boolean <a href="#dfn-ttspaused">paused</a>;
 
-      static void <a href="#dfn-ttsspeak">speak</a>(SpeechSynthesisUtterance utterance);
-      static void <a href="#dfn-ttscancel">cancel</a>();
-      static void <a href="#dfn-ttspause">pause</a>();
-      static void <a href="#dfn-ttsresume">resume</a>();
-      static SpeechSynthesisVoiceList <a href="#dfn-ttsgetvoices">getVoices</a>();
+      void <a href="#dfn-ttsspeak">speak</a>(SpeechSynthesisUtterance utterance);
+      void <a href="#dfn-ttscancel">cancel</a>();
+      void <a href="#dfn-ttspause">pause</a>();
+      void <a href="#dfn-ttsresume">resume</a>();
+      SpeechSynthesisVoiceList <a href="#dfn-ttsgetvoices">getVoices</a>();
     };
 
     [NoInterfaceObject]
@@ -1008,11 +1008,13 @@
 
     <dl>
       <dt><dfn id="dfn-ttsspeak">speak</dfn> method</dt>
-      <dd>This method appends a copy of the utterance to the end of the queue for the global SpeechSynthesis instance.
+      <dd>This method appends the SpeechSynthesisUtterance object to the end of the queue for the global SpeechSynthesis instance.
       It does not change the paused state of the SpeechSynthesis instance.
       If the SpeechSynthesis instance is paused, it remains paused.
       If it is not paused and no other utterances are in the queue, then this utterance is spoken immediately,
-      else this utterance is queued to begin speaking after the other utterances in the queue have been spoken.</dd>
+      else this utterance is queued to begin speaking after the other utterances in the queue have been spoken.
+      If changes are made to the SpeechSynthesisUtterance object after calling this method and prior to the corresponding <a href="#dfn-utteranceonend">onend</a> or <a href="#dfn-utteranceonerror">onerror</a> event,
+      it is not defined whether those changes will affect what is spoken, and those changes <em class="rfc2119" title="may">may</em> cause an error to be returned.</dd>
 
       <dt><dfn id="dfn-ttscancel">cancel</dfn> method</dt>
       <dd>This method removes all utterances from the queue.
@@ -1374,7 +1376,7 @@
           <pre class="code">
             <code class="html-code">
   &lt;script type="text/javascript"&gt;
-     SpeechSynthesisUtterance u;
+     var u = new SpeechSynthesisUtterance();
      u.text = 'Hello World';
      u.lang = 'en-US';
      u.rate = 1.2;
@@ -1400,7 +1402,7 @@
       <dd>Satish Sampath, Google, Inc.</dd>
       <dd>Adam Sobieski, Phoster, Inc.</dd>
       <dd>Raj Tumuluri, Openstream, Inc.</dd>
-      <dd>The members of the HTML Speech Incubator Group, and the corresponding Final Report <a href="#ref-1">[1]</a>, created the basis for this specification.</dd>
+      <dd>Also, the members of the HTML Speech Incubator Group, and the corresponding Final Report <a href="#ref-1">[1]</a>, created the basis for this specification.</dd>
 
     <h2 class="no-num" id="references">References</h2>
 
