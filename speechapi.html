@@ -2,7 +2,7 @@
 
 <html lang=en>
   <head>
-    <title>Speech JavaScript API Specification</title>
+    <title>Web Speech API Specification</title>
     <meta content="text/html;charset=utf-8" http-equiv=Content-Type>
 
     <style type="text/css">
@@ -342,14 +342,15 @@
       <!--begin-logo-->
       <p><a href="http://www.w3.org/"><img alt=W3C height=48 src="http://www.w3.org/Icons/w3c_home" width=72></a></p>
       <!--end-logo-->
-      <h1 id="title_heading">Speech JavaScript API Specification</h1>
-      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 16 October 2012</h2>
+      <h1 id="title_heading">Web Speech API Specification</h1>
+      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 18 October 2012</h2>
       <dl>
         <dt>Editors:</dt>
         <dd>Glen Shires, Google Inc.</dd>
         <dd>Hans Wennborg, Google Inc.</dd>
       </dl>
-      <p>Copyright © 2012 the Contributors to the Speech JavaScript API Specification, published by the <a href="http://www.w3.org/community/speech-api/">Speech API Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
+      <p>Please refer to the <a href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi-errata.html"><strong>errata</strong></a> for this document, which may include some normative corrections.</p>
+      <p>Copyright © 2012 the Contributors to the Web Speech API Specification, published by the <a href="http://www.w3.org/community/speech-api/">Speech API Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
       A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/">summary</a> is available. </p>
       <hr>
     </div>
@@ -359,11 +360,6 @@
     <p>This specification defines a JavaScript API to enable web developers to incorporate speech recognition and synthesis into their web pages.
     It enables developers to use scripting to generate text-to-speech output and to use speech recognition as an input for forms, continuous dictation and control.
     The JavaScript API allows web pages to control activation and timing and to handle results and alternatives.</p>
-
-    <p>It is a fully-functional subset of the specification proposed in the <a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">HTML Speech Incubator Group Final Report</a> <a href="#ref-1">[1]</a>.
-    Specifically, this subset excludes the underlying transport protocol, the proposed additions to HTML markup, and it defines a simplified subset of the JavaScript API.
-    This subset supports the majority of use-cases and sample code in the Incubator Group Final Report.
-    This subset does not preclude future standardization of additions to the markup, API or underlying transport protocols, and indeed the Incubator Report defines a potential roadmap for such future work.</p>
 
     <h2 class="no-num no-toc" id=status>Status of This Document</h2>
 
@@ -431,15 +427,20 @@
 
     <p><em>This section is non-normative.</em></p>
 
-    <p>The JavaScript Speech API aims to enable web developers to provide, in a web browser, speech-input and text-to-speech output features that are typically not available when using standard speech-recognition or screen-reader software.
+    <p>The Web Speech API aims to enable web developers to provide, in a web browser, speech-input and text-to-speech output features that are typically not available when using standard speech-recognition or screen-reader software.
     The API itself is agnostic of the underlying speech recognition and synthesis implementation and can support both server-based and client-based/embedded recognition and synthesis.
     The API is designed to enable both brief (one-shot) speech input and continuous speech input.
     Speech recognition results are provided to the web page as a list of hypotheses, along with other relevant information for each hypothesis.</p>
 
     <p>This specification is a subset of the API defined in the <a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">HTML Speech Incubator Group Final Report</a> <a href="#ref-1">[1]</a>.
     That report is entirely informative since it is not a standards track document.
-    This document is intended to be the basis of a standards track document, and therefore defines portions of that report to be normative.
-    All other portions of that report may be considered informative with regards to this document, and provide an informative background to this document.</p>
+    This document is intended to be the basis of a standards track document, and therefore defines portions to be normative.
+    All portions of that report may be considered informative with regards to this document, and provide an informative background to this document.
+    This specification is a fully-functional subset of that report.
+    Specifically, this subset excludes the underlying transport protocol, the proposed additions to HTML markup, and it defines a simplified subset of the JavaScript API.
+    This subset supports the majority of use-cases and sample code in the Incubator Group Final Report.
+    This subset does not preclude future standardization of additions to the markup, API or underlying transport protocols, and indeed the Incubator Report defines a potential roadmap for such future work.</p>
+
 
     <h2 id=use_cases><span class=secno>3 </span>Use Cases</h2>
 
@@ -455,6 +456,7 @@
       <li>Domain Specific Grammars Filling Multiple Input Fields</li>
       <li>Speech UI present when no visible UI need be present</li>
       <li>Voice Activity Detection</li>
+      <li>Temporal Structure of Synthesis to Provide Visual Feedback</li>
       <li>Hello World</li>
       <li>Speech Translation</li>
       <li>Speech Enabled Email Client</li>
@@ -465,12 +467,11 @@
       <li>Multimodal Search</li>
     </ul>
 
-    <p>To keep the API to a minimum, this specification does not directly support the following use cases.
-    This does not preclude adding support for these as future API enhancements, and indeed the Incubator report provides a roadmap for doing so.</p>
+    <p>To keep the API to a minimum, this specification does not directly support the following use case.
+    This does not preclude adding support for this as a future API enhancement, and indeed the Incubator report provides a roadmap for doing so.</p>
 
     <ul>
       <li>Rerecognition</li>
-      <li>Temporal Structure of Synthesis to Provide Visual Feedback</li>
     </ul>
 
     <p>Note that for many usages and implementations, it is possible to avoid the need for Rerecognition by using a larger grammar, or by combining multiple grammars &mdash; both of these techniques are supported in this specification.</p>
@@ -1428,9 +1429,9 @@
       URL: <a href="http://www.w3.org/TR/speech-synthesis/">http://www.w3.org/TR/speech-synthesis/</a></dd>
 
       <dt><a id="ref-webidl">[WEBIDL]</a></dt>
-      <dd><cite><a href="http://dev.w3.org/2006/webapi/WebIDL/">Web IDL</a></cite>, Cameron McCormack, Editor.
-      World Wide Web Consortium, 19 December 2008.
-      URL: <a href="http://dev.w3.org/2006/webapi/WebIDL/">http://dev.w3.org/2006/webapi/WebIDL/</a></dd>
+      <dd><cite><a href="http://www.w3.org/TR/WebIDL/">Web IDL</a></cite>, Cameron McCormack, Editor.
+      World Wide Web Consortium, 19 April 2012.
+      URL: <a href="http://www.w3.org/TR/WebIDL/">http://www.w3.org/TR/WebIDL/</a></dd>
 
       <dt><a id="ref-1">[1]</a></dt>
       <dd><cite><a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">HTML Speech Incubator Group Final Report</a></cite>, Michael Bodell, et al., Editors. World Wide Web Consortium, 6 December 2011.
