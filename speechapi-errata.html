@@ -9,7 +9,7 @@
   <h1 align="center">Errata in the Web Speech API Specification</h1>
   <dl>
    <dt>This document last updated:</a></dt>
-   <dd>November 30, 2012</dd>
+   <dd>December 7, 2012</dd>
    <dt>This document records known errors in the document:</a></dt>
    <dd><a href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">
     http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html</a>
@@ -24,6 +24,17 @@
    <dt>E01 2012-11-30 (Clarification):</dt>
    <dd>Section 6.1 Example 4: <b>recognition.interim</b> should be
     <b>recognition.interimResults</b>.</dd>
+  </dl>
+  <dl>
+   <dt>E02 2012-12-07 (Important):</dt>
+   <dd>Rename <b>final</b> attribute to <b>isFinal</b>
+     because <b>final</b> is a reserved word. Specifically:</dd>
+   <dd>Section 5.1 IDL: SpeechRecognitionResult
+    &quot;readonly attribute boolean <b>final</b>&quot; should be
+    &quot;readonly attribute boolean <b>isFinal</b>&quot;</dd>
+   <dd>Section 5.1.6 &quot;<b>final</b> attribute&quot; should be
+    &quot;<b>isFinal</b> attribute&quot;</dd>
+   <dd>Section 6.1 Examples 3 and 4: should be event.results[i].<b>isFinal</b></dd>
   </dl>
  </body>
 </html>
