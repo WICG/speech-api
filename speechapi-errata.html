@@ -9,7 +9,7 @@
   <h1 align="center">Errata in the Web Speech API Specification</h1>
   <dl>
    <dt>This document last updated:</a></dt>
-   <dd>February 4, 2013</dd>
+   <dd>February 25, 2013</dd>
    <dt>This document records known errors in the document:</a></dt>
    <dd><a href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">
     http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html</a>
@@ -42,17 +42,34 @@
     &quot;with EMMA namespace&quot; should be
     &quot;with EMMA namespace<b>, or if the recognizer does not supply EMMA then the user agent may return null</b>&quot;.</dd>
   </dl>
-  <dl>
+  <dl><del>
    <dt>E04 2013-02-04 (Important):</dt>
    <dd>Section 5.1 IDL: Remove &quot;<b>interface SpeechRecognitionResultList { ... }</b>&quot;.</dd>
    <dd>Section 5.1 IDL: &quot;readonly attribute <b>SpeechRecognitionResultList</b> results;&quot; should be
-    &quot;readonly attribute <b>sequence&lt;SpeechRecognitionResult&gt;</b> results&quot;.</dd>
+    &quot;readonly attribute <b>sequence&lt;SpeechRecognitionResult&gt;</b> results&quot;.</dd><del>
   </dl>
   <dl>
    <dt>E05 2013-02-04 (Important):</dt>
    <dd>Section 5.2 IDL: Remove &quot;<b>interface SpeechSynthesisVoiceList { ... }</b>&quot;.</dd>
    <dd>Section 5.2 IDL: &quot;<b>SpeechSynthesisVoiceList</b> getVoices();&quot; should be
     &quot;<b>sequence&lt;SpeechSynthesisVoice&gt;</b> getVoices();&quot;.</dd>
+  </dl>
+  <dl>
+   <dt>E06 2013-02-25 (Important):</dt>
+   <dd>E04 is deleted.</dd>
+  </dl>
+  <dl>
+   <dt>E07 2013-02-25 (Important):</dt>
+   <dd>Section 5.2 IDL: SpeechSynthesisUtterance &quot;attribute <b>DOMString voiceURI</b>&quot; should be &quot;attribute <b>SpeechSynthesisVoice voice</b>&quot;.</dd>
+   <dd>Section 5.2.3 SpeechSynthesisUtterance Attributes: &quot;<b>voiceURI</b> attribute&quot; should be &quot;<b>voice</b> attribute&quot;, with the following definition:
+    <ul>The voice attribute specifies speech synthesis voice that the web application wishes to use.
+    If, at the time of the play method call, this attribute has been set to one of the SpeechSynthesisVoice objects returned by getVoices, then the user agent MUST use that voice.
+    If this attribute is unset or null at the time of the play method call, then the user agent MUST use a user agent default voice.
+    The user agent default voice SHOULD support the current language (see &quot;lang&quot; attribute) and can be a local or remote speech service
+    and can incorporate end user choices via interfaces provided by the user agent such as browser configuration parameters.</ul>
+   </dd>
+   <dd>Section 5.2.6 SpeechSynthesisVoice: voiceURI attribute: &quot;as described in the SpeechSynthesisUtterance voiceURI attribute&quot; should be
+    &quot;either through use of a URN with meaning to the user agent or by specifying a URL that the user agent recognizes as a local service.&quot;</dd>
   </dl>
  </body>
 </html>
