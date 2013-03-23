@@ -9,7 +9,7 @@
   <h1 align="center">Errata in the Web Speech API Specification</h1>
   <dl>
    <dt>This document last updated:</a></dt>
-   <dd>February 25, 2013</dd>
+   <dd>March 22, 2013</dd>
    <dt>This document records known errors in the document:</a></dt>
    <dd><a href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">
     http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html</a>
@@ -70,6 +70,14 @@
    </dd>
    <dd>Section 5.2.6 SpeechSynthesisVoice: voiceURI attribute: &quot;as described in the SpeechSynthesisUtterance voiceURI attribute&quot; should be
     &quot;either through use of a URN with meaning to the user agent or by specifying a URL that the user agent recognizes as a local service.&quot;</dd>
+  </dl>
+  <dl>
+   <dt>E08 2013-03-22 (Important):</dt>
+   <dd>Section 5.2 IDL: &quot;interface SpeechSynthesis&quot; should be &quot;interface SpeechSynthesis <b>: EventTarget</b>&quot;.</dd>
+   <dd>Section 5.2 IDL: &quot;<b>readonly attribute SpeechSynthesisUtterance utterance;</b>&quot; is added to &quot;interface SpeechSynthesisEvent : Event&quot;.
+   <dd>Section 5.2.4 SpeechSynthesisUtterance Events: Add the sentence: &quot;<b>These events bubble up to SpeechSynthesis.&quot;</b></dd>
+   <dd>Section 5.2.5 SpeechSynthesisEvent Attributes: Add the following definition:<ul><b>utterance attribute<br>
+   This attribute contains the SpeechSynthesisUtterance that triggered this event.</b></ul></dd>
   </dl>
  </body>
 </html>
