@@ -9,7 +9,7 @@
   <h1 align="center">Errata in the Web Speech API Specification</h1>
   <dl>
    <dt>This document last updated:</a></dt>
-   <dd>March 22, 2013</dd>
+   <dd>September 24, 2013</dd>
    <dt>This document records known errors in the document:</a></dt>
    <dd><a href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">
     http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html</a>
@@ -78,6 +78,20 @@
    <dd>Section 5.2.4 SpeechSynthesisUtterance Events: Add the sentence: &quot;<b>These events bubble up to SpeechSynthesis.&quot;</b></dd>
    <dd>Section 5.2.5 SpeechSynthesisEvent Attributes: Add the following definition:<ul><b>utterance attribute<br>
    This attribute contains the SpeechSynthesisUtterance that triggered this event.</b></ul></dd>
+  </dl>
+  <dl>
+   <dt>E09 2013-09-24 (Clarification):</dt>
+   <dd>Section 6.2 Example 1:
+    &quot;speechSynthesis.speak(SpeechSynthesisUtterance('Hello World'));&quot; should be
+    &quot;speechSynthesis.speak(<b>new</b> SpeechSynthesisUtterance('Hello World'));&quot;</dd>
+  </dl>
+  <dl>
+   <dt>E10 2013-09-24 (Important):</dt>
+   <dd>Section 5.2.2 speak method: append at the end of the definition:
+    <ul>The SpeechSynthesis object takes exclusive ownership of the SpeechSynthesisUtterance object.
+    Passing it as a speak() argument to another SpeechSynthesis object should throw an exception.
+    (For example, two frames may have the same origin and each will contain a SpeechSynthesis object.)</ul>
+   </dd>
   </dl>
  </body>
 </html>
