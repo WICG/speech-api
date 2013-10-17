@@ -9,7 +9,7 @@
   <h1 align="center">Errata in the Web Speech API Specification</h1>
   <dl>
    <dt>This document last updated:</a></dt>
-   <dd>September 24, 2013</dd>
+   <dd>October 17, 2013</dd>
    <dt>This document records known errors in the document:</a></dt>
    <dd><a href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">
     http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html</a>
@@ -91,6 +91,78 @@
     <ul>The SpeechSynthesis object takes exclusive ownership of the SpeechSynthesisUtterance object.
     Passing it as a speak() argument to another SpeechSynthesis object should throw an exception.
     (For example, two frames may have the same origin and each will contain a SpeechSynthesis object.)</ul>
+   </dd>
+  </dl>
+  <dl>
+   <dt>E11 2013-10-17 (Important):</dt>
+   <dd>Section 5.2 IDL: &quot;<b>attribute EventHandler onvoiceschanged;</b>&quot; is added to &quot;interface SpeechSynthesis : EventTarget&quot;.
+   </dd>
+   <dd>Section 5.2.2 getVoices method: append at the end of the definition:
+    <ul>If there are no voices available, or if the the list of available voices is not yet known
+    (for example: server-side synthesis where the list is determined asynchronously),
+    then this method MUST return a SpeechSynthesisVoiceList of length zero.</ul>
+   </dd>
+   <dd>New &quot;Section 5.2.2.1 SpeechSynthesis Events&quot; is created and contains:
+    <ul>voiceschanged: Fired when the contents of the SpeechSynthesisVoiceList, that the getVoices method will return, have changed.
+    Examples include: server-side synthesis where the list is determined asynchronously, or when client-side voices are installed/uninstalled.</ul>
+   </dd>
+  </dl>
+  <dl>
+   <dt>E12 2013-10-17 (Important):</dt>
+   <dd>Section 5.2 IDL: Add the following:
+    <pre>
+    interface SpeechSynthesisErrorEvent extends SpeechSynthesisEvent {
+        enum ErrorCode {
+          &quot;canceled&quot;,
+          &quot;interrupted&quot;,
+          &quot;audio-busy&quot;,
+          &quot;audio-hardware&quot;,
+          &quot;network&quot;,
+          &quot;synthesis-unavailable&quot;,
+          &quot;synthesis-failed&quot;,
+          &quot;language-unavailable&quot;,
+          &quot;voice-unavailable&quot;,
+          &quot;text-too-long&quot;,
+          &quot;invalid-argument&quot;,
+        };
+
+        readonly attribute ErrorCode error;
+    };
+    </pre>
+   </dd>
+   <dd>Section 5.2.4 SpeechSynthesisUtterance Events: change first sentence to:
+     <ul>Each of these events MUST use the SpeechSynthesisEvent interface, except the error event which MUST use the SpeechSynthesisErrorEvent interface.</ul>
+   </dd>
+   <dd>New &quot;Section 5.2.5.1 SpeechSynthesisErrorEvent Attributes&quot; is added and contains:
+    <ul>error attribute
+     <ul>The errorCode is an enumeration indicating what has gone wrong. The values are:
+      <ul>&quot;canceled&quot;
+       A cancel method call caused the SpeechSynthesisUtterance to be removed from the queue before it had begun being spoken.</ul>
+      <ul>&quot;interrupted&quot;
+      A cancel method call caused the SpeechSynthesisUtterance to be interrupted after it has begun being spoken and before it completed.</ul>
+      <ul>&quot;audio-busy&quot;
+       The operation cannot be completed at this time because the user-agent cannot access the audio output device.
+       (For example, the user may need to correct this by closing another application.)</ul>
+      <ul>&quot;audio-hardware&quot;
+       The operation cannot be completed at this time because the user-agent cannot identify an audio output device.
+       (For example, the user may need to connect a speaker or configure system settings.)</ul>
+      <ul>&quot;network&quot;
+       The operation cannot be completed at this time because some required network communication failed.</ul>
+      <ul>&quot;synthesis-unavailable&quot;
+       The operation cannot be completed at this time because no synthesis engine is available.
+       (For example, the user may need to install or configure a synthesis engine.)</ul>
+      <ul>&quot;synthesis-failed&quot;
+       The operation failed because synthesis engine had an error.</ul>
+      <ul>&quot;language-unavailable&quot;
+       No appropriate voice is available for the language designated in SpeechSynthesisUtterance lang.</ul>
+      <ul>&quot;voice-unavailable&quot;
+       The voice designated in SpeechSynthesisUtterance voiceURI is not available.</ul>
+      <ul>&quot;text-too-long&quot;
+       The contents of the SpeechSynthesisUtterance text attribute is too long to synthesize.</ul>
+      <ul>&quot;invalid-argument&quot;
+       The contents of the SpeechSynthesisUtterance rate, pitch or volume attribute is not supported by synthesizer.</ul>
+     </ul>
+    </ul>
    </dd>
   </dl>
  </body>
