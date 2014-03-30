@@ -349,7 +349,7 @@
         <dd>Glen Shires, Google Inc.</dd>
         <dd>Hans Wennborg, Google Inc.</dd>
       </dl>
-      <p>This document contains the <a href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">19 October 2012 Web Speech API Specification</a> with its <a href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi-errata.html"><strong>errata</strong></a> applied.</p>
+      <p>This document contains the <a href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">19 October 2012 Web Speech API Specification</a> with its <a href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi-errata.html"><strong>errata</strong></a> (E01-E15) applied.</p>
       <p>Copyright © 2014 the Contributors to the Web Speech API Specification, published by the <a href="http://www.w3.org/community/speech-api/">Speech API Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
       A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/">summary</a> is available. </p>
       <hr>
@@ -930,23 +930,23 @@
         <pre class="code">
           <code class="idl-code">
     interface SpeechSynthesis : EventTarget {
-      readonly attribute boolean <a href="#dfn-ttspending">pending</a>;
-      readonly attribute boolean <a href="#dfn-ttsspeaking">speaking</a>;
-      readonly attribute boolean <a href="#dfn-ttspaused">paused</a>;
+        readonly attribute boolean <a href="#dfn-ttspending">pending</a>;
+        readonly attribute boolean <a href="#dfn-ttsspeaking">speaking</a>;
+        readonly attribute boolean <a href="#dfn-ttspaused">paused</a>;
 
-      attribute EventHandler <a href="#dfn-ttsonvoiceschanged">onvoiceschanged</a>;
+        attribute EventHandler <a href="#dfn-ttsonvoiceschanged">onvoiceschanged</a>;
 
-      void <a href="#dfn-ttsspeak">speak</a>(SpeechSynthesisUtterance utterance);
-      void <a href="#dfn-ttscancel">cancel</a>();
-      void <a href="#dfn-ttspause">pause</a>();
-      void <a href="#dfn-ttsresume">resume</a>();
-      sequence&lt;SpeechSynthesisVoiceList&gt; <a href="#dfn-ttsgetvoices">getVoices</a>();
+        void <a href="#dfn-ttsspeak">speak</a>(SpeechSynthesisUtterance utterance);
+        void <a href="#dfn-ttscancel">cancel</a>();
+        void <a href="#dfn-ttspause">pause</a>();
+        void <a href="#dfn-ttsresume">resume</a>();
+        sequence&lt;SpeechSynthesisVoiceList&gt; <a href="#dfn-ttsgetvoices">getVoices</a>();
     };
 
     [NoInterfaceObject]
     interface SpeechSynthesisGetter
     {
-      readonly attribute SpeechSynthesis speechSynthesis;
+        readonly attribute SpeechSynthesis speechSynthesis;
     };
 
     Window implements SpeechSynthesisGetter;
@@ -954,20 +954,20 @@
     [Constructor,
      Constructor(DOMString <a href="#dfn-utterancetext">text</a>)]
     interface SpeechSynthesisUtterance : EventTarget {
-      attribute DOMString <a href="#dfn-utterancetext">text</a>;
-      attribute DOMString <a href="#dfn-utterancelang">lang</a>;
-      attribute SpeechSynthesisVoice <a href="#dfn-utterancevoice">voice</a>;
-      attribute float <a href="#dfn-utterancevolume">volume</a>;
-      attribute float <a href="#dfn-utterancerate">rate</a>;
-      attribute float <a href="#dfn-utterancepitch">pitch</a>;
+        attribute DOMString <a href="#dfn-utterancetext">text</a>;
+        attribute DOMString <a href="#dfn-utterancelang">lang</a>;
+        attribute SpeechSynthesisVoice <a href="#dfn-utterancevoice">voice</a>;
+        attribute float <a href="#dfn-utterancevolume">volume</a>;
+        attribute float <a href="#dfn-utterancerate">rate</a>;
+        attribute float <a href="#dfn-utterancepitch">pitch</a>;
 
-      attribute EventHandler <a href="#dfn-utteranceonstart">onstart</a>;
-      attribute EventHandler <a href="#dfn-utteranceonend">onend</a>;
-      attribute EventHandler <a href="#dfn-utteranceonerror">onerror</a>;
-      attribute EventHandler <a href="#dfn-utteranceonpause">onpause</a>;
-      attribute EventHandler <a href="#dfn-utteranceonresume">onresume</a>;
-      attribute EventHandler <a href="#dfn-utteranceonmark">onmark</a>;
-      attribute EventHandler <a href="#dfn-utteranceonboundary">onboundary</a>;
+        attribute EventHandler <a href="#dfn-utteranceonstart">onstart</a>;
+        attribute EventHandler <a href="#dfn-utteranceonend">onend</a>;
+        attribute EventHandler <a href="#dfn-utteranceonerror">onerror</a>;
+        attribute EventHandler <a href="#dfn-utteranceonpause">onpause</a>;
+        attribute EventHandler <a href="#dfn-utteranceonresume">onresume</a>;
+        attribute EventHandler <a href="#dfn-utteranceonmark">onmark</a>;
+        attribute EventHandler <a href="#dfn-utteranceonboundary">onboundary</a>;
     };
 
     interface SpeechSynthesisEvent : Event {
@@ -996,11 +996,11 @@
     };
 
     interface SpeechSynthesisVoice {
-      readonly attribute DOMString <a href="#dfn-voicevoiceuri">voiceURI</a>;
-      readonly attribute DOMString <a href="#dfn-voicename">name</a>;
-      readonly attribute DOMString <a href="#dfn-voicelang">lang</a>;
-      readonly attribute boolean <a href="#dfn-voicelocalservice">localService</a>;
-      readonly attribute boolean <a href="#dfn-voicedefault">default</a>;
+        readonly attribute DOMString <a href="#dfn-voicevoiceuri">voiceURI</a>;
+        readonly attribute DOMString <a href="#dfn-voicename">name</a>;
+        readonly attribute DOMString <a href="#dfn-voicelang">lang</a>;
+        readonly attribute boolean <a href="#dfn-voicelocalservice">localService</a>;
+        readonly attribute boolean <a href="#dfn-voicedefault">default</a>;
     };
 
           </code>
@@ -1129,7 +1129,7 @@
       <dt><dfn id="dfn-utteranceonerror">error</dfn> event</dt>
       <dd>Fired if there was an error that prevented successful speaking of this utterance.
       If this event fires, the <a href="#dfn-utteranceonend">end</a> event <em class="rfc2119" title="must">must</em> not be fired for this utterance.</dd>
- 
+
       <dt><dfn id="dfn-utteranceonpause">pause</dfn> event</dt>
       <dd>Fired when and if this utterance is paused mid-utterance.</dd>
 
