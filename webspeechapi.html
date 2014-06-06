@@ -343,13 +343,13 @@
       <p><a href="http://www.w3.org/"><img alt=W3C height=48 src="http://www.w3.org/Icons/w3c_home" width=72></a></p>
       <!--end-logo-->
       <h1 id="title_heading">Web Speech API Specification</h1>
-      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 30 March 2014</h2>
+      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 6 June 2014</h2>
       <dl>
         <dt>Editors:</dt>
         <dd>Glen Shires, Google Inc.</dd>
         <dd>Hans Wennborg, Google Inc.</dd>
       </dl>
-      <p>This document contains the <a href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">19 October 2012 Web Speech API Specification</a> with its <a href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi-errata.html"><strong>errata</strong></a> (E01-E15) applied.</p>
+      <p>This document contains the <a href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">19 October 2012 Web Speech API Specification</a> with its <a href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi-errata.html"><strong>errata</strong></a> (E01-E16) applied.</p>
       <p>Copyright © 2014 the Contributors to the Web Speech API Specification, published by the <a href="http://www.w3.org/community/speech-api/">Speech API Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
       A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/">summary</a> is available. </p>
       <hr>
@@ -1333,7 +1333,7 @@
     recognition.onend = reset;
 
     recognition.onresult = function (event) {
-      for (var i = resultIndex; i &lt; event.results.length; ++i) {
+      for (var i = event.resultIndex; i &lt; event.results.length; ++i) {
         if (event.results[i].isFinal) {
           textarea.value += event.results[i][0].transcript;
         }
