@@ -934,6 +934,7 @@
       <div class="blockContent">
         <pre class="code">
           <code class="idl-code">
+    [Exposed=Window]
     interface SpeechSynthesis : EventTarget {
         readonly attribute boolean <a href="#dfn-ttspending">pending</a>;
         readonly attribute boolean <a href="#dfn-ttsspeaking">speaking</a>;
@@ -956,7 +957,8 @@
 
     Window implements SpeechSynthesisGetter;
 
-    [Constructor,
+    [Exposed=Window,
+     Constructor,
      Constructor(DOMString <a href="#dfn-utterancetext">text</a>)]
     interface SpeechSynthesisUtterance : EventTarget {
         attribute DOMString <a href="#dfn-utterancetext">text</a>;
@@ -975,6 +977,7 @@
         attribute EventHandler <a href="#dfn-utteranceonboundary">onboundary</a>;
     };
 
+    [Exposed=Window]
     interface SpeechSynthesisEvent : Event {
         readonly attribute SpeechSynthesisUtterance <a href="#dfn-callbackutterance">utterance</a>;
         readonly attribute unsigned long <a href="#dfn-callbackcharindex">charIndex</a>;
@@ -982,6 +985,7 @@
         readonly attribute DOMString <a href="#dfn-callbackname">name</a>;
     };
 
+    [Exposed=Window]
     interface SpeechSynthesisErrorEvent extends SpeechSynthesisEvent {
         enum ErrorCode {
             "<a href="#dfn-sse.canceled">canceled</a>",
@@ -1000,6 +1004,7 @@
         readonly attribute ErrorCode <a href="#dfn-sse.error">error</a>;
     };
 
+    [Exposed=Window]
     interface SpeechSynthesisVoice {
         readonly attribute DOMString <a href="#dfn-voicevoiceuri">voiceURI</a>;
         readonly attribute DOMString <a href="#dfn-voicename">name</a>;
