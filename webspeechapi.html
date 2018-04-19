@@ -949,13 +949,10 @@
         sequence&lt;SpeechSynthesisVoiceList&gt; <a href="#dfn-ttsgetvoices">getVoices</a>();
     };
 
-    [NoInterfaceObject]
-    interface SpeechSynthesisGetter
+    partial interface Window
     {
         readonly attribute SpeechSynthesis speechSynthesis;
     };
-
-    Window implements SpeechSynthesisGetter;
 
     [Exposed=Window,
      Constructor,
