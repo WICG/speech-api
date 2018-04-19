@@ -563,20 +563,20 @@
         attribute EventHandler <a href="#dfn-onend">onend</a>;
     };
 
+    enum SpeechRecognitionErrorCode {
+        "<a href="#dfn-sre.nospeech">no-speech</a>",
+        "<a href="#dfn-sre.aborted">aborted</a>",
+        "<a href="#dfn-sre.audiocapture">audio-capture</a>",
+        "<a href="#dfn-sre.network">network</a>",
+        "<a href="#dfn-sre.notallowed">not-allowed</a>",
+        "<a href="#dfn-sre.servicenotallowed">service-not-allowed</a>",
+        "<a href="#dfn-sre.badgrammar">bad-grammar</a>",
+        "<a href="#dfn-sre.languagenotsupported">language-not-supported</a>"
+    };
+
     [Exposed=Window]
     interface <dfn id="speechrecognitionerror">SpeechRecognitionError</dfn> : Event {
-        enum ErrorCode {
-          "<a href="#dfn-sre.nospeech">no-speech</a>",
-          "<a href="#dfn-sre.aborted">aborted</a>",
-          "<a href="#dfn-sre.audiocapture">audio-capture</a>",
-          "<a href="#dfn-sre.network">network</a>",
-          "<a href="#dfn-sre.notallowed">not-allowed</a>",
-          "<a href="#dfn-sre.servicenotallowed">service-not-allowed</a>",
-          "<a href="#dfn-sre.badgrammar">bad-grammar</a>",
-          "<a href="#dfn-sre.languagenotsupported">language-not-supported</a>"
-        };
-
-        readonly attribute ErrorCode <a href="#dfn-error">error</a>;
+        readonly attribute SpeechRecognitionErrorCode <a href="#dfn-error">error</a>;
         readonly attribute DOMString <a href="#dfn-message">message</a>;
     };
 
@@ -985,23 +985,23 @@
         readonly attribute DOMString <a href="#dfn-callbackname">name</a>;
     };
 
+    enum SpeechSynthesisErrorCode {
+        "<a href="#dfn-sse.canceled">canceled</a>",
+        "<a href="#dfn-sse.interrupted">interrupted</a>",
+        "<a href="#dfn-sse.audio-busy">audio-busy</a>",
+        "<a href="#dfn-sse.audio-hardware">audio-hardware</a>",
+        "<a href="#dfn-sse.network">network</a>",
+        "<a href="#dfn-sse.synthesis-unavailable">synthesis-unavailable</a>",
+        "<a href="#dfn-sse.synthesis-failed">synthesis-failed</a>",
+        "<a href="#dfn-sse.language-unavailable">language-unavailable</a>",
+        "<a href="#dfn-sse.voice-unavailable">voice-unavailable</a>",
+        "<a href="#dfn-sse.text-too-long">text-too-long</a>",
+        "<a href="#dfn-sse.invalid-argument">invalid-argument</a>",
+    };
+
     [Exposed=Window]
     interface SpeechSynthesisErrorEvent extends SpeechSynthesisEvent {
-        enum ErrorCode {
-            "<a href="#dfn-sse.canceled">canceled</a>",
-            "<a href="#dfn-sse.interrupted">interrupted</a>",
-            "<a href="#dfn-sse.audio-busy">audio-busy</a>",
-            "<a href="#dfn-sse.audio-hardware">audio-hardware</a>",
-            "<a href="#dfn-sse.network">network</a>",
-            "<a href="#dfn-sse.synthesis-unavailable">synthesis-unavailable</a>",
-            "<a href="#dfn-sse.synthesis-failed">synthesis-failed</a>",
-            "<a href="#dfn-sse.language-unavailable">language-unavailable</a>",
-            "<a href="#dfn-sse.voice-unavailable">voice-unavailable</a>",
-            "<a href="#dfn-sse.text-too-long">text-too-long</a>",
-            "<a href="#dfn-sse.invalid-argument">invalid-argument</a>",
-        };
-
-        readonly attribute ErrorCode <a href="#dfn-sse.error">error</a>;
+        readonly attribute SpeechSynthesisErrorCode <a href="#dfn-sse.error">error</a>;
     };
 
     [Exposed=Window]
