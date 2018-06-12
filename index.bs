@@ -15,7 +15,7 @@ Boilerplate: index no, idl-index no
 </pre>
 
 
-<h2 id=introduction><span class=secno>2 </span>Introduction</h2>
+<h2 id=introduction>Introduction</h2>
 
 <p><em>This section is non-normative.</em></p>
 
@@ -33,7 +33,7 @@ This subset supports the majority of use-cases and sample code in the Incubator 
 This subset does not preclude future standardization of additions to the markup, API or underlying transport protocols, and indeed the Incubator Report defines a potential roadmap for such future work.</p>
 
 
-<h2 id=use_cases><span class=secno>3 </span>Use Cases</h2>
+<h2 id=use_cases>Use Cases</h2>
 
 <p><em>This section is non-normative.</em></p>
 
@@ -67,7 +67,7 @@ This does not preclude adding support for this as a future API enhancement, and 
 
 <p>Note that for many usages and implementations, it is possible to avoid the need for Rerecognition by using a larger grammar, or by combining multiple grammars &mdash; both of these techniques are supported in this specification.</p>
 
-<h2 id=security><span class=secno>4 </span>Security and privacy considerations</h2>
+<h2 id=security>Security and privacy considerations</h2>
 
 <ol>
   <li>User agents must only start speech input sessions with explicit, informed user consent.
@@ -107,11 +107,11 @@ This does not preclude adding support for this as a future API enhancement, and 
   The above recommendations are intended to reduce this risk of such attacks.</li>
 </ol>
 
-<h2 id="api_description"><span class=secno>5 </span>API Description</h2>
+<h2 id="api_description">API Description</h2>
 
 <p><em>This section is normative.</em></p>
 
-<h3 id="speechreco-section"><span class=secno>5.1 </span>The SpeechRecognition Interface</h3>
+<h3 id="speechreco-section">The SpeechRecognition Interface</h3>
 
 <p>The speech recognition interface is the scripted web <acronym title="Application Programming Interface">API</acronym> for controlling a given recognition.</p>
 The term "final result" indicates a SpeechRecognitionResult in which the final attribute is true.
@@ -224,7 +224,7 @@ interface <dfn id="dfn-speechgrammarlist">SpeechGrammarList</dfn> {
   </div>
 </div>
 
-<h4 id="speechreco-attributes"><span class=secno>5.1.1 </span>SpeechRecognition Attributes</h4>
+<h4 id="speechreco-attributes">SpeechRecognition Attributes</h4>
 
 <dl>
   <dt><dfn id="dfn-grammars">grammars</dfn> attribute</dt>
@@ -260,7 +260,7 @@ interface <dfn id="dfn-speechgrammarlist">SpeechGrammarList</dfn> {
   <i>[Editor note: The group is currently discussing whether WebRTC might be used to specify selection of audio sources and remote recognizers.] <a href="#ref-5">[5]</a></i></dd>
 </dl>
 
-<h4 id="speechreco-methods"><span class=secno>5.1.2 </span>SpeechRecognition Methods</h4>
+<h4 id="speechreco-methods">SpeechRecognition Methods</h4>
 
 <dl>
   <dt><dfn id="dfn-start">start</dfn> method</dt>
@@ -284,7 +284,7 @@ interface <dfn id="dfn-speechgrammarlist">SpeechGrammarList</dfn> {
   If the abort method is called on an object which is already stopped or aborting (that is, start was never called on it, the <a href="#dfn-onend">end</a> or <a href="#dfn-onerror">error</a> event has fired on it, or abort was previously called on it), the user agent <em class="rfc2119" title="must">must</em> ignore the call.</dd>
 </dl>
 
-<h4 id="speechreco-events"><span class=secno>5.1.3 </span>SpeechRecognition Events</h4>
+<h4 id="speechreco-events">SpeechRecognition Events</h4>
 
 <p>The DOM Level 2 Event Model is used for speech recognition events.
 The methods in the EventTarget interface should be used for registering event listeners.
@@ -346,7 +346,7 @@ For example, some implementations may fire <a href="#dfn-onaudioend">audioend</a
   The event <em class="rfc2119" title="must">must</em> always be generated when the session ends no matter the reason for the end.</dd>
 </dl>
 
-<h4 id="speechreco-error"><span class=secno>5.1.4 </span>SpeechRecognitionError</h4>
+<h4 id="speechreco-error">SpeechRecognitionError</h4>
 
 <p>The SpeechRecognitionError event is the interface used for the <a href="#dfn-onerror">error</a> event.</p>
 <dl>
@@ -385,7 +385,7 @@ For example, some implementations may fire <a href="#dfn-onaudioend">audioend</a
   This attribute is primarily intended for debugging and developers should not use it directly in their application user interface.</dd>
 </dl>
 
-<h4 id="speechreco-alternative"><span class=secno>5.1.5 </span>SpeechRecognitionAlternative</h4>
+<h4 id="speechreco-alternative">SpeechRecognitionAlternative</h4>
 
 <p>The SpeechRecognitionAlternative represents a simple view of the response that gets used in a n-best list.
 
@@ -400,7 +400,7 @@ For example, some implementations may fire <a href="#dfn-onaudioend">audioend</a
   <i>[Editor note: The group is currently discussing whether confidence can be specified in a speech-recognition-engine-independent manner and whether confidence threshold and nomatch should be included, because this is not a dialog API.] <a href="#ref-4">[4]</a></i></dd>
 </dl>
 
-<h4 id="speechreco-result"><span class=secno>5.1.6 </span>SpeechRecognitionResult</h4>
+<h4 id="speechreco-result">SpeechRecognitionResult</h4>
 
 <p>The SpeechRecognitionResult object represents a single one-shot recognition match, either as one small part of a continuous recognition or as the complete return result of a non-continuous recognition.</p>
 
@@ -419,7 +419,7 @@ For example, some implementations may fire <a href="#dfn-onaudioend">audioend</a
   If the value is false, then this represents an interim result that could still be changed.</dd>
 </dl>
 
-<h4 id="speechreco-resultlist"><span class=secno>5.1.7 </span>SpeechRecognitionList</h4>
+<h4 id="speechreco-resultlist">SpeechRecognitionList</h4>
 
 <p>The SpeechRecognitionResultList object holds a sequence of recognition results representing the complete return result of a continuous recognition.
 For a non-continuous recognition it will hold only a single value.</p>
@@ -434,7 +434,7 @@ For a non-continuous recognition it will hold only a single value.</p>
   The user agent <em class="rfc2119" title="must">must</em> ensure that the length attribute is set to the number of elements in the array.</dd>
 </dl>
 
-<h4 id="speechreco-event"><span class=secno>5.1.8 </span>SpeechRecognitionEvent</h4>
+<h4 id="speechreco-event">SpeechRecognitionEvent</h4>
 
 <p>The SpeechRecognitionEvent is the event that is raised each time there are any changes to interim or final results.</p>
 
@@ -467,7 +467,7 @@ For a non-continuous recognition it will hold only a single value.</p>
   The user agent <em class="rfc2119" title="must">may</em> add additional annotations to provide a richer result for the developer.</dd>
 </dl>
 
-<h4 id="speechreco-speechgrammar"><span class=secno>5.1.9 </span>SpeechGrammar</h4>
+<h4 id="speechreco-speechgrammar">SpeechGrammar</h4>
 
 <p>The SpeechGrammar object represents a container for a grammar.
 <i>[Editor note: The group is currently discussing options for which grammar formats should be supported, how builtin grammar types are specified, and default grammars when not specified.] <a href="#ref-2">[2]</a> <a href="#ref-3">[3]</a></i>
@@ -484,7 +484,7 @@ This structure has the following attributes:</p>
   Larger weight values positively weight the grammar while smaller weight values make the grammar weighted less strongly.</dd>
 </dl>
 
-<h4 id="speechreco-speechgrammarlist"><span class=secno>5.1.10 </span>SpeechGrammarList</h4>
+<h4 id="speechreco-speechgrammarlist">SpeechGrammarList</h4>
 
 <p>The SpeechGrammarList object represents a collection of SpeechGrammar objects.
 This structure has the following attributes:</p>
@@ -513,7 +513,7 @@ This structure has the following attributes:</p>
   If the weight parameter is not present, the default value of 1.0 is used.</dd>
 </dl>
 
-<h3 id="tts-section"><span class=secno>5.2 </span>The SpeechSynthesis Interface</h3>
+<h3 id="tts-section">The SpeechSynthesis Interface</h3>
 
 <p>The SpeechSynthesis interface is the scripted web <acronym title="Application Programming Interface">API</acronym> for controlling a text-to-speech output.</p>
 
@@ -605,7 +605,7 @@ interface SpeechSynthesisVoice {
   </div>
 </div>
 
-<h4 id="tts-attributes"><span class=secno>5.2.1 </span>SpeechSynthesis Attributes</h4>
+<h4 id="tts-attributes">SpeechSynthesis Attributes</h4>
 
 <dl>
   <dt><dfn id="dfn-ttspending">pending</dfn> attribute</dt>
@@ -622,7 +622,7 @@ interface SpeechSynthesisVoice {
   The default state of a the global SpeechSynthesis instance for a new window is the non-paused state.</dd>
 </dl>
 
-<h4 id="tts-methods"><span class=secno>5.2.2 </span>SpeechSynthesis Methods</h4>
+<h4 id="tts-methods">SpeechSynthesis Methods</h4>
 
 <dl>
   <dt><dfn id="dfn-ttsspeak">speak</dfn> method</dt>
@@ -659,7 +659,7 @@ interface SpeechSynthesisVoice {
   then this method <em class="rfc2119" title="must">must</em> return a SpeechSynthesisVoiceList of length zero.</dd>
 </dl>
 
-<h4 id="tts-events"><span class=secno>5.2.2.1 </span>SpeechSynthesis Events</h4>
+<h4 id="tts-events">SpeechSynthesis Events</h4>
 
 <dl>
   <dt><dfn id="dfn-ttsonvoiceschanged">voiceschanged</dfn> event</dt>
@@ -667,7 +667,7 @@ interface SpeechSynthesisVoice {
   Examples include: server-side synthesis where the list is determined asynchronously, or when client-side voices are installed/uninstalled.</dd>
 </dl>
 
-<h4 id="utterance-attributes"><span class=secno>5.2.3 </span>SpeechSynthesisUtterance Attributes</h4>
+<h4 id="utterance-attributes">SpeechSynthesisUtterance Attributes</h4>
 
 <dl>
   <dt><dfn id="dfn-utterancetext">text</dfn> attribute</dt>
@@ -709,7 +709,7 @@ interface SpeechSynthesisVoice {
   If SSML is used, this value will be overridden by prosody tags in the markup.</dd>
 </dl>
 
-<h4 id="utterance-events"><span class=secno>5.2.4 </span>SpeechSynthesisUtterance Events</h4>
+<h4 id="utterance-events">SpeechSynthesisUtterance Events</h4>
 
 Each of these events <em class="rfc2119" title="must">must</em> use the <a href="#speechsynthesisevent">SpeechSynthesisEvent</a> interface,
 except the error event which <em class="rfc2119" title="must">must</em> use the <a href="#speechsynthesiserrorevent">SpeechSynthesisErrorEvent</a> interface.
@@ -744,7 +744,7 @@ These events bubble up to SpeechSynthesis.
   The user agent <em class="rfc2119" title="must">must</em> fire this event if the speech synthesis engine provides the event.</dd>
 </dl>
 
-<h4 id="speechsynthesisevent"><span class=secno>5.2.5 </span>SpeechSynthesisEvent Attributes</h4>
+<h4 id="speechsynthesisevent">SpeechSynthesisEvent Attributes</h4>
 
 <dl>
   <dt><dfn id="dfn-callbackutterance">utterance</dfn> attribute</dt>
@@ -765,7 +765,7 @@ These events bubble up to SpeechSynthesis.
   For all other events, this value should return undefined.</dd>
 </dl>
 
-<h4 id="speechsynthesiserrorevent"><span class=secno>5.2.5.1 </span>SpeechSynthesisErrorEvent Attributes</h4>
+<h4 id="speechsynthesiserrorevent">SpeechSynthesisErrorEvent Attributes</h4>
 
 <p>The SpeechSynthesisErrorEvent is the interface used for the SpeechSynthesisUtterance <a href="#dfn-utteranceonerror">error</a> event.</p>
 <dl>
@@ -816,7 +816,7 @@ These events bubble up to SpeechSynthesis.
   This attribute is primarily intended for debugging and developers should not use it directly in their application user interface.</dd>
 </dl>
 
-<h4 id="speechsynthesisvoice"><span class=secno>5.2.6 </span>SpeechSynthesisVoice</h4>
+<h4 id="speechsynthesisvoice">SpeechSynthesisVoice</h4>
 
 <dl>
   <dt><dfn id="dfn-voicevoiceuri">voiceURI</dfn> attribute</dt>
@@ -840,11 +840,11 @@ These events bubble up to SpeechSynthesis.
   It is user agent dependent how default voices are determined.</dd>
 </dl>
 
-<h2 id="examples"><span class=secno>6 </span>Examples</h2>
+<h2 id="examples">Examples</h2>
 
 <p><em>This section is non-normative.</em></p>
 
-<h3 id="examples-recognition"><span class=secno>6.1 </span>Speech Recognition Examples</h3>
+<h3 id="examples-recognition">Speech Recognition Examples</h3>
 
 <div class="example">
   <p>Using speech recognition to fill an input-field and perform a web search.</p>
@@ -1019,7 +1019,7 @@ These events bubble up to SpeechSynthesis.
   </div>
 </div>
 
-<h3 id="examples-synthesis"><span class=secno>6.2 </span>Speech Synthesis Examples</h3>
+<h3 id="examples-synthesis">Speech Synthesis Examples</h3>
 
 <div class="example">
   <p>Spoken text.</p>
