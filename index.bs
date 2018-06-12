@@ -146,98 +146,98 @@ The term "interim result" indicates a SpeechRecognitionResult in which the final
 
 <pre class="idl">
 [Exposed=Window, Constructor]
-interface <dfn id="dfn-speechreco">SpeechRecognition</dfn> : EventTarget {
-    <span class="comment">// recognition parameters</span>
-    attribute <a href="#dfn-speechgrammarlist">SpeechGrammarList</a> <a href="#dfn-grammars">grammars</a>;
-    attribute DOMString <a href="#dfn-lang">lang</a>;
-    attribute boolean <a href="#dfn-continuous">continuous</a>;
-    attribute boolean <a href="#dfn-interimresults">interimResults</a>;
-    attribute unsigned long <a href="#dfn-maxalternatives">maxAlternatives</a>;
-    attribute DOMString <a href="#dfn-serviceuri">serviceURI</a>;
+interface SpeechRecognition : EventTarget {
+    // recognition parameters
+    attribute SpeechGrammarList grammars;
+    attribute DOMString lang;
+    attribute boolean continuous;
+    attribute boolean interimResults;
+    attribute unsigned long maxAlternatives;
+    attribute DOMString serviceURI;
 
-    <span class="comment">// methods to drive the speech interaction</span>
-    void <a href="#dfn-start">start</a>();
-    void <a href="#dfn-stop">stop</a>();
-    void <a href="#dfn-abort">abort</a>();
+    // methods to drive the speech interaction
+    void start();
+    void stop();
+    void abort();
 
-    <span class="comment">// event methods</span>
-    attribute EventHandler <a href="#dfn-onaudiostart">onaudiostart</a>;
-    attribute EventHandler <a href="#dfn-onsoundstart">onsoundstart</a>;
-    attribute EventHandler <a href="#dfn-onspeechstart">onspeechstart</a>;
-    attribute EventHandler <a href="#dfn-onspeechend">onspeechend</a>;
-    attribute EventHandler <a href="#dfn-onsoundend">onsoundend</a>;
-    attribute EventHandler <a href="#dfn-onaudioend">onaudioend</a>;
-    attribute EventHandler <a href="#dfn-onresult">onresult</a>;
-    attribute EventHandler <a href="#dfn-onnomatch">onnomatch</a>;
-    attribute EventHandler <a href="#dfn-onerror">onerror</a>;
-    attribute EventHandler <a href="#dfn-onstart">onstart</a>;
-    attribute EventHandler <a href="#dfn-onend">onend</a>;
+    // event methods
+    attribute EventHandler onaudiostart;
+    attribute EventHandler onsoundstart;
+    attribute EventHandler onspeechstart;
+    attribute EventHandler onspeechend;
+    attribute EventHandler onsoundend;
+    attribute EventHandler onaudioend;
+    attribute EventHandler onresult;
+    attribute EventHandler onnomatch;
+    attribute EventHandler onerror;
+    attribute EventHandler onstart;
+    attribute EventHandler onend;
 };
 
 enum SpeechRecognitionErrorCode {
-    "<a href="#dfn-sre.nospeech">no-speech</a>",
-    "<a href="#dfn-sre.aborted">aborted</a>",
-    "<a href="#dfn-sre.audiocapture">audio-capture</a>",
-    "<a href="#dfn-sre.network">network</a>",
-    "<a href="#dfn-sre.notallowed">not-allowed</a>",
-    "<a href="#dfn-sre.servicenotallowed">service-not-allowed</a>",
-    "<a href="#dfn-sre.badgrammar">bad-grammar</a>",
-    "<a href="#dfn-sre.languagenotsupported">language-not-supported</a>"
+    "no-speech",
+    "aborted",
+    "audio-capture",
+    "network",
+    "not-allowed",
+    "service-not-allowed",
+    "bad-grammar",
+    "language-not-supported"
 };
 
 [Exposed=Window]
-interface <dfn id="speechrecognitionerror">SpeechRecognitionError</dfn> : Event {
-    readonly attribute SpeechRecognitionErrorCode <a href="#dfn-error">error</a>;
-    readonly attribute DOMString <a href="#dfn-message">message</a>;
+interface SpeechRecognitionError : Event {
+    readonly attribute SpeechRecognitionErrorCode error;
+    readonly attribute DOMString message;
 };
 
-<span class="comment">// Item in N-best list</span>
+// Item in N-best list
 [Exposed=Window]
-interface <dfn id="speechrecognitionalternative">SpeechRecognitionAlternative</dfn> {
-    readonly attribute DOMString <a href="#dfn-transcript">transcript</a>;
-    readonly attribute float <a href="#dfn-confidence">confidence</a>;
+interface SpeechRecognitionAlternative {
+    readonly attribute DOMString transcript;
+    readonly attribute float confidence;
 };
 
-<span class="comment">// A complete one-shot simple response</span>
+// A complete one-shot simple response
 [Exposed=Window]
-interface <dfn id="speechrecognitionresult">SpeechRecognitionResult</dfn> {
-    readonly attribute unsigned long <a href="#dfn-length">length</a>;
-    getter <a href="#speechrecognitionalternative">SpeechRecognitionAlternative</a> <a href="#dfn-item">item</a>(in unsigned long index);
-    readonly attribute boolean <a href="#dfn-isFinal">isFinal</a>;
+interface SpeechRecognitionResult {
+    readonly attribute unsigned long length;
+    getter SpeechRecognitionAlternative item(in unsigned long index);
+    readonly attribute boolean isFinal;
 };
 
-<span class="comment">// A collection of responses (used in continuous mode)</span>
+// A collection of responses (used in continuous mode)
 [Exposed=Window]
-interface <dfn id="speechrecognitionresultlist">SpeechRecognitionResultList</dfn> {
-    readonly attribute unsigned long <a href="#dfn-speechrecognitionresultlistlength">length</a>;
-    getter <a href="#speechrecognitionresult">SpeechRecognitionResult</a> <a href="#dfn-speechrecognitionresultlistitem">item</a>(in unsigned long index);
+interface SpeechRecognitionResultList {
+    readonly attribute unsigned long length;
+    getter SpeechRecognitionResult item(in unsigned long index);
 };
 
-<span class="comment">// A full response, which could be interim or final, part of a continuous response or not</span>
+// A full response, which could be interim or final, part of a continuous response or not
 [Exposed=Window]
-interface <dfn id="speechrecognitionevent">SpeechRecognitionEvent</dfn> : Event {
-    readonly attribute unsigned long <a href="#dfn-resultIndex">resultIndex</a>;
-    readonly attribute <a href="#speechrecognitionresultlist">SpeechRecognitionResultList</a> <a href="#dfn-results">results</a>;
-    readonly attribute any <a href="#dfn-interpretation">interpretation</a>;
-    readonly attribute Document <a href="#dfn-emma">emma</a>;
+interface SpeechRecognitionEvent : Event {
+    readonly attribute unsigned long resultIndex;
+    readonly attribute SpeechRecognitionResultList results;
+    readonly attribute any interpretation;
+    readonly attribute Document emma;
 };
 
-<span class="comment">// The object representing a speech grammar</span>
+// The object representing a speech grammar
 [Exposed=Window, Constructor]
-interface <dfn id="dfn-speechgrammar">SpeechGrammar</dfn> {
-    attribute DOMString <a href="#dfn-grammarSrc">src</a>;
-    attribute float <a href="#dfn-grammarWeight">weight</a>;
+interface SpeechGrammar {
+    attribute DOMString src;
+    attribute float weight;
 };
 
-<span class="comment">// The object representing a speech grammar collection</span>
+// The object representing a speech grammar collection
 [Exposed=Window, Constructor]
-interface <dfn id="dfn-speechgrammarlist">SpeechGrammarList</dfn> {
-    readonly attribute unsigned long <a href="#dfn-speechgrammarlistlength">length</a>;
-    getter <a href="#dfn-speechgrammar">SpeechGrammar</a> <a href="#dfn-speechgrammarlistitem">item</a>(in unsigned long index);
-    void <a href="#dfn-addGrammar">addFromURI</a>(in DOMString <a href="#dfn-grammarSrc">src</a>,
-                    optional float <a href="#dfn-grammarWeight">weight</a>);
-    void <a href="#dfn-addGrammarstring">addFromString</a>(in DOMString <a href="#dfn-grammarString">string</a>,
-                    optional float <a href="#dfn-grammarWeight">weight</a>);
+interface SpeechGrammarList {
+    readonly attribute unsigned long length;
+    getter SpeechGrammar item(in unsigned long index);
+    void addFromURI(in DOMString src,
+                    optional float weight);
+    void addFromString(in DOMString string,
+                    optional float weight);
 };
 </pre>
 
@@ -538,17 +538,17 @@ This structure has the following attributes:</p>
 <pre class="idl">
 [Exposed=Window]
 interface SpeechSynthesis : EventTarget {
-    readonly attribute boolean <a href="#dfn-ttspending">pending</a>;
-    readonly attribute boolean <a href="#dfn-ttsspeaking">speaking</a>;
-    readonly attribute boolean <a href="#dfn-ttspaused">paused</a>;
+    readonly attribute boolean pending;
+    readonly attribute boolean speaking;
+    readonly attribute boolean paused;
 
-    attribute EventHandler <a href="#dfn-ttsonvoiceschanged">onvoiceschanged</a>;
+    attribute EventHandler onvoiceschanged;
 
-    void <a href="#dfn-ttsspeak">speak</a>(SpeechSynthesisUtterance utterance);
-    void <a href="#dfn-ttscancel">cancel</a>();
-    void <a href="#dfn-ttspause">pause</a>();
-    void <a href="#dfn-ttsresume">resume</a>();
-    sequence&lt;SpeechSynthesisVoice&gt; <a href="#dfn-ttsgetvoices">getVoices</a>();
+    void speak(SpeechSynthesisUtterance utterance);
+    void cancel();
+    void pause();
+    void resume();
+    sequence&lt;SpeechSynthesisVoice> getVoices();
 };
 
 partial interface Window
@@ -558,58 +558,58 @@ partial interface Window
 
 [Exposed=Window,
   Constructor,
-  Constructor(DOMString <a href="#dfn-utterancetext">text</a>)]
+  Constructor(DOMString text)]
 interface SpeechSynthesisUtterance : EventTarget {
-    attribute DOMString <a href="#dfn-utterancetext">text</a>;
-    attribute DOMString <a href="#dfn-utterancelang">lang</a>;
-    attribute SpeechSynthesisVoice <a href="#dfn-utterancevoice">voice</a>;
-    attribute float <a href="#dfn-utterancevolume">volume</a>;
-    attribute float <a href="#dfn-utterancerate">rate</a>;
-    attribute float <a href="#dfn-utterancepitch">pitch</a>;
+    attribute DOMString text;
+    attribute DOMString lang;
+    attribute SpeechSynthesisVoice voice;
+    attribute float volume;
+    attribute float rate;
+    attribute float pitch;
 
-    attribute EventHandler <a href="#dfn-utteranceonstart">onstart</a>;
-    attribute EventHandler <a href="#dfn-utteranceonend">onend</a>;
-    attribute EventHandler <a href="#dfn-utteranceonerror">onerror</a>;
-    attribute EventHandler <a href="#dfn-utteranceonpause">onpause</a>;
-    attribute EventHandler <a href="#dfn-utteranceonresume">onresume</a>;
-    attribute EventHandler <a href="#dfn-utteranceonmark">onmark</a>;
-    attribute EventHandler <a href="#dfn-utteranceonboundary">onboundary</a>;
+    attribute EventHandler onstart;
+    attribute EventHandler onend;
+    attribute EventHandler onerror;
+    attribute EventHandler onpause;
+    attribute EventHandler onresume;
+    attribute EventHandler onmark;
+    attribute EventHandler onboundary;
 };
 
 [Exposed=Window]
 interface SpeechSynthesisEvent : Event {
-    readonly attribute SpeechSynthesisUtterance <a href="#dfn-callbackutterance">utterance</a>;
-    readonly attribute unsigned long <a href="#dfn-callbackcharindex">charIndex</a>;
-    readonly attribute float <a href="#dfn-callbackelapsedtime">elapsedTime</a>;
-    readonly attribute DOMString <a href="#dfn-callbackname">name</a>;
+    readonly attribute SpeechSynthesisUtterance utterance;
+    readonly attribute unsigned long charIndex;
+    readonly attribute float elapsedTime;
+    readonly attribute DOMString name;
 };
 
 enum SpeechSynthesisErrorCode {
-    "<a href="#dfn-sse.canceled">canceled</a>",
-    "<a href="#dfn-sse.interrupted">interrupted</a>",
-    "<a href="#dfn-sse.audio-busy">audio-busy</a>",
-    "<a href="#dfn-sse.audio-hardware">audio-hardware</a>",
-    "<a href="#dfn-sse.network">network</a>",
-    "<a href="#dfn-sse.synthesis-unavailable">synthesis-unavailable</a>",
-    "<a href="#dfn-sse.synthesis-failed">synthesis-failed</a>",
-    "<a href="#dfn-sse.language-unavailable">language-unavailable</a>",
-    "<a href="#dfn-sse.voice-unavailable">voice-unavailable</a>",
-    "<a href="#dfn-sse.text-too-long">text-too-long</a>",
-    "<a href="#dfn-sse.invalid-argument">invalid-argument</a>",
+    "canceled",
+    "interrupted",
+    "audio-busy",
+    "audio-hardware",
+    "network",
+    "synthesis-unavailable",
+    "synthesis-failed",
+    "language-unavailable",
+    "voice-unavailable",
+    "text-too-long",
+    "invalid-argument",
 };
 
 [Exposed=Window]
 interface SpeechSynthesisErrorEvent : SpeechSynthesisEvent {
-    readonly attribute SpeechSynthesisErrorCode <a href="#dfn-sse.error">error</a>;
+    readonly attribute SpeechSynthesisErrorCode error;
 };
 
 [Exposed=Window]
 interface SpeechSynthesisVoice {
-    readonly attribute DOMString <a href="#dfn-voicevoiceuri">voiceURI</a>;
-    readonly attribute DOMString <a href="#dfn-voicename">name</a>;
-    readonly attribute DOMString <a href="#dfn-voicelang">lang</a>;
-    readonly attribute boolean <a href="#dfn-voicelocalservice">localService</a>;
-    readonly attribute boolean <a href="#dfn-voicedefault">default</a>;
+    readonly attribute DOMString voiceURI;
+    readonly attribute DOMString name;
+    readonly attribute DOMString lang;
+    readonly attribute boolean localService;
+    readonly attribute boolean default;
 };
 </pre>
 
