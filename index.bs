@@ -144,13 +144,7 @@ This does not preclude adding support for this as a future API enhancement, and 
 The term "final result" indicates a SpeechRecognitionResult in which the final attribute is true.
 The term "interim result" indicates a SpeechRecognitionResult in which the final attribute is false.
 
-<div class="block">
-  <div class="blockTitleDiv">
-    <span class="blockTitle">IDL</span>
-  </div>
-  <div class="blockContent">
-    <pre class="code">
-      <code class="idl-code">
+<pre class="idl">
 [Exposed=Window, Constructor]
 interface <dfn id="dfn-speechreco">SpeechRecognition</dfn> : EventTarget {
     <span class="comment">// recognition parameters</span>
@@ -245,11 +239,8 @@ interface <dfn id="dfn-speechgrammarlist">SpeechGrammarList</dfn> {
     void <a href="#dfn-addGrammarstring">addFromString</a>(in DOMString <a href="#dfn-grammarString">string</a>,
                     optional float <a href="#dfn-grammarWeight">weight</a>);
 };
+</pre>
 
-      </code>
-    </pre>
-  </div>
-</div>
 
 <h4 id="speechreco-attributes">SpeechRecognition Attributes</h4>
 
@@ -544,13 +535,7 @@ This structure has the following attributes:</p>
 
 <p>The SpeechSynthesis interface is the scripted web <acronym title="Application Programming Interface">API</acronym> for controlling a text-to-speech output.</p>
 
-<div class="block">
-  <div class="blockTitleDiv">
-    <span class="blockTitle">IDL</span>
-  </div>
-  <div class="blockContent">
-    <pre class="code">
-      <code class="idl-code">
+<pre class="idl">
 [Exposed=Window]
 interface SpeechSynthesis : EventTarget {
     readonly attribute boolean <a href="#dfn-ttspending">pending</a>;
@@ -626,11 +611,7 @@ interface SpeechSynthesisVoice {
     readonly attribute boolean <a href="#dfn-voicelocalservice">localService</a>;
     readonly attribute boolean <a href="#dfn-voicedefault">default</a>;
 };
-
-      </code>
-    </pre>
-  </div>
-</div>
+</pre>
 
 <h4 id="tts-attributes">SpeechSynthesis Attributes</h4>
 
