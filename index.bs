@@ -93,7 +93,7 @@ This does not preclude adding support for this as a future API enhancement, and 
   <li>The user agent may also give the user a longer explanation the first time speech input is used, to let the user now what it is and how they can tune their privacy settings to disable speech recording if required.</li>
 </ol>
 
-<h3>Implementation considerations</h3>
+<h3 id="implementation-considerations">Implementation considerations</h3>
 
 <p><em>This section is non-normative.</em></p>
 
