@@ -15,847 +15,847 @@ Boilerplate: index no, idl-index no
 </pre>
 
 
-    <h2 id=introduction><span class=secno>2 </span>Introduction</h2>
+<h2 id=introduction><span class=secno>2 </span>Introduction</h2>
 
-    <p><em>This section is non-normative.</em></p>
+<p><em>This section is non-normative.</em></p>
 
-    <p>The Web Speech API aims to enable web developers to provide, in a web browser, speech-input and text-to-speech output features that are typically not available when using standard speech-recognition or screen-reader software.
-    The API itself is agnostic of the underlying speech recognition and synthesis implementation and can support both server-based and client-based/embedded recognition and synthesis.
-    The API is designed to enable both brief (one-shot) speech input and continuous speech input.
-    Speech recognition results are provided to the web page as a list of hypotheses, along with other relevant information for each hypothesis.</p>
+<p>The Web Speech API aims to enable web developers to provide, in a web browser, speech-input and text-to-speech output features that are typically not available when using standard speech-recognition or screen-reader software.
+The API itself is agnostic of the underlying speech recognition and synthesis implementation and can support both server-based and client-based/embedded recognition and synthesis.
+The API is designed to enable both brief (one-shot) speech input and continuous speech input.
+Speech recognition results are provided to the web page as a list of hypotheses, along with other relevant information for each hypothesis.</p>
 
-    <p>This specification is a subset of the API defined in the <a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">HTML Speech Incubator Group Final Report</a> <a href="#ref-1">[1]</a>.
-    That report is entirely informative since it is not a standards track document.
-    All portions of that report may be considered informative with regards to this document, and provide an informative background to this document.
-    This specification is a fully-functional subset of that report.
-    Specifically, this subset excludes the underlying transport protocol, the proposed additions to HTML markup, and it defines a simplified subset of the JavaScript API.
-    This subset supports the majority of use-cases and sample code in the Incubator Group Final Report.
-    This subset does not preclude future standardization of additions to the markup, API or underlying transport protocols, and indeed the Incubator Report defines a potential roadmap for such future work.</p>
+<p>This specification is a subset of the API defined in the <a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">HTML Speech Incubator Group Final Report</a> <a href="#ref-1">[1]</a>.
+That report is entirely informative since it is not a standards track document.
+All portions of that report may be considered informative with regards to this document, and provide an informative background to this document.
+This specification is a fully-functional subset of that report.
+Specifically, this subset excludes the underlying transport protocol, the proposed additions to HTML markup, and it defines a simplified subset of the JavaScript API.
+This subset supports the majority of use-cases and sample code in the Incubator Group Final Report.
+This subset does not preclude future standardization of additions to the markup, API or underlying transport protocols, and indeed the Incubator Report defines a potential roadmap for such future work.</p>
 
 
-    <h2 id=use_cases><span class=secno>3 </span>Use Cases</h2>
+<h2 id=use_cases><span class=secno>3 </span>Use Cases</h2>
 
-    <p><em>This section is non-normative.</em></p>
+<p><em>This section is non-normative.</em></p>
 
-    <p>This specification supports the following use cases, as defined in <a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech-20111206/#use-cases">Section 4 of the Incubator Report</a>.</p>
+<p>This specification supports the following use cases, as defined in <a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech-20111206/#use-cases">Section 4 of the Incubator Report</a>.</p>
 
-    <ul>
-      <li>Voice Web Search</li>
-      <li>Speech Command Interface</li>
-      <li>Domain Specific Grammars Contingent on Earlier Inputs</li>
-      <li>Continuous Recognition of Open Dialog</li>
-      <li>Domain Specific Grammars Filling Multiple Input Fields</li>
-      <li>Speech UI present when no visible UI need be present</li>
-      <li>Voice Activity Detection</li>
-      <li>Temporal Structure of Synthesis to Provide Visual Feedback</li>
-      <li>Hello World</li>
-      <li>Speech Translation</li>
-      <li>Speech Enabled Email Client</li>
-      <li>Dialog Systems</li>
-      <li>Multimodal Interaction</li>
-      <li>Speech Driving Directions</li>
-      <li>Multimodal Video Game</li>
-      <li>Multimodal Search</li>
-    </ul>
+<ul>
+  <li>Voice Web Search</li>
+  <li>Speech Command Interface</li>
+  <li>Domain Specific Grammars Contingent on Earlier Inputs</li>
+  <li>Continuous Recognition of Open Dialog</li>
+  <li>Domain Specific Grammars Filling Multiple Input Fields</li>
+  <li>Speech UI present when no visible UI need be present</li>
+  <li>Voice Activity Detection</li>
+  <li>Temporal Structure of Synthesis to Provide Visual Feedback</li>
+  <li>Hello World</li>
+  <li>Speech Translation</li>
+  <li>Speech Enabled Email Client</li>
+  <li>Dialog Systems</li>
+  <li>Multimodal Interaction</li>
+  <li>Speech Driving Directions</li>
+  <li>Multimodal Video Game</li>
+  <li>Multimodal Search</li>
+</ul>
 
-    <p>To keep the API to a minimum, this specification does not directly support the following use case.
-    This does not preclude adding support for this as a future API enhancement, and indeed the Incubator report provides a roadmap for doing so.</p>
+<p>To keep the API to a minimum, this specification does not directly support the following use case.
+This does not preclude adding support for this as a future API enhancement, and indeed the Incubator report provides a roadmap for doing so.</p>
 
-    <ul>
-      <li>Rerecognition</li>
-    </ul>
+<ul>
+  <li>Rerecognition</li>
+</ul>
 
-    <p>Note that for many usages and implementations, it is possible to avoid the need for Rerecognition by using a larger grammar, or by combining multiple grammars &mdash; both of these techniques are supported in this specification.</p>
+<p>Note that for many usages and implementations, it is possible to avoid the need for Rerecognition by using a larger grammar, or by combining multiple grammars &mdash; both of these techniques are supported in this specification.</p>
 
-    <h2 id=security><span class=secno>4 </span>Security and privacy considerations</h2>
+<h2 id=security><span class=secno>4 </span>Security and privacy considerations</h2>
 
-    <ol>
-      <li>User agents must only start speech input sessions with explicit, informed user consent.
-      User consent can include, for example:
-      <ul>
-       <li>User click on a visible speech input element which has an obvious graphical representation showing that it will start speech input.</li>
-       <li>Accepting a permission prompt shown as the result of a call to <code>SpeechRecognition.start</code>.</li>
-       <li>Consent previously granted to always allow speech input for this web page.</li>
-      </ul>
-      </li>
+<ol>
+  <li>User agents must only start speech input sessions with explicit, informed user consent.
+  User consent can include, for example:
+  <ul>
+    <li>User click on a visible speech input element which has an obvious graphical representation showing that it will start speech input.</li>
+    <li>Accepting a permission prompt shown as the result of a call to <code>SpeechRecognition.start</code>.</li>
+    <li>Consent previously granted to always allow speech input for this web page.</li>
+  </ul>
+  </li>
 
-      <li>User agents must give the user an obvious indication when audio is being recorded.
-      <ul>
-        <li>In a graphical user agent, this could be a mandatory notification displayed by the user agent as part of its chrome and not accessible by the web page.
-        This could for example be a pulsating/blinking record icon as part of the browser chrome/address bar, an indication in the status bar, an audible notification, or anything else relevant and accessible to the user.
-        This UI element must also allow the user to stop recording.<br>
-        <img src="ui-example.png" alt="Example UI recording notification."></li>
+  <li>User agents must give the user an obvious indication when audio is being recorded.
+  <ul>
+    <li>In a graphical user agent, this could be a mandatory notification displayed by the user agent as part of its chrome and not accessible by the web page.
+    This could for example be a pulsating/blinking record icon as part of the browser chrome/address bar, an indication in the status bar, an audible notification, or anything else relevant and accessible to the user.
+    This UI element must also allow the user to stop recording.<br>
+    <img src="ui-example.png" alt="Example UI recording notification."></li>
 
-        <li>In a speech-only user agent, the indication may for example take the form of the system speaking the label of the speech input element, followed by a short beep.</li>
-      </ul>
-      </li>
+    <li>In a speech-only user agent, the indication may for example take the form of the system speaking the label of the speech input element, followed by a short beep.</li>
+  </ul>
+  </li>
 
-      <li>The user agent may also give the user a longer explanation the first time speech input is used, to let the user now what it is and how they can tune their privacy settings to disable speech recording if required.</li>
-    </ol>
+  <li>The user agent may also give the user a longer explanation the first time speech input is used, to let the user now what it is and how they can tune their privacy settings to disable speech recording if required.</li>
+</ol>
 
-    <h3>Implementation considerations</h3>
+<h3>Implementation considerations</h3>
 
-    <p><em>This section is non-normative.</em></p>
+<p><em>This section is non-normative.</em></p>
 
-    <ol>
-      <li>Spoken password inputs can be problematic from a security perspective, but it is up to the user to decide if they want to speak their password.</li>
+<ol>
+  <li>Spoken password inputs can be problematic from a security perspective, but it is up to the user to decide if they want to speak their password.</li>
 
-      <li>Speech input could potentially be used to eavesdrop on users.
-      Malicious webpages could use tricks such as hiding the input element or otherwise making the user believe that it has stopped recording speech while continuing to do so.
-      They could also potentially style the input element to appear as something else and trick the user into clicking them.
-      An example of styling the file input element can be seen at <a href="http://www.quirksmode.org/dom/inputfile.html">http://www.quirksmode.org/dom/inputfile.html</a>.
-      The above recommendations are intended to reduce this risk of such attacks.</li>
-    </ol>
+  <li>Speech input could potentially be used to eavesdrop on users.
+  Malicious webpages could use tricks such as hiding the input element or otherwise making the user believe that it has stopped recording speech while continuing to do so.
+  They could also potentially style the input element to appear as something else and trick the user into clicking them.
+  An example of styling the file input element can be seen at <a href="http://www.quirksmode.org/dom/inputfile.html">http://www.quirksmode.org/dom/inputfile.html</a>.
+  The above recommendations are intended to reduce this risk of such attacks.</li>
+</ol>
 
-    <h2 id="api_description"><span class=secno>5 </span>API Description</h2>
+<h2 id="api_description"><span class=secno>5 </span>API Description</h2>
 
-    <p><em>This section is normative.</em></p>
+<p><em>This section is normative.</em></p>
 
-    <h3 id="speechreco-section"><span class=secno>5.1 </span>The SpeechRecognition Interface</h3>
+<h3 id="speechreco-section"><span class=secno>5.1 </span>The SpeechRecognition Interface</h3>
 
-    <p>The speech recognition interface is the scripted web <acronym title="Application Programming Interface">API</acronym> for controlling a given recognition.</p>
-    The term "final result" indicates a SpeechRecognitionResult in which the final attribute is true.
-    The term "interim result" indicates a SpeechRecognitionResult in which the final attribute is false.
+<p>The speech recognition interface is the scripted web <acronym title="Application Programming Interface">API</acronym> for controlling a given recognition.</p>
+The term "final result" indicates a SpeechRecognitionResult in which the final attribute is true.
+The term "interim result" indicates a SpeechRecognitionResult in which the final attribute is false.
 
-    <div class="block">
-      <div class="blockTitleDiv">
-        <span class="blockTitle">IDL</span>
-      </div>
-      <div class="blockContent">
-        <pre class="code">
-          <code class="idl-code">
-    [Exposed=Window, Constructor]
-    interface <dfn id="dfn-speechreco">SpeechRecognition</dfn> : EventTarget {
-        <span class="comment">// recognition parameters</span>
-        attribute <a href="#dfn-speechgrammarlist">SpeechGrammarList</a> <a href="#dfn-grammars">grammars</a>;
-        attribute DOMString <a href="#dfn-lang">lang</a>;
-        attribute boolean <a href="#dfn-continuous">continuous</a>;
-        attribute boolean <a href="#dfn-interimresults">interimResults</a>;
-        attribute unsigned long <a href="#dfn-maxalternatives">maxAlternatives</a>;
-        attribute DOMString <a href="#dfn-serviceuri">serviceURI</a>;
+<div class="block">
+  <div class="blockTitleDiv">
+    <span class="blockTitle">IDL</span>
+  </div>
+  <div class="blockContent">
+    <pre class="code">
+      <code class="idl-code">
+[Exposed=Window, Constructor]
+interface <dfn id="dfn-speechreco">SpeechRecognition</dfn> : EventTarget {
+    <span class="comment">// recognition parameters</span>
+    attribute <a href="#dfn-speechgrammarlist">SpeechGrammarList</a> <a href="#dfn-grammars">grammars</a>;
+    attribute DOMString <a href="#dfn-lang">lang</a>;
+    attribute boolean <a href="#dfn-continuous">continuous</a>;
+    attribute boolean <a href="#dfn-interimresults">interimResults</a>;
+    attribute unsigned long <a href="#dfn-maxalternatives">maxAlternatives</a>;
+    attribute DOMString <a href="#dfn-serviceuri">serviceURI</a>;
 
-        <span class="comment">// methods to drive the speech interaction</span>
-        void <a href="#dfn-start">start</a>();
-        void <a href="#dfn-stop">stop</a>();
-        void <a href="#dfn-abort">abort</a>();
+    <span class="comment">// methods to drive the speech interaction</span>
+    void <a href="#dfn-start">start</a>();
+    void <a href="#dfn-stop">stop</a>();
+    void <a href="#dfn-abort">abort</a>();
 
-        <span class="comment">// event methods</span>
-        attribute EventHandler <a href="#dfn-onaudiostart">onaudiostart</a>;
-        attribute EventHandler <a href="#dfn-onsoundstart">onsoundstart</a>;
-        attribute EventHandler <a href="#dfn-onspeechstart">onspeechstart</a>;
-        attribute EventHandler <a href="#dfn-onspeechend">onspeechend</a>;
-        attribute EventHandler <a href="#dfn-onsoundend">onsoundend</a>;
-        attribute EventHandler <a href="#dfn-onaudioend">onaudioend</a>;
-        attribute EventHandler <a href="#dfn-onresult">onresult</a>;
-        attribute EventHandler <a href="#dfn-onnomatch">onnomatch</a>;
-        attribute EventHandler <a href="#dfn-onerror">onerror</a>;
-        attribute EventHandler <a href="#dfn-onstart">onstart</a>;
-        attribute EventHandler <a href="#dfn-onend">onend</a>;
-    };
+    <span class="comment">// event methods</span>
+    attribute EventHandler <a href="#dfn-onaudiostart">onaudiostart</a>;
+    attribute EventHandler <a href="#dfn-onsoundstart">onsoundstart</a>;
+    attribute EventHandler <a href="#dfn-onspeechstart">onspeechstart</a>;
+    attribute EventHandler <a href="#dfn-onspeechend">onspeechend</a>;
+    attribute EventHandler <a href="#dfn-onsoundend">onsoundend</a>;
+    attribute EventHandler <a href="#dfn-onaudioend">onaudioend</a>;
+    attribute EventHandler <a href="#dfn-onresult">onresult</a>;
+    attribute EventHandler <a href="#dfn-onnomatch">onnomatch</a>;
+    attribute EventHandler <a href="#dfn-onerror">onerror</a>;
+    attribute EventHandler <a href="#dfn-onstart">onstart</a>;
+    attribute EventHandler <a href="#dfn-onend">onend</a>;
+};
 
-    enum SpeechRecognitionErrorCode {
-        "<a href="#dfn-sre.nospeech">no-speech</a>",
-        "<a href="#dfn-sre.aborted">aborted</a>",
-        "<a href="#dfn-sre.audiocapture">audio-capture</a>",
-        "<a href="#dfn-sre.network">network</a>",
-        "<a href="#dfn-sre.notallowed">not-allowed</a>",
-        "<a href="#dfn-sre.servicenotallowed">service-not-allowed</a>",
-        "<a href="#dfn-sre.badgrammar">bad-grammar</a>",
-        "<a href="#dfn-sre.languagenotsupported">language-not-supported</a>"
-    };
+enum SpeechRecognitionErrorCode {
+    "<a href="#dfn-sre.nospeech">no-speech</a>",
+    "<a href="#dfn-sre.aborted">aborted</a>",
+    "<a href="#dfn-sre.audiocapture">audio-capture</a>",
+    "<a href="#dfn-sre.network">network</a>",
+    "<a href="#dfn-sre.notallowed">not-allowed</a>",
+    "<a href="#dfn-sre.servicenotallowed">service-not-allowed</a>",
+    "<a href="#dfn-sre.badgrammar">bad-grammar</a>",
+    "<a href="#dfn-sre.languagenotsupported">language-not-supported</a>"
+};
 
-    [Exposed=Window]
-    interface <dfn id="speechrecognitionerror">SpeechRecognitionError</dfn> : Event {
-        readonly attribute SpeechRecognitionErrorCode <a href="#dfn-error">error</a>;
-        readonly attribute DOMString <a href="#dfn-message">message</a>;
-    };
+[Exposed=Window]
+interface <dfn id="speechrecognitionerror">SpeechRecognitionError</dfn> : Event {
+    readonly attribute SpeechRecognitionErrorCode <a href="#dfn-error">error</a>;
+    readonly attribute DOMString <a href="#dfn-message">message</a>;
+};
 
-    <span class="comment">// Item in N-best list</span>
-    [Exposed=Window]
-    interface <dfn id="speechrecognitionalternative">SpeechRecognitionAlternative</dfn> {
-        readonly attribute DOMString <a href="#dfn-transcript">transcript</a>;
-        readonly attribute float <a href="#dfn-confidence">confidence</a>;
-    };
+<span class="comment">// Item in N-best list</span>
+[Exposed=Window]
+interface <dfn id="speechrecognitionalternative">SpeechRecognitionAlternative</dfn> {
+    readonly attribute DOMString <a href="#dfn-transcript">transcript</a>;
+    readonly attribute float <a href="#dfn-confidence">confidence</a>;
+};
 
-    <span class="comment">// A complete one-shot simple response</span>
-    [Exposed=Window]
-    interface <dfn id="speechrecognitionresult">SpeechRecognitionResult</dfn> {
-        readonly attribute unsigned long <a href="#dfn-length">length</a>;
-        getter <a href="#speechrecognitionalternative">SpeechRecognitionAlternative</a> <a href="#dfn-item">item</a>(in unsigned long index);
-        readonly attribute boolean <a href="#dfn-isFinal">isFinal</a>;
-    };
+<span class="comment">// A complete one-shot simple response</span>
+[Exposed=Window]
+interface <dfn id="speechrecognitionresult">SpeechRecognitionResult</dfn> {
+    readonly attribute unsigned long <a href="#dfn-length">length</a>;
+    getter <a href="#speechrecognitionalternative">SpeechRecognitionAlternative</a> <a href="#dfn-item">item</a>(in unsigned long index);
+    readonly attribute boolean <a href="#dfn-isFinal">isFinal</a>;
+};
 
-    <span class="comment">// A collection of responses (used in continuous mode)</span>
-    [Exposed=Window]
-    interface <dfn id="speechrecognitionresultlist">SpeechRecognitionResultList</dfn> {
-        readonly attribute unsigned long <a href="#dfn-speechrecognitionresultlistlength">length</a>;
-        getter <a href="#speechrecognitionresult">SpeechRecognitionResult</a> <a href="#dfn-speechrecognitionresultlistitem">item</a>(in unsigned long index);
-    };
+<span class="comment">// A collection of responses (used in continuous mode)</span>
+[Exposed=Window]
+interface <dfn id="speechrecognitionresultlist">SpeechRecognitionResultList</dfn> {
+    readonly attribute unsigned long <a href="#dfn-speechrecognitionresultlistlength">length</a>;
+    getter <a href="#speechrecognitionresult">SpeechRecognitionResult</a> <a href="#dfn-speechrecognitionresultlistitem">item</a>(in unsigned long index);
+};
 
-    <span class="comment">// A full response, which could be interim or final, part of a continuous response or not</span>
-    [Exposed=Window]
-    interface <dfn id="speechrecognitionevent">SpeechRecognitionEvent</dfn> : Event {
-        readonly attribute unsigned long <a href="#dfn-resultIndex">resultIndex</a>;
-        readonly attribute <a href="#speechrecognitionresultlist">SpeechRecognitionResultList</a> <a href="#dfn-results">results</a>;
-        readonly attribute any <a href="#dfn-interpretation">interpretation</a>;
-        readonly attribute Document <a href="#dfn-emma">emma</a>;
-    };
+<span class="comment">// A full response, which could be interim or final, part of a continuous response or not</span>
+[Exposed=Window]
+interface <dfn id="speechrecognitionevent">SpeechRecognitionEvent</dfn> : Event {
+    readonly attribute unsigned long <a href="#dfn-resultIndex">resultIndex</a>;
+    readonly attribute <a href="#speechrecognitionresultlist">SpeechRecognitionResultList</a> <a href="#dfn-results">results</a>;
+    readonly attribute any <a href="#dfn-interpretation">interpretation</a>;
+    readonly attribute Document <a href="#dfn-emma">emma</a>;
+};
 
-    <span class="comment">// The object representing a speech grammar</span>
-    [Exposed=Window, Constructor]
-    interface <dfn id="dfn-speechgrammar">SpeechGrammar</dfn> {
-        attribute DOMString <a href="#dfn-grammarSrc">src</a>;
-        attribute float <a href="#dfn-grammarWeight">weight</a>;
-    };
+<span class="comment">// The object representing a speech grammar</span>
+[Exposed=Window, Constructor]
+interface <dfn id="dfn-speechgrammar">SpeechGrammar</dfn> {
+    attribute DOMString <a href="#dfn-grammarSrc">src</a>;
+    attribute float <a href="#dfn-grammarWeight">weight</a>;
+};
 
-    <span class="comment">// The object representing a speech grammar collection</span>
-    [Exposed=Window, Constructor]
-    interface <dfn id="dfn-speechgrammarlist">SpeechGrammarList</dfn> {
-        readonly attribute unsigned long <a href="#dfn-speechgrammarlistlength">length</a>;
-        getter <a href="#dfn-speechgrammar">SpeechGrammar</a> <a href="#dfn-speechgrammarlistitem">item</a>(in unsigned long index);
-        void <a href="#dfn-addGrammar">addFromURI</a>(in DOMString <a href="#dfn-grammarSrc">src</a>,
-                        optional float <a href="#dfn-grammarWeight">weight</a>);
-        void <a href="#dfn-addGrammarstring">addFromString</a>(in DOMString <a href="#dfn-grammarString">string</a>,
-                        optional float <a href="#dfn-grammarWeight">weight</a>);
-    };
+<span class="comment">// The object representing a speech grammar collection</span>
+[Exposed=Window, Constructor]
+interface <dfn id="dfn-speechgrammarlist">SpeechGrammarList</dfn> {
+    readonly attribute unsigned long <a href="#dfn-speechgrammarlistlength">length</a>;
+    getter <a href="#dfn-speechgrammar">SpeechGrammar</a> <a href="#dfn-speechgrammarlistitem">item</a>(in unsigned long index);
+    void <a href="#dfn-addGrammar">addFromURI</a>(in DOMString <a href="#dfn-grammarSrc">src</a>,
+                    optional float <a href="#dfn-grammarWeight">weight</a>);
+    void <a href="#dfn-addGrammarstring">addFromString</a>(in DOMString <a href="#dfn-grammarString">string</a>,
+                    optional float <a href="#dfn-grammarWeight">weight</a>);
+};
 
-          </code>
-        </pre>
-      </div>
+      </code>
+    </pre>
+  </div>
+</div>
+
+<h4 id="speechreco-attributes"><span class=secno>5.1.1 </span>SpeechRecognition Attributes</h4>
+
+<dl>
+  <dt><dfn id="dfn-grammars">grammars</dfn> attribute</dt>
+  <dd>The grammars attribute stores the collection of SpeechGrammar objects which represent the grammars that are active for this recognition.</dd>
+
+  <dt><dfn id="dfn-lang">lang</dfn> attribute</dt>
+  <dd>This attribute will set the language of the recognition for the request, using a valid BCP 47 language tag. <a href="#ref-bcp47">[BCP47]</a>
+  If unset it remains unset for getting in script, but will default to use the <a href="http://www.w3.org/TR/html5/elements.html#the-lang-and-xml:lang-attributes">lang</a> of the html document root element and associated hierarchy.
+  This default value is computed and used when the input request opens a connection to the recognition service.</dd>
+
+  <dt><dfn id="dfn-continuous">continuous</dfn> attribute</dt>
+  <dd>When the continuous attribute is set to false, the user agent <em class="rfc2119" title="must">must</em> return no more than one final result in response to starting recognition,
+  for example a single turn pattern of interaction.
+  When the continuous attribute is set to true, the user agent <em class="rfc2119" title="must">must</em> return zero or more final results representing multiple consecutive recognitions in response to starting recognition,
+  for example a dictation.
+  The default value <em class="rfc2119" title="must">must</em> be false.  Note, this attribute setting does not affect interim results.</dd>
+
+  <dt><dfn id="dfn-interimresults">interimResults</dfn> attribute</dt>
+  <dd>Controls whether interim results are returned.
+  When set to true, interim results <em class="rfc2119" title="should">should</em> be returned.
+  When set to false, interim results <em class="rfc2119" title="must">must</em> NOT be returned.
+  The default value <em class="rfc2119" title="must">must</em> be false. Note, this attribute setting does not affect final results.</dd>
+
+  <dt><dfn id="dfn-maxalternatives">maxAlternatives</dfn> attribute</dt>
+  <dd>This attribute will set the maximum number of <a href="#speechreco-alternative">SpeechRecognitionAlternative</a>s per result.
+  The default value is 1.</dd>
+
+  <dt><dfn id="dfn-serviceuri">serviceURI</dfn> attribute</dt>
+  <dd>The serviceURI attribute specifies the location of the speech recognition service that the web application wishes to use.
+  If this attribute is unset at the time of the start method call, then the user agent <em class="rfc2119" title="should">must</em> use the user agent default speech service.
+  Note that the serviceURI is a generic URI and can thus point to local services either through use of a URN with meaning to the user agent or by specifying a URL that the user agent recognizes as a local service.
+  Additionally, the user agent default can be local or remote and can incorporate end user choices via interfaces provided by the user agent such as browser configuration parameters.
+  <i>[Editor note: The group is currently discussing whether WebRTC might be used to specify selection of audio sources and remote recognizers.] <a href="#ref-5">[5]</a></i></dd>
+</dl>
+
+<h4 id="speechreco-methods"><span class=secno>5.1.2 </span>SpeechRecognition Methods</h4>
+
+<dl>
+  <dt><dfn id="dfn-start">start</dfn> method</dt>
+  <dd>When the start method is called it represents the moment in time the web application wishes to begin recognition.
+  When the speech input is streaming live through the input media stream, then this start call represents the moment in time that the service <em class="rfc2119" title="must">must</em> begin to listen and try to match the grammars associated with this request.
+  Once the system is successfully listening to the recognition the user agent <em class="rfc2119" title="must">must</em> raise a start event.
+  If the start method is called on an already started object (that is, start has previously been called, and no <a href="#dfn-onerror">error</a> or <a href="#dfn-onend">end</a> event has fired on the object), the user agent <em class="rfc2119" title="must">must</em> throw an <a href="http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#invalidstateerror">InvalidStateError</a> exception and ignore the call.</dd>
+
+  <dt><dfn id="dfn-stop">stop</dfn> method</dt>
+  <dd>The stop method represents an instruction to the recognition service to stop listening to more audio, and to try and return a result using just the audio that it has already received for this recognition.
+  A typical use of the stop method might be for a web application where the end user is doing the end pointing, similar to a walkie-talkie.
+  The end user might press and hold the space bar to talk to the system and on the space down press the start call would have occurred and when the space bar is released the stop method is called to ensure that the system is no longer listening to the user.
+  Once the stop method is called the speech service <em class="rfc2119" title="must not">must not</em> collect additional audio and <em class="rfc2119" title="must not">must not</em> continue to listen to the user.
+  The speech service <em class="rfc2119" title="must">must</em> attempt to return a recognition result (or a nomatch) based on the audio that it has already collected for this recognition.
+  If the stop method is called on an object which is already stopped or being stopped (that is, start was never called on it, the <a href="#dfn-utteranceonend">end</a> or <a href="#dfn-utteranceonerror">error</a> event has fired on it, or stop was previously called on it), the user agent <em class="rfc2119" title="must">must</em> ignore the call.</dd>
+
+  <dt><dfn id="dfn-abort">abort</dfn> method</dt>
+  <dd>The abort method is a request to immediately stop listening and stop recognizing and do not return any information but that the system is done.
+  When the abort method is called, the speech service <em class="rfc2119" title="must">must</em> stop recognizing.
+  The user agent <em class="rfc2119" title="must">must</em> raise an <a href="#dfn-onend">end</a> event once the speech service is no longer connected.
+  If the abort method is called on an object which is already stopped or aborting (that is, start was never called on it, the <a href="#dfn-onend">end</a> or <a href="#dfn-onerror">error</a> event has fired on it, or abort was previously called on it), the user agent <em class="rfc2119" title="must">must</em> ignore the call.</dd>
+</dl>
+
+<h4 id="speechreco-events"><span class=secno>5.1.3 </span>SpeechRecognition Events</h4>
+
+<p>The DOM Level 2 Event Model is used for speech recognition events.
+The methods in the EventTarget interface should be used for registering event listeners.
+The SpeechRecognition interface also contains convenience attributes for registering a single event handler for each event type.
+The events do not bubble and are not cancelable.</p>
+
+<p>For all these events, the timeStamp attribute defined in the DOM Level 2 Event interface must be set to the best possible estimate of when the real-world event which the event object represents occurred.
+This timestamp must be represented in the user agent's view of time, even for events where the timestamps in question could be raised on a different machine like a remote recognition service (i.e., in a <a href="#dfn-onspeechend">speechend</a> event with a remote speech endpointer).</p>
+
+<p>Unless specified below, the ordering of the different events is undefined.
+For example, some implementations may fire <a href="#dfn-onaudioend">audioend</a> before <a href="#dfn-onspeechstart">speechstart</a> or <a href="#dfn-onspeechend">speechend</a> if the audio detector is client-side and the speech detector is server-side.</p>
+
+<dl>
+  <dt><dfn id="dfn-onaudiostart">audiostart</dfn> event</dt>
+  <dd>Fired when the user agent has started to capture audio.</dd>
+
+  <dt><dfn id="dfn-onsoundstart">soundstart</dfn> event</dt>
+  <dd>Fired when some sound, possibly speech, has been detected.
+  This <em class="rfc2119" title="must">must</em> be fired with low latency, e.g. by using a client-side energy detector.
+  The <a href="#dfn-onaudiostart">audiostart</a> event <em class="rfc2119" title="must">must</em> always have been fired before the soundstart event.</dd>
+
+  <dt><dfn id="dfn-onspeechstart">speechstart</dfn> event</dt>
+  <dd>Fired when the speech that will be used for speech recognition has started.
+  The <a href="#dfn-onaudiostart">audiostart</a> event <em class="rfc2119" title="must">must</em> always have been fired before the speechstart event.</dd>
+
+  <dt><dfn id="dfn-onspeechend">speechend</dfn> event</dt>
+  <dd>Fired when the speech that will be used for speech recognition has ended.
+  The <a href="#dfn-onspeechstart">speechstart</a> event <em class="rfc2119" title="must">must</em> always have been fired before speechend.</dd>
+
+  <dt><dfn id="dfn-onsoundend">soundend</dfn> event</dt>
+  <dd>Fired when some sound is no longer detected.
+  This <em class="rfc2119" title="must">must</em> be fired with low latency, e.g. by using a client-side energy detector.
+  The <a href="#dfn-onsoundstart">soundstart</a> event <em class="rfc2119" title="must">must</em> always have been fired before soundend.</dd>
+
+  <dt><dfn id="dfn-onaudioend">audioend</dfn> event</dt>
+  <dd>Fired when the user agent has finished capturing audio.
+  The <a href="#dfn-onaudiostart">audiostart</a> event <em class="rfc2119" title="must">must</em> always have been fired before audioend.</dd>
+
+  <dt><dfn id="dfn-onresult">result</dfn> event</dt>
+  <dd>Fired when the speech recognizer returns a result.
+  The event <em class="rfc2119" title="must">must</em> use the <a href="#speechreco-event">SpeechRecognitionEvent</a> interface.
+  The <a href="#dfn-onaudiostart">audiostart</a> event <em class="rfc2119" title="must">must</em> always have been fired before the result event.</dd>
+
+  <dt><dfn id="dfn-onnomatch">nomatch</dfn> event</dt>
+  <dd>Fired when the speech recognizer returns a final result with no recognition hypothesis that meet or exceed the confidence threshold.
+  The event <em class="rfc2119" title="must">must</em> use the <a href="#speechreco-event">SpeechRecognitionEvent</a> interface.
+  The <a href="#dfn-results">results</a> attribute in the event <em class="rfc2119" title="may">may</em> contain speech recognition results that are below the confidence threshold or <em class="rfc2119" title="may">may</em> be null.
+  The <a href="#dfn-onaudiostart">audiostart</a> event <em class="rfc2119" title="must">must</em> always have been fired before the nomatch event.</dd>
+
+  <dt><dfn id="dfn-onerror">error</dfn> event</dt>
+  <dd>Fired when a speech recognition error occurs.
+  The event <em class="rfc2119" title="must">must</em> use the <a href="#speechreco-error">SpeechRecognitionError</a> interface.</dd>
+
+  <dt><dfn id="dfn-onstart">start</dfn> event</dt>
+  <dd>Fired when the recognition service has begun to listen to the audio with the intention of recognizing.
+
+  </dd><dt><dfn id="dfn-onend">end</dfn> event</dt>
+  <dd>Fired when the service has disconnected.
+  The event <em class="rfc2119" title="must">must</em> always be generated when the session ends no matter the reason for the end.</dd>
+</dl>
+
+<h4 id="speechreco-error"><span class=secno>5.1.4 </span>SpeechRecognitionError</h4>
+
+<p>The SpeechRecognitionError event is the interface used for the <a href="#dfn-onerror">error</a> event.</p>
+<dl>
+  <dt><dfn id="dfn-error">error</dfn> attribute</dt>
+  <dd>The errorCode is an enumeration indicating what has gone wrong.
+  The values are:
+  <dl>
+    <dt><dfn id="dfn-sre.nospeech">"no-speech"</dfn></dt>
+    <dd>No speech was detected.</dd>
+
+    <dt><dfn id="dfn-sre.aborted">"aborted"</dfn></dt>
+    <dd>Speech input was aborted somehow, maybe by some user-agent-specific behavior such as UI that lets the user cancel speech input.</dd>
+
+    <dt><dfn id="dfn-sre.audiocapture">"audio-capture"</dfn></dt>
+    <dd>Audio capture failed.</dd>
+
+    <dt><dfn id="dfn-sre.network">"network"</dfn></dt>
+    <dd>Some network communication that was required to complete the recognition failed.</dd>
+
+    <dt><dfn id="dfn-sre.notallowed">"not-allowed"</dfn></dt>
+    <dd>The user agent is not allowing any speech input to occur for reasons of security, privacy or user preference.</dd>
+
+    <dt><dfn id="dfn-sre.servicenotallowed">"service-not-allowed"</dfn></dt>
+    <dd>The user agent is not allowing the web application requested speech service, but would allow some speech service, to be used either because the user agent doesn't support the selected one or because of reasons of security, privacy or user preference.</dd>
+
+    <dt><dfn id="dfn-sre.badgrammar">"bad-grammar"</dfn></dt>
+    <dd>There was an error in the speech recognition grammar or semantic tags, or the grammar format or semantic tag format is unsupported.</dd>
+
+    <dt><dfn id="dfn-sre.languagenotsupported">"language-not-supported"</dfn></dt>
+    <dd>The language was not supported.</dd>
+  </dl>
+  </dd>
+
+  <dt><dfn id="dfn-message">message</dfn> attribute</dt>
+  <dd>The message content is implementation specific.
+  This attribute is primarily intended for debugging and developers should not use it directly in their application user interface.</dd>
+</dl>
+
+<h4 id="speechreco-alternative"><span class=secno>5.1.5 </span>SpeechRecognitionAlternative</h4>
+
+<p>The SpeechRecognitionAlternative represents a simple view of the response that gets used in a n-best list.
+
+<dl>
+  <dt><dfn id="dfn-transcript">transcript</dfn> attribute</dt>
+  <dd>The transcript string represents the raw words that the user spoke.
+  For continuous recognition, leading or trailing whitespace MUST be included where necessary such that concatenation of consecutive SpeechRecognitionResults produces a proper transcript of the session.</dd>
+
+  <dt><dfn id="dfn-confidence">confidence</dfn> attribute</dt>
+  <dd>The confidence represents a numeric estimate between 0 and 1 of how confident the recognition system is that the recognition is correct.
+  A higher number means the system is more confident.
+  <i>[Editor note: The group is currently discussing whether confidence can be specified in a speech-recognition-engine-independent manner and whether confidence threshold and nomatch should be included, because this is not a dialog API.] <a href="#ref-4">[4]</a></i></dd>
+</dl>
+
+<h4 id="speechreco-result"><span class=secno>5.1.6 </span>SpeechRecognitionResult</h4>
+
+<p>The SpeechRecognitionResult object represents a single one-shot recognition match, either as one small part of a continuous recognition or as the complete return result of a non-continuous recognition.</p>
+
+<dl>
+  <dt><dfn id="dfn-length">length</dfn> attribute</dt>
+  <dd>The long attribute represents how many n-best alternatives are represented in the item array.</dd>
+
+  <dt><dfn id="dfn-item">item</dfn> getter</dt>
+  <dd>The item getter returns a SpeechRecognitionAlternative from the index into an array of n-best values.
+  If index is greater than or equal to length, this returns null.
+  The user agent <em class="rfc2119" title="must">must</em> ensure that the length attribute is set to the number of elements in the array.
+  The user agent <em class="rfc2119" title="must">must</em> ensure that the n-best list is sorted in non-increasing confidence order (each element must be less than or equal to the confidence of the preceding elements).</dd>
+
+  <dt><dfn id="dfn-isFinal">isFinal</dfn> attribute</dt>
+  <dd>The final boolean <em class="rfc2119" title="must">must</em> be set to true if this is the final time the speech service will return this particular index value.
+  If the value is false, then this represents an interim result that could still be changed.</dd>
+</dl>
+
+<h4 id="speechreco-resultlist"><span class=secno>5.1.7 </span>SpeechRecognitionList</h4>
+
+<p>The SpeechRecognitionResultList object holds a sequence of recognition results representing the complete return result of a continuous recognition.
+For a non-continuous recognition it will hold only a single value.</p>
+
+<dl>
+  <dt><dfn id="dfn-speechrecognitionresultlistlength">length</dfn> attribute</dt>
+  <dd>The length attribute indicates how many results are represented in the item array.</dd>
+
+  <dt><dfn id="dfn-speechrecognitionresultlistitem">item</dfn> getter</dt>
+  <dd>The item getter returns a SpeechRecognitionResult from the index into an array of result values.
+  If index is greater than or equal to length, this returns null.
+  The user agent <em class="rfc2119" title="must">must</em> ensure that the length attribute is set to the number of elements in the array.</dd>
+</dl>
+
+<h4 id="speechreco-event"><span class=secno>5.1.8 </span>SpeechRecognitionEvent</h4>
+
+<p>The SpeechRecognitionEvent is the event that is raised each time there are any changes to interim or final results.</p>
+
+<dl>
+  <dt><dfn id="dfn-resultIndex">resultIndex</dfn> attribute</dt>
+  <dd>The resultIndex <em class="rfc2119" title="must">must</em> be set to the lowest index in the "results" array that has changed.</dd>
+
+  <dt><dfn id="dfn-results">results</dfn> attribute</dt>
+  <dd>The array of all current recognition results for this session.
+  Specifically all final results that have been returned, followed by the current best hypothesis for all interim results.
+  It <em class="rfc2119" title="must">must</em> consist of zero or more final results followed by zero or more interim results.
+  On subsequent SpeechRecognitionResultEvent events, interim results may be overwritten by a newer interim result or by a final result or may be removed (when at the end of the "results" array and the array length decreases).
+  Final results <em class="rfc2119" title="must">must</em> not be overwritten or removed.
+  All entries for indexes less than resultIndex <em class="rfc2119" title="must">must</em> be identical to the array that was present when the last SpeechRecognitionResultEvent was raised.
+  All array entries (if any) for indexes equal or greater than resultIndex that were present in the array when the last SpeechRecognitionResultEvent was raised are removed and overwritten with new results.
+  The length of the "results" array may increase or decrease, but <em class="rfc2119" title="must">must</em> not be less than resultIndex.
+  Note that when resultIndex equals results.length, no new results are returned, this may occur when the array length decreases to remove one or more interim results.</dd>
+
+  <dt><dfn id="dfn-interpretation">interpretation</dfn> attribute</dt>
+  <dd>The interpretation represents the semantic meaning from what the user said.
+  This might be determined, for instance, through the SISR specification of semantics in a grammar.
+  <i>[Editor note: The group is currently discussing options for the value of the interpretation attribute when no interpretation has been returned by the recognizer.
+  Current options are 'null' or a copy of the transcript.] <a href="#ref-2">[2]</a></i></dd>
+
+  <dt><dfn id="dfn-emma">emma</dfn> attribute</dt>
+  <dd>EMMA 1.0 representation of this result. <a href="#ref-emma">[EMMA]</a>
+  The contents of this result could vary across user agents and recognition engines, but all implementations <em class="rfc2119" title="must">must</em> expose a valid XML document complete with EMMA namespace,
+  or if the recognizer does not supply EMMA then the user agent <em class="rfc2119" title="may">may</em> return null.
+  User agent implementations for recognizers that supply EMMA <em class="rfc2119" title="must">must</em> contain all annotations and content generated by the recognition resources utilized for recognition, except where infeasible due to conflicting attributes.
+  The user agent <em class="rfc2119" title="must">may</em> add additional annotations to provide a richer result for the developer.</dd>
+</dl>
+
+<h4 id="speechreco-speechgrammar"><span class=secno>5.1.9 </span>SpeechGrammar</h4>
+
+<p>The SpeechGrammar object represents a container for a grammar.
+<i>[Editor note: The group is currently discussing options for which grammar formats should be supported, how builtin grammar types are specified, and default grammars when not specified.] <a href="#ref-2">[2]</a> <a href="#ref-3">[3]</a></i>
+This structure has the following attributes:</p>
+
+<dl>
+  <dt><dfn id="dfn-grammarSrc">src</dfn> attribute</dt>
+  <dd>The required src attribute is the URI for the grammar.
+  Note some services may support builtin grammars that can be specified using a builtin URI scheme.</dd>
+
+  <dt><dfn id="dfn-grammarWeight">weight</dfn> attribute</dt>
+  <dd>The optional weight attribute controls the weight that the speech recognition service should use with this grammar.
+  By default, a grammar has a weight of 1.
+  Larger weight values positively weight the grammar while smaller weight values make the grammar weighted less strongly.</dd>
+</dl>
+
+<h4 id="speechreco-speechgrammarlist"><span class=secno>5.1.10 </span>SpeechGrammarList</h4>
+
+<p>The SpeechGrammarList object represents a collection of SpeechGrammar objects.
+This structure has the following attributes:</p>
+
+<dl>
+  <dt><dfn id="dfn-speechgrammarlistlength">length</dfn> attribute</dt>
+  <dd>The length attribute represents how many grammars are currently in the array.</dd>
+
+  <dt><dfn id="dfn-speechgrammarlistitem">item</dfn> getter</dt>
+  <dd>The item getter returns a SpeechGrammar from the index into an array of grammars.
+  The user agent <em class="rfc2119" title="must">must</em> ensure that the length attribute is set to the number of elements in the array.
+  The user agent <em class="rfc2119" title="must">must</em> ensure that the index order from smallest to largest matches the order in which grammars were added to the array.</dd>
+
+  <dt><dfn id="dfn-addGrammar">addFromURI</dfn> method</dt>
+  <dd>This method appends a grammar to the grammars array parameter based on URI.
+  The URI for the grammar is specified by the <a href="#dfn-grammarSrc">src</a> parameter, which represents the URI for the grammar.
+  Note, some services may support builtin grammars that can be specified by URI.
+  If the <a href="#dfn-grammarWeight">weight</a> parameter is present it represents this grammar's weight relative to the other grammar.
+  If the weight parameter is not present, the default value of 1.0 is used.</dd>
+
+  <dt><dfn id="dfn-addGrammarstring">addFromString</dfn> method</dt>
+  <dd>This method appends a grammar to the grammars array parameter based on text.
+  The content of the grammar is specified by the <dfn id="dfn-grammarString">string</dfn> parameter.
+  This content should be encoded into a data: URI when the SpeechGrammar object is created.
+  If the <a href="#dfn-grammarWeight">weight</a> parameter is present it represents this grammar's weight relative to the other grammar.
+  If the weight parameter is not present, the default value of 1.0 is used.</dd>
+</dl>
+
+<h3 id="tts-section"><span class=secno>5.2 </span>The SpeechSynthesis Interface</h3>
+
+<p>The SpeechSynthesis interface is the scripted web <acronym title="Application Programming Interface">API</acronym> for controlling a text-to-speech output.</p>
+
+<div class="block">
+  <div class="blockTitleDiv">
+    <span class="blockTitle">IDL</span>
+  </div>
+  <div class="blockContent">
+    <pre class="code">
+      <code class="idl-code">
+[Exposed=Window]
+interface SpeechSynthesis : EventTarget {
+    readonly attribute boolean <a href="#dfn-ttspending">pending</a>;
+    readonly attribute boolean <a href="#dfn-ttsspeaking">speaking</a>;
+    readonly attribute boolean <a href="#dfn-ttspaused">paused</a>;
+
+    attribute EventHandler <a href="#dfn-ttsonvoiceschanged">onvoiceschanged</a>;
+
+    void <a href="#dfn-ttsspeak">speak</a>(SpeechSynthesisUtterance utterance);
+    void <a href="#dfn-ttscancel">cancel</a>();
+    void <a href="#dfn-ttspause">pause</a>();
+    void <a href="#dfn-ttsresume">resume</a>();
+    sequence&lt;SpeechSynthesisVoice&gt; <a href="#dfn-ttsgetvoices">getVoices</a>();
+};
+
+partial interface Window
+{
+    readonly attribute SpeechSynthesis speechSynthesis;
+};
+
+[Exposed=Window,
+  Constructor,
+  Constructor(DOMString <a href="#dfn-utterancetext">text</a>)]
+interface SpeechSynthesisUtterance : EventTarget {
+    attribute DOMString <a href="#dfn-utterancetext">text</a>;
+    attribute DOMString <a href="#dfn-utterancelang">lang</a>;
+    attribute SpeechSynthesisVoice <a href="#dfn-utterancevoice">voice</a>;
+    attribute float <a href="#dfn-utterancevolume">volume</a>;
+    attribute float <a href="#dfn-utterancerate">rate</a>;
+    attribute float <a href="#dfn-utterancepitch">pitch</a>;
+
+    attribute EventHandler <a href="#dfn-utteranceonstart">onstart</a>;
+    attribute EventHandler <a href="#dfn-utteranceonend">onend</a>;
+    attribute EventHandler <a href="#dfn-utteranceonerror">onerror</a>;
+    attribute EventHandler <a href="#dfn-utteranceonpause">onpause</a>;
+    attribute EventHandler <a href="#dfn-utteranceonresume">onresume</a>;
+    attribute EventHandler <a href="#dfn-utteranceonmark">onmark</a>;
+    attribute EventHandler <a href="#dfn-utteranceonboundary">onboundary</a>;
+};
+
+[Exposed=Window]
+interface SpeechSynthesisEvent : Event {
+    readonly attribute SpeechSynthesisUtterance <a href="#dfn-callbackutterance">utterance</a>;
+    readonly attribute unsigned long <a href="#dfn-callbackcharindex">charIndex</a>;
+    readonly attribute float <a href="#dfn-callbackelapsedtime">elapsedTime</a>;
+    readonly attribute DOMString <a href="#dfn-callbackname">name</a>;
+};
+
+enum SpeechSynthesisErrorCode {
+    "<a href="#dfn-sse.canceled">canceled</a>",
+    "<a href="#dfn-sse.interrupted">interrupted</a>",
+    "<a href="#dfn-sse.audio-busy">audio-busy</a>",
+    "<a href="#dfn-sse.audio-hardware">audio-hardware</a>",
+    "<a href="#dfn-sse.network">network</a>",
+    "<a href="#dfn-sse.synthesis-unavailable">synthesis-unavailable</a>",
+    "<a href="#dfn-sse.synthesis-failed">synthesis-failed</a>",
+    "<a href="#dfn-sse.language-unavailable">language-unavailable</a>",
+    "<a href="#dfn-sse.voice-unavailable">voice-unavailable</a>",
+    "<a href="#dfn-sse.text-too-long">text-too-long</a>",
+    "<a href="#dfn-sse.invalid-argument">invalid-argument</a>",
+};
+
+[Exposed=Window]
+interface SpeechSynthesisErrorEvent : SpeechSynthesisEvent {
+    readonly attribute SpeechSynthesisErrorCode <a href="#dfn-sse.error">error</a>;
+};
+
+[Exposed=Window]
+interface SpeechSynthesisVoice {
+    readonly attribute DOMString <a href="#dfn-voicevoiceuri">voiceURI</a>;
+    readonly attribute DOMString <a href="#dfn-voicename">name</a>;
+    readonly attribute DOMString <a href="#dfn-voicelang">lang</a>;
+    readonly attribute boolean <a href="#dfn-voicelocalservice">localService</a>;
+    readonly attribute boolean <a href="#dfn-voicedefault">default</a>;
+};
+
+      </code>
+    </pre>
+  </div>
+</div>
+
+<h4 id="tts-attributes"><span class=secno>5.2.1 </span>SpeechSynthesis Attributes</h4>
+
+<dl>
+  <dt><dfn id="dfn-ttspending">pending</dfn> attribute</dt>
+  <dd>This attribute is true if the queue for the global SpeechSynthesis instance contains any utterances which have not started speaking.</dd>
+
+  <dt><dfn id="dfn-ttsspeaking">speaking</dfn> attribute</dt>
+  <dd>This attribute is true if an utterance is being spoken.
+  Specifically if an utterance has begun being spoken and has not completed being spoken.
+  This is independent of whether the global SpeechSynthesis instance is in the paused state.</dd>
+
+  <dt><dfn id="dfn-ttspaused">paused</dfn> attribute</dt>
+  <dd>This attribute is true when the global SpeechSynthesis instance is in the paused state.
+  This state is independent of whether anything is in the queue.
+  The default state of a the global SpeechSynthesis instance for a new window is the non-paused state.</dd>
+</dl>
+
+<h4 id="tts-methods"><span class=secno>5.2.2 </span>SpeechSynthesis Methods</h4>
+
+<dl>
+  <dt><dfn id="dfn-ttsspeak">speak</dfn> method</dt>
+  <dd>This method appends the SpeechSynthesisUtterance object to the end of the queue for the global SpeechSynthesis instance.
+  It does not change the paused state of the SpeechSynthesis instance.
+  If the SpeechSynthesis instance is paused, it remains paused.
+  If it is not paused and no other utterances are in the queue, then this utterance is spoken immediately,
+  else this utterance is queued to begin speaking after the other utterances in the queue have been spoken.
+  If changes are made to the SpeechSynthesisUtterance object after calling this method and prior to the corresponding <a href="#dfn-utteranceonend">end</a> or <a href="#dfn-utteranceonerror">error</a> event,
+  it is not defined whether those changes will affect what is spoken, and those changes <em class="rfc2119" title="may">may</em> cause an error to be returned.
+  The SpeechSynthesis object takes exclusive ownership of the SpeechSynthesisUtterance object.
+  Passing it as a speak() argument to another SpeechSynthesis object should throw an exception.
+  (For example, two frames may have the same origin and each will contain a SpeechSynthesis object.)</dd>
+
+  <dt><dfn id="dfn-ttscancel">cancel</dfn> method</dt>
+  <dd>This method removes all utterances from the queue.
+  If an utterance is being spoken, speaking ceases immediately.
+  This method does not change the paused state of the global SpeechSynthesis instance.</dd>
+
+  <dt><dfn id="dfn-ttspause">pause</dfn> method</dt>
+  <dd>This method puts the global SpeechSynthesis instance into the paused state.
+  If an utterance was being spoken, it pauses mid-utterance.
+  (If called when the SpeechSynthesis instance was already in the paused state, it does nothing.)</dd>
+
+  <dt><dfn id="dfn-ttsresume">resume</dfn> method</dt>
+  <dd>This method puts the global SpeechSynthesis instance into the non-paused state.
+  If an utterance was speaking, it continues speaking the utterance at the point at which it was paused, else it begins speaking the next utterance in the queue (if any).
+  (If called when the SpeechSynthesis instance was already in the non-paused state, it does nothing.)</dd>
+
+  <dt><dfn id="dfn-ttsgetvoices">getVoices</dfn> method</dt>
+  <dd>This method returns the available voices.
+  It is user agent dependent which voices are available.
+  If there are no voices available, or if the the list of available voices is not yet known (for example: server-side synthesis where the list is determined asynchronously),
+  then this method <em class="rfc2119" title="must">must</em> return a SpeechSynthesisVoiceList of length zero.</dd>
+</dl>
+
+<h4 id="tts-events"><span class=secno>5.2.2.1 </span>SpeechSynthesis Events</h4>
+
+<dl>
+  <dt><dfn id="dfn-ttsonvoiceschanged">voiceschanged</dfn> event</dt>
+  <dd>Fired when the contents of the SpeechSynthesisVoiceList, that the getVoices method will return, have changed.
+  Examples include: server-side synthesis where the list is determined asynchronously, or when client-side voices are installed/uninstalled.</dd>
+</dl>
+
+<h4 id="utterance-attributes"><span class=secno>5.2.3 </span>SpeechSynthesisUtterance Attributes</h4>
+
+<dl>
+  <dt><dfn id="dfn-utterancetext">text</dfn> attribute</dt>
+  <dd>This attribute specifies the text to be synthesized and spoken for this utterance.
+  This may be either plain text or a complete, well-formed SSML document. <a href="#ref-ssml">[SSML]</a>
+  For speech synthesis engines that do not support SSML, or only support certain tags, the user agent or speech engine must strip away the tags they do not support and speak the text.
+  There may be a maximum length of the text, it may be limited to 32,767 characters.</dd>
+
+  <dt><dfn id="dfn-utterancelang">lang</dfn> attribute</dt>
+  <dd>This attribute specifies the language of the speech synthesis for the utterance, using a valid BCP 47 language tag. <a href="#ref-bcp47">[BCP47]</a>
+  If unset it remains unset for getting in script, but will default to use the <a href="http://www.w3.org/TR/html5/elements.html#the-lang-and-xml:lang-attributes">lang</a> of the html document root element and associated hierarchy.
+  This default value is computed and used when the input request opens a connection to the recognition service.</dd>
+
+  <dt><dfn id="dfn-utterancevoice">voice</dfn> attribute</dt>
+  <dd>The voice attribute specifies speech synthesis voice that the web application wishes to use.
+  If, at the time of the play method call, this attribute has been set to one of the SpeechSynthesisVoice objects returned by getVoices, then the user agent <em class="rfc2119" title="must">must</em> use that voice.
+  If this attribute is unset or null at the time of the play method call, then the user agent <em class="rfc2119" title="must">must</em> use a user agent default voice.
+  The user agent default voice <em class="rfc2119" title="should">should</em> support the current language (see "lang" attribute) and can be a local or remote speech service and can incorporate end user choices via interfaces provided by the user agent such as browser configuration parameters.
+  </dd>
+
+  <dt><dfn id="dfn-utterancevolume">volume</dfn> attribute</dt>
+  <dd>This attribute specifies the speaking volume for the utterance.
+  It ranges between 0 and 1 inclusive, with 0 being the lowest volume and 1 the highest volume, with a default of 1.
+  If SSML is used, this value will be overridden by prosody tags in the markup.</dd>
+
+  <dt><dfn id="dfn-utterancerate">rate</dfn> attribute</dt>
+  <dd>This attribute specifies the speaking rate for the utterance.
+  It is relative to the default rate for this voice.
+  1 is the default rate supported by the speech synthesis engine or specific voice (which should correspond to a normal speaking rate).
+  2 is twice as fast, and 0.5 is half as fast.
+  Values below 0.1 or above 10 are strictly disallowed, but speech synthesis engines or specific voices may constrain the minimum and maximum rates further, for example, a particular voice may not actually speak faster than 3 times normal even if you specify a value larger than 3.
+  If SSML is used, this value will be overridden by prosody tags in the markup.</dd>
+
+  <dt><dfn id="dfn-utterancepitch">pitch</dfn> attribute</dt>
+  <dd>This attribute specifies the speaking pitch for the utterance.
+  It ranges between 0 and 2 inclusive, with 0 being the lowest pitch and 2 the highest pitch.
+  1 corresponds to the default pitch of the speech synthesis engine or specific voice.
+  Speech synthesis engines or voices may constrain the minimum and maximum rates further.
+  If SSML is used, this value will be overridden by prosody tags in the markup.</dd>
+</dl>
+
+<h4 id="utterance-events"><span class=secno>5.2.4 </span>SpeechSynthesisUtterance Events</h4>
+
+Each of these events <em class="rfc2119" title="must">must</em> use the <a href="#speechsynthesisevent">SpeechSynthesisEvent</a> interface,
+except the error event which <em class="rfc2119" title="must">must</em> use the <a href="#speechsynthesiserrorevent">SpeechSynthesisErrorEvent</a> interface.
+These events bubble up to SpeechSynthesis.
+
+<dl>
+  <dt><dfn id="dfn-utteranceonstart">start</dfn> event</dt>
+  <dd>Fired when this utterance has begun to be spoken.</dd>
+
+  <dt><dfn id="dfn-utteranceonend">end</dfn> event</dt>
+  <dd>Fired when this utterance has completed being spoken.
+  If this event fires, the <a href="#dfn-utteranceonerror">error</a> event <em class="rfc2119" title="must">must</em> not be fired for this utterance.</dd>
+
+  <dt><dfn id="dfn-utteranceonerror">error</dfn> event</dt>
+  <dd>Fired if there was an error that prevented successful speaking of this utterance.
+  If this event fires, the <a href="#dfn-utteranceonend">end</a> event <em class="rfc2119" title="must">must</em> not be fired for this utterance.</dd>
+
+  <dt><dfn id="dfn-utteranceonpause">pause</dfn> event</dt>
+  <dd>Fired when and if this utterance is paused mid-utterance.</dd>
+
+  <dt><dfn id="dfn-utteranceonresume">resume</dfn> event</dt>
+  <dd>Fired when and if this utterance is resumed after being paused mid-utterance.
+  Adding the utterance to the queue while the global SpeechSynthesis instance is in the paused state, and then calling the resume method
+  does not cause the resume event to be fired, in this case the utterance's <a href="#dfn-utteranceonstart">start</a> event will be called when the utterance starts.</dd>
+
+  <dt><dfn id="dfn-utteranceonmark">mark</dfn> event</dt>
+  <dd>Fired when the spoken utterance reaches a named "mark" tag in SSML. <a href="#ref-ssml">[SSML]</a>
+  The user agent <em class="rfc2119" title="must">must</em> fire this event if the speech synthesis engine provides the event.</dd>
+
+  <dt><dfn id="dfn-utteranceonboundary">boundary</dfn> event</dt>
+  <dd>Fired when the spoken utterance reaches a word or sentence boundary.
+  The user agent <em class="rfc2119" title="must">must</em> fire this event if the speech synthesis engine provides the event.</dd>
+</dl>
+
+<h4 id="speechsynthesisevent"><span class=secno>5.2.5 </span>SpeechSynthesisEvent Attributes</h4>
+
+<dl>
+  <dt><dfn id="dfn-callbackutterance">utterance</dfn> attribute</dt>
+  <dd>This attribute contains the SpeechSynthesisUtterance that triggered this event.</dd>
+
+  <dt><dfn id="dfn-callbackcharindex">charIndex</dfn> attribute</dt>
+  <dd>This attribute indicates the zero-based character index into the original utterance string that most closely approximates the current speaking position of the speech engine.
+  No guarantee is given as to where charIndex will be with respect to word boundaries (such as at the end of the previous word or the beginning of the next word), only that all text before charIndex has already been spoken, and all text after charIndex has not yet been spoken.
+  The user agent must return this value if the speech synthesis engine supports it, otherwise the user agent must return undefined.</dd>
+
+  <dt><dfn id="dfn-callbackelapsedtime">elapsedTime</dfn> attribute</dt>
+  <dd>This attribute indicates the time, in seconds, that this event triggered, relative to when this utterance has begun to be spoken.
+  The user agent must return this value if the speech synthesis engine supports it or the user agent can otherwise determine it, otherwise the user agent must return undefined.</dd>
+
+  <dt><dfn id="dfn-callbackname">name</dfn> attribute</dt>
+  <dd>For <a href="#dfn-utteranceonmark">mark</a> events, this attribute indicates the name of the marker, as defined in SSML as the name attribute of a mark element. <a href="#ref-ssml">[SSML]</a>
+  For <a href="#dfn-utteranceonboundary">boundary</a> events, this attribute indicates the type of boundary that caused the event: "word" or "sentence".
+  For all other events, this value should return undefined.</dd>
+</dl>
+
+<h4 id="speechsynthesiserrorevent"><span class=secno>5.2.5.1 </span>SpeechSynthesisErrorEvent Attributes</h4>
+
+<p>The SpeechSynthesisErrorEvent is the interface used for the SpeechSynthesisUtterance <a href="#dfn-utteranceonerror">error</a> event.</p>
+<dl>
+  <dt><dfn id="dfn-sse.error">error</dfn> attribute</dt>
+  <dd>The errorCode is an enumeration indicating what has gone wrong.
+  The values are:
+  <dl>
+    <dt><dfn id="dfn-sse.canceled">"canceled"</dfn></dt>
+    <dd>A cancel method call caused the SpeechSynthesisUtterance to be removed from the queue before it had begun being spoken.</dd>
+
+    <dt><dfn id="dfn-sse.interrupted">"interrupted"</dfn></dt>
+    <dd>A cancel method call caused the SpeechSynthesisUtterance to be interrupted after it has begun being spoken and before it completed.</dd>
+
+    <dt><dfn id="dfn-sse.audio-busy">"audio-busy"</dfn></dt>
+    <dd>The operation cannot be completed at this time because the user-agent cannot access the audio output device.
+    (For example, the user may need to correct this by closing another application.)</dd>
+
+    <dt><dfn id="dfn-sse.audio-hardware">"audio-hardware"</dfn></dt>
+    <dd>The operation cannot be completed at this time because the user-agent cannot identify an audio output device.
+    (For example, the user may need to connect a speaker or configure system settings.)</dd>
+
+    <dt><dfn id="dfn-sse.network">"network"</dfn></dt>
+    <dd>The operation cannot be completed at this time because some required network communication failed.</dd>
+
+    <dt><dfn id="dfn-sse.synthesis-unavailable">"synthesis-unavailable"</dfn></dt>
+    <dd>The operation cannot be completed at this time because no synthesis engine is available.
+    (For example, the user may need to install or configure a synthesis engine.)</dd>
+
+    <dt><dfn id="dfn-sse.synthesis-failed">"synthesis-failed"</dfn></dt>
+    <dd>The operation failed because synthesis engine had an error.</dd>
+
+    <dt><dfn id="dfn-sse.language-unavailable">"language-unavailable"</dfn></dt>
+    <dd>No appropriate voice is available for the language designated in SpeechSynthesisUtterance lang.</dd>
+
+    <dt><dfn id="dfn-sse.voice-unavailable">"voice-unavailable"</dfn></dt>
+    <dd>The voice designated in SpeechSynthesisUtterance voice attribute is not available.</dd>
+
+    <dt><dfn id="dfn-sse.text-too-long">"text-too-long"</dfn></dt>
+    <dd>The contents of the SpeechSynthesisUtterance text attribute is too long to synthesize.</dd>
+
+    <dt><dfn id="dfn-sse.invalid-argument">"invalid-argument"</dfn></dt>
+    <dd>The contents of the SpeechSynthesisUtterance rate, pitch or volume attribute is not supported by synthesizer.</dd>
+  </dl>
+  </dd>
+
+  <dt><dfn id="dfn-message">message</dfn> attribute</dt>
+  <dd>The message content is implementation specific.
+  This attribute is primarily intended for debugging and developers should not use it directly in their application user interface.</dd>
+</dl>
+
+<h4 id="speechsynthesisvoice"><span class=secno>5.2.6 </span>SpeechSynthesisVoice</h4>
+
+<dl>
+  <dt><dfn id="dfn-voicevoiceuri">voiceURI</dfn> attribute</dt>
+  <dd>The voiceURI attribute specifies the speech synthesis voice and the location of the speech synthesis service for this voice.
+  Note that the voiceURI is a generic URI and can thus point to local or remote services, either through use of a URN with meaning to the user agent or by specifying a URL that the user agent recognizes as a local service.</dd>
+
+  <dt><dfn id="dfn-voicename">name</dfn> attribute</dt>
+  <dd>This attribute is a human-readable name that represents the voice.
+  There is no guarantee that all names returned are unique.</dd>
+
+  <dt><dfn id="dfn-voicelang">lang</dfn> attribute</dt>
+  <dd>This attribute is a BCP 47 language tag indicating the language of the voice. <a href="#ref-bcp47">[BCP47]</a></dd>
+
+  <dt><dfn id="dfn-voicelocalservice">localService</dfn> attribute</dt>
+  <dd>This attribute is true for voices supplied by a local speech synthesizer, and is false for voices supplied by a remote speech synthesizer service.
+  (This may be useful because remote services may imply additional latency, bandwidth or cost, whereas local voices may imply lower quality, however there is no guarantee that any of these implications are true.)</dd>
+
+  <dt><dfn id="dfn-voicedefault">default</dfn> attribute</dt>
+  <dd>This attribute is true for at most one voice per language.
+  There may be a different default for each language.
+  It is user agent dependent how default voices are determined.</dd>
+</dl>
+
+<h2 id="examples"><span class=secno>6 </span>Examples</h2>
+
+<p><em>This section is non-normative.</em></p>
+
+<h3 id="examples-recognition"><span class=secno>6.1 </span>Speech Recognition Examples</h3>
+
+<div class="example">
+  <p>Using speech recognition to fill an input-field and perform a web search.</p>
+  <div class="block">
+    <div class="blockTitleDiv">
+      <span class="blockTitle">Example 1</span>
     </div>
 
-    <h4 id="speechreco-attributes"><span class=secno>5.1.1 </span>SpeechRecognition Attributes</h4>
-
-    <dl>
-      <dt><dfn id="dfn-grammars">grammars</dfn> attribute</dt>
-      <dd>The grammars attribute stores the collection of SpeechGrammar objects which represent the grammars that are active for this recognition.</dd>
-
-      <dt><dfn id="dfn-lang">lang</dfn> attribute</dt>
-      <dd>This attribute will set the language of the recognition for the request, using a valid BCP 47 language tag. <a href="#ref-bcp47">[BCP47]</a>
-      If unset it remains unset for getting in script, but will default to use the <a href="http://www.w3.org/TR/html5/elements.html#the-lang-and-xml:lang-attributes">lang</a> of the html document root element and associated hierarchy.
-      This default value is computed and used when the input request opens a connection to the recognition service.</dd>
-
-      <dt><dfn id="dfn-continuous">continuous</dfn> attribute</dt>
-      <dd>When the continuous attribute is set to false, the user agent <em class="rfc2119" title="must">must</em> return no more than one final result in response to starting recognition,
-      for example a single turn pattern of interaction.
-      When the continuous attribute is set to true, the user agent <em class="rfc2119" title="must">must</em> return zero or more final results representing multiple consecutive recognitions in response to starting recognition,
-      for example a dictation.
-      The default value <em class="rfc2119" title="must">must</em> be false.  Note, this attribute setting does not affect interim results.</dd>
-
-      <dt><dfn id="dfn-interimresults">interimResults</dfn> attribute</dt>
-      <dd>Controls whether interim results are returned.
-      When set to true, interim results <em class="rfc2119" title="should">should</em> be returned.
-      When set to false, interim results <em class="rfc2119" title="must">must</em> NOT be returned.
-      The default value <em class="rfc2119" title="must">must</em> be false. Note, this attribute setting does not affect final results.</dd>
-
-      <dt><dfn id="dfn-maxalternatives">maxAlternatives</dfn> attribute</dt>
-      <dd>This attribute will set the maximum number of <a href="#speechreco-alternative">SpeechRecognitionAlternative</a>s per result.
-      The default value is 1.</dd>
-
-      <dt><dfn id="dfn-serviceuri">serviceURI</dfn> attribute</dt>
-      <dd>The serviceURI attribute specifies the location of the speech recognition service that the web application wishes to use.
-      If this attribute is unset at the time of the start method call, then the user agent <em class="rfc2119" title="should">must</em> use the user agent default speech service.
-      Note that the serviceURI is a generic URI and can thus point to local services either through use of a URN with meaning to the user agent or by specifying a URL that the user agent recognizes as a local service.
-      Additionally, the user agent default can be local or remote and can incorporate end user choices via interfaces provided by the user agent such as browser configuration parameters.
-      <i>[Editor note: The group is currently discussing whether WebRTC might be used to specify selection of audio sources and remote recognizers.] <a href="#ref-5">[5]</a></i></dd>
-    </dl>
-
-    <h4 id="speechreco-methods"><span class=secno>5.1.2 </span>SpeechRecognition Methods</h4>
-
-    <dl>
-      <dt><dfn id="dfn-start">start</dfn> method</dt>
-      <dd>When the start method is called it represents the moment in time the web application wishes to begin recognition.
-      When the speech input is streaming live through the input media stream, then this start call represents the moment in time that the service <em class="rfc2119" title="must">must</em> begin to listen and try to match the grammars associated with this request.
-      Once the system is successfully listening to the recognition the user agent <em class="rfc2119" title="must">must</em> raise a start event.
-      If the start method is called on an already started object (that is, start has previously been called, and no <a href="#dfn-onerror">error</a> or <a href="#dfn-onend">end</a> event has fired on the object), the user agent <em class="rfc2119" title="must">must</em> throw an <a href="http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#invalidstateerror">InvalidStateError</a> exception and ignore the call.</dd>
-
-      <dt><dfn id="dfn-stop">stop</dfn> method</dt>
-      <dd>The stop method represents an instruction to the recognition service to stop listening to more audio, and to try and return a result using just the audio that it has already received for this recognition.
-      A typical use of the stop method might be for a web application where the end user is doing the end pointing, similar to a walkie-talkie.
-      The end user might press and hold the space bar to talk to the system and on the space down press the start call would have occurred and when the space bar is released the stop method is called to ensure that the system is no longer listening to the user.
-      Once the stop method is called the speech service <em class="rfc2119" title="must not">must not</em> collect additional audio and <em class="rfc2119" title="must not">must not</em> continue to listen to the user.
-      The speech service <em class="rfc2119" title="must">must</em> attempt to return a recognition result (or a nomatch) based on the audio that it has already collected for this recognition.
-      If the stop method is called on an object which is already stopped or being stopped (that is, start was never called on it, the <a href="#dfn-utteranceonend">end</a> or <a href="#dfn-utteranceonerror">error</a> event has fired on it, or stop was previously called on it), the user agent <em class="rfc2119" title="must">must</em> ignore the call.</dd>
-
-      <dt><dfn id="dfn-abort">abort</dfn> method</dt>
-      <dd>The abort method is a request to immediately stop listening and stop recognizing and do not return any information but that the system is done.
-      When the abort method is called, the speech service <em class="rfc2119" title="must">must</em> stop recognizing.
-      The user agent <em class="rfc2119" title="must">must</em> raise an <a href="#dfn-onend">end</a> event once the speech service is no longer connected.
-      If the abort method is called on an object which is already stopped or aborting (that is, start was never called on it, the <a href="#dfn-onend">end</a> or <a href="#dfn-onerror">error</a> event has fired on it, or abort was previously called on it), the user agent <em class="rfc2119" title="must">must</em> ignore the call.</dd>
-    </dl>
-
-    <h4 id="speechreco-events"><span class=secno>5.1.3 </span>SpeechRecognition Events</h4>
-
-    <p>The DOM Level 2 Event Model is used for speech recognition events.
-    The methods in the EventTarget interface should be used for registering event listeners.
-    The SpeechRecognition interface also contains convenience attributes for registering a single event handler for each event type.
-    The events do not bubble and are not cancelable.</p>
-
-    <p>For all these events, the timeStamp attribute defined in the DOM Level 2 Event interface must be set to the best possible estimate of when the real-world event which the event object represents occurred.
-    This timestamp must be represented in the user agent's view of time, even for events where the timestamps in question could be raised on a different machine like a remote recognition service (i.e., in a <a href="#dfn-onspeechend">speechend</a> event with a remote speech endpointer).</p>
-
-    <p>Unless specified below, the ordering of the different events is undefined.
-    For example, some implementations may fire <a href="#dfn-onaudioend">audioend</a> before <a href="#dfn-onspeechstart">speechstart</a> or <a href="#dfn-onspeechend">speechend</a> if the audio detector is client-side and the speech detector is server-side.</p>
-
-    <dl>
-      <dt><dfn id="dfn-onaudiostart">audiostart</dfn> event</dt>
-      <dd>Fired when the user agent has started to capture audio.</dd>
-
-      <dt><dfn id="dfn-onsoundstart">soundstart</dfn> event</dt>
-      <dd>Fired when some sound, possibly speech, has been detected.
-      This <em class="rfc2119" title="must">must</em> be fired with low latency, e.g. by using a client-side energy detector.
-      The <a href="#dfn-onaudiostart">audiostart</a> event <em class="rfc2119" title="must">must</em> always have been fired before the soundstart event.</dd>
-
-      <dt><dfn id="dfn-onspeechstart">speechstart</dfn> event</dt>
-      <dd>Fired when the speech that will be used for speech recognition has started.
-      The <a href="#dfn-onaudiostart">audiostart</a> event <em class="rfc2119" title="must">must</em> always have been fired before the speechstart event.</dd>
-
-      <dt><dfn id="dfn-onspeechend">speechend</dfn> event</dt>
-      <dd>Fired when the speech that will be used for speech recognition has ended.
-      The <a href="#dfn-onspeechstart">speechstart</a> event <em class="rfc2119" title="must">must</em> always have been fired before speechend.</dd>
-
-      <dt><dfn id="dfn-onsoundend">soundend</dfn> event</dt>
-      <dd>Fired when some sound is no longer detected.
-      This <em class="rfc2119" title="must">must</em> be fired with low latency, e.g. by using a client-side energy detector.
-      The <a href="#dfn-onsoundstart">soundstart</a> event <em class="rfc2119" title="must">must</em> always have been fired before soundend.</dd>
-
-      <dt><dfn id="dfn-onaudioend">audioend</dfn> event</dt>
-      <dd>Fired when the user agent has finished capturing audio.
-      The <a href="#dfn-onaudiostart">audiostart</a> event <em class="rfc2119" title="must">must</em> always have been fired before audioend.</dd>
-
-      <dt><dfn id="dfn-onresult">result</dfn> event</dt>
-      <dd>Fired when the speech recognizer returns a result.
-      The event <em class="rfc2119" title="must">must</em> use the <a href="#speechreco-event">SpeechRecognitionEvent</a> interface.
-      The <a href="#dfn-onaudiostart">audiostart</a> event <em class="rfc2119" title="must">must</em> always have been fired before the result event.</dd>
-
-      <dt><dfn id="dfn-onnomatch">nomatch</dfn> event</dt>
-      <dd>Fired when the speech recognizer returns a final result with no recognition hypothesis that meet or exceed the confidence threshold.
-      The event <em class="rfc2119" title="must">must</em> use the <a href="#speechreco-event">SpeechRecognitionEvent</a> interface.
-      The <a href="#dfn-results">results</a> attribute in the event <em class="rfc2119" title="may">may</em> contain speech recognition results that are below the confidence threshold or <em class="rfc2119" title="may">may</em> be null.
-      The <a href="#dfn-onaudiostart">audiostart</a> event <em class="rfc2119" title="must">must</em> always have been fired before the nomatch event.</dd>
-
-      <dt><dfn id="dfn-onerror">error</dfn> event</dt>
-      <dd>Fired when a speech recognition error occurs.
-      The event <em class="rfc2119" title="must">must</em> use the <a href="#speechreco-error">SpeechRecognitionError</a> interface.</dd>
-
-      <dt><dfn id="dfn-onstart">start</dfn> event</dt>
-      <dd>Fired when the recognition service has begun to listen to the audio with the intention of recognizing.
-
-      </dd><dt><dfn id="dfn-onend">end</dfn> event</dt>
-      <dd>Fired when the service has disconnected.
-      The event <em class="rfc2119" title="must">must</em> always be generated when the session ends no matter the reason for the end.</dd>
-    </dl>
-
-    <h4 id="speechreco-error"><span class=secno>5.1.4 </span>SpeechRecognitionError</h4>
-
-    <p>The SpeechRecognitionError event is the interface used for the <a href="#dfn-onerror">error</a> event.</p>
-    <dl>
-      <dt><dfn id="dfn-error">error</dfn> attribute</dt>
-      <dd>The errorCode is an enumeration indicating what has gone wrong.
-      The values are:
-      <dl>
-        <dt><dfn id="dfn-sre.nospeech">"no-speech"</dfn></dt>
-        <dd>No speech was detected.</dd>
-
-        <dt><dfn id="dfn-sre.aborted">"aborted"</dfn></dt>
-        <dd>Speech input was aborted somehow, maybe by some user-agent-specific behavior such as UI that lets the user cancel speech input.</dd>
-
-        <dt><dfn id="dfn-sre.audiocapture">"audio-capture"</dfn></dt>
-        <dd>Audio capture failed.</dd>
-
-        <dt><dfn id="dfn-sre.network">"network"</dfn></dt>
-        <dd>Some network communication that was required to complete the recognition failed.</dd>
-
-        <dt><dfn id="dfn-sre.notallowed">"not-allowed"</dfn></dt>
-        <dd>The user agent is not allowing any speech input to occur for reasons of security, privacy or user preference.</dd>
-
-        <dt><dfn id="dfn-sre.servicenotallowed">"service-not-allowed"</dfn></dt>
-        <dd>The user agent is not allowing the web application requested speech service, but would allow some speech service, to be used either because the user agent doesn't support the selected one or because of reasons of security, privacy or user preference.</dd>
-
-        <dt><dfn id="dfn-sre.badgrammar">"bad-grammar"</dfn></dt>
-        <dd>There was an error in the speech recognition grammar or semantic tags, or the grammar format or semantic tag format is unsupported.</dd>
-
-        <dt><dfn id="dfn-sre.languagenotsupported">"language-not-supported"</dfn></dt>
-        <dd>The language was not supported.</dd>
-      </dl>
-      </dd>
-
-      <dt><dfn id="dfn-message">message</dfn> attribute</dt>
-      <dd>The message content is implementation specific.
-      This attribute is primarily intended for debugging and developers should not use it directly in their application user interface.</dd>
-    </dl>
-
-    <h4 id="speechreco-alternative"><span class=secno>5.1.5 </span>SpeechRecognitionAlternative</h4>
-
-    <p>The SpeechRecognitionAlternative represents a simple view of the response that gets used in a n-best list.
-
-    <dl>
-      <dt><dfn id="dfn-transcript">transcript</dfn> attribute</dt>
-      <dd>The transcript string represents the raw words that the user spoke.
-      For continuous recognition, leading or trailing whitespace MUST be included where necessary such that concatenation of consecutive SpeechRecognitionResults produces a proper transcript of the session.</dd>
-
-      <dt><dfn id="dfn-confidence">confidence</dfn> attribute</dt>
-      <dd>The confidence represents a numeric estimate between 0 and 1 of how confident the recognition system is that the recognition is correct.
-      A higher number means the system is more confident.
-      <i>[Editor note: The group is currently discussing whether confidence can be specified in a speech-recognition-engine-independent manner and whether confidence threshold and nomatch should be included, because this is not a dialog API.] <a href="#ref-4">[4]</a></i></dd>
-    </dl>
-
-    <h4 id="speechreco-result"><span class=secno>5.1.6 </span>SpeechRecognitionResult</h4>
-
-    <p>The SpeechRecognitionResult object represents a single one-shot recognition match, either as one small part of a continuous recognition or as the complete return result of a non-continuous recognition.</p>
-
-    <dl>
-      <dt><dfn id="dfn-length">length</dfn> attribute</dt>
-      <dd>The long attribute represents how many n-best alternatives are represented in the item array.</dd>
-
-      <dt><dfn id="dfn-item">item</dfn> getter</dt>
-      <dd>The item getter returns a SpeechRecognitionAlternative from the index into an array of n-best values.
-      If index is greater than or equal to length, this returns null.
-      The user agent <em class="rfc2119" title="must">must</em> ensure that the length attribute is set to the number of elements in the array.
-      The user agent <em class="rfc2119" title="must">must</em> ensure that the n-best list is sorted in non-increasing confidence order (each element must be less than or equal to the confidence of the preceding elements).</dd>
-
-      <dt><dfn id="dfn-isFinal">isFinal</dfn> attribute</dt>
-      <dd>The final boolean <em class="rfc2119" title="must">must</em> be set to true if this is the final time the speech service will return this particular index value.
-      If the value is false, then this represents an interim result that could still be changed.</dd>
-    </dl>
-
-    <h4 id="speechreco-resultlist"><span class=secno>5.1.7 </span>SpeechRecognitionList</h4>
-
-    <p>The SpeechRecognitionResultList object holds a sequence of recognition results representing the complete return result of a continuous recognition.
-    For a non-continuous recognition it will hold only a single value.</p>
-
-    <dl>
-      <dt><dfn id="dfn-speechrecognitionresultlistlength">length</dfn> attribute</dt>
-      <dd>The length attribute indicates how many results are represented in the item array.</dd>
-
-      <dt><dfn id="dfn-speechrecognitionresultlistitem">item</dfn> getter</dt>
-      <dd>The item getter returns a SpeechRecognitionResult from the index into an array of result values.
-      If index is greater than or equal to length, this returns null.
-      The user agent <em class="rfc2119" title="must">must</em> ensure that the length attribute is set to the number of elements in the array.</dd>
-    </dl>
-
-    <h4 id="speechreco-event"><span class=secno>5.1.8 </span>SpeechRecognitionEvent</h4>
-
-    <p>The SpeechRecognitionEvent is the event that is raised each time there are any changes to interim or final results.</p>
-
-    <dl>
-      <dt><dfn id="dfn-resultIndex">resultIndex</dfn> attribute</dt>
-      <dd>The resultIndex <em class="rfc2119" title="must">must</em> be set to the lowest index in the "results" array that has changed.</dd>
-
-      <dt><dfn id="dfn-results">results</dfn> attribute</dt>
-      <dd>The array of all current recognition results for this session.
-      Specifically all final results that have been returned, followed by the current best hypothesis for all interim results.
-      It <em class="rfc2119" title="must">must</em> consist of zero or more final results followed by zero or more interim results.
-      On subsequent SpeechRecognitionResultEvent events, interim results may be overwritten by a newer interim result or by a final result or may be removed (when at the end of the "results" array and the array length decreases).
-      Final results <em class="rfc2119" title="must">must</em> not be overwritten or removed.
-      All entries for indexes less than resultIndex <em class="rfc2119" title="must">must</em> be identical to the array that was present when the last SpeechRecognitionResultEvent was raised.
-      All array entries (if any) for indexes equal or greater than resultIndex that were present in the array when the last SpeechRecognitionResultEvent was raised are removed and overwritten with new results.
-      The length of the "results" array may increase or decrease, but <em class="rfc2119" title="must">must</em> not be less than resultIndex.
-      Note that when resultIndex equals results.length, no new results are returned, this may occur when the array length decreases to remove one or more interim results.</dd>
-
-      <dt><dfn id="dfn-interpretation">interpretation</dfn> attribute</dt>
-      <dd>The interpretation represents the semantic meaning from what the user said.
-      This might be determined, for instance, through the SISR specification of semantics in a grammar.
-      <i>[Editor note: The group is currently discussing options for the value of the interpretation attribute when no interpretation has been returned by the recognizer.
-      Current options are 'null' or a copy of the transcript.] <a href="#ref-2">[2]</a></i></dd>
-
-      <dt><dfn id="dfn-emma">emma</dfn> attribute</dt>
-      <dd>EMMA 1.0 representation of this result. <a href="#ref-emma">[EMMA]</a>
-      The contents of this result could vary across user agents and recognition engines, but all implementations <em class="rfc2119" title="must">must</em> expose a valid XML document complete with EMMA namespace,
-      or if the recognizer does not supply EMMA then the user agent <em class="rfc2119" title="may">may</em> return null.
-      User agent implementations for recognizers that supply EMMA <em class="rfc2119" title="must">must</em> contain all annotations and content generated by the recognition resources utilized for recognition, except where infeasible due to conflicting attributes.
-      The user agent <em class="rfc2119" title="must">may</em> add additional annotations to provide a richer result for the developer.</dd>
-    </dl>
-
-    <h4 id="speechreco-speechgrammar"><span class=secno>5.1.9 </span>SpeechGrammar</h4>
-
-    <p>The SpeechGrammar object represents a container for a grammar.
-    <i>[Editor note: The group is currently discussing options for which grammar formats should be supported, how builtin grammar types are specified, and default grammars when not specified.] <a href="#ref-2">[2]</a> <a href="#ref-3">[3]</a></i>
-    This structure has the following attributes:</p>
-
-    <dl>
-      <dt><dfn id="dfn-grammarSrc">src</dfn> attribute</dt>
-      <dd>The required src attribute is the URI for the grammar.
-      Note some services may support builtin grammars that can be specified using a builtin URI scheme.</dd>
-
-      <dt><dfn id="dfn-grammarWeight">weight</dfn> attribute</dt>
-      <dd>The optional weight attribute controls the weight that the speech recognition service should use with this grammar.
-      By default, a grammar has a weight of 1.
-      Larger weight values positively weight the grammar while smaller weight values make the grammar weighted less strongly.</dd>
-    </dl>
-
-    <h4 id="speechreco-speechgrammarlist"><span class=secno>5.1.10 </span>SpeechGrammarList</h4>
-
-    <p>The SpeechGrammarList object represents a collection of SpeechGrammar objects.
-    This structure has the following attributes:</p>
-
-    <dl>
-      <dt><dfn id="dfn-speechgrammarlistlength">length</dfn> attribute</dt>
-      <dd>The length attribute represents how many grammars are currently in the array.</dd>
-
-      <dt><dfn id="dfn-speechgrammarlistitem">item</dfn> getter</dt>
-      <dd>The item getter returns a SpeechGrammar from the index into an array of grammars.
-      The user agent <em class="rfc2119" title="must">must</em> ensure that the length attribute is set to the number of elements in the array.
-      The user agent <em class="rfc2119" title="must">must</em> ensure that the index order from smallest to largest matches the order in which grammars were added to the array.</dd>
-
-      <dt><dfn id="dfn-addGrammar">addFromURI</dfn> method</dt>
-      <dd>This method appends a grammar to the grammars array parameter based on URI.
-      The URI for the grammar is specified by the <a href="#dfn-grammarSrc">src</a> parameter, which represents the URI for the grammar.
-      Note, some services may support builtin grammars that can be specified by URI.
-      If the <a href="#dfn-grammarWeight">weight</a> parameter is present it represents this grammar's weight relative to the other grammar.
-      If the weight parameter is not present, the default value of 1.0 is used.</dd>
-
-      <dt><dfn id="dfn-addGrammarstring">addFromString</dfn> method</dt>
-      <dd>This method appends a grammar to the grammars array parameter based on text.
-      The content of the grammar is specified by the <dfn id="dfn-grammarString">string</dfn> parameter.
-      This content should be encoded into a data: URI when the SpeechGrammar object is created.
-      If the <a href="#dfn-grammarWeight">weight</a> parameter is present it represents this grammar's weight relative to the other grammar.
-      If the weight parameter is not present, the default value of 1.0 is used.</dd>
-    </dl>
-
-    <h3 id="tts-section"><span class=secno>5.2 </span>The SpeechSynthesis Interface</h3>
-
-    <p>The SpeechSynthesis interface is the scripted web <acronym title="Application Programming Interface">API</acronym> for controlling a text-to-speech output.</p>
-
-    <div class="block">
-      <div class="blockTitleDiv">
-        <span class="blockTitle">IDL</span>
-      </div>
-      <div class="blockContent">
-        <pre class="code">
-          <code class="idl-code">
-    [Exposed=Window]
-    interface SpeechSynthesis : EventTarget {
-        readonly attribute boolean <a href="#dfn-ttspending">pending</a>;
-        readonly attribute boolean <a href="#dfn-ttsspeaking">speaking</a>;
-        readonly attribute boolean <a href="#dfn-ttspaused">paused</a>;
-
-        attribute EventHandler <a href="#dfn-ttsonvoiceschanged">onvoiceschanged</a>;
-
-        void <a href="#dfn-ttsspeak">speak</a>(SpeechSynthesisUtterance utterance);
-        void <a href="#dfn-ttscancel">cancel</a>();
-        void <a href="#dfn-ttspause">pause</a>();
-        void <a href="#dfn-ttsresume">resume</a>();
-        sequence&lt;SpeechSynthesisVoice&gt; <a href="#dfn-ttsgetvoices">getVoices</a>();
-    };
-
-    partial interface Window
-    {
-        readonly attribute SpeechSynthesis speechSynthesis;
-    };
-
-    [Exposed=Window,
-     Constructor,
-     Constructor(DOMString <a href="#dfn-utterancetext">text</a>)]
-    interface SpeechSynthesisUtterance : EventTarget {
-        attribute DOMString <a href="#dfn-utterancetext">text</a>;
-        attribute DOMString <a href="#dfn-utterancelang">lang</a>;
-        attribute SpeechSynthesisVoice <a href="#dfn-utterancevoice">voice</a>;
-        attribute float <a href="#dfn-utterancevolume">volume</a>;
-        attribute float <a href="#dfn-utterancerate">rate</a>;
-        attribute float <a href="#dfn-utterancepitch">pitch</a>;
-
-        attribute EventHandler <a href="#dfn-utteranceonstart">onstart</a>;
-        attribute EventHandler <a href="#dfn-utteranceonend">onend</a>;
-        attribute EventHandler <a href="#dfn-utteranceonerror">onerror</a>;
-        attribute EventHandler <a href="#dfn-utteranceonpause">onpause</a>;
-        attribute EventHandler <a href="#dfn-utteranceonresume">onresume</a>;
-        attribute EventHandler <a href="#dfn-utteranceonmark">onmark</a>;
-        attribute EventHandler <a href="#dfn-utteranceonboundary">onboundary</a>;
-    };
-
-    [Exposed=Window]
-    interface SpeechSynthesisEvent : Event {
-        readonly attribute SpeechSynthesisUtterance <a href="#dfn-callbackutterance">utterance</a>;
-        readonly attribute unsigned long <a href="#dfn-callbackcharindex">charIndex</a>;
-        readonly attribute float <a href="#dfn-callbackelapsedtime">elapsedTime</a>;
-        readonly attribute DOMString <a href="#dfn-callbackname">name</a>;
-    };
-
-    enum SpeechSynthesisErrorCode {
-        "<a href="#dfn-sse.canceled">canceled</a>",
-        "<a href="#dfn-sse.interrupted">interrupted</a>",
-        "<a href="#dfn-sse.audio-busy">audio-busy</a>",
-        "<a href="#dfn-sse.audio-hardware">audio-hardware</a>",
-        "<a href="#dfn-sse.network">network</a>",
-        "<a href="#dfn-sse.synthesis-unavailable">synthesis-unavailable</a>",
-        "<a href="#dfn-sse.synthesis-failed">synthesis-failed</a>",
-        "<a href="#dfn-sse.language-unavailable">language-unavailable</a>",
-        "<a href="#dfn-sse.voice-unavailable">voice-unavailable</a>",
-        "<a href="#dfn-sse.text-too-long">text-too-long</a>",
-        "<a href="#dfn-sse.invalid-argument">invalid-argument</a>",
-    };
-
-    [Exposed=Window]
-    interface SpeechSynthesisErrorEvent : SpeechSynthesisEvent {
-        readonly attribute SpeechSynthesisErrorCode <a href="#dfn-sse.error">error</a>;
-    };
-
-    [Exposed=Window]
-    interface SpeechSynthesisVoice {
-        readonly attribute DOMString <a href="#dfn-voicevoiceuri">voiceURI</a>;
-        readonly attribute DOMString <a href="#dfn-voicename">name</a>;
-        readonly attribute DOMString <a href="#dfn-voicelang">lang</a>;
-        readonly attribute boolean <a href="#dfn-voicelocalservice">localService</a>;
-        readonly attribute boolean <a href="#dfn-voicedefault">default</a>;
-    };
-
-          </code>
-        </pre>
-      </div>
-    </div>
-
-    <h4 id="tts-attributes"><span class=secno>5.2.1 </span>SpeechSynthesis Attributes</h4>
-
-    <dl>
-      <dt><dfn id="dfn-ttspending">pending</dfn> attribute</dt>
-      <dd>This attribute is true if the queue for the global SpeechSynthesis instance contains any utterances which have not started speaking.</dd>
-
-      <dt><dfn id="dfn-ttsspeaking">speaking</dfn> attribute</dt>
-      <dd>This attribute is true if an utterance is being spoken.
-      Specifically if an utterance has begun being spoken and has not completed being spoken.
-      This is independent of whether the global SpeechSynthesis instance is in the paused state.</dd>
-
-      <dt><dfn id="dfn-ttspaused">paused</dfn> attribute</dt>
-      <dd>This attribute is true when the global SpeechSynthesis instance is in the paused state.
-      This state is independent of whether anything is in the queue.
-      The default state of a the global SpeechSynthesis instance for a new window is the non-paused state.</dd>
-    </dl>
-
-    <h4 id="tts-methods"><span class=secno>5.2.2 </span>SpeechSynthesis Methods</h4>
-
-    <dl>
-      <dt><dfn id="dfn-ttsspeak">speak</dfn> method</dt>
-      <dd>This method appends the SpeechSynthesisUtterance object to the end of the queue for the global SpeechSynthesis instance.
-      It does not change the paused state of the SpeechSynthesis instance.
-      If the SpeechSynthesis instance is paused, it remains paused.
-      If it is not paused and no other utterances are in the queue, then this utterance is spoken immediately,
-      else this utterance is queued to begin speaking after the other utterances in the queue have been spoken.
-      If changes are made to the SpeechSynthesisUtterance object after calling this method and prior to the corresponding <a href="#dfn-utteranceonend">end</a> or <a href="#dfn-utteranceonerror">error</a> event,
-      it is not defined whether those changes will affect what is spoken, and those changes <em class="rfc2119" title="may">may</em> cause an error to be returned.
-      The SpeechSynthesis object takes exclusive ownership of the SpeechSynthesisUtterance object.
-      Passing it as a speak() argument to another SpeechSynthesis object should throw an exception.
-      (For example, two frames may have the same origin and each will contain a SpeechSynthesis object.)</dd>
-
-      <dt><dfn id="dfn-ttscancel">cancel</dfn> method</dt>
-      <dd>This method removes all utterances from the queue.
-      If an utterance is being spoken, speaking ceases immediately.
-      This method does not change the paused state of the global SpeechSynthesis instance.</dd>
-
-      <dt><dfn id="dfn-ttspause">pause</dfn> method</dt>
-      <dd>This method puts the global SpeechSynthesis instance into the paused state.
-      If an utterance was being spoken, it pauses mid-utterance.
-      (If called when the SpeechSynthesis instance was already in the paused state, it does nothing.)</dd>
-
-      <dt><dfn id="dfn-ttsresume">resume</dfn> method</dt>
-      <dd>This method puts the global SpeechSynthesis instance into the non-paused state.
-      If an utterance was speaking, it continues speaking the utterance at the point at which it was paused, else it begins speaking the next utterance in the queue (if any).
-      (If called when the SpeechSynthesis instance was already in the non-paused state, it does nothing.)</dd>
-
-      <dt><dfn id="dfn-ttsgetvoices">getVoices</dfn> method</dt>
-      <dd>This method returns the available voices.
-      It is user agent dependent which voices are available.
-      If there are no voices available, or if the the list of available voices is not yet known (for example: server-side synthesis where the list is determined asynchronously),
-      then this method <em class="rfc2119" title="must">must</em> return a SpeechSynthesisVoiceList of length zero.</dd>
-    </dl>
-
-    <h4 id="tts-events"><span class=secno>5.2.2.1 </span>SpeechSynthesis Events</h4>
-
-    <dl>
-      <dt><dfn id="dfn-ttsonvoiceschanged">voiceschanged</dfn> event</dt>
-      <dd>Fired when the contents of the SpeechSynthesisVoiceList, that the getVoices method will return, have changed.
-      Examples include: server-side synthesis where the list is determined asynchronously, or when client-side voices are installed/uninstalled.</dd>
-    </dl>
-
-    <h4 id="utterance-attributes"><span class=secno>5.2.3 </span>SpeechSynthesisUtterance Attributes</h4>
-
-    <dl>
-      <dt><dfn id="dfn-utterancetext">text</dfn> attribute</dt>
-      <dd>This attribute specifies the text to be synthesized and spoken for this utterance.
-      This may be either plain text or a complete, well-formed SSML document. <a href="#ref-ssml">[SSML]</a>
-      For speech synthesis engines that do not support SSML, or only support certain tags, the user agent or speech engine must strip away the tags they do not support and speak the text.
-      There may be a maximum length of the text, it may be limited to 32,767 characters.</dd>
-
-      <dt><dfn id="dfn-utterancelang">lang</dfn> attribute</dt>
-      <dd>This attribute specifies the language of the speech synthesis for the utterance, using a valid BCP 47 language tag. <a href="#ref-bcp47">[BCP47]</a>
-      If unset it remains unset for getting in script, but will default to use the <a href="http://www.w3.org/TR/html5/elements.html#the-lang-and-xml:lang-attributes">lang</a> of the html document root element and associated hierarchy.
-      This default value is computed and used when the input request opens a connection to the recognition service.</dd>
-
-      <dt><dfn id="dfn-utterancevoice">voice</dfn> attribute</dt>
-      <dd>The voice attribute specifies speech synthesis voice that the web application wishes to use.
-      If, at the time of the play method call, this attribute has been set to one of the SpeechSynthesisVoice objects returned by getVoices, then the user agent <em class="rfc2119" title="must">must</em> use that voice.
-      If this attribute is unset or null at the time of the play method call, then the user agent <em class="rfc2119" title="must">must</em> use a user agent default voice.
-      The user agent default voice <em class="rfc2119" title="should">should</em> support the current language (see "lang" attribute) and can be a local or remote speech service and can incorporate end user choices via interfaces provided by the user agent such as browser configuration parameters.
-      </dd>
-
-      <dt><dfn id="dfn-utterancevolume">volume</dfn> attribute</dt>
-      <dd>This attribute specifies the speaking volume for the utterance.
-      It ranges between 0 and 1 inclusive, with 0 being the lowest volume and 1 the highest volume, with a default of 1.
-      If SSML is used, this value will be overridden by prosody tags in the markup.</dd>
-
-      <dt><dfn id="dfn-utterancerate">rate</dfn> attribute</dt>
-      <dd>This attribute specifies the speaking rate for the utterance.
-      It is relative to the default rate for this voice.
-      1 is the default rate supported by the speech synthesis engine or specific voice (which should correspond to a normal speaking rate).
-      2 is twice as fast, and 0.5 is half as fast.
-      Values below 0.1 or above 10 are strictly disallowed, but speech synthesis engines or specific voices may constrain the minimum and maximum rates further, for example, a particular voice may not actually speak faster than 3 times normal even if you specify a value larger than 3.
-      If SSML is used, this value will be overridden by prosody tags in the markup.</dd>
-
-      <dt><dfn id="dfn-utterancepitch">pitch</dfn> attribute</dt>
-      <dd>This attribute specifies the speaking pitch for the utterance.
-      It ranges between 0 and 2 inclusive, with 0 being the lowest pitch and 2 the highest pitch.
-      1 corresponds to the default pitch of the speech synthesis engine or specific voice.
-      Speech synthesis engines or voices may constrain the minimum and maximum rates further.
-      If SSML is used, this value will be overridden by prosody tags in the markup.</dd>
-    </dl>
-
-    <h4 id="utterance-events"><span class=secno>5.2.4 </span>SpeechSynthesisUtterance Events</h4>
-
-    Each of these events <em class="rfc2119" title="must">must</em> use the <a href="#speechsynthesisevent">SpeechSynthesisEvent</a> interface,
-    except the error event which <em class="rfc2119" title="must">must</em> use the <a href="#speechsynthesiserrorevent">SpeechSynthesisErrorEvent</a> interface.
-    These events bubble up to SpeechSynthesis.
-
-    <dl>
-      <dt><dfn id="dfn-utteranceonstart">start</dfn> event</dt>
-      <dd>Fired when this utterance has begun to be spoken.</dd>
-
-      <dt><dfn id="dfn-utteranceonend">end</dfn> event</dt>
-      <dd>Fired when this utterance has completed being spoken.
-      If this event fires, the <a href="#dfn-utteranceonerror">error</a> event <em class="rfc2119" title="must">must</em> not be fired for this utterance.</dd>
-
-      <dt><dfn id="dfn-utteranceonerror">error</dfn> event</dt>
-      <dd>Fired if there was an error that prevented successful speaking of this utterance.
-      If this event fires, the <a href="#dfn-utteranceonend">end</a> event <em class="rfc2119" title="must">must</em> not be fired for this utterance.</dd>
-
-      <dt><dfn id="dfn-utteranceonpause">pause</dfn> event</dt>
-      <dd>Fired when and if this utterance is paused mid-utterance.</dd>
-
-      <dt><dfn id="dfn-utteranceonresume">resume</dfn> event</dt>
-      <dd>Fired when and if this utterance is resumed after being paused mid-utterance.
-      Adding the utterance to the queue while the global SpeechSynthesis instance is in the paused state, and then calling the resume method
-      does not cause the resume event to be fired, in this case the utterance's <a href="#dfn-utteranceonstart">start</a> event will be called when the utterance starts.</dd>
-
-      <dt><dfn id="dfn-utteranceonmark">mark</dfn> event</dt>
-      <dd>Fired when the spoken utterance reaches a named "mark" tag in SSML. <a href="#ref-ssml">[SSML]</a>
-      The user agent <em class="rfc2119" title="must">must</em> fire this event if the speech synthesis engine provides the event.</dd>
-
-      <dt><dfn id="dfn-utteranceonboundary">boundary</dfn> event</dt>
-      <dd>Fired when the spoken utterance reaches a word or sentence boundary.
-      The user agent <em class="rfc2119" title="must">must</em> fire this event if the speech synthesis engine provides the event.</dd>
-    </dl>
-
-    <h4 id="speechsynthesisevent"><span class=secno>5.2.5 </span>SpeechSynthesisEvent Attributes</h4>
-
-    <dl>
-      <dt><dfn id="dfn-callbackutterance">utterance</dfn> attribute</dt>
-      <dd>This attribute contains the SpeechSynthesisUtterance that triggered this event.</dd>
-
-      <dt><dfn id="dfn-callbackcharindex">charIndex</dfn> attribute</dt>
-      <dd>This attribute indicates the zero-based character index into the original utterance string that most closely approximates the current speaking position of the speech engine.
-      No guarantee is given as to where charIndex will be with respect to word boundaries (such as at the end of the previous word or the beginning of the next word), only that all text before charIndex has already been spoken, and all text after charIndex has not yet been spoken.
-      The user agent must return this value if the speech synthesis engine supports it, otherwise the user agent must return undefined.</dd>
-
-      <dt><dfn id="dfn-callbackelapsedtime">elapsedTime</dfn> attribute</dt>
-      <dd>This attribute indicates the time, in seconds, that this event triggered, relative to when this utterance has begun to be spoken.
-      The user agent must return this value if the speech synthesis engine supports it or the user agent can otherwise determine it, otherwise the user agent must return undefined.</dd>
-
-      <dt><dfn id="dfn-callbackname">name</dfn> attribute</dt>
-      <dd>For <a href="#dfn-utteranceonmark">mark</a> events, this attribute indicates the name of the marker, as defined in SSML as the name attribute of a mark element. <a href="#ref-ssml">[SSML]</a>
-      For <a href="#dfn-utteranceonboundary">boundary</a> events, this attribute indicates the type of boundary that caused the event: "word" or "sentence".
-      For all other events, this value should return undefined.</dd>
-    </dl>
-
-    <h4 id="speechsynthesiserrorevent"><span class=secno>5.2.5.1 </span>SpeechSynthesisErrorEvent Attributes</h4>
-
-    <p>The SpeechSynthesisErrorEvent is the interface used for the SpeechSynthesisUtterance <a href="#dfn-utteranceonerror">error</a> event.</p>
-    <dl>
-      <dt><dfn id="dfn-sse.error">error</dfn> attribute</dt>
-      <dd>The errorCode is an enumeration indicating what has gone wrong.
-      The values are:
-      <dl>
-        <dt><dfn id="dfn-sse.canceled">"canceled"</dfn></dt>
-        <dd>A cancel method call caused the SpeechSynthesisUtterance to be removed from the queue before it had begun being spoken.</dd>
-
-        <dt><dfn id="dfn-sse.interrupted">"interrupted"</dfn></dt>
-        <dd>A cancel method call caused the SpeechSynthesisUtterance to be interrupted after it has begun being spoken and before it completed.</dd>
-
-        <dt><dfn id="dfn-sse.audio-busy">"audio-busy"</dfn></dt>
-        <dd>The operation cannot be completed at this time because the user-agent cannot access the audio output device.
-        (For example, the user may need to correct this by closing another application.)</dd>
-
-        <dt><dfn id="dfn-sse.audio-hardware">"audio-hardware"</dfn></dt>
-        <dd>The operation cannot be completed at this time because the user-agent cannot identify an audio output device.
-        (For example, the user may need to connect a speaker or configure system settings.)</dd>
-
-        <dt><dfn id="dfn-sse.network">"network"</dfn></dt>
-        <dd>The operation cannot be completed at this time because some required network communication failed.</dd>
-
-        <dt><dfn id="dfn-sse.synthesis-unavailable">"synthesis-unavailable"</dfn></dt>
-        <dd>The operation cannot be completed at this time because no synthesis engine is available.
-        (For example, the user may need to install or configure a synthesis engine.)</dd>
-
-        <dt><dfn id="dfn-sse.synthesis-failed">"synthesis-failed"</dfn></dt>
-        <dd>The operation failed because synthesis engine had an error.</dd>
-
-        <dt><dfn id="dfn-sse.language-unavailable">"language-unavailable"</dfn></dt>
-        <dd>No appropriate voice is available for the language designated in SpeechSynthesisUtterance lang.</dd>
-
-        <dt><dfn id="dfn-sse.voice-unavailable">"voice-unavailable"</dfn></dt>
-        <dd>The voice designated in SpeechSynthesisUtterance voice attribute is not available.</dd>
-
-        <dt><dfn id="dfn-sse.text-too-long">"text-too-long"</dfn></dt>
-        <dd>The contents of the SpeechSynthesisUtterance text attribute is too long to synthesize.</dd>
-
-        <dt><dfn id="dfn-sse.invalid-argument">"invalid-argument"</dfn></dt>
-        <dd>The contents of the SpeechSynthesisUtterance rate, pitch or volume attribute is not supported by synthesizer.</dd>
-      </dl>
-      </dd>
-
-      <dt><dfn id="dfn-message">message</dfn> attribute</dt>
-      <dd>The message content is implementation specific.
-      This attribute is primarily intended for debugging and developers should not use it directly in their application user interface.</dd>
-    </dl>
-
-    <h4 id="speechsynthesisvoice"><span class=secno>5.2.6 </span>SpeechSynthesisVoice</h4>
-
-    <dl>
-      <dt><dfn id="dfn-voicevoiceuri">voiceURI</dfn> attribute</dt>
-      <dd>The voiceURI attribute specifies the speech synthesis voice and the location of the speech synthesis service for this voice.
-      Note that the voiceURI is a generic URI and can thus point to local or remote services, either through use of a URN with meaning to the user agent or by specifying a URL that the user agent recognizes as a local service.</dd>
-
-      <dt><dfn id="dfn-voicename">name</dfn> attribute</dt>
-      <dd>This attribute is a human-readable name that represents the voice.
-      There is no guarantee that all names returned are unique.</dd>
-
-      <dt><dfn id="dfn-voicelang">lang</dfn> attribute</dt>
-      <dd>This attribute is a BCP 47 language tag indicating the language of the voice. <a href="#ref-bcp47">[BCP47]</a></dd>
-
-      <dt><dfn id="dfn-voicelocalservice">localService</dfn> attribute</dt>
-      <dd>This attribute is true for voices supplied by a local speech synthesizer, and is false for voices supplied by a remote speech synthesizer service.
-      (This may be useful because remote services may imply additional latency, bandwidth or cost, whereas local voices may imply lower quality, however there is no guarantee that any of these implications are true.)</dd>
-
-      <dt><dfn id="dfn-voicedefault">default</dfn> attribute</dt>
-      <dd>This attribute is true for at most one voice per language.
-      There may be a different default for each language.
-      It is user agent dependent how default voices are determined.</dd>
-    </dl>
-
-    <h2 id="examples"><span class=secno>6 </span>Examples</h2>
-
-    <p><em>This section is non-normative.</em></p>
-
-    <h3 id="examples-recognition"><span class=secno>6.1 </span>Speech Recognition Examples</h3>
-
-    <div class="example">
-      <p>Using speech recognition to fill an input-field and perform a web search.</p>
-      <div class="block">
-        <div class="blockTitleDiv">
-          <span class="blockTitle">Example 1</span>
-        </div>
-
-        <div class="blockContent">
-          <pre class="code">
-            <code class="html-code">
+    <div class="blockContent">
+      <pre class="code">
+        <code class="html-code">
   &lt;script type="text/javascript"&gt;
     var recognition = new SpeechRecognition();
     recognition.onresult = function(event) {
@@ -870,20 +870,20 @@ Boilerplate: index no, idl-index no
     &lt;input type="search" id="q" name="q" size=60&gt;
     &lt;input type="button" value="Click to Speak" onclick="recognition.start()"&gt;
   &lt;/form&gt;
-            </code>
-          </pre>
-        </div>
-      </div>
+        </code>
+      </pre>
+    </div>
+  </div>
 
-      <p>Using speech recognition to fill an options list with alternative speech results.</p>
-      <div class="block">
-        <div class="blockTitleDiv">
-          <span class="blockTitle">Example 2</span>
-        </div>
+  <p>Using speech recognition to fill an options list with alternative speech results.</p>
+  <div class="block">
+    <div class="blockTitleDiv">
+      <span class="blockTitle">Example 2</span>
+    </div>
 
-        <div class="blockContent">
-          <pre class="code">
-            <code class="html-code">
+    <div class="blockContent">
+      <pre class="code">
+        <code class="html-code">
     &lt;script type="text/javascript"&gt;
       var recognition = new SpeechRecognition();
       recognition.maxAlternatives = 10;
@@ -905,20 +905,20 @@ Boilerplate: index no, idl-index no
 
     &lt;select id="select"&gt;&lt;/select&gt;
     &lt;button onclick="start()"&gt;Click to Speak&lt;/button&gt;
-            </code>
-          </pre>
-        </div>
-      </div>
+        </code>
+      </pre>
+    </div>
+  </div>
 
-      <p>Using continuous speech recognition to fill a textarea.</p>
-      <div class="block">
-        <div class="blockTitleDiv">
-          <span class="blockTitle">Example 3</span>
-        </div>
+  <p>Using continuous speech recognition to fill a textarea.</p>
+  <div class="block">
+    <div class="blockTitleDiv">
+      <span class="blockTitle">Example 3</span>
+    </div>
 
-        <div class="blockContent">
-          <pre class="code">
-            <code class="html-code">
+    <div class="blockContent">
+      <pre class="code">
+        <code class="html-code">
   &lt;textarea id="textarea" rows=10 cols=80&gt;&lt;/textarea&gt;
   &lt;button id="button" onclick="toggleStartStop()"&gt;&lt;/button&gt;
 
@@ -953,20 +953,20 @@ Boilerplate: index no, idl-index no
       }
     }
   &lt;/script&gt;
-            </code>
-          </pre>
-        </div>
-      </div>
+        </code>
+      </pre>
+    </div>
+  </div>
 
-      <p>Using continuous speech recognition, showing final results in black and interim results in grey.</p>
-      <div class="block">
-        <div class="blockTitleDiv">
-          <span class="blockTitle">Example 4</span>
-        </div>
+  <p>Using continuous speech recognition, showing final results in black and interim results in grey.</p>
+  <div class="block">
+    <div class="blockTitleDiv">
+      <span class="blockTitle">Example 4</span>
+    </div>
 
-        <div class="blockContent">
-          <pre class="code">
-            <code class="html-code">
+    <div class="blockContent">
+      <pre class="code">
+        <code class="html-code">
   &lt;button id="button" onclick="toggleStartStop()"&gt;&lt;/button&gt;
   &lt;div style="border:dotted;padding:10px"&gt;
     &lt;span id="final_span"&gt;&lt;/span&gt;
@@ -1013,41 +1013,41 @@ Boilerplate: index no, idl-index no
       }
     }
   &lt;/script&gt;
-            </code>
-          </pre>
-        </div>
-      </div>
+        </code>
+      </pre>
+    </div>
+  </div>
+</div>
+
+<h3 id="examples-synthesis"><span class=secno>6.2 </span>Speech Synthesis Examples</h3>
+
+<div class="example">
+  <p>Spoken text.</p>
+  <div class="block">
+    <div class="blockTitleDiv">
+      <span class="blockTitle">Example 1</span>
     </div>
 
-    <h3 id="examples-synthesis"><span class=secno>6.2 </span>Speech Synthesis Examples</h3>
-
-    <div class="example">
-      <p>Spoken text.</p>
-      <div class="block">
-        <div class="blockTitleDiv">
-          <span class="blockTitle">Example 1</span>
-        </div>
-
-        <div class="blockContent">
-          <pre class="code">
-            <code class="html-code">
+    <div class="blockContent">
+      <pre class="code">
+        <code class="html-code">
   &lt;script type="text/javascript"&gt;
      speechSynthesis.speak(new SpeechSynthesisUtterance('Hello World'));
   &lt;/script&gt;
-            </code>
-          </pre>
-        </div>
-      </div>
+        </code>
+      </pre>
+    </div>
+  </div>
 
-      <p>Spoken text with attributes and events.</p>
-      <div class="block">
-        <div class="blockTitleDiv">
-          <span class="blockTitle">Example 2</span>
-        </div>
+  <p>Spoken text with attributes and events.</p>
+  <div class="block">
+    <div class="blockTitleDiv">
+      <span class="blockTitle">Example 2</span>
+    </div>
 
-        <div class="blockContent">
-          <pre class="code">
-            <code class="html-code">
+    <div class="blockContent">
+      <pre class="code">
+        <code class="html-code">
   &lt;script type="text/javascript"&gt;
      var u = new SpeechSynthesisUtterance();
      u.text = 'Hello World';
@@ -1056,73 +1056,73 @@ Boilerplate: index no, idl-index no
      u.onend = function(event) { alert('Finished in ' + event.elapsedTime + ' seconds.'); }
      speechSynthesis.speak(u);
   &lt;/script&gt;
-            </code>
-          </pre>
-        </div>
-      </div>
+        </code>
+      </pre>
     </div>
+  </div>
+</div>
 
-    <h2 class="no-num" id="acknowledgments">Acknowledgments</h2>
+<h2 class="no-num" id="acknowledgments">Acknowledgments</h2>
 
-      <dd>Peter Beverloo, Google, Inc.</dd>
-      <dd>Bjorn Bringert, Google, Inc.</dd>
-      <dd>Gerardo Capiel, Benetech</dd>
-      <dd>Jerry Carter</dd>
-      <dd>Nagesh Kharidi, Openstream, Inc.</dd>
-      <dd>Dominic Mazzoni, Google, Inc.</dd>
-      <dd>Olli Pettay, Mozilla Foundation</dd>
-      <dd>Charles Pritchard</dd>
-      <dd>Satish Sampath, Google, Inc.</dd>
-      <dd>Adam Sobieski, Phoster, Inc.</dd>
-      <dd>Raj Tumuluri, Openstream, Inc.</dd>
-      <dd>Kagami Sascha Rosylight</dd>
-      <dd>Also, the members of the HTML Speech Incubator Group, and the corresponding Final Report <a href="#ref-1">[1]</a>, created the basis for this specification.</dd>
+  <dd>Peter Beverloo, Google, Inc.</dd>
+  <dd>Bjorn Bringert, Google, Inc.</dd>
+  <dd>Gerardo Capiel, Benetech</dd>
+  <dd>Jerry Carter</dd>
+  <dd>Nagesh Kharidi, Openstream, Inc.</dd>
+  <dd>Dominic Mazzoni, Google, Inc.</dd>
+  <dd>Olli Pettay, Mozilla Foundation</dd>
+  <dd>Charles Pritchard</dd>
+  <dd>Satish Sampath, Google, Inc.</dd>
+  <dd>Adam Sobieski, Phoster, Inc.</dd>
+  <dd>Raj Tumuluri, Openstream, Inc.</dd>
+  <dd>Kagami Sascha Rosylight</dd>
+  <dd>Also, the members of the HTML Speech Incubator Group, and the corresponding Final Report <a href="#ref-1">[1]</a>, created the basis for this specification.</dd>
 
-    <h2 class="no-num" id="references">References</h2>
+<h2 class="no-num" id="references">References</h2>
 
-    <dl>
-      <dt><a id="ref-bcp47">[BCP47]</a></dt>
-      <dd><a href="http://www.ietf.org/rfc/bcp/bcp47.txt"><cite>Tags for Identifying Languages</cite></a>, A. Phillips, et al. September 2009.
-      Internet BCP 47.
-      URL: <a href="http://www.ietf.org/rfc/bcp/bcp47.txt">http://www.ietf.org/rfc/bcp/bcp47.txt</a></dd>
+<dl>
+  <dt><a id="ref-bcp47">[BCP47]</a></dt>
+  <dd><a href="http://www.ietf.org/rfc/bcp/bcp47.txt"><cite>Tags for Identifying Languages</cite></a>, A. Phillips, et al. September 2009.
+  Internet BCP 47.
+  URL: <a href="http://www.ietf.org/rfc/bcp/bcp47.txt">http://www.ietf.org/rfc/bcp/bcp47.txt</a></dd>
 
-      <dt><a id="ref-emma">[EMMA]</a></dt>
-      <dd><cite><a href="http://www.w3.org/TR/emma/">EMMA: Extensible MultiModal Annotation markup language</a></cite>, Michael Johnston, Editor.
-      World Wide Web Consortium, 10 February 2009.
-      URL: <a href="http://www.w3.org/TR/emma/">http://www.w3.org/TR/emma/</a></dd>
+  <dt><a id="ref-emma">[EMMA]</a></dt>
+  <dd><cite><a href="http://www.w3.org/TR/emma/">EMMA: Extensible MultiModal Annotation markup language</a></cite>, Michael Johnston, Editor.
+  World Wide Web Consortium, 10 February 2009.
+  URL: <a href="http://www.w3.org/TR/emma/">http://www.w3.org/TR/emma/</a></dd>
 
-      <dt><a id="ref-rfc2119">[RFC2119]</a></dt>
-      <dd><a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>, S. Bradner. March 1997.
-      Internet RFC 2119.
-      URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a></dd>
+  <dt><a id="ref-rfc2119">[RFC2119]</a></dt>
+  <dd><a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>, S. Bradner. March 1997.
+  Internet RFC 2119.
+  URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a></dd>
 
-      <dt><a id="ref-ssml">[SSML]</a></dt>
-      <dd><cite><a href="http://www.w3.org/TR/speech-synthesis/">Speech Synthesis Markup Language (SSML)</a></cite>, Daniel C. Burnett, et al., Editors.
-      World Wide Web Consortium, 7 September 2004.
-      URL: <a href="http://www.w3.org/TR/speech-synthesis/">http://www.w3.org/TR/speech-synthesis/</a></dd>
+  <dt><a id="ref-ssml">[SSML]</a></dt>
+  <dd><cite><a href="http://www.w3.org/TR/speech-synthesis/">Speech Synthesis Markup Language (SSML)</a></cite>, Daniel C. Burnett, et al., Editors.
+  World Wide Web Consortium, 7 September 2004.
+  URL: <a href="http://www.w3.org/TR/speech-synthesis/">http://www.w3.org/TR/speech-synthesis/</a></dd>
 
-      <dt><a id="ref-webidl">[WEBIDL]</a></dt>
-      <dd><cite><a href="http://www.w3.org/TR/WebIDL/">Web IDL</a></cite>, Cameron McCormack, Editor.
-      World Wide Web Consortium, 19 April 2012.
-      URL: <a href="http://www.w3.org/TR/WebIDL/">http://www.w3.org/TR/WebIDL/</a></dd>
+  <dt><a id="ref-webidl">[WEBIDL]</a></dt>
+  <dd><cite><a href="http://www.w3.org/TR/WebIDL/">Web IDL</a></cite>, Cameron McCormack, Editor.
+  World Wide Web Consortium, 19 April 2012.
+  URL: <a href="http://www.w3.org/TR/WebIDL/">http://www.w3.org/TR/WebIDL/</a></dd>
 
-      <dt><a id="ref-1">[1]</a></dt>
-      <dd><cite><a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">HTML Speech Incubator Group Final Report</a></cite>, Michael Bodell, et al., Editors. World Wide Web Consortium, 6 December 2011.
-      URL: <a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/</a></dd>
+  <dt><a id="ref-1">[1]</a></dt>
+  <dd><cite><a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">HTML Speech Incubator Group Final Report</a></cite>, Michael Bodell, et al., Editors. World Wide Web Consortium, 6 December 2011.
+  URL: <a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/</a></dd>
 
-      <dt><a id="ref-2">[2]</a></dt>
-      <dd><cite><a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html">SpeechRecognitionAlternative.interpretation when interpretation can't be provided</a></cite> thread on public-speech-api@w3.org, World Wide Web Consortium Speech API Community Group mailing list.
-      URL: <a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html">http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html</a></dd>
+  <dt><a id="ref-2">[2]</a></dt>
+  <dd><cite><a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html">SpeechRecognitionAlternative.interpretation when interpretation can't be provided</a></cite> thread on public-speech-api@w3.org, World Wide Web Consortium Speech API Community Group mailing list.
+  URL: <a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html">http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html</a></dd>
 
-      <dt><a id="ref-3">[3]</a></dt>
-      <dd><cite><a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179.html">Default value of SpeechRecognition.grammars</a></cite> thread on public-speech-api@w3.org, World Wide Web Consortium Speech API Community Group mailing list.
-      URL: <a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179.html">http://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179.html</a></dd>
+  <dt><a id="ref-3">[3]</a></dt>
+  <dd><cite><a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179.html">Default value of SpeechRecognition.grammars</a></cite> thread on public-speech-api@w3.org, World Wide Web Consortium Speech API Community Group mailing list.
+  URL: <a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179.html">http://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179.html</a></dd>
 
-      <dt><a id="ref-4">[4]</a></dt>
-      <dd><cite><a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0143.html">Confidence property</a></cite> thread on public-speech-api@w3.org, World Wide Web Consortium Speech API Community Group mailing list.
-      URL: <a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0143.html">http://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0143.html</a></dd>
+  <dt><a id="ref-4">[4]</a></dt>
+  <dd><cite><a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0143.html">Confidence property</a></cite> thread on public-speech-api@w3.org, World Wide Web Consortium Speech API Community Group mailing list.
+  URL: <a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0143.html">http://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0143.html</a></dd>
 
-      <dt><a id="ref-5">[5]</a></dt>
-      <dd><cite><a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0072.html">Interacting with WebRTC, the Web Audio API and other external sources</a></cite> thread on public-speech-api@w3.org, World Wide Web Consortium Speech API Community Group mailing list.
-      URL: <a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0072.html">http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0072.html</a></dd>
-    </dl>
+  <dt><a id="ref-5">[5]</a></dt>
+  <dd><cite><a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0072.html">Interacting with WebRTC, the Web Audio API and other external sources</a></cite> thread on public-speech-api@w3.org, World Wide Web Consortium Speech API Community Group mailing list.
+  URL: <a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0072.html">http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0072.html</a></dd>
+</dl>
