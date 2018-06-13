@@ -372,28 +372,28 @@ For example, some implementations may fire <a event for=SpeechRecognition>audioe
   <dd>The errorCode is an enumeration indicating what has gone wrong.
   The values are:
   <dl>
-    <dt><dfn id="dfn-sre.nospeech">"no-speech"</dfn></dt>
+    <dt><dfn enum-value for=SpeechRecognitionErrorCode>"no-speech"</code></dt>
     <dd>No speech was detected.</dd>
 
-    <dt><dfn id="dfn-sre.aborted">"aborted"</dfn></dt>
+    <dt><dfn enum-value for=SpeechRecognitionErrorCode>"aborted"</dfn></dt>
     <dd>Speech input was aborted somehow, maybe by some user-agent-specific behavior such as UI that lets the user cancel speech input.</dd>
 
-    <dt><dfn id="dfn-sre.audiocapture">"audio-capture"</dfn></dt>
+    <dt><dfn enum-value for=SpeechRecognitionErrorCode>"audio-capture"</dfn></dt>
     <dd>Audio capture failed.</dd>
 
-    <dt><dfn id="dfn-sre.network">"network"</dfn></dt>
+    <dt><dfn enum-value for=SpeechRecognitionErrorCode>"network"</dfn></dt>
     <dd>Some network communication that was required to complete the recognition failed.</dd>
 
-    <dt><dfn id="dfn-sre.notallowed">"not-allowed"</dfn></dt>
+    <dt><dfn enum-value for=SpeechRecognitionErrorCode>"not-allowed"</dfn></dt>
     <dd>The user agent is not allowing any speech input to occur for reasons of security, privacy or user preference.</dd>
 
-    <dt><dfn id="dfn-sre.servicenotallowed">"service-not-allowed"</dfn></dt>
+    <dt><dfn enum-value for=SpeechRecognitionErrorCode>"service-not-allowed"</dfn></dt>
     <dd>The user agent is not allowing the web application requested speech service, but would allow some speech service, to be used either because the user agent doesn't support the selected one or because of reasons of security, privacy or user preference.</dd>
 
-    <dt><dfn id="dfn-sre.badgrammar">"bad-grammar"</dfn></dt>
+    <dt><dfn enum-value for=SpeechRecognitionErrorCode>"bad-grammar"</dfn></dt>
     <dd>There was an error in the speech recognition grammar or semantic tags, or the grammar format or semantic tag format is unsupported.</dd>
 
-    <dt><dfn id="dfn-sre.languagenotsupported">"language-not-supported"</dfn></dt>
+    <dt><dfn enum-value for=SpeechRecognitionErrorCode>"language-not-supported"</dfn></dt>
     <dd>The language was not supported.</dd>
   </dl>
   </dd>
@@ -780,40 +780,40 @@ These events bubble up to SpeechSynthesis.
   <dd>The errorCode is an enumeration indicating what has gone wrong.
   The values are:
   <dl>
-    <dt><dfn id="dfn-sse.canceled">"canceled"</dfn></dt>
+    <dt><dfn enum-value for=SpeechSynthesisErrorCode>"canceled"</dfn></dt>
     <dd>A cancel method call caused the SpeechSynthesisUtterance to be removed from the queue before it had begun being spoken.</dd>
 
-    <dt><dfn id="dfn-sse.interrupted">"interrupted"</dfn></dt>
+    <dt><dfn enum-value for=SpeechSynthesisErrorCode>"interrupted"</dfn></dt>
     <dd>A cancel method call caused the SpeechSynthesisUtterance to be interrupted after it has begun being spoken and before it completed.</dd>
 
-    <dt><dfn id="dfn-sse.audio-busy">"audio-busy"</dfn></dt>
+    <dt><dfn enum-value for=SpeechSynthesisErrorCode>"audio-busy"</dfn></dt>
     <dd>The operation cannot be completed at this time because the user-agent cannot access the audio output device.
     (For example, the user may need to correct this by closing another application.)</dd>
 
-    <dt><dfn id="dfn-sse.audio-hardware">"audio-hardware"</dfn></dt>
+    <dt><dfn enum-value for=SpeechSynthesisErrorCode>"audio-hardware"</dfn></dt>
     <dd>The operation cannot be completed at this time because the user-agent cannot identify an audio output device.
     (For example, the user may need to connect a speaker or configure system settings.)</dd>
 
-    <dt><dfn id="dfn-sse.network">"network"</dfn></dt>
+    <dt><dfn enum-value for=SpeechSynthesisErrorCode>"network"</dfn></dt>
     <dd>The operation cannot be completed at this time because some required network communication failed.</dd>
 
-    <dt><dfn id="dfn-sse.synthesis-unavailable">"synthesis-unavailable"</dfn></dt>
+    <dt><dfn enum-value for=SpeechSynthesisErrorCode>"synthesis-unavailable"</dfn></dt>
     <dd>The operation cannot be completed at this time because no synthesis engine is available.
     (For example, the user may need to install or configure a synthesis engine.)</dd>
 
-    <dt><dfn id="dfn-sse.synthesis-failed">"synthesis-failed"</dfn></dt>
+    <dt><dfn enum-value for=SpeechSynthesisErrorCode>"synthesis-failed"</dfn></dt>
     <dd>The operation failed because synthesis engine had an error.</dd>
 
-    <dt><dfn id="dfn-sse.language-unavailable">"language-unavailable"</dfn></dt>
+    <dt><dfn enum-value for=SpeechSynthesisErrorCode>"language-unavailable"</dfn></dt>
     <dd>No appropriate voice is available for the language designated in SpeechSynthesisUtterance lang.</dd>
 
-    <dt><dfn id="dfn-sse.voice-unavailable">"voice-unavailable"</dfn></dt>
+    <dt><dfn enum-value for=SpeechSynthesisErrorCode>"voice-unavailable"</dfn></dt>
     <dd>The voice designated in SpeechSynthesisUtterance voice attribute is not available.</dd>
 
-    <dt><dfn id="dfn-sse.text-too-long">"text-too-long"</dfn></dt>
+    <dt><dfn enum-value for=SpeechSynthesisErrorCode>"text-too-long"</dfn></dt>
     <dd>The contents of the SpeechSynthesisUtterance text attribute is too long to synthesize.</dd>
 
-    <dt><dfn id="dfn-sse.invalid-argument">"invalid-argument"</dfn></dt>
+    <dt><dfn enum-value for=SpeechSynthesisErrorCode>"invalid-argument"</dfn></dt>
     <dd>The contents of the SpeechSynthesisUtterance rate, pitch or volume attribute is not supported by synthesizer.</dd>
   </dl>
   </dd>
