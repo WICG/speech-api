@@ -751,7 +751,7 @@ These events bubble up to SpeechSynthesis.
   The user agent <em class="rfc2119" title="must">must</em> fire this event if the speech synthesis engine provides the event.</dd>
 </dl>
 
-<h4 id="speechsynthesisevent">SpeechSynthesisEvent Attributes</h4>
+<h4 id="speechsynthesisevent-attributes">SpeechSynthesisEvent Attributes</h4>
 
 <dl>
   <dt><dfn attribute for=SpeechSynthesisEvent>utterance</dfn> attribute</dt>
@@ -772,7 +772,7 @@ These events bubble up to SpeechSynthesis.
   For all other events, this value should return undefined.</dd>
 </dl>
 
-<h4 id="speechsynthesiserrorevent">SpeechSynthesisErrorEvent Attributes</h4>
+<h4 id="speechsynthesiserrorevent-attributes">SpeechSynthesisErrorEvent Attributes</h4>
 
 <p>The SpeechSynthesisErrorEvent is the interface used for the SpeechSynthesisUtterance <a event for=SpeechSynthesisUtterance>error</a> event.</p>
 <dl>
@@ -819,7 +819,7 @@ These events bubble up to SpeechSynthesis.
   </dd>
 </dl>
 
-<h4 id="speechsynthesisvoice">SpeechSynthesisVoice</h4>
+<h4 id="speechsynthesisvoice-attributes">SpeechSynthesisVoice Attributes</h4>
 
 <dl>
   <dt><dfn attribute for=SpeechSynthesisVoice>voiceURI</dfn> attribute</dt>
