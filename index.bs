@@ -8,8 +8,8 @@ URL: https://w3c.github.io/speech-api/
 Repository: w3c/speech-api
 Shortname: speech-api
 Editor: Andre Natal (Mozilla)
+Editor: Glen Shires (Google)
 Editor: Philip Jägenstedt (Google)
-Former Editor: Glen Shires (Google)
 Former Editor: Hans Wennborg (Google)
 Abstract: This specification defines a JavaScript API to enable web developers to incorporate speech recognition and synthesis into their web pages.
 Abstract: It enables developers to use scripting to generate text-to-speech output and to use speech recognition as an input for forms, continuous dictation and control.
