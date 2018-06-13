@@ -245,32 +245,32 @@ interface SpeechGrammarList {
 <h4 id="speechreco-attributes">SpeechRecognition Attributes</h4>
 
 <dl>
-  <dt><dfn id="dfn-grammars">grammars</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechRecognition>grammars</dfn> attribute</dt>
   <dd>The grammars attribute stores the collection of SpeechGrammar objects which represent the grammars that are active for this recognition.</dd>
 
-  <dt><dfn id="dfn-lang">lang</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechRecognition>lang</dfn> attribute</dt>
   <dd>This attribute will set the language of the recognition for the request, using a valid BCP 47 language tag. [[!BCP47]]
   If unset it remains unset for getting in script, but will default to use the <a href="http://www.w3.org/TR/html5/elements.html#the-lang-and-xml:lang-attributes">lang</a> of the html document root element and associated hierarchy.
   This default value is computed and used when the input request opens a connection to the recognition service.</dd>
 
-  <dt><dfn id="dfn-continuous">continuous</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechRecognition>continuous</dfn> attribute</dt>
   <dd>When the continuous attribute is set to false, the user agent <em class="rfc2119" title="must">must</em> return no more than one final result in response to starting recognition,
   for example a single turn pattern of interaction.
   When the continuous attribute is set to true, the user agent <em class="rfc2119" title="must">must</em> return zero or more final results representing multiple consecutive recognitions in response to starting recognition,
   for example a dictation.
   The default value <em class="rfc2119" title="must">must</em> be false.  Note, this attribute setting does not affect interim results.</dd>
 
-  <dt><dfn id="dfn-interimresults">interimResults</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechRecognition>interimResults</dfn> attribute</dt>
   <dd>Controls whether interim results are returned.
   When set to true, interim results <em class="rfc2119" title="should">should</em> be returned.
   When set to false, interim results <em class="rfc2119" title="must">must</em> NOT be returned.
   The default value <em class="rfc2119" title="must">must</em> be false. Note, this attribute setting does not affect final results.</dd>
 
-  <dt><dfn id="dfn-maxalternatives">maxAlternatives</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechRecognition>maxAlternatives</dfn> attribute</dt>
   <dd>This attribute will set the maximum number of <a href="#speechreco-alternative">SpeechRecognitionAlternative</a>s per result.
   The default value is 1.</dd>
 
-  <dt><dfn id="dfn-serviceuri">serviceURI</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechRecognition>serviceURI</dfn> attribute</dt>
   <dd>The serviceURI attribute specifies the location of the speech recognition service that the web application wishes to use.
   If this attribute is unset at the time of the start method call, then the user agent <em class="rfc2119" title="should">must</em> use the user agent default speech service.
   Note that the serviceURI is a generic URI and can thus point to local services either through use of a URN with meaning to the user agent or by specifying a URL that the user agent recognizes as a local service.
@@ -281,13 +281,13 @@ interface SpeechGrammarList {
 <h4 id="speechreco-methods">SpeechRecognition Methods</h4>
 
 <dl>
-  <dt><dfn id="dfn-start">start</dfn> method</dt>
+  <dt><dfn method for=SpeechRecognition>start()</dfn> method</dt>
   <dd>When the start method is called it represents the moment in time the web application wishes to begin recognition.
   When the speech input is streaming live through the input media stream, then this start call represents the moment in time that the service <em class="rfc2119" title="must">must</em> begin to listen and try to match the grammars associated with this request.
   Once the system is successfully listening to the recognition the user agent <em class="rfc2119" title="must">must</em> raise a start event.
   If the start method is called on an already started object (that is, start has previously been called, and no <a href="#dfn-onerror">error</a> or <a href="#dfn-onend">end</a> event has fired on the object), the user agent <em class="rfc2119" title="must">must</em> throw an <a href="http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#invalidstateerror">InvalidStateError</a> exception and ignore the call.</dd>
 
-  <dt><dfn id="dfn-stop">stop</dfn> method</dt>
+  <dt><dfn method for=SpeechRecognition>stop()</dfn> method</dt>
   <dd>The stop method represents an instruction to the recognition service to stop listening to more audio, and to try and return a result using just the audio that it has already received for this recognition.
   A typical use of the stop method might be for a web application where the end user is doing the end pointing, similar to a walkie-talkie.
   The end user might press and hold the space bar to talk to the system and on the space down press the start call would have occurred and when the space bar is released the stop method is called to ensure that the system is no longer listening to the user.
@@ -295,7 +295,7 @@ interface SpeechGrammarList {
   The speech service <em class="rfc2119" title="must">must</em> attempt to return a recognition result (or a nomatch) based on the audio that it has already collected for this recognition.
   If the stop method is called on an object which is already stopped or being stopped (that is, start was never called on it, the <a href="#dfn-utteranceonend">end</a> or <a href="#dfn-utteranceonerror">error</a> event has fired on it, or stop was previously called on it), the user agent <em class="rfc2119" title="must">must</em> ignore the call.</dd>
 
-  <dt><dfn id="dfn-abort">abort</dfn> method</dt>
+  <dt><dfn method for=SpeechRecognition>abort()</dfn> method</dt>
   <dd>The abort method is a request to immediately stop listening and stop recognizing and do not return any information but that the system is done.
   When the abort method is called, the speech service <em class="rfc2119" title="must">must</em> stop recognizing.
   The user agent <em class="rfc2119" title="must">must</em> raise an <a href="#dfn-onend">end</a> event once the speech service is no longer connected.
@@ -368,7 +368,7 @@ For example, some implementations may fire <a href="#dfn-onaudioend">audioend</a
 
 <p>The SpeechRecognitionError event is the interface used for the <a href="#dfn-onerror">error</a> event.</p>
 <dl>
-  <dt><dfn id="dfn-error">error</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechRecognitionError>error</dfn> attribute</dt>
   <dd>The errorCode is an enumeration indicating what has gone wrong.
   The values are:
   <dl>
@@ -398,7 +398,7 @@ For example, some implementations may fire <a href="#dfn-onaudioend">audioend</a
   </dl>
   </dd>
 
-  <dt><dfn id="dfn-message">message</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechRecognitionError>message</dfn> attribute</dt>
   <dd>The message content is implementation specific.
   This attribute is primarily intended for debugging and developers should not use it directly in their application user interface.</dd>
 </dl>
@@ -408,11 +408,11 @@ For example, some implementations may fire <a href="#dfn-onaudioend">audioend</a
 <p>The SpeechRecognitionAlternative represents a simple view of the response that gets used in a n-best list.
 
 <dl>
-  <dt><dfn id="dfn-transcript">transcript</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechRecognitionAlternative>transcript</dfn> attribute</dt>
   <dd>The transcript string represents the raw words that the user spoke.
   For continuous recognition, leading or trailing whitespace MUST be included where necessary such that concatenation of consecutive SpeechRecognitionResults produces a proper transcript of the session.</dd>
 
-  <dt><dfn id="dfn-confidence">confidence</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechRecognitionAlternative>confidence</dfn> attribute</dt>
   <dd>The confidence represents a numeric estimate between 0 and 1 of how confident the recognition system is that the recognition is correct.
   A higher number means the system is more confident.
   <i>[Editor note: The group is currently discussing whether confidence can be specified in a speech-recognition-engine-independent manner and whether confidence threshold and nomatch should be included, because this is not a dialog API.] [[4]]</i></dd>
@@ -423,16 +423,16 @@ For example, some implementations may fire <a href="#dfn-onaudioend">audioend</a
 <p>The SpeechRecognitionResult object represents a single one-shot recognition match, either as one small part of a continuous recognition or as the complete return result of a non-continuous recognition.</p>
 
 <dl>
-  <dt><dfn id="dfn-length">length</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechRecognitionResult>length</dfn> attribute</dt>
   <dd>The long attribute represents how many n-best alternatives are represented in the item array.</dd>
 
-  <dt><dfn id="dfn-item">item</dfn> getter</dt>
+  <dt><dfn method for=SpeechRecognitionResult>item(<var>index</var>)</dfn> getter</dt>
   <dd>The item getter returns a SpeechRecognitionAlternative from the index into an array of n-best values.
   If index is greater than or equal to length, this returns null.
   The user agent <em class="rfc2119" title="must">must</em> ensure that the length attribute is set to the number of elements in the array.
   The user agent <em class="rfc2119" title="must">must</em> ensure that the n-best list is sorted in non-increasing confidence order (each element must be less than or equal to the confidence of the preceding elements).</dd>
 
-  <dt><dfn id="dfn-isFinal">isFinal</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechRecognitionResult>isFinal</dfn> attribute</dt>
   <dd>The final boolean <em class="rfc2119" title="must">must</em> be set to true if this is the final time the speech service will return this particular index value.
   If the value is false, then this represents an interim result that could still be changed.</dd>
 </dl>
@@ -443,10 +443,10 @@ For example, some implementations may fire <a href="#dfn-onaudioend">audioend</a
 For a non-continuous recognition it will hold only a single value.</p>
 
 <dl>
-  <dt><dfn id="dfn-speechrecognitionresultlistlength">length</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechRecognitionResultList>length</dfn> attribute</dt>
   <dd>The length attribute indicates how many results are represented in the item array.</dd>
 
-  <dt><dfn id="dfn-speechrecognitionresultlistitem">item</dfn> getter</dt>
+  <dt><dfn method for=SpeechRecognitionResultList>item(<var>index</var>)</dfn> getter</dt>
   <dd>The item getter returns a SpeechRecognitionResult from the index into an array of result values.
   If index is greater than or equal to length, this returns null.
   The user agent <em class="rfc2119" title="must">must</em> ensure that the length attribute is set to the number of elements in the array.</dd>
@@ -457,10 +457,10 @@ For a non-continuous recognition it will hold only a single value.</p>
 <p>The SpeechRecognitionEvent is the event that is raised each time there are any changes to interim or final results.</p>
 
 <dl>
-  <dt><dfn id="dfn-resultIndex">resultIndex</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechRecognitionEvent>resultIndex</dfn> attribute</dt>
   <dd>The resultIndex <em class="rfc2119" title="must">must</em> be set to the lowest index in the "results" array that has changed.</dd>
 
-  <dt><dfn id="dfn-results">results</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechRecognitionEvent>results</dfn> attribute</dt>
   <dd>The array of all current recognition results for this session.
   Specifically all final results that have been returned, followed by the current best hypothesis for all interim results.
   It <em class="rfc2119" title="must">must</em> consist of zero or more final results followed by zero or more interim results.
@@ -471,13 +471,13 @@ For a non-continuous recognition it will hold only a single value.</p>
   The length of the "results" array may increase or decrease, but <em class="rfc2119" title="must">must</em> not be less than resultIndex.
   Note that when resultIndex equals results.length, no new results are returned, this may occur when the array length decreases to remove one or more interim results.</dd>
 
-  <dt><dfn id="dfn-interpretation">interpretation</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechRecognitionEvent>interpretation</dfn> attribute</dt>
   <dd>The interpretation represents the semantic meaning from what the user said.
   This might be determined, for instance, through the SISR specification of semantics in a grammar.
   <i>[Editor note: The group is currently discussing options for the value of the interpretation attribute when no interpretation has been returned by the recognizer.
   Current options are 'null' or a copy of the transcript.] [[2]]</a></i></dd>
 
-  <dt><dfn id="dfn-emma">emma</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechRecognitionEvent>emma</dfn> attribute</dt>
   <dd>EMMA 1.0 representation of this result. [[!EMMA]]
   The contents of this result could vary across user agents and recognition engines, but all implementations <em class="rfc2119" title="must">must</em> expose a valid XML document complete with EMMA namespace,
   or if the recognizer does not supply EMMA then the user agent <em class="rfc2119" title="may">may</em> return null.
@@ -492,11 +492,11 @@ For a non-continuous recognition it will hold only a single value.</p>
 This structure has the following attributes:</p>
 
 <dl>
-  <dt><dfn id="dfn-grammarSrc">src</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechGrammar>src</dfn> attribute</dt>
   <dd>The required src attribute is the URI for the grammar.
   Note some services may support builtin grammars that can be specified using a builtin URI scheme.</dd>
 
-  <dt><dfn id="dfn-grammarWeight">weight</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechGrammar>weight</dfn> attribute</dt>
   <dd>The optional weight attribute controls the weight that the speech recognition service should use with this grammar.
   By default, a grammar has a weight of 1.
   Larger weight values positively weight the grammar while smaller weight values make the grammar weighted less strongly.</dd>
@@ -508,26 +508,26 @@ This structure has the following attributes:</p>
 This structure has the following attributes:</p>
 
 <dl>
-  <dt><dfn id="dfn-speechgrammarlistlength">length</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechGrammarList>length</dfn> attribute</dt>
   <dd>The length attribute represents how many grammars are currently in the array.</dd>
 
-  <dt><dfn id="dfn-speechgrammarlistitem">item</dfn> getter</dt>
+  <dt><dfn method for=SpeechGrammarList>item(<var>index</var>)</dfn> getter</dt>
   <dd>The item getter returns a SpeechGrammar from the index into an array of grammars.
   The user agent <em class="rfc2119" title="must">must</em> ensure that the length attribute is set to the number of elements in the array.
   The user agent <em class="rfc2119" title="must">must</em> ensure that the index order from smallest to largest matches the order in which grammars were added to the array.</dd>
 
-  <dt><dfn id="dfn-addGrammar">addFromURI</dfn> method</dt>
+  <dt><dfn method for=SpeechGrammarList>addFromURI(<var>src</var>, <var>weight</var>)</dfn> method</dt>
   <dd>This method appends a grammar to the grammars array parameter based on URI.
-  The URI for the grammar is specified by the <a href="#dfn-grammarSrc">src</a> parameter, which represents the URI for the grammar.
+  The URI for the grammar is specified by the <var>src</var> parameter, which represents the URI for the grammar.
   Note, some services may support builtin grammars that can be specified by URI.
-  If the <a href="#dfn-grammarWeight">weight</a> parameter is present it represents this grammar's weight relative to the other grammar.
+  If the <var>weight</var> parameter is present it represents this grammar's weight relative to the other grammar.
   If the weight parameter is not present, the default value of 1.0 is used.</dd>
 
-  <dt><dfn id="dfn-addGrammarstring">addFromString</dfn> method</dt>
+  <dt><dfn method for=SpeechGrammarList>addFromString(<var>string</var>, <var>weight</var>)</dfn> method</dt>
   <dd>This method appends a grammar to the grammars array parameter based on text.
-  The content of the grammar is specified by the <dfn id="dfn-grammarString">string</dfn> parameter.
+  The content of the grammar is specified by the <var>string</var> parameter.
   This content should be encoded into a data: URI when the SpeechGrammar object is created.
-  If the <a href="#dfn-grammarWeight">weight</a> parameter is present it represents this grammar's weight relative to the other grammar.
+  If the <var>weight</var> parameter is present it represents this grammar's weight relative to the other grammar.
   If the weight parameter is not present, the default value of 1.0 is used.</dd>
 </dl>
 
@@ -616,15 +616,15 @@ interface SpeechSynthesisVoice {
 <h4 id="tts-attributes">SpeechSynthesis Attributes</h4>
 
 <dl>
-  <dt><dfn id="dfn-ttspending">pending</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechSynthesis>pending</dfn> attribute</dt>
   <dd>This attribute is true if the queue for the global SpeechSynthesis instance contains any utterances which have not started speaking.</dd>
 
-  <dt><dfn id="dfn-ttsspeaking">speaking</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechSynthesis>speaking</dfn> attribute</dt>
   <dd>This attribute is true if an utterance is being spoken.
   Specifically if an utterance has begun being spoken and has not completed being spoken.
   This is independent of whether the global SpeechSynthesis instance is in the paused state.</dd>
 
-  <dt><dfn id="dfn-ttspaused">paused</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechSynthesis>paused</dfn> attribute</dt>
   <dd>This attribute is true when the global SpeechSynthesis instance is in the paused state.
   This state is independent of whether anything is in the queue.
   The default state of a the global SpeechSynthesis instance for a new window is the non-paused state.</dd>
@@ -633,7 +633,7 @@ interface SpeechSynthesisVoice {
 <h4 id="tts-methods">SpeechSynthesis Methods</h4>
 
 <dl>
-  <dt><dfn id="dfn-ttsspeak">speak</dfn> method</dt>
+  <dt><dfn method for=SpeechSynthesis>speak(<var>utterance</var>)</dfn> method</dt>
   <dd>This method appends the SpeechSynthesisUtterance object to the end of the queue for the global SpeechSynthesis instance.
   It does not change the paused state of the SpeechSynthesis instance.
   If the SpeechSynthesis instance is paused, it remains paused.
@@ -645,22 +645,22 @@ interface SpeechSynthesisVoice {
   Passing it as a speak() argument to another SpeechSynthesis object should throw an exception.
   (For example, two frames may have the same origin and each will contain a SpeechSynthesis object.)</dd>
 
-  <dt><dfn id="dfn-ttscancel">cancel</dfn> method</dt>
+  <dt><dfn method for=SpeechSynthesis>cancel()</dfn> method</dt>
   <dd>This method removes all utterances from the queue.
   If an utterance is being spoken, speaking ceases immediately.
   This method does not change the paused state of the global SpeechSynthesis instance.</dd>
 
-  <dt><dfn id="dfn-ttspause">pause</dfn> method</dt>
+  <dt><dfn method for=SpeechSynthesis>pause()</dfn> method</dt>
   <dd>This method puts the global SpeechSynthesis instance into the paused state.
   If an utterance was being spoken, it pauses mid-utterance.
   (If called when the SpeechSynthesis instance was already in the paused state, it does nothing.)</dd>
 
-  <dt><dfn id="dfn-ttsresume">resume</dfn> method</dt>
+  <dt><dfn method for=SpeechSynthesis>resume()</dfn> method</dt>
   <dd>This method puts the global SpeechSynthesis instance into the non-paused state.
   If an utterance was speaking, it continues speaking the utterance at the point at which it was paused, else it begins speaking the next utterance in the queue (if any).
   (If called when the SpeechSynthesis instance was already in the non-paused state, it does nothing.)</dd>
 
-  <dt><dfn id="dfn-ttsgetvoices">getVoices</dfn> method</dt>
+  <dt><dfn method for=SpeechSynthesis>getVoices()</dfn> method</dt>
   <dd>This method returns the available voices.
   It is user agent dependent which voices are available.
   If there are no voices available, or if the the list of available voices is not yet known (for example: server-side synthesis where the list is determined asynchronously),
@@ -678,30 +678,30 @@ interface SpeechSynthesisVoice {
 <h4 id="utterance-attributes">SpeechSynthesisUtterance Attributes</h4>
 
 <dl>
-  <dt><dfn id="dfn-utterancetext">text</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechSynthesisUtterance>text</dfn> attribute</dt>
   <dd>This attribute specifies the text to be synthesized and spoken for this utterance.
   This may be either plain text or a complete, well-formed SSML document. [[!SSML]]
   For speech synthesis engines that do not support SSML, or only support certain tags, the user agent or speech engine must strip away the tags they do not support and speak the text.
   There may be a maximum length of the text, it may be limited to 32,767 characters.</dd>
 
-  <dt><dfn id="dfn-utterancelang">lang</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechSynthesisUtterance>lang</dfn> attribute</dt>
   <dd>This attribute specifies the language of the speech synthesis for the utterance, using a valid BCP 47 language tag. [[!BCP47]]</a>
   If unset it remains unset for getting in script, but will default to use the <a href="http://www.w3.org/TR/html5/elements.html#the-lang-and-xml:lang-attributes">lang</a> of the html document root element and associated hierarchy.
   This default value is computed and used when the input request opens a connection to the recognition service.</dd>
 
-  <dt><dfn id="dfn-utterancevoice">voice</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechSynthesisUtterance>voice</dfn> attribute</dt>
   <dd>The voice attribute specifies speech synthesis voice that the web application wishes to use.
   If, at the time of the play method call, this attribute has been set to one of the SpeechSynthesisVoice objects returned by getVoices, then the user agent <em class="rfc2119" title="must">must</em> use that voice.
   If this attribute is unset or null at the time of the play method call, then the user agent <em class="rfc2119" title="must">must</em> use a user agent default voice.
   The user agent default voice <em class="rfc2119" title="should">should</em> support the current language (see "lang" attribute) and can be a local or remote speech service and can incorporate end user choices via interfaces provided by the user agent such as browser configuration parameters.
   </dd>
 
-  <dt><dfn id="dfn-utterancevolume">volume</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechSynthesisUtterance>volume</dfn> attribute</dt>
   <dd>This attribute specifies the speaking volume for the utterance.
   It ranges between 0 and 1 inclusive, with 0 being the lowest volume and 1 the highest volume, with a default of 1.
   If SSML is used, this value will be overridden by prosody tags in the markup.</dd>
 
-  <dt><dfn id="dfn-utterancerate">rate</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechSynthesisUtterance>rate</dfn> attribute</dt>
   <dd>This attribute specifies the speaking rate for the utterance.
   It is relative to the default rate for this voice.
   1 is the default rate supported by the speech synthesis engine or specific voice (which should correspond to a normal speaking rate).
@@ -709,7 +709,7 @@ interface SpeechSynthesisVoice {
   Values below 0.1 or above 10 are strictly disallowed, but speech synthesis engines or specific voices may constrain the minimum and maximum rates further, for example, a particular voice may not actually speak faster than 3 times normal even if you specify a value larger than 3.
   If SSML is used, this value will be overridden by prosody tags in the markup.</dd>
 
-  <dt><dfn id="dfn-utterancepitch">pitch</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechSynthesisUtterance>pitch</dfn> attribute</dt>
   <dd>This attribute specifies the speaking pitch for the utterance.
   It ranges between 0 and 2 inclusive, with 0 being the lowest pitch and 2 the highest pitch.
   1 corresponds to the default pitch of the speech synthesis engine or specific voice.
@@ -755,19 +755,19 @@ These events bubble up to SpeechSynthesis.
 <h4 id="speechsynthesisevent">SpeechSynthesisEvent Attributes</h4>
 
 <dl>
-  <dt><dfn id="dfn-callbackutterance">utterance</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechSynthesisEvent>utterance</dfn> attribute</dt>
   <dd>This attribute contains the SpeechSynthesisUtterance that triggered this event.</dd>
 
-  <dt><dfn id="dfn-callbackcharindex">charIndex</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechSynthesisEvent>charIndex</dfn> attribute</dt>
   <dd>This attribute indicates the zero-based character index into the original utterance string that most closely approximates the current speaking position of the speech engine.
   No guarantee is given as to where charIndex will be with respect to word boundaries (such as at the end of the previous word or the beginning of the next word), only that all text before charIndex has already been spoken, and all text after charIndex has not yet been spoken.
   The user agent must return this value if the speech synthesis engine supports it, otherwise the user agent must return undefined.</dd>
 
-  <dt><dfn id="dfn-callbackelapsedtime">elapsedTime</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechSynthesisEvent>elapsedTime</dfn> attribute</dt>
   <dd>This attribute indicates the time, in seconds, that this event triggered, relative to when this utterance has begun to be spoken.
   The user agent must return this value if the speech synthesis engine supports it or the user agent can otherwise determine it, otherwise the user agent must return undefined.</dd>
 
-  <dt><dfn id="dfn-callbackname">name</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechSynthesisEvent>name</dfn> attribute</dt>
   <dd>For <a href="#dfn-utteranceonmark">mark</a> events, this attribute indicates the name of the marker, as defined in SSML as the name attribute of a mark element. [[!SSML]]
   For <a href="#dfn-utteranceonboundary">boundary</a> events, this attribute indicates the type of boundary that caused the event: "word" or "sentence".
   For all other events, this value should return undefined.</dd>
@@ -819,7 +819,7 @@ These events bubble up to SpeechSynthesis.
   </dl>
   </dd>
 
-  <dt><dfn id="dfn-message">message</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechSynthesisErrorEvent>error</dfn> attribute</dt>
   <dd>The message content is implementation specific.
   This attribute is primarily intended for debugging and developers should not use it directly in their application user interface.</dd>
 </dl>
@@ -827,22 +827,22 @@ These events bubble up to SpeechSynthesis.
 <h4 id="speechsynthesisvoice">SpeechSynthesisVoice</h4>
 
 <dl>
-  <dt><dfn id="dfn-voicevoiceuri">voiceURI</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechSynthesisVoice>voiceURI</dfn> attribute</dt>
   <dd>The voiceURI attribute specifies the speech synthesis voice and the location of the speech synthesis service for this voice.
   Note that the voiceURI is a generic URI and can thus point to local or remote services, either through use of a URN with meaning to the user agent or by specifying a URL that the user agent recognizes as a local service.</dd>
 
-  <dt><dfn id="dfn-voicename">name</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechSynthesisVoice>name</dfn> attribute</dt>
   <dd>This attribute is a human-readable name that represents the voice.
   There is no guarantee that all names returned are unique.</dd>
 
-  <dt><dfn id="dfn-voicelang">lang</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechSynthesisVoice>lang</dfn> attribute</dt>
   <dd>This attribute is a BCP 47 language tag indicating the language of the voice. [[!BCP47]]</dd>
 
-  <dt><dfn id="dfn-voicelocalservice">localService</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechSynthesisVoice>localService</dfn> attribute</dt>
   <dd>This attribute is true for voices supplied by a local speech synthesizer, and is false for voices supplied by a remote speech synthesizer service.
   (This may be useful because remote services may imply additional latency, bandwidth or cost, whereas local voices may imply lower quality, however there is no guarantee that any of these implications are true.)</dd>
 
-  <dt><dfn id="dfn-voicedefault">default</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechSynthesisVoice>default</dfn> attribute</dt>
   <dd>This attribute is true for at most one voice per language.
   There may be a different default for each language.
   It is user agent dependent how default voices are determined.</dd>
