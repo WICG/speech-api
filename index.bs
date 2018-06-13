@@ -633,7 +633,7 @@ interface SpeechSynthesisVoice {
 
 <dl>
   <dt><dfn method for=SpeechSynthesis>speak(<var>utterance</var>)</dfn> method</dt>
-  <dd>This method appends the SpeechSynthesisUtterance object to the end of the queue for the global SpeechSynthesis instance.
+  <dd>This method appends the SpeechSynthesisUtterance object <var>utterance</var> to the end of the queue for the global SpeechSynthesis instance.
   It does not change the paused state of the SpeechSynthesis instance.
   If the SpeechSynthesis instance is paused, it remains paused.
   If it is not paused and no other utterances are in the queue, then this utterance is spoken immediately,
