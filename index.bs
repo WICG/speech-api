@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title:  Web Speech API
+Title: Web Speech API
 Level:
 Status: CG-DRAFT
 Group: SACG
@@ -817,10 +817,6 @@ These events bubble up to SpeechSynthesis.
     <dd>The contents of the SpeechSynthesisUtterance rate, pitch or volume attribute is not supported by synthesizer.</dd>
   </dl>
   </dd>
-
-  <dt><dfn attribute for=SpeechSynthesisErrorEvent>error</dfn> attribute</dt>
-  <dd>The message content is implementation specific.
-  This attribute is primarily intended for debugging and developers should not use it directly in their application user interface.</dd>
 </dl>
 
 <h4 id="speechsynthesisvoice">SpeechSynthesisVoice</h4>
