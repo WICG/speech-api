@@ -202,7 +202,7 @@ interface SpeechRecognitionAlternative {
 [Exposed=Window]
 interface SpeechRecognitionResult {
     readonly attribute unsigned long length;
-    getter SpeechRecognitionAlternative item(in unsigned long index);
+    getter SpeechRecognitionAlternative item(unsigned long index);
     readonly attribute boolean isFinal;
 };
 
@@ -210,7 +210,7 @@ interface SpeechRecognitionResult {
 [Exposed=Window]
 interface SpeechRecognitionResultList {
     readonly attribute unsigned long length;
-    getter SpeechRecognitionResult item(in unsigned long index);
+    getter SpeechRecognitionResult item(unsigned long index);
 };
 
 // A full response, which could be interim or final, part of a continuous response or not
@@ -233,10 +233,10 @@ interface SpeechGrammar {
 [Exposed=Window, Constructor]
 interface SpeechGrammarList {
     readonly attribute unsigned long length;
-    getter SpeechGrammar item(in unsigned long index);
-    void addFromURI(in DOMString src,
+    getter SpeechGrammar item(unsigned long index);
+    void addFromURI(DOMString src,
                     optional float weight);
-    void addFromString(in DOMString string,
+    void addFromString(DOMString string,
                     optional float weight);
 };
 </pre>
@@ -437,7 +437,7 @@ For example, some implementations may fire <a href="#dfn-onaudioend">audioend</a
   If the value is false, then this represents an interim result that could still be changed.</dd>
 </dl>
 
-<h4 id="speechreco-resultlist">SpeechRecognitionList</h4>
+<h4 id="speechreco-resultlist">SpeechRecognitionResultList</h4>
 
 <p>The SpeechRecognitionResultList object holds a sequence of recognition results representing the complete return result of a continuous recognition.
 For a non-continuous recognition it will hold only a single value.</p>
@@ -551,9 +551,8 @@ interface SpeechSynthesis : EventTarget {
     sequence&lt;SpeechSynthesisVoice> getVoices();
 };
 
-partial interface Window
-{
-    readonly attribute SpeechSynthesis speechSynthesis;
+partial interface Window {
+    [SameObject] readonly attribute SpeechSynthesis speechSynthesis;
 };
 
 [Exposed=Window,
