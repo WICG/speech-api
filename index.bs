@@ -267,7 +267,7 @@ interface SpeechGrammarList {
   The default value <em class="rfc2119" title="must">must</em> be false. Note, this attribute setting does not affect final results.</dd>
 
   <dt><dfn attribute for=SpeechRecognition>maxAlternatives</dfn> attribute</dt>
-  <dd>This attribute will set the maximum number of <a href="#speechreco-alternative">SpeechRecognitionAlternative</a>s per result.
+  <dd>This attribute will set the maximum number of {{SpeechRecognitionAlternative}}s per result.
   The default value is 1.</dd>
 
   <dt><dfn attribute for=SpeechRecognition>serviceURI</dfn> attribute</dt>
@@ -343,18 +343,18 @@ For example, some implementations may fire <a href="#dfn-onaudioend">audioend</a
 
   <dt><dfn id="dfn-onresult">result</dfn> event</dt>
   <dd>Fired when the speech recognizer returns a result.
-  The event <em class="rfc2119" title="must">must</em> use the <a href="#speechreco-event">SpeechRecognitionEvent</a> interface.
+  The event <em class="rfc2119" title="must">must</em> use the {{SpeechRecognitionEvent}} interface.
   The <a href="#dfn-onaudiostart">audiostart</a> event <em class="rfc2119" title="must">must</em> always have been fired before the result event.</dd>
 
   <dt><dfn id="dfn-onnomatch">nomatch</dfn> event</dt>
   <dd>Fired when the speech recognizer returns a final result with no recognition hypothesis that meet or exceed the confidence threshold.
-  The event <em class="rfc2119" title="must">must</em> use the <a href="#speechreco-event">SpeechRecognitionEvent</a> interface.
+  The event <em class="rfc2119" title="must">must</em> use the {{SpeechRecognitionEvent}} interface.
   The <a href="#dfn-results">results</a> attribute in the event <em class="rfc2119" title="may">may</em> contain speech recognition results that are below the confidence threshold or <em class="rfc2119" title="may">may</em> be null.
   The <a href="#dfn-onaudiostart">audiostart</a> event <em class="rfc2119" title="must">must</em> always have been fired before the nomatch event.</dd>
 
   <dt><dfn id="dfn-onerror">error</dfn> event</dt>
   <dd>Fired when a speech recognition error occurs.
-  The event <em class="rfc2119" title="must">must</em> use the <a href="#speechreco-error">SpeechRecognitionError</a> interface.</dd>
+  The event <em class="rfc2119" title="must">must</em> use the {{SpeechRecognitionError}} interface.</dd>
 
   <dt><dfn id="dfn-onstart">start</dfn> event</dt>
   <dd>Fired when the recognition service has begun to listen to the audio with the intention of recognizing.
@@ -719,8 +719,8 @@ interface SpeechSynthesisVoice {
 
 <h4 id="utterance-events">SpeechSynthesisUtterance Events</h4>
 
-Each of these events <em class="rfc2119" title="must">must</em> use the <a href="#speechsynthesisevent">SpeechSynthesisEvent</a> interface,
-except the error event which <em class="rfc2119" title="must">must</em> use the <a href="#speechsynthesiserrorevent">SpeechSynthesisErrorEvent</a> interface.
+Each of these events <em class="rfc2119" title="must">must</em> use the {{SpeechSynthesisEvent}} interface,
+except the error event which <em class="rfc2119" title="must">must</em> use the {{SpeechSynthesisErrorEvent}} interface.
 These events bubble up to SpeechSynthesis.
 
 <dl>
