@@ -1,6 +1,7 @@
 branches:
   only:
     - master
+    - foolip/bikeshed
 language: python
 python:
   - "2.7"
@@ -20,4 +21,4 @@ deploy:
   github-token: $GITHUB_TOKEN
   keep-history: true
   on:
-    branch: master
+    branch: foolip/bikeshed
