@@ -475,7 +475,7 @@ For a non-continuous recognition it will hold only a single value.</p>
   <dd>The interpretation represents the semantic meaning from what the user said.
   This might be determined, for instance, through the SISR specification of semantics in a grammar.
   <i>[Editor note: The group is currently discussing options for the value of the interpretation attribute when no interpretation has been returned by the recognizer.
-  Current options are 'null' or a copy of the transcript.] [[2]]</a></i></dd>
+  Current options are null or a copy of the transcript.] [[2]]</a></i></dd>
 
   <dt><dfn attribute for=SpeechRecognitionEvent>emma</dfn> attribute</dt>
   <dd>EMMA 1.0 representation of this result. [[!EMMA]]
