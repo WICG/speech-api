@@ -591,7 +591,7 @@
     [Exposed=Window]
     interface <dfn id="speechrecognitionresult">SpeechRecognitionResult</dfn> {
         readonly attribute unsigned long <a href="#dfn-length">length</a>;
-        getter <a href="#speechrecognitionalternative">SpeechRecognitionAlternative</a> <a href="#dfn-item">item</a>(in unsigned long index);
+        getter <a href="#speechrecognitionalternative">SpeechRecognitionAlternative</a> <a href="#dfn-item">item</a>(unsigned long index);
         readonly attribute boolean <a href="#dfn-isFinal">isFinal</a>;
     };
 
@@ -599,7 +599,7 @@
     [Exposed=Window]
     interface <dfn id="speechrecognitionresultlist">SpeechRecognitionResultList</dfn> {
         readonly attribute unsigned long <a href="#dfn-speechrecognitionresultlistlength">length</a>;
-        getter <a href="#speechrecognitionresult">SpeechRecognitionResult</a> <a href="#dfn-speechrecognitionresultlistitem">item</a>(in unsigned long index);
+        getter <a href="#speechrecognitionresult">SpeechRecognitionResult</a> <a href="#dfn-speechrecognitionresultlistitem">item</a>(unsigned long index);
     };
 
     <span class="comment">// A full response, which could be interim or final, part of a continuous response or not</span>
@@ -622,10 +622,10 @@
     [Exposed=Window, Constructor]
     interface <dfn id="dfn-speechgrammarlist">SpeechGrammarList</dfn> {
         readonly attribute unsigned long <a href="#dfn-speechgrammarlistlength">length</a>;
-        getter <a href="#dfn-speechgrammar">SpeechGrammar</a> <a href="#dfn-speechgrammarlistitem">item</a>(in unsigned long index);
-        void <a href="#dfn-addGrammar">addFromURI</a>(in DOMString <a href="#dfn-grammarSrc">src</a>,
+        getter <a href="#dfn-speechgrammar">SpeechGrammar</a> <a href="#dfn-speechgrammarlistitem">item</a>(unsigned long index);
+        void <a href="#dfn-addGrammar">addFromURI</a>(DOMString <a href="#dfn-grammarSrc">src</a>,
                         optional float <a href="#dfn-grammarWeight">weight</a>);
-        void <a href="#dfn-addGrammarstring">addFromString</a>(in DOMString <a href="#dfn-grammarString">string</a>,
+        void <a href="#dfn-addGrammarstring">addFromString</a>(DOMString <a href="#dfn-grammarString">string</a>,
                         optional float <a href="#dfn-grammarWeight">weight</a>);
     };
 
@@ -949,9 +949,8 @@
         sequence&lt;SpeechSynthesisVoice&gt; <a href="#dfn-ttsgetvoices">getVoices</a>();
     };
 
-    partial interface Window
-    {
-        readonly attribute SpeechSynthesis speechSynthesis;
+    partial interface Window {
+        [SameObject] readonly attribute SpeechSynthesis speechSynthesis;
     };
 
     [Exposed=Window,
