@@ -642,17 +642,17 @@
       This default value is computed and used when the input request opens a connection to the recognition service.</dd>
 
       <dt><dfn id="dfn-continuous">continuous</dfn> attribute</dt>
-      <dd>When the continuous attribute is set to false, the user agent <em class="rfc2119" title="must">must</em> return no more than one final result in response to starting recognition,
+      <dd>When the continuous attribute is set to false, the user agent must return no more than one final result in response to starting recognition,
       for example a single turn pattern of interaction.
-      When the continuous attribute is set to true, the user agent <em class="rfc2119" title="must">must</em> return zero or more final results representing multiple consecutive recognitions in response to starting recognition,
+      When the continuous attribute is set to true, the user agent must return zero or more final results representing multiple consecutive recognitions in response to starting recognition,
       for example a dictation.
-      The default value <em class="rfc2119" title="must">must</em> be false.  Note, this attribute setting does not affect interim results.</dd>
+      The default value must be false.  Note, this attribute setting does not affect interim results.</dd>
 
       <dt><dfn id="dfn-interimresults">interimResults</dfn> attribute</dt>
       <dd>Controls whether interim results are returned.
-      When set to true, interim results <em class="rfc2119" title="should">should</em> be returned.
-      When set to false, interim results <em class="rfc2119" title="must">must</em> NOT be returned.
-      The default value <em class="rfc2119" title="must">must</em> be false. Note, this attribute setting does not affect final results.</dd>
+      When set to true, interim results should be returned.
+      When set to false, interim results must NOT be returned.
+      The default value must be false. Note, this attribute setting does not affect final results.</dd>
 
       <dt><dfn id="dfn-maxalternatives">maxAlternatives</dfn> attribute</dt>
       <dd>This attribute will set the maximum number of <a href="#speechreco-alternative">SpeechRecognitionAlternative</a>s per result.
@@ -660,7 +660,7 @@
 
       <dt><dfn id="dfn-serviceuri">serviceURI</dfn> attribute</dt>
       <dd>The serviceURI attribute specifies the location of the speech recognition service that the web application wishes to use.
-      If this attribute is unset at the time of the start method call, then the user agent <em class="rfc2119" title="should">must</em> use the user agent default speech service.
+      If this attribute is unset at the time of the start method call, then the user agent must use the user agent default speech service.
       Note that the serviceURI is a generic URI and can thus point to local services either through use of a URN with meaning to the user agent or by specifying a URL that the user agent recognizes as a local service.
       Additionally, the user agent default can be local or remote and can incorporate end user choices via interfaces provided by the user agent such as browser configuration parameters.
       <i>[Editor note: The group is currently discussing whether WebRTC might be used to specify selection of audio sources and remote recognizers.] <a href="#ref-5">[5]</a></i></dd>
@@ -671,23 +671,23 @@
     <dl>
       <dt><dfn id="dfn-start">start</dfn> method</dt>
       <dd>When the start method is called it represents the moment in time the web application wishes to begin recognition.
-      When the speech input is streaming live through the input media stream, then this start call represents the moment in time that the service <em class="rfc2119" title="must">must</em> begin to listen and try to match the grammars associated with this request.
-      Once the system is successfully listening to the recognition the user agent <em class="rfc2119" title="must">must</em> raise a start event.
-      If the start method is called on an already started object (that is, start has previously been called, and no <a href="#dfn-onerror">error</a> or <a href="#dfn-onend">end</a> event has fired on the object), the user agent <em class="rfc2119" title="must">must</em> throw an <a href="http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#invalidstateerror">InvalidStateError</a> exception and ignore the call.</dd>
+      When the speech input is streaming live through the input media stream, then this start call represents the moment in time that the service must begin to listen and try to match the grammars associated with this request.
+      Once the system is successfully listening to the recognition the user agent must raise a start event.
+      If the start method is called on an already started object (that is, start has previously been called, and no <a href="#dfn-onerror">error</a> or <a href="#dfn-onend">end</a> event has fired on the object), the user agent must throw an <a href="http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#invalidstateerror">InvalidStateError</a> exception and ignore the call.</dd>
 
       <dt><dfn id="dfn-stop">stop</dfn> method</dt>
       <dd>The stop method represents an instruction to the recognition service to stop listening to more audio, and to try and return a result using just the audio that it has already received for this recognition.
       A typical use of the stop method might be for a web application where the end user is doing the end pointing, similar to a walkie-talkie.
       The end user might press and hold the space bar to talk to the system and on the space down press the start call would have occurred and when the space bar is released the stop method is called to ensure that the system is no longer listening to the user.
-      Once the stop method is called the speech service <em class="rfc2119" title="must not">must not</em> collect additional audio and <em class="rfc2119" title="must not">must not</em> continue to listen to the user.
-      The speech service <em class="rfc2119" title="must">must</em> attempt to return a recognition result (or a nomatch) based on the audio that it has already collected for this recognition.
-      If the stop method is called on an object which is already stopped or being stopped (that is, start was never called on it, the <a href="#dfn-utteranceonend">end</a> or <a href="#dfn-utteranceonerror">error</a> event has fired on it, or stop was previously called on it), the user agent <em class="rfc2119" title="must">must</em> ignore the call.</dd>
+      Once the stop method is called the speech service must not collect additional audio and must not continue to listen to the user.
+      The speech service must attempt to return a recognition result (or a nomatch) based on the audio that it has already collected for this recognition.
+      If the stop method is called on an object which is already stopped or being stopped (that is, start was never called on it, the <a href="#dfn-utteranceonend">end</a> or <a href="#dfn-utteranceonerror">error</a> event has fired on it, or stop was previously called on it), the user agent must ignore the call.</dd>
 
       <dt><dfn id="dfn-abort">abort</dfn> method</dt>
       <dd>The abort method is a request to immediately stop listening and stop recognizing and do not return any information but that the system is done.
-      When the abort method is called, the speech service <em class="rfc2119" title="must">must</em> stop recognizing.
-      The user agent <em class="rfc2119" title="must">must</em> raise an <a href="#dfn-onend">end</a> event once the speech service is no longer connected.
-      If the abort method is called on an object which is already stopped or aborting (that is, start was never called on it, the <a href="#dfn-onend">end</a> or <a href="#dfn-onerror">error</a> event has fired on it, or abort was previously called on it), the user agent <em class="rfc2119" title="must">must</em> ignore the call.</dd>
+      When the abort method is called, the speech service must stop recognizing.
+      The user agent must raise an <a href="#dfn-onend">end</a> event once the speech service is no longer connected.
+      If the abort method is called on an object which is already stopped or aborting (that is, start was never called on it, the <a href="#dfn-onend">end</a> or <a href="#dfn-onerror">error</a> event has fired on it, or abort was previously called on it), the user agent must ignore the call.</dd>
     </dl>
 
     <h4 id="speechreco-events"><span class=secno>5.1.3 </span>SpeechRecognition Events</h4>
@@ -709,43 +709,43 @@
 
       <dt><dfn id="dfn-onsoundstart">soundstart</dfn> event</dt>
       <dd>Fired when some sound, possibly speech, has been detected.
-      This <em class="rfc2119" title="must">must</em> be fired with low latency, e.g. by using a client-side energy detector.</dd>
+      This must be fired with low latency, e.g. by using a client-side energy detector.</dd>
 
       <dt><dfn id="dfn-onspeechstart">speechstart</dfn> event</dt>
       <dd>Fired when the speech that will be used for speech recognition has started.</dd>
 
       <dt><dfn id="dfn-onspeechend">speechend</dfn> event</dt>
       <dd>Fired when the speech that will be used for speech recognition has ended.
-      The <a href="#dfn-onspeechstart">speechstart</a> event <em class="rfc2119" title="must">must</em> always have been fire before speechend.</dd>
+      The <a href="#dfn-onspeechstart">speechstart</a> event must always have been fire before speechend.</dd>
 
       <dt><dfn id="dfn-onsoundend">soundend</dfn> event</dt>
       <dd>Fired when some sound is no longer detected.
-      This <em class="rfc2119" title="must">must</em> be fired with low latency, e.g. by using a client-side energy detector.
-      The <a href="#dfn-onsoundstart">soundstart</a> event <em class="rfc2119" title="must">must</em> always have been fired before soundend.</dd>
+      This must be fired with low latency, e.g. by using a client-side energy detector.
+      The <a href="#dfn-onsoundstart">soundstart</a> event must always have been fired before soundend.</dd>
 
       <dt><dfn id="dfn-onaudioend">audioend</dfn> event</dt>
       <dd>Fired when the user agent has finished capturing audio.
-      The <a href="#dfn-onaudiostart">audiostart</a> event <em class="rfc2119" title="must">must</em> always have been fired before audioend.</dd>
+      The <a href="#dfn-onaudiostart">audiostart</a> event must always have been fired before audioend.</dd>
 
       <dt><dfn id="dfn-onresult">result</dfn> event</dt>
       <dd>Fired when the speech recognizer returns a result.
-      The event <em class="rfc2119" title="must">must</em> use the <a href="#speechreco-event">SpeechRecognitionEvent</a> interface.</dd>
+      The event must use the <a href="#speechreco-event">SpeechRecognitionEvent</a> interface.</dd>
 
       <dt><dfn id="dfn-onnomatch">nomatch</dfn> event</dt>
       <dd>Fired when the speech recognizer returns a final result with no recognition hypothesis that meet or exceed the confidence threshold.
-      The event <em class="rfc2119" title="must">must</em> use the <a href="#speechreco-event">SpeechRecognitionEvent</a> interface.
-      The <a href="#dfn-results">results</a> attribute in the event <em class="rfc2119" title="may">may</em> contain speech recognition results that are below the confidence threshold or <em class="rfc2119" title="may">may</em> be null.</dd>
+      The event must use the <a href="#speechreco-event">SpeechRecognitionEvent</a> interface.
+      The <a href="#dfn-results">results</a> attribute in the event may contain speech recognition results that are below the confidence threshold or may be null.</dd>
 
       <dt><dfn id="dfn-onerror">error</dfn> event</dt>
       <dd>Fired when a speech recognition error occurs.
-      The event <em class="rfc2119" title="must">must</em> use the <a href="#speechreco-error">SpeechRecognitionError</a> interface.</dd>
+      The event must use the <a href="#speechreco-error">SpeechRecognitionError</a> interface.</dd>
 
       <dt><dfn id="dfn-onstart">start</dfn> event</dt>
       <dd>Fired when the recognition service has begun to listen to the audio with the intention of recognizing.
 
       </dd><dt><dfn id="dfn-onend">end</dfn> event</dt>
       <dd>Fired when the service has disconnected.
-      The event <em class="rfc2119" title="must">must</em> always be generated when the session ends no matter the reason for the end.</dd>
+      The event must always be generated when the session ends no matter the reason for the end.</dd>
     </dl>
 
     <h4 id="speechreco-error"><span class=secno>5.1.4 </span>SpeechRecognitionError</h4>
@@ -813,11 +813,11 @@
       <dt><dfn id="dfn-item">item</dfn> getter</dt>
       <dd>The item getter returns a SpeechRecognitionAlternative from the index into an array of n-best values.
       If index is greater than or equal to length, this returns null.
-      The user agent <em class="rfc2119" title="must">must</em> ensure that the length attribute is set to the number of elements in the array.
-      The user agent <em class="rfc2119" title="must">must</em> ensure that the n-best list is sorted in non-increasing confidence order (each element must be less than or equal to the confidence of the preceding elements).</dd>
+      The user agent must ensure that the length attribute is set to the number of elements in the array.
+      The user agent must ensure that the n-best list is sorted in non-increasing confidence order (each element must be less than or equal to the confidence of the preceding elements).</dd>
 
       <dt><dfn id="dfn-final">final</dfn> attribute</dt>
-      <dd>The final boolean <em class="rfc2119" title="must">must</em> be set to true if this is the final time the speech service will return this particular index value.
+      <dd>The final boolean must be set to true if this is the final time the speech service will return this particular index value.
       If the value is false, then this represents an interim result that could still be changed.</dd>
     </dl>
 
@@ -833,7 +833,7 @@
       <dt><dfn id="dfn-speechrecognitionresultlistitem">item</dfn> getter</dt>
       <dd>The item getter returns a SpeechRecognitionResult from the index into an array of result values.
       If index is greater than or equal to length, this returns null.
-      The user agent <em class="rfc2119" title="must">must</em> ensure that the length attribute is set to the number of elements in the array.</dd>
+      The user agent must ensure that the length attribute is set to the number of elements in the array.</dd>
     </dl>
 
     <h4 id="speechreco-event"><span class=secno>5.1.8 </span>SpeechRecognitionEvent</h4>
@@ -842,17 +842,17 @@
 
     <dl>
       <dt><dfn id="dfn-resultIndex">resultIndex</dfn> attribute</dt>
-      <dd>The resultIndex <em class="rfc2119" title="must">must</em> be set to the lowest index in the "results" array that has changed.</dd>
+      <dd>The resultIndex must be set to the lowest index in the "results" array that has changed.</dd>
 
       <dt><dfn id="dfn-results">results</dfn> attribute</dt>
       <dd>The array of all current recognition results for this session.
       Specifically all final results that have been returned, followed by the current best hypothesis for all interim results.
-      It <em class="rfc2119" title="must">must</em> consist of zero or more final results followed by zero or more interim results.
+      It must consist of zero or more final results followed by zero or more interim results.
       On subsequent SpeechRecognitionResultEvent events, interim results may be overwritten by a newer interim result or by a final result or may be removed (when at the end of the "results" array and the array length decreases).
-      Final results <em class="rfc2119" title="must">must</em> not be overwritten or removed.
-      All entries for indexes less than resultIndex <em class="rfc2119" title="must">must</em> be identical to the array that was present when the last SpeechRecognitionResultEvent was raised.
+      Final results must not be overwritten or removed.
+      All entries for indexes less than resultIndex must be identical to the array that was present when the last SpeechRecognitionResultEvent was raised.
       All array entries (if any) for indexes equal or greater than resultIndex that were present in the array when the last SpeechRecognitionResultEvent was raised are removed and overwritten with new results.
-      The length of the "results" array may increase or decrease, but <em class="rfc2119" title="must">must</em> not be less than resultIndex.
+      The length of the "results" array may increase or decrease, but must not be less than resultIndex.
       Note that when resultIndex equals results.length, no new results are returned, this may occur when the array length decreases to remove one or more interim results.</dd>
 
       <dt><dfn id="dfn-interpretation">interpretation</dfn> attribute</dt>
@@ -863,8 +863,8 @@
 
       <dt><dfn id="dfn-emma">emma</dfn> attribute</dt>
       <dd>EMMA 1.0 representation of this result. <a href="#ref-emma">[EMMA]</a>
-      The contents of this result could vary across user agents and recognition engines, but all implementations <em class="rfc2119" title="must">must</em> expose a valid XML document complete with EMMA namespace.
-      User agent implementations for recognizers that supply EMMA <em class="rfc2119" title="must">must</em> contain all annotations and content generated by the recognition resources utilized for recognition, except where infeasible due to conflicting attributes.
+      The contents of this result could vary across user agents and recognition engines, but all implementations must expose a valid XML document complete with EMMA namespace.
+      User agent implementations for recognizers that supply EMMA must contain all annotations and content generated by the recognition resources utilized for recognition, except where infeasible due to conflicting attributes.
       The user agent <em class="rfc2119" title="must">may</em> add additional annotations to provide a richer result for the developer.</dd>
     </dl>
 
@@ -896,8 +896,8 @@
 
       <dt><dfn id="dfn-speechgrammarlistitem">item</dfn> getter</dt>
       <dd>The item getter returns a SpeechGrammar from the index into an array of grammars.
-      The user agent <em class="rfc2119" title="must">must</em> ensure that the length attribute is set to the number of elements in the array.
-      The user agent <em class="rfc2119" title="must">must</em> ensure that the index order from smallest to largest matches the order in which grammars were added to the array.</dd>
+      The user agent must ensure that the length attribute is set to the number of elements in the array.
+      The user agent must ensure that the index order from smallest to largest matches the order in which grammars were added to the array.</dd>
 
       <dt><dfn id="dfn-addGrammar">addFromURI</dfn> method</dt>
       <dd>This method appends a grammar to the grammars array parameter based on URI.
@@ -1015,7 +1015,7 @@
       If it is not paused and no other utterances are in the queue, then this utterance is spoken immediately,
       else this utterance is queued to begin speaking after the other utterances in the queue have been spoken.
       If changes are made to the SpeechSynthesisUtterance object after calling this method and prior to the corresponding <a href="#dfn-utteranceonend">end</a> or <a href="#dfn-utteranceonerror">error</a> event,
-      it is not defined whether those changes will affect what is spoken, and those changes <em class="rfc2119" title="may">may</em> cause an error to be returned.</dd>
+      it is not defined whether those changes will affect what is spoken, and those changes may cause an error to be returned.</dd>
 
       <dt><dfn id="dfn-ttscancel">cancel</dfn> method</dt>
       <dd>This method removes all utterances from the queue.
@@ -1053,7 +1053,7 @@
 
       <dt><dfn id="dfn-utterancevoiceuri">voiceURI</dfn> attribute</dt>
       <dd>The voiceURI attribute specifies speech synthesis voice and the location of the speech synthesis service that the web application wishes to use.
-      If this attribute is unset at the time of the play method call, then the user agent <em class="rfc2119" title="must">must</em> use the user agent default speech service.
+      If this attribute is unset at the time of the play method call, then the user agent must use the user agent default speech service.
       Note that the voiceURI is a generic URI and can thus point to local services either through use of a URN with meaning to the user agent or by specifying a URL that the user agent recognizes as a local service.
       Additionally, the user agent default can be local or remote and can incorporate end user choices via interfaces provided by the user agent such as browser configuration parameters.
       </dd>
@@ -1081,7 +1081,7 @@
 
     <h4 id="utterance-events"><span class=secno>5.2.4 </span>SpeechSynthesisUtterance Events</h4>
 
-    Each of these events <em class="rfc2119" title="must">must</em> use the <a href="#speechsynthesisevent">SpeechSynthesisEvent</a> interface.
+    Each of these events must use the <a href="#speechsynthesisevent">SpeechSynthesisEvent</a> interface.
 
     <dl>
       <dt><dfn id="dfn-utteranceonstart">start</dfn> event</dt>
@@ -1089,12 +1089,12 @@
 
       <dt><dfn id="dfn-utteranceonend">end</dfn> event</dt>
       <dd>Fired when this utterance has completed being spoken.
-      If this event fires, the <a href="#dfn-utteranceonerror">error</a> event <em class="rfc2119" title="must">must</em> not be fired for this utterance.</dd>
+      If this event fires, the <a href="#dfn-utteranceonerror">error</a> event must not be fired for this utterance.</dd>
 
       <dt><dfn id="dfn-utteranceonerror">error</dfn> event</dt>
       <dd>Fired if there was an error that prevented successful speaking of this utterance.
-      If this event fires, the <a href="#dfn-utteranceonend">end</a> event <em class="rfc2119" title="must">must</em> not be fired for this utterance.</dd>
- 
+      If this event fires, the <a href="#dfn-utteranceonend">end</a> event must not be fired for this utterance.</dd>
+
       <dt><dfn id="dfn-utteranceonpause">pause</dfn> event</dt>
       <dd>Fired when and if this utterance is paused mid-utterance.</dd>
 
@@ -1105,11 +1105,11 @@
 
       <dt><dfn id="dfn-utteranceonmark">mark</dfn> event</dt>
       <dd>Fired when the spoken utterance reaches a named "mark" tag in SSML. <a href="#ref-ssml">[SSML]</a>
-      The user agent <em class="rfc2119" title="must">must</em> fire this event if the speech synthesis engine provides the event.</dd>
+      The user agent must fire this event if the speech synthesis engine provides the event.</dd>
 
       <dt><dfn id="dfn-utteranceonboundary">boundary</dfn> event</dt>
       <dd>Fired when the spoken utterance reaches a word or sentence boundary.
-      The user agent <em class="rfc2119" title="must">must</em> fire this event if the speech synthesis engine provides the event.</dd>
+      The user agent must fire this event if the speech synthesis engine provides the event.</dd>
     </dl>
 
     <h4 id="speechsynthesisevent"><span class=secno>5.2.5 </span>SpeechSynthesisEvent Attributes</h4>
@@ -1165,7 +1165,7 @@
       <dt><dfn id="dfn-voicelistitem">item</dfn> getter</dt>
       <dd>The item getter returns a SpeechSynthesisVoice from the index into an array of result values.
       If index is greater than or equal to length, this returns null.
-      The user agent <em class="rfc2119" title="must">must</em> ensure that the length attribute is set to the number of elements in the array.</dd>
+      The user agent must ensure that the length attribute is set to the number of elements in the array.</dd>
     </dl>
 
     <h2 id="examples"><span class=secno>6 </span>Examples</h2>
