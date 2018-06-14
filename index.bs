@@ -142,7 +142,7 @@ This does not preclude adding support for this as a future API enhancement, and 
 
 <h3 id="speechreco-section">The SpeechRecognition Interface</h3>
 
-<p>The speech recognition interface is the scripted web <acronym title="Application Programming Interface">API</acronym> for controlling a given recognition.</p>
+<p>The speech recognition interface is the scripted web API for controlling a given recognition.</p>
 The term "final result" indicates a SpeechRecognitionResult in which the final attribute is true.
 The term "interim result" indicates a SpeechRecognitionResult in which the final attribute is false.
 
@@ -535,7 +535,7 @@ This structure has the following attributes:</p>
 
 <h3 id="tts-section">The SpeechSynthesis Interface</h3>
 
-<p>The SpeechSynthesis interface is the scripted web <acronym title="Application Programming Interface">API</acronym> for controlling a text-to-speech output.</p>
+<p>The SpeechSynthesis interface is the scripted web API for controlling a text-to-speech output.</p>
 
 <pre class="idl">
 [Exposed=Window]
@@ -1023,16 +1023,19 @@ These events bubble up to SpeechSynthesis.
 
 <h2 class="no-num" id="acknowledgments">Acknowledgments</h2>
 
-  <dd>Peter Beverloo, Google, Inc.</dd>
-  <dd>Bjorn Bringert, Google, Inc.</dd>
-  <dd>Gerardo Capiel, Benetech</dd>
-  <dd>Jerry Carter</dd>
-  <dd>Nagesh Kharidi, Openstream, Inc.</dd>
-  <dd>Dominic Mazzoni, Google, Inc.</dd>
-  <dd>Olli Pettay, Mozilla Foundation</dd>
-  <dd>Charles Pritchard</dd>
-  <dd>Satish Sampath, Google, Inc.</dd>
-  <dd>Adam Sobieski, Phoster, Inc.</dd>
-  <dd>Raj Tumuluri, Openstream, Inc.</dd>
-  <dd>Kagami Sascha Rosylight</dd>
-  <dd>Also, the members of the HTML Speech Incubator Group, and the corresponding Final Report [[1]], created the basis for this specification.</dd>
+<p style="white-space: pre-line">
+  Peter Beverloo, Google, Inc.
+  Bjorn Bringert, Google, Inc.
+  Gerardo Capiel, Benetech
+  Jerry Carter
+  Nagesh Kharidi, Openstream, Inc.
+  Dominic Mazzoni, Google, Inc.
+  Olli Pettay, Mozilla Foundation
+  Charles Pritchard
+  Satish Sampath, Google, Inc.
+  Adam Sobieski, Phoster, Inc.
+  Raj Tumuluri, Openstream, Inc.
+  Kagami Sascha Rosylight
+</p>
+
+<p>Also, the members of the HTML Speech Incubator Group, and the corresponding Final Report [[1]], created the basis for this specification.</p>
