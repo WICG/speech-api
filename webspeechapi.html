@@ -343,7 +343,7 @@
       <p><a href="http://www.w3.org/"><img alt=W3C height=48 src="http://www.w3.org/Icons/w3c_home" width=72></a></p>
       <!--end-logo-->
       <h1 id="title_heading">Web Speech API Specification</h1>
-      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 11 June 2018</h2>
+      <h2 class="no-num no-toc" id="draft_date">Editor's Draft: 6 June 2014</h2>
       <dl>
         <dt>Editors:</dt>
         <dd>Glen Shires, Google Inc.</dd>
@@ -385,7 +385,7 @@
       <li><a href="#speechreco-error"><span class=secno>5.1.4 </span>SpeechRecognitionError</a></li>
       <li><a href="#speechreco-alternative"><span class=secno>5.1.5 </span>SpeechRecognitionAlternative</a></li>
       <li><a href="#speechreco-result"><span class=secno>5.1.6 </span>SpeechRecognitionResult</a></li>
-      <li><a href="#speechreco-resultlist"><span class=secno>5.1.7 </span>SpeechRecognitionResultList</a></li>
+      <li><a href="#speechreco-resultlist"><span class=secno>5.1.7 </span>SpeechRecognitionList</a></li>
       <li><a href="#speechreco-event"><span class=secno>5.1.8 </span>SpeechRecognitionEvent</a></li>
       <li><a href="#speechreco-speechgrammar"><span class=secno>5.1.9 </span>SpeechGrammar</a></li>
       <li><a href="#speechreco-speechgrammarlist"><span class=secno>5.1.10 </span>SpeechGrammarList</a></li>
@@ -534,7 +534,7 @@
       <div class="blockContent">
         <pre class="code">
           <code class="idl-code">
-    [Exposed=Window, Constructor]
+    [Constructor]
     interface <dfn id="dfn-speechreco">SpeechRecognition</dfn> : EventTarget {
         <span class="comment">// recognition parameters</span>
         attribute <a href="#dfn-speechgrammarlist">SpeechGrammarList</a> <a href="#dfn-grammars">grammars</a>;
@@ -563,47 +563,42 @@
         attribute EventHandler <a href="#dfn-onend">onend</a>;
     };
 
-    enum SpeechRecognitionErrorCode {
-        "<a href="#dfn-sre.nospeech">no-speech</a>",
-        "<a href="#dfn-sre.aborted">aborted</a>",
-        "<a href="#dfn-sre.audiocapture">audio-capture</a>",
-        "<a href="#dfn-sre.network">network</a>",
-        "<a href="#dfn-sre.notallowed">not-allowed</a>",
-        "<a href="#dfn-sre.servicenotallowed">service-not-allowed</a>",
-        "<a href="#dfn-sre.badgrammar">bad-grammar</a>",
-        "<a href="#dfn-sre.languagenotsupported">language-not-supported</a>"
-    };
-
-    [Exposed=Window]
     interface <dfn id="speechrecognitionerror">SpeechRecognitionError</dfn> : Event {
-        readonly attribute SpeechRecognitionErrorCode <a href="#dfn-error">error</a>;
+        enum ErrorCode {
+          "<a href="#dfn-sre.nospeech">no-speech</a>",
+          "<a href="#dfn-sre.aborted">aborted</a>",
+          "<a href="#dfn-sre.audiocapture">audio-capture</a>",
+          "<a href="#dfn-sre.network">network</a>",
+          "<a href="#dfn-sre.notallowed">not-allowed</a>",
+          "<a href="#dfn-sre.servicenotallowed">service-not-allowed</a>",
+          "<a href="#dfn-sre.badgrammar">bad-grammar</a>",
+          "<a href="#dfn-sre.languagenotsupported">language-not-supported</a>"
+        };
+
+        readonly attribute ErrorCode <a href="#dfn-error">error</a>;
         readonly attribute DOMString <a href="#dfn-message">message</a>;
     };
 
     <span class="comment">// Item in N-best list</span>
-    [Exposed=Window]
     interface <dfn id="speechrecognitionalternative">SpeechRecognitionAlternative</dfn> {
         readonly attribute DOMString <a href="#dfn-transcript">transcript</a>;
         readonly attribute float <a href="#dfn-confidence">confidence</a>;
     };
 
     <span class="comment">// A complete one-shot simple response</span>
-    [Exposed=Window]
     interface <dfn id="speechrecognitionresult">SpeechRecognitionResult</dfn> {
         readonly attribute unsigned long <a href="#dfn-length">length</a>;
-        getter <a href="#speechrecognitionalternative">SpeechRecognitionAlternative</a> <a href="#dfn-item">item</a>(unsigned long index);
+        getter <a href="#speechrecognitionalternative">SpeechRecognitionAlternative</a> <a href="#dfn-item">item</a>(in unsigned long index);
         readonly attribute boolean <a href="#dfn-isFinal">isFinal</a>;
     };
 
     <span class="comment">// A collection of responses (used in continuous mode)</span>
-    [Exposed=Window]
     interface <dfn id="speechrecognitionresultlist">SpeechRecognitionResultList</dfn> {
         readonly attribute unsigned long <a href="#dfn-speechrecognitionresultlistlength">length</a>;
-        getter <a href="#speechrecognitionresult">SpeechRecognitionResult</a> <a href="#dfn-speechrecognitionresultlistitem">item</a>(unsigned long index);
+        getter <a href="#speechrecognitionresult">SpeechRecognitionResult</a> <a href="#dfn-speechrecognitionresultlistitem">item</a>(in unsigned long index);
     };
 
     <span class="comment">// A full response, which could be interim or final, part of a continuous response or not</span>
-    [Exposed=Window]
     interface <dfn id="speechrecognitionevent">SpeechRecognitionEvent</dfn> : Event {
         readonly attribute unsigned long <a href="#dfn-resultIndex">resultIndex</a>;
         readonly attribute <a href="#speechrecognitionresultlist">SpeechRecognitionResultList</a> <a href="#dfn-results">results</a>;
@@ -612,20 +607,20 @@
     };
 
     <span class="comment">// The object representing a speech grammar</span>
-    [Exposed=Window, Constructor]
+    [Constructor]
     interface <dfn id="dfn-speechgrammar">SpeechGrammar</dfn> {
         attribute DOMString <a href="#dfn-grammarSrc">src</a>;
         attribute float <a href="#dfn-grammarWeight">weight</a>;
     };
 
     <span class="comment">// The object representing a speech grammar collection</span>
-    [Exposed=Window, Constructor]
+    [Constructor]
     interface <dfn id="dfn-speechgrammarlist">SpeechGrammarList</dfn> {
         readonly attribute unsigned long <a href="#dfn-speechgrammarlistlength">length</a>;
-        getter <a href="#dfn-speechgrammar">SpeechGrammar</a> <a href="#dfn-speechgrammarlistitem">item</a>(unsigned long index);
-        void <a href="#dfn-addGrammar">addFromURI</a>(DOMString <a href="#dfn-grammarSrc">src</a>,
+        getter <a href="#dfn-speechgrammar">SpeechGrammar</a> <a href="#dfn-speechgrammarlistitem">item</a>(in unsigned long index);
+        void <a href="#dfn-addGrammar">addFromURI</a>(in DOMString <a href="#dfn-grammarSrc">src</a>,
                         optional float <a href="#dfn-grammarWeight">weight</a>);
-        void <a href="#dfn-addGrammarstring">addFromString</a>(DOMString <a href="#dfn-grammarString">string</a>,
+        void <a href="#dfn-addGrammarstring">addFromString</a>(in DOMString <a href="#dfn-grammarString">string</a>,
                         optional float <a href="#dfn-grammarWeight">weight</a>);
     };
 
@@ -829,7 +824,7 @@
       If the value is false, then this represents an interim result that could still be changed.</dd>
     </dl>
 
-    <h4 id="speechreco-resultlist"><span class=secno>5.1.7 </span>SpeechRecognitionResultList</h4>
+    <h4 id="speechreco-resultlist"><span class=secno>5.1.7 </span>SpeechRecognitionList</h4>
 
     <p>The SpeechRecognitionResultList object holds a sequence of recognition results representing the complete return result of a continuous recognition.
     For a non-continuous recognition it will hold only a single value.</p>
@@ -934,7 +929,6 @@
       <div class="blockContent">
         <pre class="code">
           <code class="idl-code">
-    [Exposed=Window]
     interface SpeechSynthesis : EventTarget {
         readonly attribute boolean <a href="#dfn-ttspending">pending</a>;
         readonly attribute boolean <a href="#dfn-ttsspeaking">speaking</a>;
@@ -946,15 +940,18 @@
         void <a href="#dfn-ttscancel">cancel</a>();
         void <a href="#dfn-ttspause">pause</a>();
         void <a href="#dfn-ttsresume">resume</a>();
-        sequence&lt;SpeechSynthesisVoice&gt; <a href="#dfn-ttsgetvoices">getVoices</a>();
+        sequence&lt;SpeechSynthesisVoiceList&gt; <a href="#dfn-ttsgetvoices">getVoices</a>();
     };
 
-    partial interface Window {
-        [SameObject] readonly attribute SpeechSynthesis speechSynthesis;
+    [NoInterfaceObject]
+    interface SpeechSynthesisGetter
+    {
+        readonly attribute SpeechSynthesis speechSynthesis;
     };
 
-    [Exposed=Window,
-     Constructor,
+    Window implements SpeechSynthesisGetter;
+
+    [Constructor,
      Constructor(DOMString <a href="#dfn-utterancetext">text</a>)]
     interface SpeechSynthesisUtterance : EventTarget {
         attribute DOMString <a href="#dfn-utterancetext">text</a>;
@@ -973,7 +970,6 @@
         attribute EventHandler <a href="#dfn-utteranceonboundary">onboundary</a>;
     };
 
-    [Exposed=Window]
     interface SpeechSynthesisEvent : Event {
         readonly attribute SpeechSynthesisUtterance <a href="#dfn-callbackutterance">utterance</a>;
         readonly attribute unsigned long <a href="#dfn-callbackcharindex">charIndex</a>;
@@ -981,26 +977,24 @@
         readonly attribute DOMString <a href="#dfn-callbackname">name</a>;
     };
 
-    enum SpeechSynthesisErrorCode {
-        "<a href="#dfn-sse.canceled">canceled</a>",
-        "<a href="#dfn-sse.interrupted">interrupted</a>",
-        "<a href="#dfn-sse.audio-busy">audio-busy</a>",
-        "<a href="#dfn-sse.audio-hardware">audio-hardware</a>",
-        "<a href="#dfn-sse.network">network</a>",
-        "<a href="#dfn-sse.synthesis-unavailable">synthesis-unavailable</a>",
-        "<a href="#dfn-sse.synthesis-failed">synthesis-failed</a>",
-        "<a href="#dfn-sse.language-unavailable">language-unavailable</a>",
-        "<a href="#dfn-sse.voice-unavailable">voice-unavailable</a>",
-        "<a href="#dfn-sse.text-too-long">text-too-long</a>",
-        "<a href="#dfn-sse.invalid-argument">invalid-argument</a>",
+    interface SpeechSynthesisErrorEvent extends SpeechSynthesisEvent {
+        enum ErrorCode {
+            "<a href="#dfn-sse.canceled">canceled</a>",
+            "<a href="#dfn-sse.interrupted">interrupted</a>",
+            "<a href="#dfn-sse.audio-busy">audio-busy</a>",
+            "<a href="#dfn-sse.audio-hardware">audio-hardware</a>",
+            "<a href="#dfn-sse.network">network</a>",
+            "<a href="#dfn-sse.synthesis-unavailable">synthesis-unavailable</a>",
+            "<a href="#dfn-sse.synthesis-failed">synthesis-failed</a>",
+            "<a href="#dfn-sse.language-unavailable">language-unavailable</a>",
+            "<a href="#dfn-sse.voice-unavailable">voice-unavailable</a>",
+            "<a href="#dfn-sse.text-too-long">text-too-long</a>",
+            "<a href="#dfn-sse.invalid-argument">invalid-argument</a>",
+        };
+
+        readonly attribute ErrorCode <a href="#dfn-sse.error">error</a>;
     };
 
-    [Exposed=Window]
-    interface SpeechSynthesisErrorEvent : SpeechSynthesisEvent {
-        readonly attribute SpeechSynthesisErrorCode <a href="#dfn-sse.error">error</a>;
-    };
-
-    [Exposed=Window]
     interface SpeechSynthesisVoice {
         readonly attribute DOMString <a href="#dfn-voicevoiceuri">voiceURI</a>;
         readonly attribute DOMString <a href="#dfn-voicename">name</a>;
@@ -1484,7 +1478,6 @@
       <dd>Satish Sampath, Google, Inc.</dd>
       <dd>Adam Sobieski, Phoster, Inc.</dd>
       <dd>Raj Tumuluri, Openstream, Inc.</dd>
-      <dd>Kagami Sascha Rosylight</dd>
       <dd>Also, the members of the HTML Speech Incubator Group, and the corresponding Final Report <a href="#ref-1">[1]</a>, created the basis for this specification.</dd>
 
     <h2 class="no-num" id="references">References</h2>
