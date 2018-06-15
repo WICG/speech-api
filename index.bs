@@ -7,7 +7,6 @@ Group: SACG
 URL: https://w3c.github.io/speech-api/
 Repository: w3c/speech-api
 Shortname: speech-api
-Editor: Andre Natal (Mozilla)
 Editor: Glen Shires (Google)
 Editor: Philip Jägenstedt (Google)
 Former Editor: Hans Wennborg (Google)
