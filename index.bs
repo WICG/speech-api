@@ -52,7 +52,7 @@ The API itself is agnostic of the underlying speech recognition and synthesis im
 The API is designed to enable both brief (one-shot) speech input and continuous speech input.
 Speech recognition results are provided to the web page as a list of hypotheses, along with other relevant information for each hypothesis.</p>
 
-<p>This specification is a subset of the API defined in the <a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">HTML Speech Incubator Group Final Report</a> [[1]]</a>.
+<p>This specification is a subset of the API defined in the <a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">HTML Speech Incubator Group Final Report</a> [[1]].
 That report is entirely informative since it is not a standards track document.
 All portions of that report may be considered informative with regards to this document, and provide an informative background to this document.
 This specification is a fully-functional subset of that report.
@@ -476,7 +476,7 @@ For a non-continuous recognition it will hold only a single value.</p>
   <dd>The interpretation represents the semantic meaning from what the user said.
   This might be determined, for instance, through the SISR specification of semantics in a grammar.
   <i>[Editor note: The group is currently discussing options for the value of the interpretation attribute when no interpretation has been returned by the recognizer.
-  Current options are null or a copy of the transcript.] [[2]]</a></i></dd>
+  Current options are null or a copy of the transcript.] [[2]]</i></dd>
 
   <dt><dfn attribute for=SpeechRecognitionEvent>emma</dfn> attribute</dt>
   <dd>EMMA 1.0 representation of this result. [[!EMMA]]
@@ -685,7 +685,7 @@ interface SpeechSynthesisVoice {
   There may be a maximum length of the text, it may be limited to 32,767 characters.</dd>
 
   <dt><dfn attribute for=SpeechSynthesisUtterance>lang</dfn> attribute</dt>
-  <dd>This attribute specifies the language of the speech synthesis for the utterance, using a valid BCP 47 language tag. [[!BCP47]]</a>
+  <dd>This attribute specifies the language of the speech synthesis for the utterance, using a valid BCP 47 language tag. [[!BCP47]]
   If unset it remains unset for getting in script, but will default to use the <a spec=html>language</a> of the html document root element and associated hierarchy.
   This default value is computed and used when the input request opens a connection to the recognition service.</dd>
 
