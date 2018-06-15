@@ -1211,9 +1211,9 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version eba8d1c24624e5fc4844dca1b87307d13888e633" name="generator">
+  <meta content="Bikeshed version ee4bd4642f06996491f80990f7b1050ff9dcf622" name="generator">
   <link href="https://w3c.github.io/speech-api/" rel="canonical">
-  <meta content="6b1f7c4c27b808d75fcf4bd78b0ddbc1005e25a4" name="document-revision">
+  <meta content="b7e0b932cc07c7acc95ecff417d01b2318ea5c4d" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1467,6 +1467,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
      <dd><a class="u-url" href="https://w3c.github.io/speech-api/">https://w3c.github.io/speech-api/</a>
      <dt>Issue Tracking:
      <dd><a href="https://github.com/w3c/speech-api/issues/">GitHub</a>
+     <dd><a href="#issues-index">Inline In Spec</a>
      <dt class="editor">Editors:
      <dd class="editor p-author h-card vcard"><span class="p-name fn">Glen Shires (Google)</span>
      <dd class="editor p-author h-card vcard"><span class="p-name fn">Philip Jägenstedt (Google)</span>
@@ -1558,6 +1559,7 @@ Learn more about <a href="http://www.w3.org/community/">W3C Community and Busine
       <li><a href="#informative"><span class="secno"></span> <span class="content">Informative References</span></a>
      </ol>
     <li><a href="#idl-index"><span class="secno"></span> <span class="content">IDL Index</span></a>
+    <li><a href="#issues-index"><span class="secno"></span> <span class="content">Issues Index</span></a>
    </ol>
   </nav>
   <main>
@@ -1567,7 +1569,7 @@ Learn more about <a href="http://www.w3.org/community/">W3C Community and Busine
 The API itself is agnostic of the underlying speech recognition and synthesis implementation and can support both server-based and client-based/embedded recognition and synthesis.
 The API is designed to enable both brief (one-shot) speech input and continuous speech input.
 Speech recognition results are provided to the web page as a list of hypotheses, along with other relevant information for each hypothesis.</p>
-   <p>This specification is a subset of the API defined in the <a href="https://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">HTML Speech Incubator Group Final Report</a> <a data-link-type="biblio" href="#biblio-1">[1]</a>.
+   <p>This specification is a subset of the API defined in the <a data-link-type="biblio" href="#biblio-htmlspeech">HTML Speech Incubator Group Final Report</a>.
 That report is entirely informative since it is not a standards track document.
 All portions of that report may be considered informative with regards to this document, and provide an informative background to this document.
 This specification is a fully-functional subset of that report.
@@ -1757,8 +1759,10 @@ The term "interim result" indicates a SpeechRecognitionResult in which the final
     <dd>The serviceURI attribute specifies the location of the speech recognition service that the web application wishes to use.
   If this attribute is unset at the time of the start method call, then the user agent must use the user agent default speech service.
   Note that the serviceURI is a generic URI and can thus point to local services either through use of a URN with meaning to the user agent or by specifying a URL that the user agent recognizes as a local service.
-  Additionally, the user agent default can be local or remote and can incorporate end user choices via interfaces provided by the user agent such as browser configuration parameters. <i>[Editor note: The group is currently discussing whether WebRTC might be used to specify selection of audio sources and remote recognizers.] <a data-link-type="biblio" href="#biblio-5">[5]</a></i>
+  Additionally, the user agent default can be local or remote and can incorporate end user choices via interfaces provided by the user agent such as browser configuration parameters.
    </dl>
+   <p class="issue" id="issue-2c77f5e1"><a class="self-link" href="#issue-2c77f5e1"></a>The group has discussed whether WebRTC might be used to specify selection of audio sources and remote recognizers.
+See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0072.html">Interacting with WebRTC, the Web Audio API and other external sources</a> thread on public-speech-api@w3.org.</p>
    <h4 class="heading settled" data-level="4.1.2" id="speechreco-methods"><span class="secno">4.1.2. </span><span class="content">SpeechRecognition Methods</span><a class="self-link" href="#speechreco-methods"></a></h4>
    <dl>
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechRecognition" data-dfn-type="method" data-export="" id="dom-speechrecognition-start"><code>start()</code></dfn> method
@@ -1862,8 +1866,11 @@ For example, some implementations may fire <a class="idl-code" data-link-type="e
     <dd>The transcript string represents the raw words that the user spoke.
   For continuous recognition, leading or trailing whitespace MUST be included where necessary such that concatenation of consecutive SpeechRecognitionResults produces a proper transcript of the session.
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechRecognitionAlternative" data-dfn-type="attribute" data-export="" id="dom-speechrecognitionalternative-confidence"><code>confidence</code></dfn> attribute, <span> of type <a data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-float" id="ref-for-idl-float④">float</a>, readonly</span>
-    <dd>The confidence represents a numeric estimate between 0 and 1 of how confident the recognition system is that the recognition is correct.
-  A higher number means the system is more confident. <i>[Editor note: The group is currently discussing whether confidence can be specified in a speech-recognition-engine-independent manner and whether confidence threshold and nomatch should be included, because this is not a dialog API.] <a data-link-type="biblio" href="#biblio-4">[4]</a></i>
+    <dd>
+     The confidence represents a numeric estimate between 0 and 1 of how confident the recognition system is that the recognition is correct.
+  A higher number means the system is more confident. 
+     <p class="issue" id="issue-1fc473cc"><a class="self-link" href="#issue-1fc473cc"></a>The group has discussed whether confidence can be specified in a speech-recognition-engine-independent manner and whether confidence threshold and nomatch should be included, because this is not a dialog API.
+  See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0143.html">Confidence property</a> thread on public-speech-api@w3.org.</p>
    </dl>
    <h4 class="heading settled" data-level="4.1.6" id="speechreco-result"><span class="secno">4.1.6. </span><span class="content">SpeechRecognitionResult</span><a class="self-link" href="#speechreco-result"></a></h4>
    <p>The SpeechRecognitionResult object represents a single one-shot recognition match, either as one small part of a continuous recognition or as the complete return result of a non-continuous recognition.</p>
@@ -1906,9 +1913,12 @@ For a non-continuous recognition it will hold only a single value.</p>
   The length of the "results" array may increase or decrease, but must not be less than resultIndex.
   Note that when resultIndex equals results.length, no new results are returned, this may occur when the array length decreases to remove one or more interim results.
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechRecognitionEvent" data-dfn-type="attribute" data-export="" id="dom-speechrecognitionevent-interpretation"><code>interpretation</code></dfn> attribute, <span> of type <a data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-any" id="ref-for-idl-any">any</a>, readonly</span>
-    <dd>The interpretation represents the semantic meaning from what the user said.
-  This might be determined, for instance, through the SISR specification of semantics in a grammar. <i>[Editor note: The group is currently discussing options for the value of the interpretation attribute when no interpretation has been returned by the recognizer.
-  Current options are null or a copy of the transcript.] <a data-link-type="biblio" href="#biblio-2">[2]</a></i>
+    <dd>
+     The interpretation represents the semantic meaning from what the user said.
+  This might be determined, for instance, through the SISR specification of semantics in a grammar. 
+     <p class="issue" id="issue-93092ac2"><a class="self-link" href="#issue-93092ac2"></a>The group has discussed options for the value of the interpretation attribute when no interpretation has been returned by the recognizer.
+  Current options are null or a copy of the transcript.
+  See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html">SpeechRecognitionAlternative.interpretation when interpretation can’t be provided</a> thread on public-speech-api@w3.org.</p>
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechRecognitionEvent" data-dfn-type="attribute" data-export="" id="dom-speechrecognitionevent-emma"><code>emma</code></dfn> attribute, <span> of type <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#document" id="ref-for-document①">Document</a>, readonly</span>
     <dd>EMMA 1.0 representation of this result. <a data-link-type="biblio" href="#biblio-emma">[EMMA]</a> The contents of this result could vary across user agents and recognition engines, but all implementations must expose a valid XML document complete with EMMA namespace,
   or if the recognizer does not supply EMMA then the user agent may return null.
@@ -1916,7 +1926,10 @@ For a non-continuous recognition it will hold only a single value.</p>
   The user agent may add additional annotations to provide a richer result for the developer.
    </dl>
    <h4 class="heading settled" data-level="4.1.9" id="speechreco-speechgrammar"><span class="secno">4.1.9. </span><span class="content">SpeechGrammar</span><a class="self-link" href="#speechreco-speechgrammar"></a></h4>
-   <p>The SpeechGrammar object represents a container for a grammar. <i>[Editor note: The group is currently discussing options for which grammar formats should be supported, how builtin grammar types are specified, and default grammars when not specified.] <a data-link-type="biblio" href="#biblio-2">[2]</a> <a data-link-type="biblio" href="#biblio-3">[3]</a></i> This structure has the following attributes:</p>
+   <p>The SpeechGrammar object represents a container for a grammar.</p>
+   <p class="issue" id="issue-29f5066f"><a class="self-link" href="#issue-29f5066f"></a>The group has discussed options for which grammar formats should be supported, how builtin grammar types are specified, and default grammars when not specified.
+See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179.html">Default value of SpeechRecognition.grammars</a> thread on public-speech-api@w3.org.</p>
+   <p>This structure has the following attributes:</p>
    <dl>
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechGrammar" data-dfn-type="attribute" data-export="" id="dom-speechgrammar-src"><code>src</code></dfn> attribute, <span> of type <a data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①①">DOMString</a></span>
     <dd>The required src attribute is the URI for the grammar.
@@ -2374,7 +2387,7 @@ These events bubble up to SpeechSynthesis.</p>
   Adam Sobieski, Phoster, Inc.
   Raj Tumuluri, Openstream, Inc.
   Kagami Sascha Rosylight </p>
-   <p>Also, the members of the HTML Speech Incubator Group, and the corresponding Final Report <a data-link-type="biblio" href="#biblio-1">[1]</a>, which created the basis for this specification.</p>
+   <p>Also, the members of the HTML Speech Incubator Group, and the corresponding <a data-link-type="biblio" href="#biblio-htmlspeech">Final Report</a>, which created the basis for this specification.</p>
   </main>
   <div data-fill-with="conformance">
    <h2 class="no-ref no-num heading settled" id="conformance"><span class="content"> Conformance</span><a class="self-link" href="#conformance"></a></h2>
@@ -2873,16 +2886,8 @@ These events bubble up to SpeechSynthesis.</p>
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
-   <dt id="biblio-1">[1]
-   <dd>Michael Bodell, et al., Editors. <a href="https://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">HTML Speech Incubator Group Final Report</a>. URL: <a href="https://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">https://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/</a>
-   <dt id="biblio-2">[2]
-   <dd><a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html">SpeechRecognitionAlternative.interpretation when interpretation can't be provided</a>. URL: <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html">https://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html</a>
-   <dt id="biblio-3">[3]
-   <dd><a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179.html">Default value of SpeechRecognition.grammars</a>. URL: <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179.html">https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179.html</a>
-   <dt id="biblio-4">[4]
-   <dd><a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0143.html">Confidence property</a>. URL: <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0143.html">https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0143.html</a>
-   <dt id="biblio-5">[5]
-   <dd><a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0072.html">Interacting with WebRTC, the Web Audio API and other external sources</a>. URL: <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0072.html">https://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0072.html</a>
+   <dt id="biblio-htmlspeech">[HTMLSPEECH]
+   <dd>Michael Bodell; et al. <a href="https://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech-20111206/">HTML Speech Incubator Group Final Report</a>. URL: <a href="https://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech-20111206/">https://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech-20111206/</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
 <pre class="idl highlight def">[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①③">Exposed</a>=<span class="n">Window</span>, <a class="nv" href="#dom-speechrecognition-speechrecognition"><code>Constructor</code></a>]
@@ -3056,6 +3061,18 @@ These events bubble up to SpeechSynthesis.</p>
 };
 
 </pre>
+  <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
+  <div style="counter-reset:issue">
+   <div class="issue">The group has discussed whether WebRTC might be used to specify selection of audio sources and remote recognizers.
+See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0072.html">Interacting with WebRTC, the Web Audio API and other external sources</a> thread on public-speech-api@w3.org.<a href="#issue-2c77f5e1"> ↵ </a></div>
+   <div class="issue">The group has discussed whether confidence can be specified in a speech-recognition-engine-independent manner and whether confidence threshold and nomatch should be included, because this is not a dialog API.
+  See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0143.html">Confidence property</a> thread on public-speech-api@w3.org.<a href="#issue-1fc473cc"> ↵ </a></div>
+   <div class="issue">The group has discussed options for the value of the interpretation attribute when no interpretation has been returned by the recognizer.
+  Current options are null or a copy of the transcript.
+  See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html">SpeechRecognitionAlternative.interpretation when interpretation can’t be provided</a> thread on public-speech-api@w3.org.<a href="#issue-93092ac2"> ↵ </a></div>
+   <div class="issue">The group has discussed options for which grammar formats should be supported, how builtin grammar types are specified, and default grammars when not specified.
+See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179.html">Default value of SpeechRecognition.grammars</a> thread on public-speech-api@w3.org.<a href="#issue-29f5066f"> ↵ </a></div>
+  </div>
   <aside class="dfn-panel" data-for="enumdef-speechrecognitionerrorcode">
    <b><a href="#enumdef-speechrecognitionerrorcode">#enumdef-speechrecognitionerrorcode</a></b><b>Referenced in:</b>
    <ul>
