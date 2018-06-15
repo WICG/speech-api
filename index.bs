@@ -17,28 +17,26 @@ Abstract: The JavaScript API allows web pages to control activation and timing a
 
 <pre class=biblio>
 {
-  "1": {
+  "HTMLSPEECH": {
     "authors": [
-      "Michael Bodell, et al., Editors"
+      "Michael Bodell",
+      "Björn Bringert",
+      "Robert Brown",
+      "Daniel C. Burnett",
+      "Deborah Dahl",
+      "Dan Druta",
+      "Patrick Ehlen",
+      "Charles Hemphill",
+      "Michael Johnston",
+      "Olli Pettay",
+      "Satish Sampath",
+      "Marc Schröder",
+      "Glen Shires",
+      "Raj Tumuluri",
+      "Milan Young"
     ],
-    "href": "https://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/",
+    "href": "https://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech-20111206/",
     "title": "HTML Speech Incubator Group Final Report"
-  },
-  "2": {
-    "href": "https://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html",
-    "title": "SpeechRecognitionAlternative.interpretation when interpretation can't be provided"
-  },
-  "3": {
-    "href": "https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179.html",
-    "title": "Default value of SpeechRecognition.grammars"
-  },
-  "4": {
-    "href": "https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0143.html",
-    "title": "Confidence property"
-  },
-  "5": {
-    "href": "https://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0072.html",
-    "title": "Interacting with WebRTC, the Web Audio API and other external sources"
   }
 }
 </pre>
@@ -52,7 +50,7 @@ The API itself is agnostic of the underlying speech recognition and synthesis im
 The API is designed to enable both brief (one-shot) speech input and continuous speech input.
 Speech recognition results are provided to the web page as a list of hypotheses, along with other relevant information for each hypothesis.</p>
 
-<p>This specification is a subset of the API defined in the <a href="https://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">HTML Speech Incubator Group Final Report</a> [[1]].
+<p>This specification is a subset of the API defined in the [[HTMLSPEECH|HTML Speech Incubator Group Final Report]].
 That report is entirely informative since it is not a standards track document.
 All portions of that report may be considered informative with regards to this document, and provide an informative background to this document.
 This specification is a fully-functional subset of that report.
@@ -65,7 +63,7 @@ This subset does not preclude future standardization of additions to the markup,
 
 <p><em>This section is non-normative.</em></p>
 
-<p>This specification supports the following use cases, as defined in <a href="https://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech-20111206/#use-cases">Section 4 of the Incubator Report</a>.</p>
+<p>This specification supports the following use cases, as defined in [[HTMLSPEECH#use-cases|Section 4 of the Incubator Report]].</p>
 
 <ul>
   <li>Voice Web Search</li>
@@ -275,9 +273,11 @@ interface SpeechGrammarList {
   <dd>The serviceURI attribute specifies the location of the speech recognition service that the web application wishes to use.
   If this attribute is unset at the time of the start method call, then the user agent must use the user agent default speech service.
   Note that the serviceURI is a generic URI and can thus point to local services either through use of a URN with meaning to the user agent or by specifying a URL that the user agent recognizes as a local service.
-  Additionally, the user agent default can be local or remote and can incorporate end user choices via interfaces provided by the user agent such as browser configuration parameters.
-  <i>[Editor note: The group is currently discussing whether WebRTC might be used to specify selection of audio sources and remote recognizers.] [[5]]</i></dd>
+  Additionally, the user agent default can be local or remote and can incorporate end user choices via interfaces provided by the user agent such as browser configuration parameters.</dd>
 </dl>
+
+<p class=issue>The group has discussed whether WebRTC might be used to specify selection of audio sources and remote recognizers.
+See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0072.html">Interacting with WebRTC, the Web Audio API and other external sources</a> thread on public-speech-api@w3.org.</p>
 
 <h4 id="speechreco-methods">SpeechRecognition Methods</h4>
 
@@ -416,7 +416,8 @@ For example, some implementations may fire <a event for=SpeechRecognition>audioe
   <dt><dfn attribute for=SpeechRecognitionAlternative>confidence</dfn> attribute</dt>
   <dd>The confidence represents a numeric estimate between 0 and 1 of how confident the recognition system is that the recognition is correct.
   A higher number means the system is more confident.
-  <i>[Editor note: The group is currently discussing whether confidence can be specified in a speech-recognition-engine-independent manner and whether confidence threshold and nomatch should be included, because this is not a dialog API.] [[4]]</i></dd>
+  <p class=issue>The group has discussed whether confidence can be specified in a speech-recognition-engine-independent manner and whether confidence threshold and nomatch should be included, because this is not a dialog API.
+  See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0143.html">Confidence property</a> thread on public-speech-api@w3.org.</p></dd>
 </dl>
 
 <h4 id="speechreco-result">SpeechRecognitionResult</h4>
@@ -475,8 +476,9 @@ For a non-continuous recognition it will hold only a single value.</p>
   <dt><dfn attribute for=SpeechRecognitionEvent>interpretation</dfn> attribute</dt>
   <dd>The interpretation represents the semantic meaning from what the user said.
   This might be determined, for instance, through the SISR specification of semantics in a grammar.
-  <i>[Editor note: The group is currently discussing options for the value of the interpretation attribute when no interpretation has been returned by the recognizer.
-  Current options are null or a copy of the transcript.] [[2]]</i></dd>
+  <p class=issue>The group has discussed options for the value of the interpretation attribute when no interpretation has been returned by the recognizer.
+  Current options are null or a copy of the transcript.
+  See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html">SpeechRecognitionAlternative.interpretation when interpretation can't be provided</a> thread on public-speech-api@w3.org.</p></dd>
 
   <dt><dfn attribute for=SpeechRecognitionEvent>emma</dfn> attribute</dt>
   <dd>EMMA 1.0 representation of this result. [[!EMMA]]
@@ -488,9 +490,10 @@ For a non-continuous recognition it will hold only a single value.</p>
 
 <h4 id="speechreco-speechgrammar">SpeechGrammar</h4>
 
-<p>The SpeechGrammar object represents a container for a grammar.
-<i>[Editor note: The group is currently discussing options for which grammar formats should be supported, how builtin grammar types are specified, and default grammars when not specified.] [[2]] [[3]]</i>
-This structure has the following attributes:</p>
+<p>The SpeechGrammar object represents a container for a grammar.</p>
+<p class=issue>The group has discussed options for which grammar formats should be supported, how builtin grammar types are specified, and default grammars when not specified.
+See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179.html">Default value of SpeechRecognition.grammars</a> thread on public-speech-api@w3.org.</p>
+<p>This structure has the following attributes:</p>
 
 <dl>
   <dt><dfn attribute for=SpeechGrammar>src</dfn> attribute</dt>
@@ -1037,4 +1040,4 @@ These events bubble up to SpeechSynthesis.
   Kagami Sascha Rosylight
 </p>
 
-<p>Also, the members of the HTML Speech Incubator Group, and the corresponding Final Report [[1]], which created the basis for this specification.</p>
+<p>Also, the members of the HTML Speech Incubator Group, and the corresponding [[HTMLSPEECH|Final Report]], which created the basis for this specification.</p>
