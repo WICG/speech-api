@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+ <head><meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"/>
+  <title>Errata in the Web Speech API Specification</title>
+  <link rel="stylesheet" type="text/css"
+  href="//www.w3.org/StyleSheets/TR/base.css" />
+ </head>
+ <body><p><a href="http://www.w3.org/"><img border="0" align="left" src="http://www.w3.org/Icons/w3c_home.gif" hspace="0" alt="W3C"/></a></p><br clear="all"/>
+  <h1 align="center">Errata in the Web Speech API Specification</h1>
+  <dl>
+   <dt>This document last updated:</a></dt>
+   <dd>June 6, 2014</dd>
+   <dt>A draft of the specification with these errata applied is at:</a></dt>
+   <dd><a href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/webspeechapi.html">
+    http://dvcs.w3.org/hg/speech-api/raw-file/tip/webspeechapi.html</a>
+   </dd>
+   <dt>This document records known errors in the document:</a></dt>
+   <dd><a href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">
+    http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html</a>
+    </dd>
+   <dt>Please email error reports to:</dt>
+   <dd>public-speech-api@w3.org (<a
+    href="http://lists.w3.org/Archives/Public/public-speech-api/">Public archive</a>)
+   </dd>
+  </dl>
+  <hr/>
+  <dl>
+   <dt>E01 2012-11-30 (Clarification):</dt>
+   <dd>Section 6.1 Example 4: <b>recognition.interim</b> should be
+    <b>recognition.interimResults</b>.</dd>
+  </dl>
+  <dl>
+   <dt>E02 2012-12-07 (Important):</dt>
+   <dd>Rename <b>final</b> attribute to <b>isFinal</b>
+     because <b>final</b> is a reserved word. Specifically:</dd>
+   <dd>Section 5.1 IDL: SpeechRecognitionResult
+    &quot;readonly attribute boolean <b>final</b>&quot; should be
+    &quot;readonly attribute boolean <b>isFinal</b>&quot;</dd>
+   <dd>Section 5.1.6 &quot;<b>final</b> attribute&quot; should be
+    &quot;<b>isFinal</b> attribute&quot;</dd>
+   <dd>Section 6.1 Examples 3 and 4: should be event.results[i].<b>isFinal</b></dd>
+  </dl>
+  <dl>
+   <dt>E03 2013-02-04 (Important):</dt>
+   <dd>Section 5.1.8 SpeechRecognitionEvent: emma attribute:
+    &quot;with EMMA namespace&quot; should be
+    &quot;with EMMA namespace<b>, or if the recognizer does not supply EMMA then the user agent may return null</b>&quot;.</dd>
+  </dl>
+  <dl><del>
+   <dt>E04 2013-02-04 (Important):</dt>
+   <dd>Section 5.1 IDL: Remove &quot;<b>interface SpeechRecognitionResultList { ... }</b>&quot;.</dd>
+   <dd>Section 5.1 IDL: &quot;readonly attribute <b>SpeechRecognitionResultList</b> results;&quot; should be
+    &quot;readonly attribute <b>sequence&lt;SpeechRecognitionResult&gt;</b> results&quot;.</dd><del>
+  </dl>
+  <dl>
+   <dt>E05 2013-02-04 (Important):</dt>
+   <dd>Section 5.2 IDL: Remove &quot;<b>interface SpeechSynthesisVoiceList { ... }</b>&quot;.</dd>
+   <dd>Section 5.2 IDL: &quot;<b>SpeechSynthesisVoiceList</b> getVoices();&quot; should be
+    &quot;<b>sequence&lt;SpeechSynthesisVoice&gt;</b> getVoices();&quot;.</dd>
+  </dl>
+  <dl>
+   <dt>E06 2013-02-25 (Important):</dt>
+   <dd>E04 is deleted.</dd>
+  </dl>
+  <dl>
+   <dt>E07 2013-02-25 (Important):</dt>
+   <dd>Section 5.2 IDL: SpeechSynthesisUtterance &quot;attribute <b>DOMString voiceURI</b>&quot; should be &quot;attribute <b>SpeechSynthesisVoice voice</b>&quot;.</dd>
+   <dd>Section 5.2.3 SpeechSynthesisUtterance Attributes: &quot;<b>voiceURI</b> attribute&quot; should be &quot;<b>voice</b> attribute&quot;, with the following definition:
+    <ul>The voice attribute specifies speech synthesis voice that the web application wishes to use.
+    If, at the time of the play method call, this attribute has been set to one of the SpeechSynthesisVoice objects returned by getVoices, then the user agent MUST use that voice.
+    If this attribute is unset or null at the time of the play method call, then the user agent MUST use a user agent default voice.
+    The user agent default voice SHOULD support the current language (see &quot;lang&quot; attribute) and can be a local or remote speech service
+    and can incorporate end user choices via interfaces provided by the user agent such as browser configuration parameters.</ul>
+   </dd>
+   <dd>Section 5.2.6 SpeechSynthesisVoice: voiceURI attribute: &quot;as described in the SpeechSynthesisUtterance voiceURI attribute&quot; should be
+    &quot;either through use of a URN with meaning to the user agent or by specifying a URL that the user agent recognizes as a local service.&quot;</dd>
+  </dl>
+  <dl>
+   <dt>E08 2013-03-22 (Important):</dt>
+   <dd>Section 5.2 IDL: &quot;interface SpeechSynthesis&quot; should be &quot;interface SpeechSynthesis <b>: EventTarget</b>&quot;.</dd>
+   <dd>Section 5.2 IDL: &quot;<b>readonly attribute SpeechSynthesisUtterance utterance;</b>&quot; is added to &quot;interface SpeechSynthesisEvent : Event&quot;.
+   <dd>Section 5.2.4 SpeechSynthesisUtterance Events: Add the sentence: &quot;<b>These events bubble up to SpeechSynthesis.&quot;</b></dd>
+   <dd>Section 5.2.5 SpeechSynthesisEvent Attributes: Add the following definition:<ul><b>utterance attribute<br>
+   This attribute contains the SpeechSynthesisUtterance that triggered this event.</b></ul></dd>
+  </dl>
+  <dl>
+   <dt>E09 2013-09-24 (Clarification):</dt>
+   <dd>Section 6.2 Example 1:
+    &quot;speechSynthesis.speak(SpeechSynthesisUtterance('Hello World'));&quot; should be
+    &quot;speechSynthesis.speak(<b>new</b> SpeechSynthesisUtterance('Hello World'));&quot;</dd>
+  </dl>
+  <dl>
+   <dt>E10 2013-09-24 (Important):</dt>
+   <dd>Section 5.2.2 speak method: append at the end of the definition:
+    <ul>The SpeechSynthesis object takes exclusive ownership of the SpeechSynthesisUtterance object.
+    Passing it as a speak() argument to another SpeechSynthesis object should throw an exception.
+    (For example, two frames may have the same origin and each will contain a SpeechSynthesis object.)</ul>
+   </dd>
+  </dl>
+  <dl>
+   <dt>E11 2013-10-17 (Important):</dt>
+   <dd>Section 5.2 IDL: &quot;<b>attribute EventHandler onvoiceschanged;</b>&quot; is added to &quot;interface SpeechSynthesis : EventTarget&quot;.
+   </dd>
+   <dd>Section 5.2.2 getVoices method: append at the end of the definition:
+    <ul>If there are no voices available, or if the the list of available voices is not yet known
+    (for example: server-side synthesis where the list is determined asynchronously),
+    then this method MUST return a SpeechSynthesisVoiceList of length zero.</ul>
+   </dd>
+   <dd>New &quot;Section 5.2.2.1 SpeechSynthesis Events&quot; is created and contains:
+    <ul>voiceschanged: Fired when the contents of the SpeechSynthesisVoiceList, that the getVoices method will return, have changed.
+    Examples include: server-side synthesis where the list is determined asynchronously, or when client-side voices are installed/uninstalled.</ul>
+   </dd>
+  </dl>
+  <dl>
+   <dt>E12 2013-10-17 (Important):</dt>
+   <dd>Section 5.2 IDL: Add the following:
+    <pre>
+    interface SpeechSynthesisErrorEvent extends SpeechSynthesisEvent {
+        enum ErrorCode {
+          &quot;canceled&quot;,
+          &quot;interrupted&quot;,
+          &quot;audio-busy&quot;,
+          &quot;audio-hardware&quot;,
+          &quot;network&quot;,
+          &quot;synthesis-unavailable&quot;,
+          &quot;synthesis-failed&quot;,
+          &quot;language-unavailable&quot;,
+          &quot;voice-unavailable&quot;,
+          &quot;text-too-long&quot;,
+          &quot;invalid-argument&quot;,
+        };
+
+        readonly attribute ErrorCode error;
+    };
+    </pre>
+   </dd>
+   <dd>Section 5.2.4 SpeechSynthesisUtterance Events: change first sentence to:
+     <ul>Each of these events MUST use the SpeechSynthesisEvent interface, except the error event which MUST use the SpeechSynthesisErrorEvent interface.</ul>
+   </dd>
+   <dd>New &quot;Section 5.2.5.1 SpeechSynthesisErrorEvent Attributes&quot; is added and contains:
+    <ul>error attribute
+     <ul>The errorCode is an enumeration indicating what has gone wrong. The values are:
+      <ul>&quot;canceled&quot;
+       A cancel method call caused the SpeechSynthesisUtterance to be removed from the queue before it had begun being spoken.</ul>
+      <ul>&quot;interrupted&quot;
+      A cancel method call caused the SpeechSynthesisUtterance to be interrupted after it has begun being spoken and before it completed.</ul>
+      <ul>&quot;audio-busy&quot;
+       The operation cannot be completed at this time because the user-agent cannot access the audio output device.
+       (For example, the user may need to correct this by closing another application.)</ul>
+      <ul>&quot;audio-hardware&quot;
+       The operation cannot be completed at this time because the user-agent cannot identify an audio output device.
+       (For example, the user may need to connect a speaker or configure system settings.)</ul>
+      <ul>&quot;network&quot;
+       The operation cannot be completed at this time because some required network communication failed.</ul>
+      <ul>&quot;synthesis-unavailable&quot;
+       The operation cannot be completed at this time because no synthesis engine is available.
+       (For example, the user may need to install or configure a synthesis engine.)</ul>
+      <ul>&quot;synthesis-failed&quot;
+       The operation failed because synthesis engine had an error.</ul>
+      <ul>&quot;language-unavailable&quot;
+       No appropriate voice is available for the language designated in SpeechSynthesisUtterance lang.</ul>
+      <ul>&quot;voice-unavailable&quot;
+       The voice designated in SpeechSynthesisUtterance voiceURI is not available.</ul>
+      <ul>&quot;text-too-long&quot;
+       The contents of the SpeechSynthesisUtterance text attribute is too long to synthesize.</ul>
+      <ul>&quot;invalid-argument&quot;
+       The contents of the SpeechSynthesisUtterance rate, pitch or volume attribute is not supported by synthesizer.</ul>
+     </ul>
+    </ul>
+   </dd>
+  </dl>
+  <dl>
+   <dt>E13 2013-11-06 (Important):</dt>
+   <dd>Section 5.1.1 and Section 5.2.3: Replace the misspelled "hierachy" with the word "hierarchy".
+   </dd>
+  </dl>
+  <dl>
+   <dt>E14 2013-11-06 (Important):</dt>
+   <dd>Section 4 Bullet 4: Delete the following sentence:
+    <ul>To minimize the chance of users unwittingly allowing web pages to record speech without their knowledge,
+      implementations must abort an active speech input session if the web page lost input focus
+      to another window or to another tab within the same user agent.</ul>
+   </dd>
+  </dl>
+  <dl>
+   <dt>E15 2013-11-06 (Important):</dt>
+   <dd>Section 5.1.3: soundstart event: append at the end of the definition:
+    <ul>The audiostart event must always have been fired before the soundstart event.</ul>
+   </dd>
+   <dd>Section 5.1.3: speechstart event: append at the end of the definition:
+    <ul>The audiostart event must always have been fired before the speechstart event.</ul>
+   </dd>
+   <dd>Section 5.1.3: onresult event: append at the end of the definition:
+    <ul>The audiostart event must always have been fired before the onresult event.</ul>
+   </dd>
+   <dd>Section 5.1.3: nomatch event: append at the end of the definition:
+    <ul>The audiostart event must always have been fired before the nomatch event.</ul>
+   </dd>
+   <dd>Section 5.1.3: speechend event: replace the word "fire" with "fired".
+   </dd>
+  </dl>
+  <dl>
+   <dt>E16 2014-06-06 (Clarification):</dt>
+   <dd>Section 6.1 Example 3: "<b>resultIndex</b>" should be
+    "<b>event.resultIndex</b>".</dd>
+  </dl>
+ </body>
+</html>
