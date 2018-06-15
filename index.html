@@ -1213,7 +1213,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version eba8d1c24624e5fc4844dca1b87307d13888e633" name="generator">
   <link href="https://w3c.github.io/speech-api/" rel="canonical">
-  <meta content="55d64aa340dc16d488b206eeb1fab8b8c5264088" name="document-revision">
+  <meta content="4d045fab6819753151c145ed1856d7b6f13b066b" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1493,7 +1493,7 @@ The JavaScript API allows web pages to control activation and timing and to hand
 Please note that under the <a href="http://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a> there is a limited opt-out and other conditions apply.
 Learn more about <a href="http://www.w3.org/community/">W3C Community and Business Groups</a>.</p>
    <p></p>
-   <p>All feedback is welcome: public-speech-api@w3.org (<a href="http://lists.w3.org/Archives/Public/public-speech-api/">Public archive</a>).</p>
+   <p>All feedback is welcome: public-speech-api@w3.org (<a href="https://lists.w3.org/Archives/Public/public-speech-api/">Public archive</a>).</p>
    <p></p>
   </div>
   <div data-fill-with="at-risk"></div>
@@ -1567,7 +1567,7 @@ Learn more about <a href="http://www.w3.org/community/">W3C Community and Busine
 The API itself is agnostic of the underlying speech recognition and synthesis implementation and can support both server-based and client-based/embedded recognition and synthesis.
 The API is designed to enable both brief (one-shot) speech input and continuous speech input.
 Speech recognition results are provided to the web page as a list of hypotheses, along with other relevant information for each hypothesis.</p>
-   <p>This specification is a subset of the API defined in the <a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">HTML Speech Incubator Group Final Report</a> <a data-link-type="biblio" href="#biblio-1">[1]</a>.
+   <p>This specification is a subset of the API defined in the <a href="https://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">HTML Speech Incubator Group Final Report</a> <a data-link-type="biblio" href="#biblio-1">[1]</a>.
 That report is entirely informative since it is not a standards track document.
 All portions of that report may be considered informative with regards to this document, and provide an informative background to this document.
 This specification is a fully-functional subset of that report.
@@ -1576,7 +1576,7 @@ This subset supports the majority of use-cases and sample code in the Incubator 
 This subset does not preclude future standardization of additions to the markup, API or underlying transport protocols, and indeed the Incubator Report defines a potential roadmap for such future work.</p>
    <h2 class="heading settled" data-level="2" id="use_cases"><span class="secno">2. </span><span class="content">Use Cases</span><a class="self-link" href="#use_cases"></a></h2>
    <p><em>This section is non-normative.</em></p>
-   <p>This specification supports the following use cases, as defined in <a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech-20111206/#use-cases">Section 4 of the Incubator Report</a>.</p>
+   <p>This specification supports the following use cases, as defined in <a href="https://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech-20111206/#use-cases">Section 4 of the Incubator Report</a>.</p>
    <ul>
     <li>Voice Web Search
     <li>Speech Command Interface
@@ -1628,7 +1628,7 @@ This does not preclude adding support for this as a future API enhancement, and 
     <li>Speech input could potentially be used to eavesdrop on users.
   Malicious webpages could use tricks such as hiding the input element or otherwise making the user believe that it has stopped recording speech while continuing to do so.
   They could also potentially style the input element to appear as something else and trick the user into clicking them.
-  An example of styling the file input element can be seen at <a href="http://www.quirksmode.org/dom/inputfile.html">http://www.quirksmode.org/dom/inputfile.html</a>.
+  An example of styling the file input element can be seen at <a href="https://www.quirksmode.org/dom/inputfile.html">https://www.quirksmode.org/dom/inputfile.html</a>.
   The above recommendations are intended to reduce this risk of such attacks.
    </ol>
    <h2 class="heading settled" data-level="4" id="api_description"><span class="secno">4. </span><span class="content">API Description</span><a class="self-link" href="#api_description"></a></h2>
@@ -2204,8 +2204,8 @@ These events bubble up to SpeechSynthesis.</p>
    <h2 class="heading settled" data-level="5" id="examples"><span class="secno">5. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h2>
    <p><em>This section is non-normative.</em></p>
    <h3 class="heading settled" data-level="5.1" id="examples-recognition"><span class="secno">5.1. </span><span class="content">Speech Recognition Examples</span><a class="self-link" href="#examples-recognition"></a></h3>
-   <div class="example" id="example-9ab79258">
-    <a class="self-link" href="#example-9ab79258"></a> 
+   <div class="example" id="example-6028c029">
+    <a class="self-link" href="#example-6028c029"></a> 
     <p>Using speech recognition to fill an input-field and perform a web search.</p>
 <pre class="lang-html highlight"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">"text/javascript"</span><span class="p">></span>
   <span class="kd">var</span> recognition <span class="o">=</span> <span class="k">new</span> SpeechRecognition<span class="p">();</span>
@@ -2217,7 +2217,7 @@ These events bubble up to SpeechSynthesis.</p>
   <span class="p">}</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">></span>
 
-<span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">"http://www.example.com/search"</span><span class="p">></span>
+<span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">"https://www.example.com/search"</span><span class="p">></span>
   <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"search"</span> <span class="na">id</span><span class="o">=</span><span class="s">"q"</span> <span class="na">name</span><span class="o">=</span><span class="s">"q"</span> <span class="na">size</span><span class="o">=</span><span class="s">60</span><span class="p">></span>
   <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"button"</span> <span class="na">value</span><span class="o">=</span><span class="s">"Click to Speak"</span> <span class="na">onclick</span><span class="o">=</span><span class="s">"recognition.start()"</span><span class="p">></span>
 <span class="p">&lt;/</span><span class="nt">form</span><span class="p">></span>
@@ -2874,15 +2874,15 @@ These events bubble up to SpeechSynthesis.</p>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
    <dt id="biblio-1">[1]
-   <dd>Michael Bodell, et al., Editors. <a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">HTML Speech Incubator Group Final Report</a>. URL: <a href="http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">http://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/</a>
+   <dd>Michael Bodell, et al., Editors. <a href="https://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">HTML Speech Incubator Group Final Report</a>. URL: <a href="https://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/">https://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech/</a>
    <dt id="biblio-2">[2]
-   <dd><a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html">SpeechRecognitionAlternative.interpretation when interpretation can't be provided</a>. URL: <a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html">http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html</a>
+   <dd><a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html">SpeechRecognitionAlternative.interpretation when interpretation can't be provided</a>. URL: <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html">https://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html</a>
    <dt id="biblio-3">[3]
-   <dd><a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179.html">Default value of SpeechRecognition.grammars</a>. URL: <a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179.html">http://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179.html</a>
+   <dd><a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179.html">Default value of SpeechRecognition.grammars</a>. URL: <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179.html">https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179.html</a>
    <dt id="biblio-4">[4]
-   <dd><a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0143.html">Confidence property</a>. URL: <a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0143.html">http://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0143.html</a>
+   <dd><a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0143.html">Confidence property</a>. URL: <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0143.html">https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0143.html</a>
    <dt id="biblio-5">[5]
-   <dd><a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0072.html">Interacting with WebRTC, the Web Audio API and other external sources</a>. URL: <a href="http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0072.html">http://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0072.html</a>
+   <dd><a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0072.html">Interacting with WebRTC, the Web Audio API and other external sources</a>. URL: <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0072.html">https://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0072.html</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
 <pre class="idl highlight def">[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①③">Exposed</a>=<span class="n">Window</span>, <a class="nv" href="#dom-speechrecognition-speechrecognition"><code>Constructor</code></a>]
