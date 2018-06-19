@@ -1213,7 +1213,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version ee4bd4642f06996491f80990f7b1050ff9dcf622" name="generator">
   <link href="https://w3c.github.io/speech-api/" rel="canonical">
-  <meta content="b7e0b932cc07c7acc95ecff417d01b2318ea5c4d" name="document-revision">
+  <meta content="afa5b095a32c7ffde15e02556a58e463f54652c0" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1460,7 +1460,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Web Speech API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2018-06-15">15 June 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2018-06-19">19 June 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1713,7 +1713,7 @@ The term "interim result" indicates a SpeechRecognitionResult in which the final
     <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long⑤"><span class="kt">unsigned</span> <span class="kt">long</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="unsigned long" href="#dom-speechrecognitionevent-resultindex" id="ref-for-dom-speechrecognitionevent-resultindex">resultIndex</a>;
     <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#speechrecognitionresultlist" id="ref-for-speechrecognitionresultlist">SpeechRecognitionResultList</a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="SpeechRecognitionResultList" href="#dom-speechrecognitionevent-results" id="ref-for-dom-speechrecognitionevent-results">results</a>;
     <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">any</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="any" href="#dom-speechrecognitionevent-interpretation" id="ref-for-dom-speechrecognitionevent-interpretation">interpretation</a>;
-    <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#document" id="ref-for-document">Document</a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="Document" href="#dom-speechrecognitionevent-emma" id="ref-for-dom-speechrecognitionevent-emma">emma</a>;
+    <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#document" id="ref-for-document">Document</a>? <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="Document?" href="#dom-speechrecognitionevent-emma" id="ref-for-dom-speechrecognitionevent-emma">emma</a>;
 };
 
 // The object representing a speech grammar
@@ -1919,7 +1919,7 @@ For a non-continuous recognition it will hold only a single value.</p>
      <p class="issue" id="issue-93092ac2"><a class="self-link" href="#issue-93092ac2"></a>The group has discussed options for the value of the interpretation attribute when no interpretation has been returned by the recognizer.
   Current options are null or a copy of the transcript.
   See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html">SpeechRecognitionAlternative.interpretation when interpretation can’t be provided</a> thread on public-speech-api@w3.org.</p>
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechRecognitionEvent" data-dfn-type="attribute" data-export="" id="dom-speechrecognitionevent-emma"><code>emma</code></dfn> attribute, <span> of type <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#document" id="ref-for-document①">Document</a>, readonly</span>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechRecognitionEvent" data-dfn-type="attribute" data-export="" id="dom-speechrecognitionevent-emma"><code>emma</code></dfn> attribute, <span> of type <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#document" id="ref-for-document①">Document</a>, readonly, nullable</span>
     <dd>EMMA 1.0 representation of this result. <a data-link-type="biblio" href="#biblio-emma">[EMMA]</a> The contents of this result could vary across user agents and recognition engines, but all implementations must expose a valid XML document complete with EMMA namespace,
   or if the recognizer does not supply EMMA then the user agent may return null.
   User agent implementations for recognizers that supply EMMA must contain all annotations and content generated by the recognition resources utilized for recognition, except where infeasible due to conflicting attributes.
@@ -2964,7 +2964,7 @@ These events bubble up to SpeechSynthesis.</p>
     <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long⑤①"><span class="kt">unsigned</span> <span class="kt">long</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="unsigned long" href="#dom-speechrecognitionevent-resultindex" id="ref-for-dom-speechrecognitionevent-resultindex①">resultIndex</a>;
     <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#speechrecognitionresultlist" id="ref-for-speechrecognitionresultlist②">SpeechRecognitionResultList</a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="SpeechRecognitionResultList" href="#dom-speechrecognitionevent-results" id="ref-for-dom-speechrecognitionevent-results②">results</a>;
     <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">any</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="any" href="#dom-speechrecognitionevent-interpretation" id="ref-for-dom-speechrecognitionevent-interpretation①">interpretation</a>;
-    <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#document" id="ref-for-document②">Document</a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="Document" href="#dom-speechrecognitionevent-emma" id="ref-for-dom-speechrecognitionevent-emma①">emma</a>;
+    <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#document" id="ref-for-document②">Document</a>? <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="Document?" href="#dom-speechrecognitionevent-emma" id="ref-for-dom-speechrecognitionevent-emma①">emma</a>;
 };
 
 // The object representing a speech grammar
