@@ -218,7 +218,7 @@ interface SpeechRecognitionEvent : Event {
     readonly attribute unsigned long resultIndex;
     readonly attribute SpeechRecognitionResultList results;
     readonly attribute any interpretation;
-    readonly attribute Document emma;
+    readonly attribute Document? emma;
 };
 
 // The object representing a speech grammar
