@@ -599,6 +599,7 @@ enum SpeechSynthesisErrorCode {
     "voice-unavailable",
     "text-too-long",
     "invalid-argument",
+    "not-allowed",
 };
 
 [Exposed=Window]
@@ -646,7 +647,8 @@ interface SpeechSynthesisVoice {
   it is not defined whether those changes will affect what is spoken, and those changes may cause an error to be returned.
   The SpeechSynthesis object takes exclusive ownership of the SpeechSynthesisUtterance object.
   Passing it as a speak() argument to another SpeechSynthesis object should throw an exception.
-  (For example, two frames may have the same origin and each will contain a SpeechSynthesis object.)</dd>
+  (For example, two frames may have the same origin and each will contain a SpeechSynthesis object.)
+  If </dd>
 
   <dt><dfn method for=SpeechSynthesis>cancel()</dfn> method</dt>
   <dd>This method removes all utterances from the queue.
@@ -819,6 +821,9 @@ These events bubble up to SpeechSynthesis.
 
     <dt><dfn enum-value for=SpeechSynthesisErrorCode>"invalid-argument"</dfn></dt>
     <dd>The contents of the SpeechSynthesisUtterance rate, pitch or volume attribute is not supported by synthesizer.</dd>
+
+    <dt><dfn enum-value for=SpeechSynthesisErrorCode>"not-allowed"</dfn></dt>
+    <dd>Synthesis was not allowed to start by the user agent or system in the current context.</dd>
   </dl>
   </dd>
 </dl>
