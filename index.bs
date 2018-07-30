@@ -647,8 +647,7 @@ interface SpeechSynthesisVoice {
   it is not defined whether those changes will affect what is spoken, and those changes may cause an error to be returned.
   The SpeechSynthesis object takes exclusive ownership of the SpeechSynthesisUtterance object.
   Passing it as a speak() argument to another SpeechSynthesis object should throw an exception.
-  (For example, two frames may have the same origin and each will contain a SpeechSynthesis object.)
-  If </dd>
+  (For example, two frames may have the same origin and each will contain a SpeechSynthesis object.)</dd>
 
   <dt><dfn method for=SpeechSynthesis>cancel()</dfn> method</dt>
   <dd>This method removes all utterances from the queue.
