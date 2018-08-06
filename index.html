@@ -1214,7 +1214,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 0af8ece51a58310888d9da3e5b2ebda903d17c18" name="generator">
   <link href="https://w3c.github.io/speech-api/" rel="canonical">
-  <meta content="37047faaa462ce346bd2d902f98d6eecc7a3a826" name="document-revision">
+  <meta content="88e0a26b0ea7f8736098b1cf66ff83065beb0f25" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1518,7 +1518,7 @@ Learn more about <a href="http://www.w3.org/community/">W3C Community and Busine
         <li><a href="#speechreco-attributes"><span class="secno">4.1.1</span> <span class="content">SpeechRecognition Attributes</span></a>
         <li><a href="#speechreco-methods"><span class="secno">4.1.2</span> <span class="content">SpeechRecognition Methods</span></a>
         <li><a href="#speechreco-events"><span class="secno">4.1.3</span> <span class="content">SpeechRecognition Events</span></a>
-        <li><a href="#speechreco-error"><span class="secno">4.1.4</span> <span class="content">SpeechRecognitionError</span></a>
+        <li><a href="#speechreco-error"><span class="secno">4.1.4</span> <span class="content">SpeechRecognitionErrorEvent</span></a>
         <li><a href="#speechreco-alternative"><span class="secno">4.1.5</span> <span class="content">SpeechRecognitionAlternative</span></a>
         <li><a href="#speechreco-result"><span class="secno">4.1.6</span> <span class="content">SpeechRecognitionResult</span></a>
         <li><a href="#speechreco-resultlist"><span class="secno">4.1.7</span> <span class="content">SpeechRecognitionResultList</span></a>
@@ -1681,9 +1681,9 @@ The term "interim result" indicates a SpeechRecognitionResult in which the final
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
-<c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="speechrecognitionerror"><code><c- g>SpeechRecognitionError</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event" id="ref-for-event"><c- n>Event</c-></a> {
-    <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-speechrecognitionerrorcode" id="ref-for-enumdef-speechrecognitionerrorcode"><c- n>SpeechRecognitionErrorCode</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="SpeechRecognitionErrorCode" href="#dom-speechrecognitionerror-error" id="ref-for-dom-speechrecognitionerror-error"><c- g>error</c-></a>;
-    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString②"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMString" href="#dom-speechrecognitionerror-message" id="ref-for-dom-speechrecognitionerror-message"><c- g>message</c-></a>;
+<c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="speechrecognitionerrorevent"><code><c- g>SpeechRecognitionErrorEvent</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event" id="ref-for-event"><c- n>Event</c-></a> {
+    <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-speechrecognitionerrorcode" id="ref-for-enumdef-speechrecognitionerrorcode"><c- n>SpeechRecognitionErrorCode</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="SpeechRecognitionErrorCode" href="#dom-speechrecognitionerrorevent-error" id="ref-for-dom-speechrecognitionerrorevent-error"><c- g>error</c-></a>;
+    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString②"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMString" href="#dom-speechrecognitionerrorevent-message" id="ref-for-dom-speechrecognitionerrorevent-message"><c- g>message</c-></a>;
 };
 
 // Item in N-best list
@@ -1824,17 +1824,17 @@ For example, some implementations may fire <a class="idl-code" data-link-type="e
   The <code class="idl"><a data-link-type="idl" href="#eventdef-speechrecognition-audiostart" id="ref-for-eventdef-speechrecognition-audiostart④">audiostart</a></code> event must always have been fired before the nomatch event.
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechRecognition" data-dfn-type="event" data-export id="eventdef-speechrecognition-error"><code>error</code></dfn> event
     <dd>Fired when a speech recognition error occurs.
-  The event must use the <code class="idl"><a data-link-type="idl" href="#speechrecognitionerror" id="ref-for-speechrecognitionerror">SpeechRecognitionError</a></code> interface.
+  The event must use the <code class="idl"><a data-link-type="idl" href="#speechrecognitionerrorevent" id="ref-for-speechrecognitionerrorevent">SpeechRecognitionErrorEvent</a></code> interface.
     <dt><dfn class="idl-code" data-dfn-for="SpeechRecognition" data-dfn-type="event" data-export id="eventdef-speechrecognition-start"><code>start</code><a class="self-link" href="#eventdef-speechrecognition-start"></a></dfn> event
     <dd>Fired when the recognition service has begun to listen to the audio with the intention of recognizing. 
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechRecognition" data-dfn-type="event" data-export id="eventdef-speechrecognition-end"><code>end</code></dfn> event
     <dd>Fired when the service has disconnected.
   The event must always be generated when the session ends no matter the reason for the end.
    </dl>
-   <h4 class="heading settled" data-level="4.1.4" id="speechreco-error"><span class="secno">4.1.4. </span><span class="content">SpeechRecognitionError</span><a class="self-link" href="#speechreco-error"></a></h4>
-   <p>The SpeechRecognitionError event is the interface used for the <a class="idl-code" data-link-type="event" href="#eventdef-speechrecognition-error" id="ref-for-eventdef-speechrecognition-error③">error</a> event.</p>
+   <h4 class="heading settled" data-level="4.1.4" id="speechreco-error"><span class="secno">4.1.4. </span><span class="content">SpeechRecognitionErrorEvent</span><a class="self-link" href="#speechreco-error"></a></h4>
+   <p>The <code class="idl"><a data-link-type="idl" href="#speechrecognitionerrorevent" id="ref-for-speechrecognitionerrorevent①">SpeechRecognitionErrorEvent</a></code> interface is used for the <a class="idl-code" data-link-type="event" href="#eventdef-speechrecognition-error" id="ref-for-eventdef-speechrecognition-error③">error</a> event.</p>
    <dl>
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechRecognitionError" data-dfn-type="attribute" data-export id="dom-speechrecognitionerror-error"><code>error</code></dfn> attribute, <span> of type <a data-link-type="idl-name" href="#enumdef-speechrecognitionerrorcode" id="ref-for-enumdef-speechrecognitionerrorcode①">SpeechRecognitionErrorCode</a>, readonly</span>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechRecognitionErrorEvent" data-dfn-type="attribute" data-export id="dom-speechrecognitionerrorevent-error"><code>error</code></dfn> attribute, <span> of type <a data-link-type="idl-name" href="#enumdef-speechrecognitionerrorcode" id="ref-for-enumdef-speechrecognitionerrorcode①">SpeechRecognitionErrorCode</a>, readonly</span>
     <dd>
      The errorCode is an enumeration indicating what has gone wrong.
   The values are: 
@@ -1856,7 +1856,7 @@ For example, some implementations may fire <a class="idl-code" data-link-type="e
       <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechRecognitionErrorCode" data-dfn-type="enum-value" data-export id="dom-speechrecognitionerrorcode-language-not-supported"><code>"language-not-supported"</code></dfn>
       <dd>The language was not supported.
      </dl>
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechRecognitionError" data-dfn-type="attribute" data-export id="dom-speechrecognitionerror-message"><code>message</code></dfn> attribute, <span> of type <a data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString⑨">DOMString</a>, readonly</span>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechRecognitionErrorEvent" data-dfn-type="attribute" data-export id="dom-speechrecognitionerrorevent-message"><code>message</code></dfn> attribute, <span> of type <a data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString⑨">DOMString</a>, readonly</span>
     <dd>The message content is implementation specific.
   This attribute is primarily intended for debugging and developers should not use it directly in their application user interface.
    </dl>
@@ -2569,7 +2569,7 @@ These events bubble up to SpeechSynthesis.</p>
    <li>
     error
     <ul>
-     <li><a href="#dom-speechrecognitionerror-error">attribute for SpeechRecognitionError</a><span>, in §4.1.4</span>
+     <li><a href="#dom-speechrecognitionerrorevent-error">attribute for SpeechRecognitionErrorEvent</a><span>, in §4.1.4</span>
      <li><a href="#dom-speechsynthesiserrorevent-error">attribute for SpeechSynthesisErrorEvent</a><span>, in §4.2.7</span>
      <li><a href="#eventdef-speechrecognition-error">event for SpeechRecognition</a><span>, in §4.1.3</span>
      <li><a href="#eventdef-speechsynthesisutterance-error">event for SpeechSynthesisUtterance</a><span>, in §4.2.5</span>
@@ -2607,7 +2607,7 @@ These events bubble up to SpeechSynthesis.</p>
    <li><a href="#dom-speechsynthesisvoice-localservice">localService</a><span>, in §4.2.8</span>
    <li><a href="#eventdef-speechsynthesisutterance-mark">mark</a><span>, in §4.2.5</span>
    <li><a href="#dom-speechrecognition-maxalternatives">maxAlternatives</a><span>, in §4.1.1</span>
-   <li><a href="#dom-speechrecognitionerror-message">message</a><span>, in §4.1.4</span>
+   <li><a href="#dom-speechrecognitionerrorevent-message">message</a><span>, in §4.1.4</span>
    <li>
     name
     <ul>
@@ -2679,8 +2679,8 @@ These events bubble up to SpeechSynthesis.</p>
    <li><a href="#dom-speechrecognition-speechrecognition">SpeechRecognition()</a><span>, in §4.1</span>
    <li><a href="#speechrecognition">SpeechRecognition</a><span>, in §4.1</span>
    <li><a href="#speechrecognitionalternative">SpeechRecognitionAlternative</a><span>, in §4.1</span>
-   <li><a href="#speechrecognitionerror">SpeechRecognitionError</a><span>, in §4.1</span>
    <li><a href="#enumdef-speechrecognitionerrorcode">SpeechRecognitionErrorCode</a><span>, in §4.1</span>
+   <li><a href="#speechrecognitionerrorevent">SpeechRecognitionErrorEvent</a><span>, in §4.1</span>
    <li><a href="#speechrecognitionevent">SpeechRecognitionEvent</a><span>, in §4.1</span>
    <li><a href="#speechrecognitionresult">SpeechRecognitionResult</a><span>, in §4.1</span>
    <li><a href="#speechrecognitionresultlist">SpeechRecognitionResultList</a><span>, in §4.1</span>
@@ -2768,7 +2768,7 @@ These events bubble up to SpeechSynthesis.</p>
    <ul>
     <li><a href="#ref-for-idl-DOMString">4.1. The SpeechRecognition Interface</a> <a href="#ref-for-idl-DOMString①">(2)</a> <a href="#ref-for-idl-DOMString②">(3)</a> <a href="#ref-for-idl-DOMString③">(4)</a> <a href="#ref-for-idl-DOMString④">(5)</a> <a href="#ref-for-idl-DOMString⑤">(6)</a> <a href="#ref-for-idl-DOMString⑥">(7)</a>
     <li><a href="#ref-for-idl-DOMString⑦">4.1.1. SpeechRecognition Attributes</a> <a href="#ref-for-idl-DOMString⑧">(2)</a>
-    <li><a href="#ref-for-idl-DOMString⑨">4.1.4. SpeechRecognitionError</a>
+    <li><a href="#ref-for-idl-DOMString⑨">4.1.4. SpeechRecognitionErrorEvent</a>
     <li><a href="#ref-for-idl-DOMString①⓪">4.1.5. SpeechRecognitionAlternative</a>
     <li><a href="#ref-for-idl-DOMString①①">4.1.9. SpeechGrammar</a>
     <li><a href="#ref-for-idl-DOMString①②">4.2. The SpeechSynthesis Interface</a> <a href="#ref-for-idl-DOMString①③">(2)</a> <a href="#ref-for-idl-DOMString①④">(3)</a> <a href="#ref-for-idl-DOMString①⑤">(4)</a> <a href="#ref-for-idl-DOMString①⑥">(5)</a> <a href="#ref-for-idl-DOMString①⑦">(6)</a> <a href="#ref-for-idl-DOMString①⑧">(7)</a>
@@ -2932,9 +2932,9 @@ These events bubble up to SpeechSynthesis.</p>
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①④"><c- g>Exposed</c-></a>=<c- n>Window</c->]
-<c- b>interface</c-> <a href="#speechrecognitionerror"><code><c- g>SpeechRecognitionError</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event" id="ref-for-event③"><c- n>Event</c-></a> {
-    <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-speechrecognitionerrorcode" id="ref-for-enumdef-speechrecognitionerrorcode②"><c- n>SpeechRecognitionErrorCode</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="SpeechRecognitionErrorCode" href="#dom-speechrecognitionerror-error" id="ref-for-dom-speechrecognitionerror-error①"><c- g>error</c-></a>;
-    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString②⑤"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMString" href="#dom-speechrecognitionerror-message" id="ref-for-dom-speechrecognitionerror-message①"><c- g>message</c-></a>;
+<c- b>interface</c-> <a href="#speechrecognitionerrorevent"><code><c- g>SpeechRecognitionErrorEvent</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event" id="ref-for-event③"><c- n>Event</c-></a> {
+    <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-speechrecognitionerrorcode" id="ref-for-enumdef-speechrecognitionerrorcode②"><c- n>SpeechRecognitionErrorCode</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="SpeechRecognitionErrorCode" href="#dom-speechrecognitionerrorevent-error" id="ref-for-dom-speechrecognitionerrorevent-error①"><c- g>error</c-></a>;
+    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString②⑤"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMString" href="#dom-speechrecognitionerrorevent-message" id="ref-for-dom-speechrecognitionerrorevent-message①"><c- g>message</c-></a>;
 };
 
 // Item in N-best list
@@ -3078,13 +3078,14 @@ See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179
    <b><a href="#enumdef-speechrecognitionerrorcode">#enumdef-speechrecognitionerrorcode</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-enumdef-speechrecognitionerrorcode">4.1. The SpeechRecognition Interface</a>
-    <li><a href="#ref-for-enumdef-speechrecognitionerrorcode①">4.1.4. SpeechRecognitionError</a>
+    <li><a href="#ref-for-enumdef-speechrecognitionerrorcode①">4.1.4. SpeechRecognitionErrorEvent</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="speechrecognitionerror">
-   <b><a href="#speechrecognitionerror">#speechrecognitionerror</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="speechrecognitionerrorevent">
+   <b><a href="#speechrecognitionerrorevent">#speechrecognitionerrorevent</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-speechrecognitionerror">4.1.3. SpeechRecognition Events</a>
+    <li><a href="#ref-for-speechrecognitionerrorevent">4.1.3. SpeechRecognition Events</a>
+    <li><a href="#ref-for-speechrecognitionerrorevent①">4.1.4. SpeechRecognitionErrorEvent</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="speechrecognitionalternative">
@@ -3214,7 +3215,7 @@ See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179
    <b><a href="#eventdef-speechrecognition-error">#eventdef-speechrecognition-error</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-eventdef-speechrecognition-error">4.1.2. SpeechRecognition Methods</a> <a href="#ref-for-eventdef-speechrecognition-error①">(2)</a> <a href="#ref-for-eventdef-speechrecognition-error②">(3)</a>
-    <li><a href="#ref-for-eventdef-speechrecognition-error③">4.1.4. SpeechRecognitionError</a>
+    <li><a href="#ref-for-eventdef-speechrecognition-error③">4.1.4. SpeechRecognitionErrorEvent</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="eventdef-speechrecognition-end">
@@ -3223,10 +3224,10 @@ See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179
     <li><a href="#ref-for-eventdef-speechrecognition-end">4.1.2. SpeechRecognition Methods</a> <a href="#ref-for-eventdef-speechrecognition-end①">(2)</a> <a href="#ref-for-eventdef-speechrecognition-end②">(3)</a> <a href="#ref-for-eventdef-speechrecognition-end③">(4)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-speechrecognitionerror-error">
-   <b><a href="#dom-speechrecognitionerror-error">#dom-speechrecognitionerror-error</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-speechrecognitionerrorevent-error">
+   <b><a href="#dom-speechrecognitionerrorevent-error">#dom-speechrecognitionerrorevent-error</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-speechrecognitionerror-error">4.1. The SpeechRecognition Interface</a>
+    <li><a href="#ref-for-dom-speechrecognitionerrorevent-error">4.1. The SpeechRecognition Interface</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-speechrecognitionerrorcode-no-speech">
@@ -3277,10 +3278,10 @@ See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179
     <li><a href="#ref-for-dom-speechrecognitionerrorcode-language-not-supported">4.1. The SpeechRecognition Interface</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-speechrecognitionerror-message">
-   <b><a href="#dom-speechrecognitionerror-message">#dom-speechrecognitionerror-message</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-speechrecognitionerrorevent-message">
+   <b><a href="#dom-speechrecognitionerrorevent-message">#dom-speechrecognitionerrorevent-message</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-speechrecognitionerror-message">4.1. The SpeechRecognition Interface</a>
+    <li><a href="#ref-for-dom-speechrecognitionerrorevent-message">4.1. The SpeechRecognition Interface</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-speechrecognitionalternative-transcript">
