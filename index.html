@@ -1214,7 +1214,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 0af8ece51a58310888d9da3e5b2ebda903d17c18" name="generator">
   <link href="https://w3c.github.io/speech-api/" rel="canonical">
-  <meta content="88e0a26b0ea7f8736098b1cf66ff83065beb0f25" name="document-revision">
+  <meta content="90c3ea79f82afdf499895dcae67bd0f503037e80" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1990,7 +1990,7 @@ This structure has the following attributes:</p>
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="speechsynthesisutterance"><code><c- g>SpeechSynthesisUtterance</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget②"><c- n>EventTarget</c-></a> {
     <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①③"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="attribute" data-type="DOMString" href="#dom-speechsynthesisutterance-text" id="ref-for-dom-speechsynthesisutterance-text"><c- g>text</c-></a>;
     <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①④"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="attribute" data-type="DOMString" href="#dom-speechsynthesisutterance-lang" id="ref-for-dom-speechsynthesisutterance-lang"><c- g>lang</c-></a>;
-    <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#speechsynthesisvoice" id="ref-for-speechsynthesisvoice①"><c- n>SpeechSynthesisVoice</c-></a> <a class="idl-code" data-link-type="attribute" data-type="SpeechSynthesisVoice" href="#dom-speechsynthesisutterance-voice" id="ref-for-dom-speechsynthesisutterance-voice"><c- g>voice</c-></a>;
+    <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#speechsynthesisvoice" id="ref-for-speechsynthesisvoice①"><c- n>SpeechSynthesisVoice</c-></a>? <a class="idl-code" data-link-type="attribute" data-type="SpeechSynthesisVoice?" href="#dom-speechsynthesisutterance-voice" id="ref-for-dom-speechsynthesisutterance-voice"><c- g>voice</c-></a>;
     <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-float" id="ref-for-idl-float⑥"><c- b>float</c-></a> <a class="idl-code" data-link-type="attribute" data-type="float" href="#dom-speechsynthesisutterance-volume" id="ref-for-dom-speechsynthesisutterance-volume"><c- g>volume</c-></a>;
     <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-float" id="ref-for-idl-float⑦"><c- b>float</c-></a> <a class="idl-code" data-link-type="attribute" data-type="float" href="#dom-speechsynthesisutterance-rate" id="ref-for-dom-speechsynthesisutterance-rate"><c- g>rate</c-></a>;
     <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-float" id="ref-for-idl-float⑧"><c- b>float</c-></a> <a class="idl-code" data-link-type="attribute" data-type="float" href="#dom-speechsynthesisutterance-pitch" id="ref-for-dom-speechsynthesisutterance-pitch"><c- g>pitch</c-></a>;
@@ -2099,11 +2099,12 @@ This structure has the following attributes:</p>
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechSynthesisUtterance" data-dfn-type="attribute" data-export id="dom-speechsynthesisutterance-lang"><code>lang</code></dfn> attribute, <span> of type <a data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString②⓪">DOMString</a></span>
     <dd>This attribute specifies the language of the speech synthesis for the utterance, using a valid BCP 47 language tag. <a data-link-type="biblio" href="#biblio-bcp47">[BCP47]</a> If unset it remains unset for getting in script, but will default to use the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#language" id="ref-for-language①">language</a> of the html document root element and associated hierarchy.
   This default value is computed and used when the input request opens a connection to the recognition service.
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechSynthesisUtterance" data-dfn-type="attribute" data-export id="dom-speechsynthesisutterance-voice"><code>voice</code></dfn> attribute, <span> of type <a data-link-type="idl-name" href="#speechsynthesisvoice" id="ref-for-speechsynthesisvoice②">SpeechSynthesisVoice</a></span>
-    <dd>The voice attribute specifies speech synthesis voice that the web application wishes to use.
-  If, at the time of the play method call, this attribute has been set to one of the SpeechSynthesisVoice objects returned by getVoices, then the user agent must use that voice.
-  If this attribute is unset or null at the time of the play method call, then the user agent must use a user agent default voice.
-  The user agent default voice should support the current language (see "lang" attribute) and can be a local or remote speech service and can incorporate end user choices via interfaces provided by the user agent such as browser configuration parameters. 
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechSynthesisUtterance" data-dfn-type="attribute" data-export id="dom-speechsynthesisutterance-voice"><code>voice</code></dfn> attribute, <span> of type <a data-link-type="idl-name" href="#speechsynthesisvoice" id="ref-for-speechsynthesisvoice②">SpeechSynthesisVoice</a>, nullable</span>
+    <dd>This attribute specifies the speech synthesis voice that the web application wishes to use.
+  When a <code class="idl"><a data-link-type="idl" href="#speechsynthesisutterance" id="ref-for-speechsynthesisutterance②">SpeechSynthesisUtterance</a></code> object is created this attribute must be initialized to null.
+  If, at the time of the <code class="idl"><a data-link-type="idl" href="#dom-speechsynthesis-speak" id="ref-for-dom-speechsynthesis-speak①">speak()</a></code> method call, this attribute has been set to one of the <code class="idl"><a data-link-type="idl" href="#speechsynthesisvoice" id="ref-for-speechsynthesisvoice③">SpeechSynthesisVoice</a></code> objects returned by <code class="idl"><a data-link-type="idl" href="#dom-speechsynthesis-getvoices" id="ref-for-dom-speechsynthesis-getvoices①">getVoices()</a></code>, then the user agent must use that voice.
+  If this attribute is unset or null at the time of the <code class="idl"><a data-link-type="idl" href="#dom-speechsynthesis-speak" id="ref-for-dom-speechsynthesis-speak②">speak()</a></code> method call, then the user agent must use a user agent default voice.
+  The user agent default voice should support the current language (see <code class="idl"><a data-link-type="idl" href="#dom-speechsynthesisutterance-lang" id="ref-for-dom-speechsynthesisutterance-lang①">lang</a></code>) and can be a local or remote speech service and can incorporate end user choices via interfaces provided by the user agent such as browser configuration parameters. 
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechSynthesisUtterance" data-dfn-type="attribute" data-export id="dom-speechsynthesisutterance-volume"><code>volume</code></dfn> attribute, <span> of type <a data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-float" id="ref-for-idl-float①⓪">float</a></span>
     <dd>This attribute specifies the speaking volume for the utterance.
   It ranges between 0 and 1 inclusive, with 0 being the lowest volume and 1 the highest volume, with a default of 1.
@@ -2149,7 +2150,7 @@ These events bubble up to SpeechSynthesis.</p>
    </dl>
    <h4 class="heading settled" data-level="4.2.6" id="speechsynthesisevent-attributes"><span class="secno">4.2.6. </span><span class="content">SpeechSynthesisEvent Attributes</span><a class="self-link" href="#speechsynthesisevent-attributes"></a></h4>
    <dl>
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechSynthesisEvent" data-dfn-type="attribute" data-export id="dom-speechsynthesisevent-utterance"><code>utterance</code></dfn> attribute, <span> of type <a data-link-type="idl-name" href="#speechsynthesisutterance" id="ref-for-speechsynthesisutterance②">SpeechSynthesisUtterance</a>, readonly</span>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechSynthesisEvent" data-dfn-type="attribute" data-export id="dom-speechsynthesisevent-utterance"><code>utterance</code></dfn> attribute, <span> of type <a data-link-type="idl-name" href="#speechsynthesisutterance" id="ref-for-speechsynthesisutterance③">SpeechSynthesisUtterance</a>, readonly</span>
     <dd>This attribute contains the SpeechSynthesisUtterance that triggered this event.
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechSynthesisEvent" data-dfn-type="attribute" data-export id="dom-speechsynthesisevent-charindex"><code>charIndex</code></dfn> attribute, <span> of type <a data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long①④">unsigned long</a>, readonly</span>
     <dd>This attribute indicates the zero-based character index into the original utterance string that most closely approximates the current speaking position of the speech engine.
@@ -2994,11 +2995,11 @@ These events bubble up to SpeechSynthesis.</p>
 
     <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler①①①"><c- n>EventHandler</c-></a> <a data-type="EventHandler" href="#dom-speechsynthesis-onvoiceschanged"><code><c- g>onvoiceschanged</c-></code></a>;
 
-    <c- b>void</c-> <a class="idl-code" data-link-type="method" href="#dom-speechsynthesis-speak" id="ref-for-dom-speechsynthesis-speak①"><c- g>speak</c-></a>(<a class="n" data-link-type="idl-name" href="#speechsynthesisutterance" id="ref-for-speechsynthesisutterance③"><c- n>SpeechSynthesisUtterance</c-></a> <a href="#dom-speechsynthesis-speak-utterance-utterance"><code><c- g>utterance</c-></code></a>);
+    <c- b>void</c-> <a class="idl-code" data-link-type="method" href="#dom-speechsynthesis-speak" id="ref-for-dom-speechsynthesis-speak③"><c- g>speak</c-></a>(<a class="n" data-link-type="idl-name" href="#speechsynthesisutterance" id="ref-for-speechsynthesisutterance④"><c- n>SpeechSynthesisUtterance</c-></a> <a href="#dom-speechsynthesis-speak-utterance-utterance"><code><c- g>utterance</c-></code></a>);
     <c- b>void</c-> <a class="idl-code" data-link-type="method" href="#dom-speechsynthesis-cancel" id="ref-for-dom-speechsynthesis-cancel①"><c- g>cancel</c-></a>();
     <c- b>void</c-> <a class="idl-code" data-link-type="method" href="#dom-speechsynthesis-pause" id="ref-for-dom-speechsynthesis-pause①"><c- g>pause</c-></a>();
     <c- b>void</c-> <a class="idl-code" data-link-type="method" href="#dom-speechsynthesis-resume" id="ref-for-dom-speechsynthesis-resume①"><c- g>resume</c-></a>();
-    <c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#speechsynthesisvoice" id="ref-for-speechsynthesisvoice③"><c- n>SpeechSynthesisVoice</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-speechsynthesis-getvoices" id="ref-for-dom-speechsynthesis-getvoices①"><c- g>getVoices</c-></a>();
+    <c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#speechsynthesisvoice" id="ref-for-speechsynthesisvoice④"><c- n>SpeechSynthesisVoice</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-speechsynthesis-getvoices" id="ref-for-dom-speechsynthesis-getvoices②"><c- g>getVoices</c-></a>();
 };
 
 <c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/window-object.html#window" id="ref-for-window①"><c- g>Window</c-></a> {
@@ -3010,8 +3011,8 @@ These events bubble up to SpeechSynthesis.</p>
   <a href="#dom-speechsynthesisutterance-speechsynthesisutterance-text"><code><c- g>Constructor</c-></code></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①②①"><c- b>DOMString</c-></a> <a href="#dom-speechsynthesisutterance-speechsynthesisutterance-text-text"><code><c- g>text</c-></code></a>)]
 <c- b>interface</c-> <a href="#speechsynthesisutterance"><code><c- g>SpeechSynthesisUtterance</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget②①"><c- n>EventTarget</c-></a> {
     <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①③①"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="attribute" data-type="DOMString" href="#dom-speechsynthesisutterance-text" id="ref-for-dom-speechsynthesisutterance-text①"><c- g>text</c-></a>;
-    <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①④①"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="attribute" data-type="DOMString" href="#dom-speechsynthesisutterance-lang" id="ref-for-dom-speechsynthesisutterance-lang①"><c- g>lang</c-></a>;
-    <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#speechsynthesisvoice" id="ref-for-speechsynthesisvoice①①"><c- n>SpeechSynthesisVoice</c-></a> <a class="idl-code" data-link-type="attribute" data-type="SpeechSynthesisVoice" href="#dom-speechsynthesisutterance-voice" id="ref-for-dom-speechsynthesisutterance-voice①"><c- g>voice</c-></a>;
+    <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①④①"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="attribute" data-type="DOMString" href="#dom-speechsynthesisutterance-lang" id="ref-for-dom-speechsynthesisutterance-lang②"><c- g>lang</c-></a>;
+    <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#speechsynthesisvoice" id="ref-for-speechsynthesisvoice①①"><c- n>SpeechSynthesisVoice</c-></a>? <a class="idl-code" data-link-type="attribute" data-type="SpeechSynthesisVoice?" href="#dom-speechsynthesisutterance-voice" id="ref-for-dom-speechsynthesisutterance-voice①"><c- g>voice</c-></a>;
     <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-float" id="ref-for-idl-float⑥①"><c- b>float</c-></a> <a class="idl-code" data-link-type="attribute" data-type="float" href="#dom-speechsynthesisutterance-volume" id="ref-for-dom-speechsynthesisutterance-volume①"><c- g>volume</c-></a>;
     <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-float" id="ref-for-idl-float⑦①"><c- b>float</c-></a> <a class="idl-code" data-link-type="attribute" data-type="float" href="#dom-speechsynthesisutterance-rate" id="ref-for-dom-speechsynthesisutterance-rate①"><c- g>rate</c-></a>;
     <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-float" id="ref-for-idl-float⑧①"><c- b>float</c-></a> <a class="idl-code" data-link-type="attribute" data-type="float" href="#dom-speechsynthesisutterance-pitch" id="ref-for-dom-speechsynthesisutterance-pitch①"><c- g>pitch</c-></a>;
@@ -3397,7 +3398,8 @@ See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179
    <b><a href="#speechsynthesisutterance">#speechsynthesisutterance</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-speechsynthesisutterance">4.2. The SpeechSynthesis Interface</a> <a href="#ref-for-speechsynthesisutterance①">(2)</a>
-    <li><a href="#ref-for-speechsynthesisutterance②">4.2.6. SpeechSynthesisEvent Attributes</a>
+    <li><a href="#ref-for-speechsynthesisutterance②">4.2.4. SpeechSynthesisUtterance Attributes</a>
+    <li><a href="#ref-for-speechsynthesisutterance③">4.2.6. SpeechSynthesisEvent Attributes</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="speechsynthesisevent">
@@ -3424,7 +3426,7 @@ See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179
    <b><a href="#speechsynthesisvoice">#speechsynthesisvoice</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-speechsynthesisvoice">4.2. The SpeechSynthesis Interface</a> <a href="#ref-for-speechsynthesisvoice①">(2)</a>
-    <li><a href="#ref-for-speechsynthesisvoice②">4.2.4. SpeechSynthesisUtterance Attributes</a>
+    <li><a href="#ref-for-speechsynthesisvoice②">4.2.4. SpeechSynthesisUtterance Attributes</a> <a href="#ref-for-speechsynthesisvoice③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-speechsynthesis-pending">
@@ -3449,6 +3451,7 @@ See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179
    <b><a href="#dom-speechsynthesis-speak">#dom-speechsynthesis-speak</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-speechsynthesis-speak">4.2. The SpeechSynthesis Interface</a>
+    <li><a href="#ref-for-dom-speechsynthesis-speak①">4.2.4. SpeechSynthesisUtterance Attributes</a> <a href="#ref-for-dom-speechsynthesis-speak②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-speechsynthesis-cancel">
@@ -3473,6 +3476,7 @@ See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179
    <b><a href="#dom-speechsynthesis-getvoices">#dom-speechsynthesis-getvoices</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-speechsynthesis-getvoices">4.2. The SpeechSynthesis Interface</a>
+    <li><a href="#ref-for-dom-speechsynthesis-getvoices①">4.2.4. SpeechSynthesisUtterance Attributes</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-speechsynthesisutterance-text">
@@ -3485,6 +3489,7 @@ See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179
    <b><a href="#dom-speechsynthesisutterance-lang">#dom-speechsynthesisutterance-lang</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-speechsynthesisutterance-lang">4.2. The SpeechSynthesis Interface</a>
+    <li><a href="#ref-for-dom-speechsynthesisutterance-lang①">4.2.4. SpeechSynthesisUtterance Attributes</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-speechsynthesisutterance-voice">
