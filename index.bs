@@ -222,7 +222,7 @@ interface SpeechRecognitionEvent : Event {
 };
 
 // The object representing a speech grammar
-[Exposed=Window, Constructor]
+[Exposed=Window]
 interface SpeechGrammar {
     attribute DOMString src;
     attribute float weight;
