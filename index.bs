@@ -565,7 +565,7 @@ partial interface Window {
 interface SpeechSynthesisUtterance : EventTarget {
     attribute DOMString text;
     attribute DOMString lang;
-    attribute SpeechSynthesisVoice voice;
+    attribute SpeechSynthesisVoice? voice;
     attribute float volume;
     attribute float rate;
     attribute float pitch;
@@ -693,10 +693,11 @@ interface SpeechSynthesisVoice {
   This default value is computed and used when the input request opens a connection to the recognition service.</dd>
 
   <dt><dfn attribute for=SpeechSynthesisUtterance>voice</dfn> attribute</dt>
-  <dd>The voice attribute specifies speech synthesis voice that the web application wishes to use.
-  If, at the time of the play method call, this attribute has been set to one of the SpeechSynthesisVoice objects returned by getVoices, then the user agent must use that voice.
-  If this attribute is unset or null at the time of the play method call, then the user agent must use a user agent default voice.
-  The user agent default voice should support the current language (see "lang" attribute) and can be a local or remote speech service and can incorporate end user choices via interfaces provided by the user agent such as browser configuration parameters.
+  <dd>This attribute specifies the speech synthesis voice that the web application wishes to use.
+  When a {{SpeechSynthesisUtterance}} object is created this attribute must be initialized to null.
+  If, at the time of the {{speak()}} method call, this attribute has been set to one of the {{SpeechSynthesisVoice}} objects returned by {{getVoices()}}, then the user agent must use that voice.
+  If this attribute is unset or null at the time of the {{speak()}} method call, then the user agent must use a user agent default voice.
+  The user agent default voice should support the current language (see {{SpeechSynthesisUtterance/lang}}) and can be a local or remote speech service and can incorporate end user choices via interfaces provided by the user agent such as browser configuration parameters.
   </dd>
 
   <dt><dfn attribute for=SpeechSynthesisUtterance>volume</dfn> attribute</dt>
