@@ -185,7 +185,7 @@ enum SpeechRecognitionErrorCode {
 };
 
 [Exposed=Window]
-interface SpeechRecognitionError : Event {
+interface SpeechRecognitionErrorEvent : Event {
     readonly attribute SpeechRecognitionErrorCode error;
     readonly attribute DOMString message;
 };
@@ -355,7 +355,7 @@ For example, some implementations may fire <a event for=SpeechRecognition>audioe
 
   <dt><dfn event for=SpeechRecognition>error</dfn> event</dt>
   <dd>Fired when a speech recognition error occurs.
-  The event must use the {{SpeechRecognitionError}} interface.</dd>
+  The event must use the {{SpeechRecognitionErrorEvent}} interface.</dd>
 
   <dt><dfn event for=SpeechRecognition>start</dfn> event</dt>
   <dd>Fired when the recognition service has begun to listen to the audio with the intention of recognizing.
@@ -365,11 +365,11 @@ For example, some implementations may fire <a event for=SpeechRecognition>audioe
   The event must always be generated when the session ends no matter the reason for the end.</dd>
 </dl>
 
-<h4 id="speechreco-error">SpeechRecognitionError</h4>
+<h4 id="speechreco-error">SpeechRecognitionErrorEvent</h4>
 
-<p>The SpeechRecognitionError event is the interface used for the <a event for=SpeechRecognition>error</a> event.</p>
+<p>The {{SpeechRecognitionErrorEvent}} interface is used for the <a event for=SpeechRecognition>error</a> event.</p>
 <dl>
-  <dt><dfn attribute for=SpeechRecognitionError>error</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechRecognitionErrorEvent>error</dfn> attribute</dt>
   <dd>The errorCode is an enumeration indicating what has gone wrong.
   The values are:
   <dl>
@@ -399,7 +399,7 @@ For example, some implementations may fire <a event for=SpeechRecognition>audioe
   </dl>
   </dd>
 
-  <dt><dfn attribute for=SpeechRecognitionError>message</dfn> attribute</dt>
+  <dt><dfn attribute for=SpeechRecognitionErrorEvent>message</dfn> attribute</dt>
   <dd>The message content is implementation specific.
   This attribute is primarily intended for debugging and developers should not use it directly in their application user interface.</dd>
 </dl>
