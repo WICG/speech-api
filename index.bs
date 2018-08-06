@@ -144,7 +144,7 @@ The term "final result" indicates a SpeechRecognitionResult in which the final a
 The term "interim result" indicates a SpeechRecognitionResult in which the final attribute is false.
 
 <pre class="idl">
-[Exposed=Window, Constructor]
+[SecureContext, Exposed=Window, Constructor]
 interface SpeechRecognition : EventTarget {
     // recognition parameters
     attribute SpeechGrammarList grammars;
@@ -184,21 +184,21 @@ enum SpeechRecognitionErrorCode {
     "language-not-supported"
 };
 
-[Exposed=Window]
+[SecureContext, Exposed=Window]
 interface SpeechRecognitionError : Event {
     readonly attribute SpeechRecognitionErrorCode error;
     readonly attribute DOMString message;
 };
 
 // Item in N-best list
-[Exposed=Window]
+[SecureContext, Exposed=Window]
 interface SpeechRecognitionAlternative {
     readonly attribute DOMString transcript;
     readonly attribute float confidence;
 };
 
 // A complete one-shot simple response
-[Exposed=Window]
+[SecureContext, Exposed=Window]
 interface SpeechRecognitionResult {
     readonly attribute unsigned long length;
     getter SpeechRecognitionAlternative item(unsigned long index);
@@ -206,14 +206,14 @@ interface SpeechRecognitionResult {
 };
 
 // A collection of responses (used in continuous mode)
-[Exposed=Window]
+[SecureContext, Exposed=Window]
 interface SpeechRecognitionResultList {
     readonly attribute unsigned long length;
     getter SpeechRecognitionResult item(unsigned long index);
 };
 
 // A full response, which could be interim or final, part of a continuous response or not
-[Exposed=Window]
+[SecureContext, Exposed=Window]
 interface SpeechRecognitionEvent : Event {
     readonly attribute unsigned long resultIndex;
     readonly attribute SpeechRecognitionResultList results;
@@ -222,14 +222,14 @@ interface SpeechRecognitionEvent : Event {
 };
 
 // The object representing a speech grammar
-[Exposed=Window, Constructor]
+[SecureContext, Exposed=Window, Constructor]
 interface SpeechGrammar {
     attribute DOMString src;
     attribute float weight;
 };
 
 // The object representing a speech grammar collection
-[Exposed=Window, Constructor]
+[SecureContext, Exposed=Window, Constructor]
 interface SpeechGrammarList {
     readonly attribute unsigned long length;
     getter SpeechGrammar item(unsigned long index);
