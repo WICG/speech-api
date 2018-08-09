@@ -600,6 +600,7 @@ enum SpeechSynthesisErrorCode {
     "voice-unavailable",
     "text-too-long",
     "invalid-argument",
+    "not-allowed",
 };
 
 [Exposed=Window]
@@ -821,6 +822,9 @@ These events bubble up to SpeechSynthesis.
 
     <dt><dfn enum-value for=SpeechSynthesisErrorCode>"invalid-argument"</dfn></dt>
     <dd>The contents of the SpeechSynthesisUtterance rate, pitch or volume attribute is not supported by synthesizer.</dd>
+
+    <dt><dfn enum-value for=SpeechSynthesisErrorCode>"not-allowed"</dfn></dt>
+    <dd>Synthesis was not allowed to start by the user agent or system in the current context.</dd>
   </dl>
   </dd>
 </dl>
