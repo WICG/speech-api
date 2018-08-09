@@ -1212,9 +1212,9 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 0af8ece51a58310888d9da3e5b2ebda903d17c18" name="generator">
+  <meta content="Bikeshed version ca499dee738ad325bae89163f1eee6d8a2978cf4" name="generator">
   <link href="https://w3c.github.io/speech-api/" rel="canonical">
-  <meta content="f140eea5787dc4e9383153afba6f42e26ba66232" name="document-revision">
+  <meta content="544ed7c3273a2d215f2ca954c6907ba437598ffb" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1461,7 +1461,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Web Speech API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2018-08-06">6 August 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2018-08-09">9 August 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2026,6 +2026,7 @@ This structure has the following attributes:</p>
     <a class="idl-code" data-link-type="enum-value" href="#dom-speechsynthesiserrorcode-voice-unavailable" id="ref-for-dom-speechsynthesiserrorcode-voice-unavailable"><c- s>"voice-unavailable"</c-></a>,
     <a class="idl-code" data-link-type="enum-value" href="#dom-speechsynthesiserrorcode-text-too-long" id="ref-for-dom-speechsynthesiserrorcode-text-too-long"><c- s>"text-too-long"</c-></a>,
     <a class="idl-code" data-link-type="enum-value" href="#dom-speechsynthesiserrorcode-invalid-argument" id="ref-for-dom-speechsynthesiserrorcode-invalid-argument"><c- s>"invalid-argument"</c-></a>,
+    <a class="idl-code" data-link-type="enum-value" href="#dom-speechsynthesiserrorcode-not-allowed" id="ref-for-dom-speechsynthesiserrorcode-not-allowed"><c- s>"not-allowed"</c-></a>,
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
@@ -2198,6 +2199,8 @@ These events bubble up to SpeechSynthesis.</p>
       <dd>The contents of the SpeechSynthesisUtterance text attribute is too long to synthesize.
       <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechSynthesisErrorCode" data-dfn-type="enum-value" data-export id="dom-speechsynthesiserrorcode-invalid-argument"><code>"invalid-argument"</code></dfn>
       <dd>The contents of the SpeechSynthesisUtterance rate, pitch or volume attribute is not supported by synthesizer.
+      <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechSynthesisErrorCode" data-dfn-type="enum-value" data-export id="dom-speechsynthesiserrorcode-not-allowed"><code>"not-allowed"</code></dfn>
+      <dd>Synthesis was not allowed to start by the user agent or system in the current context.
      </dl>
    </dl>
    <h4 class="heading settled" data-level="4.2.8" id="speechsynthesisvoice-attributes"><span class="secno">4.2.8. </span><span class="content">SpeechSynthesisVoice Attributes</span><a class="self-link" href="#speechsynthesisvoice-attributes"></a></h4>
@@ -2625,7 +2628,12 @@ These events bubble up to SpeechSynthesis.</p>
     </ul>
    <li><a href="#eventdef-speechrecognition-nomatch">nomatch</a><span>, in §4.1.3</span>
    <li><a href="#dom-speechrecognitionerrorcode-no-speech">"no-speech"</a><span>, in §4.1.4</span>
-   <li><a href="#dom-speechrecognitionerrorcode-not-allowed">"not-allowed"</a><span>, in §4.1.4</span>
+   <li>
+    "not-allowed"
+    <ul>
+     <li><a href="#dom-speechrecognitionerrorcode-not-allowed">enum-value for SpeechRecognitionErrorCode</a><span>, in §4.1.4</span>
+     <li><a href="#dom-speechsynthesiserrorcode-not-allowed">enum-value for SpeechSynthesisErrorCode</a><span>, in §4.2.7</span>
+    </ul>
    <li><a href="#dom-speechrecognition-onaudioend">onaudioend</a><span>, in §4.1</span>
    <li><a href="#dom-speechrecognition-onaudiostart">onaudiostart</a><span>, in §4.1</span>
    <li><a href="#dom-speechsynthesisutterance-onboundary">onboundary</a><span>, in §4.2</span>
@@ -3048,6 +3056,7 @@ These events bubble up to SpeechSynthesis.</p>
     <a class="idl-code" data-link-type="enum-value" href="#dom-speechsynthesiserrorcode-voice-unavailable" id="ref-for-dom-speechsynthesiserrorcode-voice-unavailable①"><c- s>"voice-unavailable"</c-></a>,
     <a class="idl-code" data-link-type="enum-value" href="#dom-speechsynthesiserrorcode-text-too-long" id="ref-for-dom-speechsynthesiserrorcode-text-too-long①"><c- s>"text-too-long"</c-></a>,
     <a class="idl-code" data-link-type="enum-value" href="#dom-speechsynthesiserrorcode-invalid-argument" id="ref-for-dom-speechsynthesiserrorcode-invalid-argument①"><c- s>"invalid-argument"</c-></a>,
+    <a class="idl-code" data-link-type="enum-value" href="#dom-speechsynthesiserrorcode-not-allowed" id="ref-for-dom-speechsynthesiserrorcode-not-allowed①"><c- s>"not-allowed"</c-></a>,
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①①①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
@@ -3645,6 +3654,12 @@ See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179
    <b><a href="#dom-speechsynthesiserrorcode-invalid-argument">#dom-speechsynthesiserrorcode-invalid-argument</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-speechsynthesiserrorcode-invalid-argument">4.2. The SpeechSynthesis Interface</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-speechsynthesiserrorcode-not-allowed">
+   <b><a href="#dom-speechsynthesiserrorcode-not-allowed">#dom-speechsynthesiserrorcode-not-allowed</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-speechsynthesiserrorcode-not-allowed">4.2. The SpeechSynthesis Interface</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-speechsynthesisvoice-voiceuri">
