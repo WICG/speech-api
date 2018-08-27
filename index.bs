@@ -685,8 +685,6 @@ interface SpeechSynthesisVoice {
 <dl>
   <dt><dfn attribute for=SpeechSynthesisUtterance>text</dfn> attribute</dt>
   <dd>This attribute specifies the text to be synthesized and spoken for this utterance.
-  This may be either plain text or a complete, well-formed SSML document. [[!SSML]]
-  For speech synthesis engines that do not support SSML, or only support certain tags, the user agent or speech engine must strip away the tags they do not support and speak the text.
   There may be a maximum length of the text, it may be limited to 32,767 characters.</dd>
 
   <dt><dfn attribute for=SpeechSynthesisUtterance>lang</dfn> attribute</dt>
@@ -704,23 +702,20 @@ interface SpeechSynthesisVoice {
 
   <dt><dfn attribute for=SpeechSynthesisUtterance>volume</dfn> attribute</dt>
   <dd>This attribute specifies the speaking volume for the utterance.
-  It ranges between 0 and 1 inclusive, with 0 being the lowest volume and 1 the highest volume, with a default of 1.
-  If SSML is used, this value will be overridden by prosody tags in the markup.</dd>
+  It ranges between 0 and 1 inclusive, with 0 being the lowest volume and 1 the highest volume, with a default of 1.</dd>
 
   <dt><dfn attribute for=SpeechSynthesisUtterance>rate</dfn> attribute</dt>
   <dd>This attribute specifies the speaking rate for the utterance.
   It is relative to the default rate for this voice.
   1 is the default rate supported by the speech synthesis engine or specific voice (which should correspond to a normal speaking rate).
   2 is twice as fast, and 0.5 is half as fast.
-  Values below 0.1 or above 10 are strictly disallowed, but speech synthesis engines or specific voices may constrain the minimum and maximum rates further, for example, a particular voice may not actually speak faster than 3 times normal even if you specify a value larger than 3.
-  If SSML is used, this value will be overridden by prosody tags in the markup.</dd>
+  Values below 0.1 or above 10 are strictly disallowed, but speech synthesis engines or specific voices may constrain the minimum and maximum rates further, for example, a particular voice may not actually speak faster than 3 times normal even if you specify a value larger than 3.</dd>
 
   <dt><dfn attribute for=SpeechSynthesisUtterance>pitch</dfn> attribute</dt>
   <dd>This attribute specifies the speaking pitch for the utterance.
   It ranges between 0 and 2 inclusive, with 0 being the lowest pitch and 2 the highest pitch.
   1 corresponds to the default pitch of the speech synthesis engine or specific voice.
-  Speech synthesis engines or voices may constrain the minimum and maximum rates further.
-  If SSML is used, this value will be overridden by prosody tags in the markup.</dd>
+  Speech synthesis engines or voices may constrain the minimum and maximum rates further.</dd>
 </dl>
 
 <h4 id="utterance-events">SpeechSynthesisUtterance Events</h4>
@@ -749,10 +744,6 @@ These events bubble up to SpeechSynthesis.
   Adding the utterance to the queue while the global SpeechSynthesis instance is in the paused state, and then calling the resume method
   does not cause the resume event to be fired, in this case the utterance's <a event for=SpeechSynthesisUtterance>start</a> event will be called when the utterance starts.</dd>
 
-  <dt><dfn event for=SpeechSynthesisUtterance>mark</dfn> event</dt>
-  <dd>Fired when the spoken utterance reaches a named "mark" tag in SSML. [[!SSML]]
-  The user agent must fire this event if the speech synthesis engine provides the event.</dd>
-
   <dt><dfn event for=SpeechSynthesisUtterance>boundary</dfn> event</dt>
   <dd>Fired when the spoken utterance reaches a word or sentence boundary.
   The user agent must fire this event if the speech synthesis engine provides the event.</dd>
@@ -774,8 +765,7 @@ These events bubble up to SpeechSynthesis.
   The user agent must return this value if the speech synthesis engine supports it or the user agent can otherwise determine it, otherwise the user agent must return undefined.</dd>
 
   <dt><dfn attribute for=SpeechSynthesisEvent>name</dfn> attribute</dt>
-  <dd>For <a event for=SpeechSynthesisUtterance>mark</a> events, this attribute indicates the name of the marker, as defined in SSML as the name attribute of a mark element. [[!SSML]]
-  For <a event for=SpeechSynthesisUtterance>boundary</a> events, this attribute indicates the type of boundary that caused the event: "word" or "sentence".
+  <dd>For <a event for=SpeechSynthesisUtterance>boundary</a> events, this attribute indicates the type of boundary that caused the event: "word" or "sentence".
   For all other events, this value should return undefined.</dd>
 </dl>
 
