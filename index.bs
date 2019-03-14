@@ -606,7 +606,7 @@ interface SpeechSynthesisEvent : Event {
 dictionary SpeechSynthesisEventInit : EventInit {
     required SpeechSynthesisUtterance utterance;
     unsigned long charIndex = 0;
-    unsigned long charLength;
+    unsigned long charLength? = null;
     float elapsedTime = 0;
     DOMString name = "";
 };
