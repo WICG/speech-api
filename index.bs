@@ -1058,18 +1058,19 @@ These events bubble up to SpeechSynthesis.
 <h2 class="no-num" id="acknowledgments">Acknowledgments</h2>
 
 <p style="white-space: pre-line">
-  Peter Beverloo, Google, Inc.
-  Björn Bringert, Google, Inc.
-  Gerardo Capiel, Benetech
-  Jerry Carter
-  Nagesh Kharidi, Openstream, Inc.
-  Dominic Mazzoni, Google, Inc.
-  Olli Pettay, Mozilla Foundation
+  Adam Sobieski (Phoster)
+  Björn Bringert (Google)
   Charles Pritchard
-  Satish Sampath, Google, Inc.
-  Adam Sobieski, Phoster, Inc.
-  Raj Tumuluri, Openstream, Inc.
+  Dominic Mazzoni (Google)
+  Gerardo Capiel (Benetech)
+  Jerry Carter
   Kagami Sascha Rosylight
+  Marcos Cáceres (Mozilla)
+  Nagesh Kharidi (Openstream)
+  Olli Pettay (Mozilla)
+  Peter Beverloo (Google)
+  Raj Tumuluri (Openstream)
+  Satish Sampath (Google)
 </p>
 
 <p>Also, the members of the HTML Speech Incubator Group, and the corresponding [[HTMLSPEECH|Final Report]], which created the basis for this specification.</p>
