@@ -153,7 +153,6 @@ interface SpeechRecognition : EventTarget {
     attribute boolean continuous;
     attribute boolean interimResults;
     attribute unsigned long maxAlternatives;
-    attribute DOMString serviceURI;
 
     // methods to drive the speech interaction
     void start();
@@ -283,12 +282,6 @@ interface SpeechGrammarList {
   <dt><dfn attribute for=SpeechRecognition>maxAlternatives</dfn> attribute</dt>
   <dd>This attribute will set the maximum number of {{SpeechRecognitionAlternative}}s per result.
   The default value is 1.</dd>
-
-  <dt><dfn attribute for=SpeechRecognition>serviceURI</dfn> attribute</dt>
-  <dd>The serviceURI attribute specifies the location of the speech recognition service that the web application wishes to use.
-  If this attribute is unset at the time of the start method call, then the user agent must use the user agent default speech service.
-  Note that the serviceURI is a generic URI and can thus point to local services either through use of a URN with meaning to the user agent or by specifying a URL that the user agent recognizes as a local service.
-  Additionally, the user agent default can be local or remote and can incorporate end user choices via interfaces provided by the user agent such as browser configuration parameters.</dd>
 </dl>
 
 <p class=issue>The group has discussed whether WebRTC might be used to specify selection of audio sources and remote recognizers.
