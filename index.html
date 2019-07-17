@@ -1214,7 +1214,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version a3b64e58e069c2e8a9ffcadffb76601231663a47" name="generator">
   <link href="https://w3c.github.io/speech-api/" rel="canonical">
-  <meta content="91ac89b2d30be29048e768b8dd11db43365afe1e" name="document-revision">
+  <meta content="223b91c97266f539736471d51917af412d66f8f0" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1461,7 +1461,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Web Speech API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2019-07-16">16 July 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2019-07-17">17 July 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1721,15 +1721,11 @@ The term "interim result" indicates a SpeechRecognitionResult in which the final
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="speechrecognitionevent"><code><c- g>SpeechRecognitionEvent</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event" id="ref-for-event①"><c- n>Event</c-></a> {
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long⑤"><c- b>unsigned</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="unsigned long" href="#dom-speechrecognitionevent-resultindex" id="ref-for-dom-speechrecognitionevent-resultindex"><c- g>resultIndex</c-></a>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#speechrecognitionresultlist" id="ref-for-speechrecognitionresultlist"><c- n>SpeechRecognitionResultList</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="SpeechRecognitionResultList" href="#dom-speechrecognitionevent-results" id="ref-for-dom-speechrecognitionevent-results"><c- g>results</c-></a>;
-    <c- b>readonly</c-> <c- b>attribute</c-> <c- b>any</c-> <a class="idl-code" data-link-type="attribute" data-readonly data-type="any" href="#dom-speechrecognitionevent-interpretation" id="ref-for-dom-speechrecognitionevent-interpretation"><c- g>interpretation</c-></a>;
-    <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#document" id="ref-for-document"><c- n>Document</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="Document?" href="#dom-speechrecognitionevent-emma" id="ref-for-dom-speechrecognitionevent-emma"><c- g>emma</c-></a>;
 };
 
 <c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-speechrecognitioneventinit"><code><c- g>SpeechRecognitionEventInit</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit" id="ref-for-dictdef-eventinit①"><c- n>EventInit</c-></a> {
     <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long⑥"><c- b>unsigned</c-> <c- b>long</c-></a> <dfn class="idl-code" data-default="0" data-dfn-for="SpeechRecognitionEventInit" data-dfn-type="dict-member" data-export data-type="unsigned long " id="dom-speechrecognitioneventinit-resultindex"><code><c- g>resultIndex</c-></code><a class="self-link" href="#dom-speechrecognitioneventinit-resultindex"></a></dfn> = 0;
     <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#speechrecognitionresultlist" id="ref-for-speechrecognitionresultlist①"><c- n>SpeechRecognitionResultList</c-></a> <dfn class="idl-code" data-dfn-for="SpeechRecognitionEventInit" data-dfn-type="dict-member" data-export data-type="SpeechRecognitionResultList " id="dom-speechrecognitioneventinit-results"><code><c- g>results</c-></code><a class="self-link" href="#dom-speechrecognitioneventinit-results"></a></dfn>;
-    <c- b>any</c-> <dfn class="idl-code" data-default="null" data-dfn-for="SpeechRecognitionEventInit" data-dfn-type="dict-member" data-export data-type="any " id="dom-speechrecognitioneventinit-interpretation"><code><c- g>interpretation</c-></code><a class="self-link" href="#dom-speechrecognitioneventinit-interpretation"></a></dfn> = <c- b>null</c->;
-    <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#document" id="ref-for-document①"><c- n>Document</c-></a>? <dfn class="idl-code" data-default="null" data-dfn-for="SpeechRecognitionEventInit" data-dfn-type="dict-member" data-export data-type="Document? " id="dom-speechrecognitioneventinit-emma"><code><c- g>emma</c-></code><a class="self-link" href="#dom-speechrecognitioneventinit-emma"></a></dfn> = <c- b>null</c->;
 };
 
 // The object representing a speech grammar
@@ -1923,18 +1919,6 @@ For a non-continuous recognition it will hold only a single value.</p>
   All array entries (if any) for indexes equal or greater than resultIndex that were present in the array when the last SpeechRecognitionResultEvent was raised are removed and overwritten with new results.
   The length of the "results" array may increase or decrease, but must not be less than resultIndex.
   Note that when resultIndex equals results.length, no new results are returned, this may occur when the array length decreases to remove one or more interim results.
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechRecognitionEvent" data-dfn-type="attribute" data-export id="dom-speechrecognitionevent-interpretation"><code>interpretation</code></dfn> attribute, <span> of type <a data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-any" id="ref-for-idl-any">any</a>, readonly</span>
-    <dd>
-     The interpretation represents the semantic meaning from what the user said.
-  This might be determined, for instance, through the SISR specification of semantics in a grammar. 
-     <p class="issue" id="issue-93092ac2"><a class="self-link" href="#issue-93092ac2"></a>The group has discussed options for the value of the interpretation attribute when no interpretation has been returned by the recognizer.
-  Current options are null or a copy of the transcript.
-  See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html">SpeechRecognitionAlternative.interpretation when interpretation can’t be provided</a> thread on public-speech-api@w3.org.</p>
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechRecognitionEvent" data-dfn-type="attribute" data-export id="dom-speechrecognitionevent-emma"><code>emma</code></dfn> attribute, <span> of type <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#document" id="ref-for-document②">Document</a>, readonly, nullable</span>
-    <dd>EMMA 1.0 representation of this result. <a data-link-type="biblio" href="#biblio-emma">[EMMA]</a> The contents of this result could vary across user agents and recognition engines, but all implementations must expose a valid XML document complete with EMMA namespace,
-  or if the recognizer does not supply EMMA then the user agent may return null.
-  User agent implementations for recognizers that supply EMMA must contain all annotations and content generated by the recognition resources utilized for recognition, except where infeasible due to conflicting attributes.
-  The user agent may add additional annotations to provide a richer result for the developer.
    </dl>
    <h4 class="heading settled" data-level="4.1.9" id="speechreco-speechgrammar"><span class="secno">4.1.9. </span><span class="content">SpeechGrammar</span><a class="self-link" href="#speechreco-speechgrammar"></a></h4>
    <p>The SpeechGrammar object represents a container for a grammar.</p>
@@ -2609,12 +2593,6 @@ These events bubble up to SpeechSynthesis.</p>
      <li><a href="#dom-speechsynthesiseventinit-elapsedtime">dict-member for SpeechSynthesisEventInit</a><span>, in §4.2</span>
     </ul>
    <li>
-    emma
-    <ul>
-     <li><a href="#dom-speechrecognitionevent-emma">attribute for SpeechRecognitionEvent</a><span>, in §4.1.8</span>
-     <li><a href="#dom-speechrecognitioneventinit-emma">dict-member for SpeechRecognitionEventInit</a><span>, in §4.1</span>
-    </ul>
-   <li>
     end
     <ul>
      <li><a href="#eventdef-speechrecognition-end">event for SpeechRecognition</a><span>, in §4.1.3</span>
@@ -2633,12 +2611,6 @@ These events bubble up to SpeechSynthesis.</p>
    <li><a href="#dom-speechsynthesis-getvoices">getVoices()</a><span>, in §4.2.2</span>
    <li><a href="#dom-speechrecognition-grammars">grammars</a><span>, in §4.1.1</span>
    <li><a href="#dom-speechrecognition-interimresults">interimResults</a><span>, in §4.1.1</span>
-   <li>
-    interpretation
-    <ul>
-     <li><a href="#dom-speechrecognitionevent-interpretation">attribute for SpeechRecognitionEvent</a><span>, in §4.1.8</span>
-     <li><a href="#dom-speechrecognitioneventinit-interpretation">dict-member for SpeechRecognitionEventInit</a><span>, in §4.1</span>
-    </ul>
    <li><a href="#dom-speechsynthesiserrorcode-interrupted">"interrupted"</a><span>, in §4.2.7</span>
    <li><a href="#dom-speechsynthesiserrorcode-invalid-argument">"invalid-argument"</a><span>, in §4.2.7</span>
    <li><a href="#dom-speechrecognitionresult-isfinal">isFinal</a><span>, in §4.1.6</span>
@@ -2810,13 +2782,6 @@ These events bubble up to SpeechSynthesis.</p>
    <li><a href="#dom-speechsynthesisutterance-volume">volume</a><span>, in §4.2.4</span>
    <li><a href="#dom-speechgrammar-weight">weight</a><span>, in §4.1.9</span>
   </ul>
-  <aside class="dfn-panel" data-for="term-for-document">
-   <a href="https://dom.spec.whatwg.org/#document">https://dom.spec.whatwg.org/#document</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-document">4.1. The SpeechRecognition Interface</a> <a href="#ref-for-document①">(2)</a>
-    <li><a href="#ref-for-document②">4.1.8. SpeechRecognitionEvent</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="term-for-event">
    <a href="https://dom.spec.whatwg.org/#event">https://dom.spec.whatwg.org/#event</a><b>Referenced in:</b>
    <ul>
@@ -2897,12 +2862,6 @@ These events bubble up to SpeechSynthesis.</p>
     <li><a href="#ref-for-SameObject">4.2. The SpeechSynthesis Interface</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-idl-any">
-   <a href="https://heycam.github.io/webidl/#idl-any">https://heycam.github.io/webidl/#idl-any</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-idl-any">4.1.8. SpeechRecognitionEvent</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="term-for-idl-boolean">
    <a href="https://heycam.github.io/webidl/#idl-boolean">https://heycam.github.io/webidl/#idl-boolean</a><b>Referenced in:</b>
    <ul>
@@ -2943,7 +2902,6 @@ These events bubble up to SpeechSynthesis.</p>
    <li>
     <a data-link-type="biblio">[DOM]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-document" style="color:initial">Document</span>
      <li><span class="dfn-paneled" id="term-for-event" style="color:initial">Event</span>
      <li><span class="dfn-paneled" id="term-for-dictdef-eventinit" style="color:initial">EventInit</span>
      <li><span class="dfn-paneled" id="term-for-eventtarget" style="color:initial">EventTarget</span>
@@ -2963,7 +2921,6 @@ These events bubble up to SpeechSynthesis.</p>
      <li><span class="dfn-paneled" id="term-for-Exposed" style="color:initial">Exposed</span>
      <li><span class="dfn-paneled" id="term-for-invalidstateerror" style="color:initial">InvalidStateError</span>
      <li><span class="dfn-paneled" id="term-for-SameObject" style="color:initial">SameObject</span>
-     <li><span class="dfn-paneled" id="term-for-idl-any" style="color:initial">any</span>
      <li><span class="dfn-paneled" id="term-for-idl-boolean" style="color:initial">boolean</span>
      <li><span class="dfn-paneled" id="term-for-idl-float" style="color:initial">float</span>
      <li><span class="dfn-paneled" id="term-for-idl-unsigned-long" style="color:initial">unsigned long</span>
@@ -2976,8 +2933,6 @@ These events bubble up to SpeechSynthesis.</p>
    <dd>A. Phillips; M. Davis. <a href="https://tools.ietf.org/html/bcp47">Tags for Identifying Languages</a>. September 2009. IETF Best Current Practice. URL: <a href="https://tools.ietf.org/html/bcp47">https://tools.ietf.org/html/bcp47</a>
    <dt id="biblio-dom">[DOM]
    <dd>Anne van Kesteren. <a href="https://dom.spec.whatwg.org/">DOM Standard</a>. Living Standard. URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a>
-   <dt id="biblio-emma">[EMMA]
-   <dd>Michael Johnston. <a href="https://www.w3.org/TR/emma/">EMMA: Extensible MultiModal Annotation markup language</a>. 10 February 2009. REC. URL: <a href="https://www.w3.org/TR/emma/">https://www.w3.org/TR/emma/</a>
    <dt id="biblio-html">[HTML]
    <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/">HTML Standard</a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
    <dt id="biblio-rfc2119">[RFC2119]
@@ -3072,15 +3027,11 @@ These events bubble up to SpeechSynthesis.</p>
 <c- b>interface</c-> <a href="#speechrecognitionevent"><code><c- g>SpeechRecognitionEvent</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event" id="ref-for-event①①"><c- n>Event</c-></a> {
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long⑤①"><c- b>unsigned</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="unsigned long" href="#dom-speechrecognitionevent-resultindex" id="ref-for-dom-speechrecognitionevent-resultindex①"><c- g>resultIndex</c-></a>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#speechrecognitionresultlist" id="ref-for-speechrecognitionresultlist③"><c- n>SpeechRecognitionResultList</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="SpeechRecognitionResultList" href="#dom-speechrecognitionevent-results" id="ref-for-dom-speechrecognitionevent-results②"><c- g>results</c-></a>;
-    <c- b>readonly</c-> <c- b>attribute</c-> <c- b>any</c-> <a class="idl-code" data-link-type="attribute" data-readonly data-type="any" href="#dom-speechrecognitionevent-interpretation" id="ref-for-dom-speechrecognitionevent-interpretation①"><c- g>interpretation</c-></a>;
-    <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#document" id="ref-for-document③"><c- n>Document</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="Document?" href="#dom-speechrecognitionevent-emma" id="ref-for-dom-speechrecognitionevent-emma①"><c- g>emma</c-></a>;
 };
 
 <c- b>dictionary</c-> <a href="#dictdef-speechrecognitioneventinit"><code><c- g>SpeechRecognitionEventInit</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit" id="ref-for-dictdef-eventinit①①"><c- n>EventInit</c-></a> {
     <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long⑥①"><c- b>unsigned</c-> <c- b>long</c-></a> <a data-default="0" data-type="unsigned long " href="#dom-speechrecognitioneventinit-resultindex"><code><c- g>resultIndex</c-></code></a> = 0;
     <c- b>required</c-> <a class="n" data-link-type="idl-name" href="#speechrecognitionresultlist" id="ref-for-speechrecognitionresultlist①①"><c- n>SpeechRecognitionResultList</c-></a> <a data-type="SpeechRecognitionResultList " href="#dom-speechrecognitioneventinit-results"><code><c- g>results</c-></code></a>;
-    <c- b>any</c-> <a data-default="null" data-type="any " href="#dom-speechrecognitioneventinit-interpretation"><code><c- g>interpretation</c-></code></a> = <c- b>null</c->;
-    <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#document" id="ref-for-document①①"><c- n>Document</c-></a>? <a data-default="null" data-type="Document? " href="#dom-speechrecognitioneventinit-emma"><code><c- g>emma</c-></code></a> = <c- b>null</c->;
 };
 
 // The object representing a speech grammar
@@ -3198,9 +3149,6 @@ These events bubble up to SpeechSynthesis.</p>
 See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0072.html">Interacting with WebRTC, the Web Audio API and other external sources</a> thread on public-speech-api@w3.org.<a href="#issue-2c77f5e1"> ↵ </a></div>
    <div class="issue">The group has discussed whether confidence can be specified in a speech-recognition-engine-independent manner and whether confidence threshold and nomatch should be included, because this is not a dialog API.
   See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0143.html">Confidence property</a> thread on public-speech-api@w3.org.<a href="#issue-1fc473cc"> ↵ </a></div>
-   <div class="issue">The group has discussed options for the value of the interpretation attribute when no interpretation has been returned by the recognizer.
-  Current options are null or a copy of the transcript.
-  See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0044.html">SpeechRecognitionAlternative.interpretation when interpretation can’t be provided</a> thread on public-speech-api@w3.org.<a href="#issue-93092ac2"> ↵ </a></div>
    <div class="issue">The group has discussed options for which grammar formats should be supported, how builtin grammar types are specified, and default grammars when not specified.
 See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179.html">Default value of SpeechRecognition.grammars</a> thread on public-speech-api@w3.org.<a href="#issue-29f5066f"> ↵ </a></div>
   </div>
@@ -3473,18 +3421,6 @@ See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179
    <ul>
     <li><a href="#ref-for-dom-speechrecognitionevent-results">4.1. The SpeechRecognition Interface</a>
     <li><a href="#ref-for-dom-speechrecognitionevent-results①">4.1.3. SpeechRecognition Events</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-speechrecognitionevent-interpretation">
-   <b><a href="#dom-speechrecognitionevent-interpretation">#dom-speechrecognitionevent-interpretation</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-speechrecognitionevent-interpretation">4.1. The SpeechRecognition Interface</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-speechrecognitionevent-emma">
-   <b><a href="#dom-speechrecognitionevent-emma">#dom-speechrecognitionevent-emma</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-speechrecognitionevent-emma">4.1. The SpeechRecognition Interface</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-speechgrammar-src">
