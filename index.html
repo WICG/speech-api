@@ -1212,9 +1212,9 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version a3b64e58e069c2e8a9ffcadffb76601231663a47" name="generator">
+  <meta content="Bikeshed version 5a2c04fbf9f3418b378c5d733b60fe6fc575091b" name="generator">
   <link href="https://w3c.github.io/speech-api/" rel="canonical">
-  <meta content="223b91c97266f539736471d51917af412d66f8f0" name="document-revision">
+  <meta content="984c5d90a0b8af75353741521b72346d397161a7" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1461,7 +1461,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Web Speech API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2019-07-17">17 July 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2019-08-02">2 August 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1741,9 +1741,9 @@ The term "interim result" indicates a SpeechRecognitionResult in which the final
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long⑦"><c- b>unsigned</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="unsigned long" href="#dom-speechgrammarlist-length" id="ref-for-dom-speechgrammarlist-length"><c- g>length</c-></a>;
     <c- b>getter</c-> <a class="n" data-link-type="idl-name" href="#speechgrammar" id="ref-for-speechgrammar"><c- n>SpeechGrammar</c-></a> <a class="idl-code" data-link-type="method" href="#dom-speechgrammarlist-item" id="ref-for-dom-speechgrammarlist-item"><c- g>item</c-></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long⑧"><c- b>unsigned</c-> <c- b>long</c-></a> <dfn class="idl-code" data-dfn-for="SpeechGrammarList/item(index)" data-dfn-type="argument" data-export id="dom-speechgrammarlist-item-index-index"><code><c- g>index</c-></code><a class="self-link" href="#dom-speechgrammarlist-item-index-index"></a></dfn>);
     <c- b>void</c-> <a class="idl-code" data-link-type="method" href="#dom-speechgrammarlist-addfromuri" id="ref-for-dom-speechgrammarlist-addfromuri"><c- g>addFromURI</c-></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString⑦"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="SpeechGrammarList/addFromURI(src, weight), SpeechGrammarList/addFromURI(src)" data-dfn-type="argument" data-export id="dom-speechgrammarlist-addfromuri-src-weight-src"><code><c- g>src</c-></code><a class="self-link" href="#dom-speechgrammarlist-addfromuri-src-weight-src"></a></dfn>,
-                    <c- b>optional</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-float" id="ref-for-idl-float②"><c- b>float</c-></a> <dfn class="idl-code" data-dfn-for="SpeechGrammarList/addFromURI(src, weight), SpeechGrammarList/addFromURI(src)" data-dfn-type="argument" data-export id="dom-speechgrammarlist-addfromuri-src-weight-weight"><code><c- g>weight</c-></code><a class="self-link" href="#dom-speechgrammarlist-addfromuri-src-weight-weight"></a></dfn>);
+                    <c- b>optional</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-float" id="ref-for-idl-float②"><c- b>float</c-></a> <dfn class="idl-code" data-dfn-for="SpeechGrammarList/addFromURI(src, weight), SpeechGrammarList/addFromURI(src)" data-dfn-type="argument" data-export id="dom-speechgrammarlist-addfromuri-src-weight-weight"><code><c- g>weight</c-></code><a class="self-link" href="#dom-speechgrammarlist-addfromuri-src-weight-weight"></a></dfn> = 1.0);
     <c- b>void</c-> <a class="idl-code" data-link-type="method" href="#dom-speechgrammarlist-addfromstring" id="ref-for-dom-speechgrammarlist-addfromstring"><c- g>addFromString</c-></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString⑧"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="SpeechGrammarList/addFromString(string, weight), SpeechGrammarList/addFromString(string)" data-dfn-type="argument" data-export id="dom-speechgrammarlist-addfromstring-string-weight-string"><code><c- g>string</c-></code><a class="self-link" href="#dom-speechgrammarlist-addfromstring-string-weight-string"></a></dfn>,
-                    <c- b>optional</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-float" id="ref-for-idl-float③"><c- b>float</c-></a> <dfn class="idl-code" data-dfn-for="SpeechGrammarList/addFromString(string, weight), SpeechGrammarList/addFromString(string)" data-dfn-type="argument" data-export id="dom-speechgrammarlist-addfromstring-string-weight-weight"><code><c- g>weight</c-></code><a class="self-link" href="#dom-speechgrammarlist-addfromstring-string-weight-weight"></a></dfn>);
+                    <c- b>optional</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-float" id="ref-for-idl-float③"><c- b>float</c-></a> <dfn class="idl-code" data-dfn-for="SpeechGrammarList/addFromString(string, weight), SpeechGrammarList/addFromString(string)" data-dfn-type="argument" data-export id="dom-speechgrammarlist-addfromstring-string-weight-weight"><code><c- g>weight</c-></code><a class="self-link" href="#dom-speechgrammarlist-addfromstring-string-weight-weight"></a></dfn> = 1.0);
 };
 </pre>
    <h4 class="heading settled" data-level="4.1.1" id="speechreco-attributes"><span class="secno">4.1.1. </span><span class="content">SpeechRecognition Attributes</span><a class="self-link" href="#speechreco-attributes"></a></h4>
@@ -1948,14 +1948,12 @@ This structure has the following attributes:</p>
     <dd>This method appends a grammar to the grammars array parameter based on URI.
   The URI for the grammar is specified by the <var>src</var> parameter, which represents the URI for the grammar.
   Note, some services may support builtin grammars that can be specified by URI.
-  If the <var>weight</var> parameter is present it represents this grammar’s weight relative to the other grammar.
-  If the weight parameter is not present, the default value of 1.0 is used.
+  The <var>weight</var> parameter represents this grammar’s weight relative to the other grammar. 
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechGrammarList" data-dfn-type="method" data-export data-lt="addFromString(string, weight)|addFromString(string)" id="dom-speechgrammarlist-addfromstring"><code>addFromString(<var>string</var>, <var>weight</var>)</code></dfn> method
     <dd>This method appends a grammar to the grammars array parameter based on text.
   The content of the grammar is specified by the <var>string</var> parameter.
   This content should be encoded into a data: URI when the SpeechGrammar object is created.
-  If the <var>weight</var> parameter is present it represents this grammar’s weight relative to the other grammar.
-  If the weight parameter is not present, the default value of 1.0 is used.
+  The <var>weight</var> parameter represents this grammar’s weight relative to the other grammar. 
    </dl>
    <h3 class="heading settled" data-level="4.2" id="tts-section"><span class="secno">4.2. </span><span class="content">The SpeechSynthesis Interface</span><a class="self-link" href="#tts-section"></a></h3>
    <p>The SpeechSynthesis interface is the scripted web API for controlling a text-to-speech output.</p>
@@ -3047,9 +3045,9 @@ These events bubble up to SpeechSynthesis.</p>
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long⑦①"><c- b>unsigned</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="unsigned long" href="#dom-speechgrammarlist-length" id="ref-for-dom-speechgrammarlist-length①"><c- g>length</c-></a>;
     <c- b>getter</c-> <a class="n" data-link-type="idl-name" href="#speechgrammar" id="ref-for-speechgrammar①"><c- n>SpeechGrammar</c-></a> <a class="idl-code" data-link-type="method" href="#dom-speechgrammarlist-item" id="ref-for-dom-speechgrammarlist-item①"><c- g>item</c-></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long⑧①"><c- b>unsigned</c-> <c- b>long</c-></a> <a href="#dom-speechgrammarlist-item-index-index"><code><c- g>index</c-></code></a>);
     <c- b>void</c-> <a class="idl-code" data-link-type="method" href="#dom-speechgrammarlist-addfromuri" id="ref-for-dom-speechgrammarlist-addfromuri①"><c- g>addFromURI</c-></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString⑦①"><c- b>DOMString</c-></a> <a href="#dom-speechgrammarlist-addfromuri-src-weight-src"><code><c- g>src</c-></code></a>,
-                    <c- b>optional</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-float" id="ref-for-idl-float②①"><c- b>float</c-></a> <a href="#dom-speechgrammarlist-addfromuri-src-weight-weight"><code><c- g>weight</c-></code></a>);
+                    <c- b>optional</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-float" id="ref-for-idl-float②①"><c- b>float</c-></a> <a href="#dom-speechgrammarlist-addfromuri-src-weight-weight"><code><c- g>weight</c-></code></a> = 1.0);
     <c- b>void</c-> <a class="idl-code" data-link-type="method" href="#dom-speechgrammarlist-addfromstring" id="ref-for-dom-speechgrammarlist-addfromstring①"><c- g>addFromString</c-></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString⑧①"><c- b>DOMString</c-></a> <a href="#dom-speechgrammarlist-addfromstring-string-weight-string"><code><c- g>string</c-></code></a>,
-                    <c- b>optional</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-float" id="ref-for-idl-float③①"><c- b>float</c-></a> <a href="#dom-speechgrammarlist-addfromstring-string-weight-weight"><code><c- g>weight</c-></code></a>);
+                    <c- b>optional</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-float" id="ref-for-idl-float③①"><c- b>float</c-></a> <a href="#dom-speechgrammarlist-addfromstring-string-weight-weight"><code><c- g>weight</c-></code></a> = 1.0);
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑧①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
