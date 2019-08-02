@@ -244,9 +244,9 @@ interface SpeechGrammarList {
     readonly attribute unsigned long length;
     getter SpeechGrammar item(unsigned long index);
     void addFromURI(DOMString src,
-                    optional float weight);
+                    optional float weight = 1.0);
     void addFromString(DOMString string,
-                    optional float weight);
+                    optional float weight = 1.0);
 };
 </pre>
 
@@ -514,15 +514,13 @@ This structure has the following attributes:</p>
   <dd>This method appends a grammar to the grammars array parameter based on URI.
   The URI for the grammar is specified by the <var>src</var> parameter, which represents the URI for the grammar.
   Note, some services may support builtin grammars that can be specified by URI.
-  If the <var>weight</var> parameter is present it represents this grammar's weight relative to the other grammar.
-  If the weight parameter is not present, the default value of 1.0 is used.</dd>
+  The <var>weight</var> parameter represents this grammar's weight relative to the other grammar.
 
   <dt><dfn method for=SpeechGrammarList>addFromString(<var>string</var>, <var>weight</var>)</dfn> method</dt>
   <dd>This method appends a grammar to the grammars array parameter based on text.
   The content of the grammar is specified by the <var>string</var> parameter.
   This content should be encoded into a data: URI when the SpeechGrammar object is created.
-  If the <var>weight</var> parameter is present it represents this grammar's weight relative to the other grammar.
-  If the weight parameter is not present, the default value of 1.0 is used.</dd>
+  The <var>weight</var> parameter represents this grammar's weight relative to the other grammar.
 </dl>
 
 <h3 id="tts-section">The SpeechSynthesis Interface</h3>
