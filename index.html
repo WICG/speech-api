@@ -1212,9 +1212,9 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 5a2c04fbf9f3418b378c5d733b60fe6fc575091b" name="generator">
+  <meta content="Bikeshed version 5c050d57cb2f10851bc9582142dd0327f413f5b9" name="generator">
   <link href="https://w3c.github.io/speech-api/" rel="canonical">
-  <meta content="75dfed27008498366e9715ed26f79f8a076a0358" name="document-revision">
+  <meta content="30e8a491bb02bd68d75288058fe34006d22586d6" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1461,7 +1461,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Web Speech API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2019-08-05">5 August 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2019-09-06">6 September 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1642,8 +1642,10 @@ This does not preclude adding support for this as a future API enhancement, and 
    <p>The speech recognition interface is the scripted web API for controlling a given recognition.</p>
     The term "final result" indicates a SpeechRecognitionResult in which the final attribute is true.
 The term "interim result" indicates a SpeechRecognitionResult in which the final attribute is false. 
-<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->, <dfn class="idl-code" data-dfn-for="SpeechRecognition" data-dfn-type="constructor" data-export data-lt="SpeechRecognition()" id="dom-speechrecognition-speechrecognition"><code><c- g>Constructor</c-></code><a class="self-link" href="#dom-speechrecognition-speechrecognition"></a></dfn>]
+<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <dfn class="idl-code" data-dfn-type="interface" data-export id="speechrecognition"><code><c- g>SpeechRecognition</c-></code><a class="self-link" href="#speechrecognition"></a></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget"><c- n>EventTarget</c-></a> {
+    <c- b>constructor</c->();
+
     // recognition parameters
     <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#speechgrammarlist" id="ref-for-speechgrammarlist"><c- n>SpeechGrammarList</c-></a> <a class="idl-code" data-link-type="attribute" data-type="SpeechGrammarList" href="#dom-speechrecognition-grammars" id="ref-for-dom-speechrecognition-grammars"><c- g>grammars</c-></a>;
     <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="attribute" data-type="DOMString" href="#dom-speechrecognition-lang" id="ref-for-dom-speechrecognition-lang"><c- g>lang</c-></a>;
@@ -1681,9 +1683,9 @@ The term "interim result" indicates a SpeechRecognitionResult in which the final
     <a class="idl-code" data-link-type="enum-value" href="#dom-speechrecognitionerrorcode-language-not-supported" id="ref-for-dom-speechrecognitionerrorcode-language-not-supported"><c- s>"language-not-supported"</c-></a>
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①"><c- g>Exposed</c-></a>=<c- n>Window</c->,
- <dfn class="idl-code" data-dfn-for="SpeechRecognitionErrorEvent" data-dfn-type="constructor" data-export data-lt="SpeechRecognitionErrorEvent(type, eventInitDict)" id="dom-speechrecognitionerrorevent-speechrecognitionerrorevent"><code><c- g>Constructor</c-></code><a class="self-link" href="#dom-speechrecognitionerrorevent-speechrecognitionerrorevent"></a></dfn>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="SpeechRecognitionErrorEvent/SpeechRecognitionErrorEvent(type, eventInitDict)" data-dfn-type="argument" data-export id="dom-speechrecognitionerrorevent-speechrecognitionerrorevent-type-eventinitdict-type"><code><c- g>type</c-></code><a class="self-link" href="#dom-speechrecognitionerrorevent-speechrecognitionerrorevent-type-eventinitdict-type"></a></dfn>, <a class="n" data-link-type="idl-name" href="#dictdef-speechrecognitionerroreventinit" id="ref-for-dictdef-speechrecognitionerroreventinit"><c- n>SpeechRecognitionErrorEventInit</c-></a> <dfn class="idl-code" data-dfn-for="SpeechRecognitionErrorEvent/SpeechRecognitionErrorEvent(type, eventInitDict)" data-dfn-type="argument" data-export id="dom-speechrecognitionerrorevent-speechrecognitionerrorevent-type-eventinitdict-eventinitdict"><code><c- g>eventInitDict</c-></code><a class="self-link" href="#dom-speechrecognitionerrorevent-speechrecognitionerrorevent-type-eventinitdict-eventinitdict"></a></dfn>)]
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="speechrecognitionerrorevent"><code><c- g>SpeechRecognitionErrorEvent</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event" id="ref-for-event"><c- n>Event</c-></a> {
+    <c- b>constructor</c->(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="SpeechRecognitionErrorEvent" data-dfn-type="argument" data-export id="dom-speechrecognitionerrorevent-type"><code><c- g>type</c-></code><a class="self-link" href="#dom-speechrecognitionerrorevent-type"></a></dfn>, <a class="n" data-link-type="idl-name" href="#dictdef-speechrecognitionerroreventinit" id="ref-for-dictdef-speechrecognitionerroreventinit"><c- n>SpeechRecognitionErrorEventInit</c-></a> <dfn class="idl-code" data-dfn-for="SpeechRecognitionErrorEvent" data-dfn-type="argument" data-export id="dom-speechrecognitionerrorevent-eventinitdict"><code><c- g>eventInitDict</c-></code><a class="self-link" href="#dom-speechrecognitionerrorevent-eventinitdict"></a></dfn>);
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-speechrecognitionerrorcode" id="ref-for-enumdef-speechrecognitionerrorcode"><c- n>SpeechRecognitionErrorCode</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="SpeechRecognitionErrorCode" href="#dom-speechrecognitionerrorevent-error" id="ref-for-dom-speechrecognitionerrorevent-error"><c- g>error</c-></a>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString②"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMString" href="#dom-speechrecognitionerrorevent-message" id="ref-for-dom-speechrecognitionerrorevent-message"><c- g>message</c-></a>;
 };
@@ -1716,9 +1718,9 @@ The term "interim result" indicates a SpeechRecognitionResult in which the final
 };
 
 // A full response, which could be interim or final, part of a continuous response or not
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑤"><c- g>Exposed</c-></a>=<c- n>Window</c->,
- <dfn class="idl-code" data-dfn-for="SpeechRecognitionEvent" data-dfn-type="constructor" data-export data-lt="SpeechRecognitionEvent(type, eventInitDict)" id="dom-speechrecognitionevent-speechrecognitionevent"><code><c- g>Constructor</c-></code><a class="self-link" href="#dom-speechrecognitionevent-speechrecognitionevent"></a></dfn>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString⑤"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="SpeechRecognitionEvent/SpeechRecognitionEvent(type, eventInitDict)" data-dfn-type="argument" data-export id="dom-speechrecognitionevent-speechrecognitionevent-type-eventinitdict-type"><code><c- g>type</c-></code><a class="self-link" href="#dom-speechrecognitionevent-speechrecognitionevent-type-eventinitdict-type"></a></dfn>, <a class="n" data-link-type="idl-name" href="#dictdef-speechrecognitioneventinit" id="ref-for-dictdef-speechrecognitioneventinit"><c- n>SpeechRecognitionEventInit</c-></a> <dfn class="idl-code" data-dfn-for="SpeechRecognitionEvent/SpeechRecognitionEvent(type, eventInitDict)" data-dfn-type="argument" data-export id="dom-speechrecognitionevent-speechrecognitionevent-type-eventinitdict-eventinitdict"><code><c- g>eventInitDict</c-></code><a class="self-link" href="#dom-speechrecognitionevent-speechrecognitionevent-type-eventinitdict-eventinitdict"></a></dfn>)]
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑤"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="speechrecognitionevent"><code><c- g>SpeechRecognitionEvent</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event" id="ref-for-event①"><c- n>Event</c-></a> {
+    <c- b>constructor</c->(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString⑤"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="SpeechRecognitionEvent" data-dfn-type="argument" data-export id="dom-speechrecognitionevent-type"><code><c- g>type</c-></code><a class="self-link" href="#dom-speechrecognitionevent-type"></a></dfn>, <a class="n" data-link-type="idl-name" href="#dictdef-speechrecognitioneventinit" id="ref-for-dictdef-speechrecognitioneventinit"><c- n>SpeechRecognitionEventInit</c-></a> <dfn class="idl-code" data-dfn-for="SpeechRecognitionEvent" data-dfn-type="argument" data-export id="dom-speechrecognitionevent-eventinitdict"><code><c- g>eventInitDict</c-></code><a class="self-link" href="#dom-speechrecognitionevent-eventinitdict"></a></dfn>);
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long⑤"><c- b>unsigned</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="unsigned long" href="#dom-speechrecognitionevent-resultindex" id="ref-for-dom-speechrecognitionevent-resultindex"><c- g>resultIndex</c-></a>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#speechrecognitionresultlist" id="ref-for-speechrecognitionresultlist"><c- n>SpeechRecognitionResultList</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="SpeechRecognitionResultList" href="#dom-speechrecognitionevent-results" id="ref-for-dom-speechrecognitionevent-results"><c- g>results</c-></a>;
 };
@@ -1736,8 +1738,9 @@ The term "interim result" indicates a SpeechRecognitionResult in which the final
 };
 
 // The object representing a speech grammar collection
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑦"><c- g>Exposed</c-></a>=<c- n>Window</c->, <dfn class="idl-code" data-dfn-for="SpeechGrammarList" data-dfn-type="constructor" data-export data-lt="SpeechGrammarList()" id="dom-speechgrammarlist-speechgrammarlist"><code><c- g>Constructor</c-></code><a class="self-link" href="#dom-speechgrammarlist-speechgrammarlist"></a></dfn>]
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑦"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="speechgrammarlist"><code><c- g>SpeechGrammarList</c-></code></dfn> {
+    <c- b>constructor</c->();
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long⑦"><c- b>unsigned</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="unsigned long" href="#dom-speechgrammarlist-length" id="ref-for-dom-speechgrammarlist-length"><c- g>length</c-></a>;
     <c- b>getter</c-> <a class="n" data-link-type="idl-name" href="#speechgrammar" id="ref-for-speechgrammar"><c- n>SpeechGrammar</c-></a> <a class="idl-code" data-link-type="method" href="#dom-speechgrammarlist-item" id="ref-for-dom-speechgrammarlist-item"><c- g>item</c-></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long⑧"><c- b>unsigned</c-> <c- b>long</c-></a> <dfn class="idl-code" data-dfn-for="SpeechGrammarList/item(index)" data-dfn-type="argument" data-export id="dom-speechgrammarlist-item-index-index"><code><c- g>index</c-></code><a class="self-link" href="#dom-speechgrammarlist-item-index-index"></a></dfn>);
     <c- b>void</c-> <a class="idl-code" data-link-type="method" href="#dom-speechgrammarlist-addfromuri" id="ref-for-dom-speechgrammarlist-addfromuri"><c- g>addFromURI</c-></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString⑦"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="SpeechGrammarList/addFromURI(src, weight), SpeechGrammarList/addFromURI(src)" data-dfn-type="argument" data-export id="dom-speechgrammarlist-addfromuri-src-weight-src"><code><c- g>src</c-></code><a class="self-link" href="#dom-speechgrammarlist-addfromuri-src-weight-src"></a></dfn>,
@@ -1976,9 +1979,10 @@ This structure has the following attributes:</p>
     [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#speechsynthesis" id="ref-for-speechsynthesis"><c- n>SpeechSynthesis</c-></a> <dfn class="idl-code" data-dfn-for="Window" data-dfn-type="attribute" data-export data-readonly data-type="SpeechSynthesis" id="dom-window-speechsynthesis"><code><c- g>speechSynthesis</c-></code><a class="self-link" href="#dom-window-speechsynthesis"></a></dfn>;
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑨"><c- g>Exposed</c-></a>=<c- n>Window</c->,
-  <dfn class="idl-code" data-dfn-for="SpeechSynthesisUtterance" data-dfn-type="constructor" data-export data-lt="SpeechSynthesisUtterance(text)|SpeechSynthesisUtterance()" id="dom-speechsynthesisutterance-speechsynthesisutterance"><code><c- g>Constructor</c-></code><a class="self-link" href="#dom-speechsynthesisutterance-speechsynthesisutterance"></a></dfn>(<c- b>optional</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①③"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="SpeechSynthesisUtterance/SpeechSynthesisUtterance(text)" data-dfn-type="argument" data-export id="dom-speechsynthesisutterance-speechsynthesisutterance-text-text"><code><c- g>text</c-></code><a class="self-link" href="#dom-speechsynthesisutterance-speechsynthesisutterance-text-text"></a></dfn>)]
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑨"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="speechsynthesisutterance"><code><c- g>SpeechSynthesisUtterance</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget②"><c- n>EventTarget</c-></a> {
+    <c- b>constructor</c->(<c- b>optional</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①③"><c- b>DOMString</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="SpeechSynthesisUtterance" data-dfn-type="argument" data-export id="dom-speechsynthesisutterance-text"><code><c- g>text</c-></code></dfn>);
+
     <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①④"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="attribute" data-type="DOMString" href="#dom-speechsynthesisutterance-text" id="ref-for-dom-speechsynthesisutterance-text"><c- g>text</c-></a>;
     <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①⑤"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="attribute" data-type="DOMString" href="#dom-speechsynthesisutterance-lang" id="ref-for-dom-speechsynthesisutterance-lang"><c- g>lang</c-></a>;
     <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#speechsynthesisvoice" id="ref-for-speechsynthesisvoice①"><c- n>SpeechSynthesisVoice</c-></a>? <a class="idl-code" data-link-type="attribute" data-type="SpeechSynthesisVoice?" href="#dom-speechsynthesisutterance-voice" id="ref-for-dom-speechsynthesisutterance-voice"><c- g>voice</c-></a>;
@@ -1995,9 +1999,9 @@ This structure has the following attributes:</p>
     <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler①⑧"><c- n>EventHandler</c-></a> <dfn class="idl-code" data-dfn-for="SpeechSynthesisUtterance" data-dfn-type="attribute" data-export data-type="EventHandler" id="dom-speechsynthesisutterance-onboundary"><code><c- g>onboundary</c-></code><a class="self-link" href="#dom-speechsynthesisutterance-onboundary"></a></dfn>;
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①⓪"><c- g>Exposed</c-></a>=<c- n>Window</c->,
- <dfn class="idl-code" data-dfn-for="SpeechSynthesisEvent" data-dfn-type="constructor" data-export data-lt="SpeechSynthesisEvent(type, eventInitDict)" id="dom-speechsynthesisevent-speechsynthesisevent"><code><c- g>Constructor</c-></code><a class="self-link" href="#dom-speechsynthesisevent-speechsynthesisevent"></a></dfn>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①⑥"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="SpeechSynthesisEvent/SpeechSynthesisEvent(type, eventInitDict)" data-dfn-type="argument" data-export id="dom-speechsynthesisevent-speechsynthesisevent-type-eventinitdict-type"><code><c- g>type</c-></code><a class="self-link" href="#dom-speechsynthesisevent-speechsynthesisevent-type-eventinitdict-type"></a></dfn>, <a class="n" data-link-type="idl-name" href="#dictdef-speechsynthesiseventinit" id="ref-for-dictdef-speechsynthesiseventinit"><c- n>SpeechSynthesisEventInit</c-></a> <dfn class="idl-code" data-dfn-for="SpeechSynthesisEvent/SpeechSynthesisEvent(type, eventInitDict)" data-dfn-type="argument" data-export id="dom-speechsynthesisevent-speechsynthesisevent-type-eventinitdict-eventinitdict"><code><c- g>eventInitDict</c-></code><a class="self-link" href="#dom-speechsynthesisevent-speechsynthesisevent-type-eventinitdict-eventinitdict"></a></dfn>)]
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①⓪"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="speechsynthesisevent"><code><c- g>SpeechSynthesisEvent</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event" id="ref-for-event②"><c- n>Event</c-></a> {
+    <c- b>constructor</c->(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①⑥"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="SpeechSynthesisEvent" data-dfn-type="argument" data-export id="dom-speechsynthesisevent-type"><code><c- g>type</c-></code><a class="self-link" href="#dom-speechsynthesisevent-type"></a></dfn>, <a class="n" data-link-type="idl-name" href="#dictdef-speechsynthesiseventinit" id="ref-for-dictdef-speechsynthesiseventinit"><c- n>SpeechSynthesisEventInit</c-></a> <dfn class="idl-code" data-dfn-for="SpeechSynthesisEvent" data-dfn-type="argument" data-export id="dom-speechsynthesisevent-eventinitdict"><code><c- g>eventInitDict</c-></code><a class="self-link" href="#dom-speechsynthesisevent-eventinitdict"></a></dfn>);
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#speechsynthesisutterance" id="ref-for-speechsynthesisutterance①"><c- n>SpeechSynthesisUtterance</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="SpeechSynthesisUtterance" href="#dom-speechsynthesisevent-utterance" id="ref-for-dom-speechsynthesisevent-utterance"><c- g>utterance</c-></a>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long①④"><c- b>unsigned</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="unsigned long" href="#dom-speechsynthesisevent-charindex" id="ref-for-dom-speechsynthesisevent-charindex"><c- g>charIndex</c-></a>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long①⑤"><c- b>unsigned</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="unsigned long" href="#dom-speechsynthesisevent-charlength" id="ref-for-dom-speechsynthesisevent-charlength"><c- g>charLength</c-></a>;
@@ -2028,9 +2032,9 @@ This structure has the following attributes:</p>
     <a class="idl-code" data-link-type="enum-value" href="#dom-speechsynthesiserrorcode-not-allowed" id="ref-for-dom-speechsynthesiserrorcode-not-allowed"><c- s>"not-allowed"</c-></a>,
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①①"><c- g>Exposed</c-></a>=<c- n>Window</c->,
- <dfn class="idl-code" data-dfn-for="SpeechSynthesisErrorEvent" data-dfn-type="constructor" data-export data-lt="SpeechSynthesisErrorEvent(type, eventInitDict)" id="dom-speechsynthesiserrorevent-speechsynthesiserrorevent"><code><c- g>Constructor</c-></code><a class="self-link" href="#dom-speechsynthesiserrorevent-speechsynthesiserrorevent"></a></dfn>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①⑨"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="SpeechSynthesisErrorEvent/SpeechSynthesisErrorEvent(type, eventInitDict)" data-dfn-type="argument" data-export id="dom-speechsynthesiserrorevent-speechsynthesiserrorevent-type-eventinitdict-type"><code><c- g>type</c-></code><a class="self-link" href="#dom-speechsynthesiserrorevent-speechsynthesiserrorevent-type-eventinitdict-type"></a></dfn>, <a class="n" data-link-type="idl-name" href="#dictdef-speechsynthesiserroreventinit" id="ref-for-dictdef-speechsynthesiserroreventinit"><c- n>SpeechSynthesisErrorEventInit</c-></a> <dfn class="idl-code" data-dfn-for="SpeechSynthesisErrorEvent/SpeechSynthesisErrorEvent(type, eventInitDict)" data-dfn-type="argument" data-export id="dom-speechsynthesiserrorevent-speechsynthesiserrorevent-type-eventinitdict-eventinitdict"><code><c- g>eventInitDict</c-></code><a class="self-link" href="#dom-speechsynthesiserrorevent-speechsynthesiserrorevent-type-eventinitdict-eventinitdict"></a></dfn>)]
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="speechsynthesiserrorevent"><code><c- g>SpeechSynthesisErrorEvent</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="#speechsynthesisevent" id="ref-for-speechsynthesisevent"><c- n>SpeechSynthesisEvent</c-></a> {
+    <c- b>constructor</c->(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①⑨"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="SpeechSynthesisErrorEvent" data-dfn-type="argument" data-export id="dom-speechsynthesiserrorevent-type"><code><c- g>type</c-></code><a class="self-link" href="#dom-speechsynthesiserrorevent-type"></a></dfn>, <a class="n" data-link-type="idl-name" href="#dictdef-speechsynthesiserroreventinit" id="ref-for-dictdef-speechsynthesiserroreventinit"><c- n>SpeechSynthesisErrorEventInit</c-></a> <dfn class="idl-code" data-dfn-for="SpeechSynthesisErrorEvent" data-dfn-type="argument" data-export id="dom-speechsynthesiserrorevent-eventinitdict"><code><c- g>eventInitDict</c-></code><a class="self-link" href="#dom-speechsynthesiserrorevent-eventinitdict"></a></dfn>);
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-speechsynthesiserrorcode" id="ref-for-enumdef-speechsynthesiserrorcode"><c- n>SpeechSynthesisErrorCode</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="SpeechSynthesisErrorCode" href="#dom-speechsynthesiserrorevent-error" id="ref-for-dom-speechsynthesiserrorevent-error"><c- g>error</c-></a>;
 };
 
@@ -2099,7 +2103,7 @@ This structure has the following attributes:</p>
    </dl>
    <h4 class="heading settled" data-level="4.2.4" id="utterance-attributes"><span class="secno">4.2.4. </span><span class="content">SpeechSynthesisUtterance Attributes</span><a class="self-link" href="#utterance-attributes"></a></h4>
    <dl>
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="SpeechSynthesisUtterance" data-dfn-type="attribute" data-export id="dom-speechsynthesisutterance-text"><code>text</code></dfn> attribute, <span> of type <a data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString②③">DOMString</a></span>
+    <dt><dfn class="idl-code" data-dfn-for="SpeechSynthesisUtterance" data-dfn-type="attribute" data-export id="dom-speechsynthesisutterance-text①"><code>text</code><a class="self-link" href="#dom-speechsynthesisutterance-text①"></a></dfn> attribute, <span> of type <a data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString②③">DOMString</a></span>
     <dd>This attribute specifies the text to be synthesized and spoken for this utterance.
   This may be either plain text or a complete, well-formed SSML document. <a data-link-type="biblio" href="#biblio-ssml">[SSML]</a> For speech synthesis engines that do not support SSML, or only support certain tags, the user agent or speech engine must strip away the tags they do not support and speak the text.
   There may be a maximum length of the text, it may be limited to 32,767 characters.
@@ -2725,17 +2729,13 @@ These events bubble up to SpeechSynthesis.</p>
    <li><a href="#eventdef-speechrecognition-speechend">speechend</a><span>, in §4.1.3</span>
    <li><a href="#speechgrammar">SpeechGrammar</a><span>, in §4.1</span>
    <li><a href="#speechgrammarlist">SpeechGrammarList</a><span>, in §4.1</span>
-   <li><a href="#dom-speechgrammarlist-speechgrammarlist">SpeechGrammarList()</a><span>, in §4.1</span>
-   <li><a href="#dom-speechrecognition-speechrecognition">SpeechRecognition()</a><span>, in §4.1</span>
    <li><a href="#speechrecognition">SpeechRecognition</a><span>, in §4.1</span>
    <li><a href="#speechrecognitionalternative">SpeechRecognitionAlternative</a><span>, in §4.1</span>
    <li><a href="#enumdef-speechrecognitionerrorcode">SpeechRecognitionErrorCode</a><span>, in §4.1</span>
    <li><a href="#speechrecognitionerrorevent">SpeechRecognitionErrorEvent</a><span>, in §4.1</span>
    <li><a href="#dictdef-speechrecognitionerroreventinit">SpeechRecognitionErrorEventInit</a><span>, in §4.1</span>
-   <li><a href="#dom-speechrecognitionerrorevent-speechrecognitionerrorevent">SpeechRecognitionErrorEvent(type, eventInitDict)</a><span>, in §4.1</span>
    <li><a href="#speechrecognitionevent">SpeechRecognitionEvent</a><span>, in §4.1</span>
    <li><a href="#dictdef-speechrecognitioneventinit">SpeechRecognitionEventInit</a><span>, in §4.1</span>
-   <li><a href="#dom-speechrecognitionevent-speechrecognitionevent">SpeechRecognitionEvent(type, eventInitDict)</a><span>, in §4.1</span>
    <li><a href="#speechrecognitionresult">SpeechRecognitionResult</a><span>, in §4.1</span>
    <li><a href="#speechrecognitionresultlist">SpeechRecognitionResultList</a><span>, in §4.1</span>
    <li><a href="#eventdef-speechrecognition-speechstart">speechstart</a><span>, in §4.1.3</span>
@@ -2744,13 +2744,9 @@ These events bubble up to SpeechSynthesis.</p>
    <li><a href="#enumdef-speechsynthesiserrorcode">SpeechSynthesisErrorCode</a><span>, in §4.2</span>
    <li><a href="#speechsynthesiserrorevent">SpeechSynthesisErrorEvent</a><span>, in §4.2</span>
    <li><a href="#dictdef-speechsynthesiserroreventinit">SpeechSynthesisErrorEventInit</a><span>, in §4.2</span>
-   <li><a href="#dom-speechsynthesiserrorevent-speechsynthesiserrorevent">SpeechSynthesisErrorEvent(type, eventInitDict)</a><span>, in §4.2</span>
    <li><a href="#speechsynthesisevent">SpeechSynthesisEvent</a><span>, in §4.2</span>
    <li><a href="#dictdef-speechsynthesiseventinit">SpeechSynthesisEventInit</a><span>, in §4.2</span>
-   <li><a href="#dom-speechsynthesisevent-speechsynthesisevent">SpeechSynthesisEvent(type, eventInitDict)</a><span>, in §4.2</span>
    <li><a href="#speechsynthesisutterance">SpeechSynthesisUtterance</a><span>, in §4.2</span>
-   <li><a href="#dom-speechsynthesisutterance-speechsynthesisutterance">SpeechSynthesisUtterance()</a><span>, in §4.2</span>
-   <li><a href="#dom-speechsynthesisutterance-speechsynthesisutterance">SpeechSynthesisUtterance(text)</a><span>, in §4.2</span>
    <li><a href="#speechsynthesisvoice">SpeechSynthesisVoice</a><span>, in §4.2</span>
    <li><a href="#dom-speechgrammar-src">src</a><span>, in §4.1.9</span>
    <li>
@@ -2763,7 +2759,7 @@ These events bubble up to SpeechSynthesis.</p>
    <li><a href="#dom-speechrecognition-stop">stop()</a><span>, in §4.1.2</span>
    <li><a href="#dom-speechsynthesiserrorcode-synthesis-failed">"synthesis-failed"</a><span>, in §4.2.7</span>
    <li><a href="#dom-speechsynthesiserrorcode-synthesis-unavailable">"synthesis-unavailable"</a><span>, in §4.2.7</span>
-   <li><a href="#dom-speechsynthesisutterance-text">text</a><span>, in §4.2.4</span>
+   <li><a href="#dom-speechsynthesisutterance-text①">text</a><span>, in §4.2.4</span>
    <li><a href="#dom-speechsynthesiserrorcode-text-too-long">"text-too-long"</a><span>, in §4.2.7</span>
    <li><a href="#dom-speechrecognitionalternative-transcript">transcript</a><span>, in §4.1.5</span>
    <li>
@@ -2945,8 +2941,10 @@ These events bubble up to SpeechSynthesis.</p>
    <dd>Michael Bodell; et al. <a href="https://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech-20111206/">HTML Speech Incubator Group Final Report</a>. URL: <a href="https://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech-20111206/">https://www.w3.org/2005/Incubator/htmlspeech/XGR-htmlspeech-20111206/</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
-<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①③"><c- g>Exposed</c-></a>=<c- n>Window</c->, <a href="#dom-speechrecognition-speechrecognition"><code><c- g>Constructor</c-></code></a>]
+<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①③"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <a href="#speechrecognition"><code><c- g>SpeechRecognition</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget③"><c- n>EventTarget</c-></a> {
+    <c- b>constructor</c->();
+
     // recognition parameters
     <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#speechgrammarlist" id="ref-for-speechgrammarlist②"><c- n>SpeechGrammarList</c-></a> <a class="idl-code" data-link-type="attribute" data-type="SpeechGrammarList" href="#dom-speechrecognition-grammars" id="ref-for-dom-speechrecognition-grammars①"><c- g>grammars</c-></a>;
     <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString③⓪"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="attribute" data-type="DOMString" href="#dom-speechrecognition-lang" id="ref-for-dom-speechrecognition-lang①"><c- g>lang</c-></a>;
@@ -2984,9 +2982,9 @@ These events bubble up to SpeechSynthesis.</p>
     <a class="idl-code" data-link-type="enum-value" href="#dom-speechrecognitionerrorcode-language-not-supported" id="ref-for-dom-speechrecognitionerrorcode-language-not-supported①"><c- s>"language-not-supported"</c-></a>
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①④"><c- g>Exposed</c-></a>=<c- n>Window</c->,
- <a href="#dom-speechrecognitionerrorevent-speechrecognitionerrorevent"><code><c- g>Constructor</c-></code></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①①⓪"><c- b>DOMString</c-></a> <a href="#dom-speechrecognitionerrorevent-speechrecognitionerrorevent-type-eventinitdict-type"><code><c- g>type</c-></code></a>, <a class="n" data-link-type="idl-name" href="#dictdef-speechrecognitionerroreventinit" id="ref-for-dictdef-speechrecognitionerroreventinit①"><c- n>SpeechRecognitionErrorEventInit</c-></a> <a href="#dom-speechrecognitionerrorevent-speechrecognitionerrorevent-type-eventinitdict-eventinitdict"><code><c- g>eventInitDict</c-></code></a>)]
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①④"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <a href="#speechrecognitionerrorevent"><code><c- g>SpeechRecognitionErrorEvent</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event" id="ref-for-event③"><c- n>Event</c-></a> {
+    <c- b>constructor</c->(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①①⓪"><c- b>DOMString</c-></a> <a href="#dom-speechrecognitionerrorevent-type"><code><c- g>type</c-></code></a>, <a class="n" data-link-type="idl-name" href="#dictdef-speechrecognitionerroreventinit" id="ref-for-dictdef-speechrecognitionerroreventinit①"><c- n>SpeechRecognitionErrorEventInit</c-></a> <a href="#dom-speechrecognitionerrorevent-eventinitdict"><code><c- g>eventInitDict</c-></code></a>);
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-speechrecognitionerrorcode" id="ref-for-enumdef-speechrecognitionerrorcode③"><c- n>SpeechRecognitionErrorCode</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="SpeechRecognitionErrorCode" href="#dom-speechrecognitionerrorevent-error" id="ref-for-dom-speechrecognitionerrorevent-error①"><c- g>error</c-></a>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString②⑨"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMString" href="#dom-speechrecognitionerrorevent-message" id="ref-for-dom-speechrecognitionerrorevent-message①"><c- g>message</c-></a>;
 };
@@ -3019,9 +3017,9 @@ These events bubble up to SpeechSynthesis.</p>
 };
 
 // A full response, which could be interim or final, part of a continuous response or not
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑤①"><c- g>Exposed</c-></a>=<c- n>Window</c->,
- <a href="#dom-speechrecognitionevent-speechrecognitionevent"><code><c- g>Constructor</c-></code></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString⑤①"><c- b>DOMString</c-></a> <a href="#dom-speechrecognitionevent-speechrecognitionevent-type-eventinitdict-type"><code><c- g>type</c-></code></a>, <a class="n" data-link-type="idl-name" href="#dictdef-speechrecognitioneventinit" id="ref-for-dictdef-speechrecognitioneventinit①"><c- n>SpeechRecognitionEventInit</c-></a> <a href="#dom-speechrecognitionevent-speechrecognitionevent-type-eventinitdict-eventinitdict"><code><c- g>eventInitDict</c-></code></a>)]
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑤①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <a href="#speechrecognitionevent"><code><c- g>SpeechRecognitionEvent</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event" id="ref-for-event①①"><c- n>Event</c-></a> {
+    <c- b>constructor</c->(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString⑤①"><c- b>DOMString</c-></a> <a href="#dom-speechrecognitionevent-type"><code><c- g>type</c-></code></a>, <a class="n" data-link-type="idl-name" href="#dictdef-speechrecognitioneventinit" id="ref-for-dictdef-speechrecognitioneventinit①"><c- n>SpeechRecognitionEventInit</c-></a> <a href="#dom-speechrecognitionevent-eventinitdict"><code><c- g>eventInitDict</c-></code></a>);
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long⑤①"><c- b>unsigned</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="unsigned long" href="#dom-speechrecognitionevent-resultindex" id="ref-for-dom-speechrecognitionevent-resultindex①"><c- g>resultIndex</c-></a>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#speechrecognitionresultlist" id="ref-for-speechrecognitionresultlist③"><c- n>SpeechRecognitionResultList</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="SpeechRecognitionResultList" href="#dom-speechrecognitionevent-results" id="ref-for-dom-speechrecognitionevent-results②"><c- g>results</c-></a>;
 };
@@ -3039,8 +3037,9 @@ These events bubble up to SpeechSynthesis.</p>
 };
 
 // The object representing a speech grammar collection
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑦①"><c- g>Exposed</c-></a>=<c- n>Window</c->, <a href="#dom-speechgrammarlist-speechgrammarlist"><code><c- g>Constructor</c-></code></a>]
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑦①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <a href="#speechgrammarlist"><code><c- g>SpeechGrammarList</c-></code></a> {
+    <c- b>constructor</c->();
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long⑦①"><c- b>unsigned</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="unsigned long" href="#dom-speechgrammarlist-length" id="ref-for-dom-speechgrammarlist-length①"><c- g>length</c-></a>;
     <c- b>getter</c-> <a class="n" data-link-type="idl-name" href="#speechgrammar" id="ref-for-speechgrammar①"><c- n>SpeechGrammar</c-></a> <a class="idl-code" data-link-type="method" href="#dom-speechgrammarlist-item" id="ref-for-dom-speechgrammarlist-item①"><c- g>item</c-></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long⑧①"><c- b>unsigned</c-> <c- b>long</c-></a> <a href="#dom-speechgrammarlist-item-index-index"><code><c- g>index</c-></code></a>);
     <c- b>void</c-> <a class="idl-code" data-link-type="method" href="#dom-speechgrammarlist-addfromuri" id="ref-for-dom-speechgrammarlist-addfromuri①"><c- g>addFromURI</c-></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString⑦①"><c- b>DOMString</c-></a> <a href="#dom-speechgrammarlist-addfromuri-src-weight-src"><code><c- g>src</c-></code></a>,
@@ -3068,9 +3067,10 @@ These events bubble up to SpeechSynthesis.</p>
     [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#speechsynthesis" id="ref-for-speechsynthesis①"><c- n>SpeechSynthesis</c-></a> <a data-readonly data-type="SpeechSynthesis" href="#dom-window-speechsynthesis"><code><c- g>speechSynthesis</c-></code></a>;
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑨①"><c- g>Exposed</c-></a>=<c- n>Window</c->,
-  <a href="#dom-speechsynthesisutterance-speechsynthesisutterance"><code><c- g>Constructor</c-></code></a>(<c- b>optional</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①③①"><c- b>DOMString</c-></a> <a href="#dom-speechsynthesisutterance-speechsynthesisutterance-text-text"><code><c- g>text</c-></code></a>)]
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed⑨①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <a href="#speechsynthesisutterance"><code><c- g>SpeechSynthesisUtterance</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget②①"><c- n>EventTarget</c-></a> {
+    <c- b>constructor</c->(<c- b>optional</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①③①"><c- b>DOMString</c-></a> <a href="#dom-speechsynthesisutterance-text"><code><c- g>text</c-></code></a>);
+
     <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①④①"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="attribute" data-type="DOMString" href="#dom-speechsynthesisutterance-text" id="ref-for-dom-speechsynthesisutterance-text①"><c- g>text</c-></a>;
     <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①⑤①"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="attribute" data-type="DOMString" href="#dom-speechsynthesisutterance-lang" id="ref-for-dom-speechsynthesisutterance-lang②"><c- g>lang</c-></a>;
     <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#speechsynthesisvoice" id="ref-for-speechsynthesisvoice①①"><c- n>SpeechSynthesisVoice</c-></a>? <a class="idl-code" data-link-type="attribute" data-type="SpeechSynthesisVoice?" href="#dom-speechsynthesisutterance-voice" id="ref-for-dom-speechsynthesisutterance-voice①"><c- g>voice</c-></a>;
@@ -3087,9 +3087,9 @@ These events bubble up to SpeechSynthesis.</p>
     <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler①⑧①"><c- n>EventHandler</c-></a> <a data-type="EventHandler" href="#dom-speechsynthesisutterance-onboundary"><code><c- g>onboundary</c-></code></a>;
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①⓪①"><c- g>Exposed</c-></a>=<c- n>Window</c->,
- <a href="#dom-speechsynthesisevent-speechsynthesisevent"><code><c- g>Constructor</c-></code></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①⑥①"><c- b>DOMString</c-></a> <a href="#dom-speechsynthesisevent-speechsynthesisevent-type-eventinitdict-type"><code><c- g>type</c-></code></a>, <a class="n" data-link-type="idl-name" href="#dictdef-speechsynthesiseventinit" id="ref-for-dictdef-speechsynthesiseventinit②"><c- n>SpeechSynthesisEventInit</c-></a> <a href="#dom-speechsynthesisevent-speechsynthesisevent-type-eventinitdict-eventinitdict"><code><c- g>eventInitDict</c-></code></a>)]
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①⓪①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <a href="#speechsynthesisevent"><code><c- g>SpeechSynthesisEvent</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event" id="ref-for-event②①"><c- n>Event</c-></a> {
+    <c- b>constructor</c->(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①⑥①"><c- b>DOMString</c-></a> <a href="#dom-speechsynthesisevent-type"><code><c- g>type</c-></code></a>, <a class="n" data-link-type="idl-name" href="#dictdef-speechsynthesiseventinit" id="ref-for-dictdef-speechsynthesiseventinit②"><c- n>SpeechSynthesisEventInit</c-></a> <a href="#dom-speechsynthesisevent-eventinitdict"><code><c- g>eventInitDict</c-></code></a>);
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#speechsynthesisutterance" id="ref-for-speechsynthesisutterance①①"><c- n>SpeechSynthesisUtterance</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="SpeechSynthesisUtterance" href="#dom-speechsynthesisevent-utterance" id="ref-for-dom-speechsynthesisevent-utterance①"><c- g>utterance</c-></a>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long①④①"><c- b>unsigned</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="unsigned long" href="#dom-speechsynthesisevent-charindex" id="ref-for-dom-speechsynthesisevent-charindex②"><c- g>charIndex</c-></a>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long①⑤①"><c- b>unsigned</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="unsigned long" href="#dom-speechsynthesisevent-charlength" id="ref-for-dom-speechsynthesisevent-charlength①"><c- g>charLength</c-></a>;
@@ -3120,9 +3120,9 @@ These events bubble up to SpeechSynthesis.</p>
     <a class="idl-code" data-link-type="enum-value" href="#dom-speechsynthesiserrorcode-not-allowed" id="ref-for-dom-speechsynthesiserrorcode-not-allowed①"><c- s>"not-allowed"</c-></a>,
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①①①"><c- g>Exposed</c-></a>=<c- n>Window</c->,
- <a href="#dom-speechsynthesiserrorevent-speechsynthesiserrorevent"><code><c- g>Constructor</c-></code></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①⑨①"><c- b>DOMString</c-></a> <a href="#dom-speechsynthesiserrorevent-speechsynthesiserrorevent-type-eventinitdict-type"><code><c- g>type</c-></code></a>, <a class="n" data-link-type="idl-name" href="#dictdef-speechsynthesiserroreventinit" id="ref-for-dictdef-speechsynthesiserroreventinit①"><c- n>SpeechSynthesisErrorEventInit</c-></a> <a href="#dom-speechsynthesiserrorevent-speechsynthesiserrorevent-type-eventinitdict-eventinitdict"><code><c- g>eventInitDict</c-></code></a>)]
+[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①①①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <a href="#speechsynthesiserrorevent"><code><c- g>SpeechSynthesisErrorEvent</c-></code></a> : <a class="n" data-link-type="idl-name" href="#speechsynthesisevent" id="ref-for-speechsynthesisevent②"><c- n>SpeechSynthesisEvent</c-></a> {
+    <c- b>constructor</c->(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①⑨①"><c- b>DOMString</c-></a> <a href="#dom-speechsynthesiserrorevent-type"><code><c- g>type</c-></code></a>, <a class="n" data-link-type="idl-name" href="#dictdef-speechsynthesiserroreventinit" id="ref-for-dictdef-speechsynthesiserroreventinit①"><c- n>SpeechSynthesisErrorEventInit</c-></a> <a href="#dom-speechsynthesiserrorevent-eventinitdict"><code><c- g>eventInitDict</c-></code></a>);
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-speechsynthesiserrorcode" id="ref-for-enumdef-speechsynthesiserrorcode③"><c- n>SpeechSynthesisErrorCode</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="SpeechSynthesisErrorCode" href="#dom-speechsynthesiserrorevent-error" id="ref-for-dom-speechsynthesiserrorevent-error①"><c- g>error</c-></a>;
 };
 
@@ -3470,6 +3470,12 @@ See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179
     <li><a href="#ref-for-speechsynthesisutterance④">4.2.6. SpeechSynthesisEvent Attributes</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="dom-speechsynthesisutterance-text">
+   <b><a href="#dom-speechsynthesisutterance-text">#dom-speechsynthesisutterance-text</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-speechsynthesisutterance-text">4.2. The SpeechSynthesis Interface</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="speechsynthesisevent">
    <b><a href="#speechsynthesisevent">#speechsynthesisevent</a></b><b>Referenced in:</b>
    <ul>
@@ -3557,12 +3563,6 @@ See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Jun/0179
    <ul>
     <li><a href="#ref-for-dom-speechsynthesis-getvoices">4.2. The SpeechSynthesis Interface</a>
     <li><a href="#ref-for-dom-speechsynthesis-getvoices①">4.2.4. SpeechSynthesisUtterance Attributes</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-speechsynthesisutterance-text">
-   <b><a href="#dom-speechsynthesisutterance-text">#dom-speechsynthesisutterance-text</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-speechsynthesisutterance-text">4.2. The SpeechSynthesis Interface</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-speechsynthesisutterance-lang">
