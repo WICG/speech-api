@@ -6,6 +6,7 @@ The following tasks have been completed:
 
 Implementation commitment:
 
- * [ ] WebKit (link to issue)
  * [ ] Blink (link to issue)
  * [ ] Gecko (link to issue)
+ * [ ] WebKit (link to issue)
+ 
