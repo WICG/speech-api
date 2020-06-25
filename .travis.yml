@@ -3,10 +3,10 @@ branches:
     - master
 language: python
 python:
-  - "2.7"
+  - "3.8"
 install:
   - git clone https://github.com/tabatkins/bikeshed.git
-  - pip install --editable bikeshed
+  - pip3 install --editable bikeshed
   - bikeshed update
 script:
   - bikeshed spec
