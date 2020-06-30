@@ -5,8 +5,7 @@ language: python
 python:
   - "3.8"
 install:
-  - git clone https://github.com/tabatkins/bikeshed.git
-  - pip3 install --editable bikeshed
+  - pip install bikeshed
   - bikeshed update
 script:
   - bikeshed spec
