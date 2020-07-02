@@ -777,7 +777,7 @@ These events bubble up to SpeechSynthesis.
 
   <dt><dfn attribute for=SpeechSynthesisEvent>charLength</dfn> attribute</dt>
   <dd>This attribute indicates the length of the text (word or sentence) that will be spoken corresponding to this event.
-  This attribute is the length, in characters, starting from this event's {{charIndex}}.
+  This attribute is the length, in characters, starting from this event's {{SpeechSynthesisEvent/charIndex}}.
   The user agent must return this value if the speech synthesis engine supports it or the user agent can otherwise determine it, otherwise the user agent must return 0.</dd>
 
   <dt><dfn attribute for=SpeechSynthesisEvent>elapsedTime</dfn> attribute</dt>
