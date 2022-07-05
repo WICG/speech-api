@@ -315,7 +315,7 @@ See <a href="https://lists.w3.org/Archives/Public/public-speech-api/2012Sep/0072
 <p>The DOM Level 2 Event Model is used for speech recognition events.
 The methods in the EventTarget interface should be used for registering event listeners.
 The SpeechRecognition interface also contains convenience attributes for registering a single event handler for each event type.
-The events do not bubble and are not cancelable.</p>
+These events do not bubble and are not cancelable.</p>
 
 <p>For all these events, the timeStamp attribute defined in the DOM Level 2 Event interface must be set to the best possible estimate of when the real-world event which the event object represents occurred.
 This timestamp must be represented in the user agent's view of time, even for events where the timestamps in question could be raised on a different machine like a remote recognition service (i.e., in a <a event for=SpeechRecognition>speechend</a> event with a remote speech endpointer).</p>
@@ -732,7 +732,7 @@ interface SpeechSynthesisVoice {
 
 Each of these events must use the {{SpeechSynthesisEvent}} interface,
 except the error event which must use the {{SpeechSynthesisErrorEvent}} interface.
-These events bubble up to SpeechSynthesis.
+These events do not bubble and are not cancelable.
 
 <dl>
   <dt><dfn event for=SpeechSynthesisUtterance>start</dfn> event</dt>
